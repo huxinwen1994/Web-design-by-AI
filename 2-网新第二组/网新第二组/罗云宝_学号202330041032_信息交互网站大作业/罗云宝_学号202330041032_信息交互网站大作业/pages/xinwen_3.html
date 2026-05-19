@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于湖南师范大学各学院设立急救联络员的通知</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+
+        /* 页面背景与基础样式 */
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 导航栏样式（保持统一的#2c3e50底色） */
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* 主容器样式 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* 通知头部样式 */
+        .news-header {
+            padding: 3rem 0;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 2rem;
+        }
+
+        .news-tag {
+            display: inline-block;
+            background-color: #3498db; /* 政策通知蓝色主题 */
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .news-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .news-meta {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* 通知内容样式 */
+        .news-content {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .main-content {
+            flex: 3;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .notice-text {
+            margin-bottom: 2rem;
+            text-align: justify; /* 公文式两端对齐 */
+        }
+
+        .notice-text p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        .notice-text .signature {
+            margin-top: 3rem;
+            text-align: right;
+            color: #555;
+        }
+
+        /* 关键信息卡片 */
+        .key-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db; /* 蓝色边框匹配主题 */
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .key-info h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .key-info ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+
+        .key-info li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 侧边栏样式 */
+        .sidebar {
+            flex: 1;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .contact-card {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .contact-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .contact-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .contact-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #3498db;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* 弹窗样式 */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        /* 留言样式 */
+        .message-container {
+            margin-top: 1.5rem;
+        }
+        
+        .message-item {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .message-author {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+        
+        .message-content {
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .message-time {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            text-align: right;
+            margin-top: 0.5rem;
+        }
+        
+        /* 安全保障内容样式 */
+        .safety-content h3 {
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 0.5rem;
+        }
+        
+        .safety-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .safety-content ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .safety-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 关于我们内容样式 */
+        .about-content h3 {
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+        
+        .about-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .about-content ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: #2c3e50; /* 与导航栏同色 */
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .news-content {
+                flex-direction: column;
+            }
+
+            .news-title {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .nav-links a {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏（湖师大专属标识） -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">湖南师范大学</div>
+            <div class="nav-links">
+                <a id="school-homepage" href="https://www.hunnu.edu.cn/" target="_blank">学校首页</a>
+                <a id="campus-news">校园动态</a>
+                <a id="safety-guide">健康安全保卫</a>
+                <a id="about-us">关于我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容容器 -->
+    <div class="container">
+        <!-- 通知头部（适配健康安全保卫部发文） -->
+        <div class="news-header">
+            <span class="news-tag">政策通知</span>
+            <h1 class="news-title">关于湖南师范大学各学院设立急救联络员的通知</h1>
+            <div class="news-meta">发布时间：2025年09月05日 | 发文单位：湖南师范大学健康安全保卫部</div>
+        </div>
+
+        <!-- 通知主体内容（贴合健康安全保卫部场景） -->
+        <div class="news-content">
+            <!-- 主要通知文本 -->
+            <div class="main-content">
+                <div class="notice-text">
+                    <p>各学院：</p>
+                    <p>为进一步健全校园应急救护体系，打通急救信息传递"最后一公里"，确保师生突发健康事件能够得到快速响应和处置，结合我校此前AED设备投放及心肺复苏演练工作成果，经学校健康安全保卫部研究决定，在各学院设立急救联络员。现将有关事项通知如下：</p>
+                    <p><strong>一、设立目的</strong></p>
+                    <p>急救联络员作为学校健康安全保卫部与各学院之间的应急救护沟通纽带，负责本院急救相关信息传达、应急事件上报、急救培训组织及校园AED设备使用指引等工作，提升校园应急救护响应效率，保障全校师生生命安全。</p>
+                    <p><strong>二、联络员任职条件</strong></p>
+                    <p>1. 为本学院正式教职工，熟悉本院师生分布及教学办公环境；<br>
+                    2. 已参加学校健康安全保卫部组织的心肺复苏+AED操作培训并考核合格；<br>
+                    3. 具备良好的沟通能力和应急处置意识，能够配合学校完成急救相关工作。</p>
+                    <p><strong>三、联络员主要职责</strong></p>
+                    <p>1. 接收并传达学校健康安全保卫部发布的急救相关政策、培训及演练通知；<br>
+                    2. 本院师生发生突发健康事件时，第一时间上报学校健康安全保卫部应急值班室，并协助现场应急处置；<br>
+                    3. 组织本院师生参与学校急救培训，普及急救知识；<br>
+                    4. 熟悉校园AED设备投放位置（如各教学楼大厅、图书馆、体育馆等），可指导本院师生正确使用；<br>
+                    5. 配合学校健康安全保卫部完成急救联络员月度沟通会议及年度考核工作。</p>
+                    <p><strong>四、报送要求</strong></p>
+                    <p>请各学院于2025年9月20日前，确定1名急救联络员并填写《湖南师范大学急救联络员信息登记表》（见附件），报送至学校健康安全保卫部邮箱：jkab@hunnu.edu.cn。学校健康安全保卫部将对所有联络员开展专项岗前培训，培训合格后颁发《湖南师范大学急救联络员聘书》。</p>
+                    <p>各学院要高度重视此项工作，指定专人负责，确保急救联络员体系有效运行。如遇人员调整，需及时向学校健康安全保卫部报备。</p>
+                    
+                    <div class="signature">
+                        <p>湖南师范大学健康安全保卫部</p>
+                        <p>2025年9月5日</p>
+                    </div>
+                </div>
+
+                <!-- 关键信息卡片（健康安全保卫部核心要求） -->
+                <div class="key-info">
+                    <h3>本次通知核心要求</h3>
+                    <ul>
+                        <li>设立范围：湖南师范大学所有学院</li>
+                        <li>报送截止时间：2025年9月20日</li>
+                        <li>报送方式：填写登记表发送至jkab@hunnu.edu.cn</li>
+                        <li>岗前培训：由健康安全保卫部组织专项培训并颁发聘书</li>
+                        <li>联络员核心：应急沟通纽带，负责信息传达与师生突发情况上报</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 侧边栏（健康安全保卫部专属信息） -->
+            <div class="sidebar">
+                <h3>联络员工作指引</h3>
+                <div class="contact-card">
+                    <!-- 功能二：修改图片地址，指向images文件夹 -->
+                    <img src="../images/新闻图片三.jpg" alt="湖师大急救联络员工作流程示意图">
+                    <p>急救联络员需明确校园应急处置流程，快速响应师生突发情况，做好健康安全保卫部与学院的沟通衔接。</p>
+                    <button class="contact-btn" id="contactDetailBtn">查看联络员工作流程</button>
+                </div>
+
+                <h3>联系方式</h3>
+                <p>湖南师范大学健康安全保卫部：</p>
+                <p style="font-weight: bold; color: #3498db;">应急值班电话：0731-88872335（24小时）</p>
+                <p style="font-weight: bold; color: #3498db;">电子邮箱：jkab@hunnu.edu.cn</p>
+                <p style="font-weight: bold; color: #3498db;">办公地址：岳麓校区二里半校区办公大楼108室</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <!-- 联络员工作流程弹窗（适配健康安全保卫部） -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <h2>湖南师范大学急救联络员应急处置工作流程</h2>
+            <br>
+            <ol>
+                <li><strong>事件接报</strong>：接到本院师生突发健康事件报告后，立即确认事件地点（如教学楼、宿舍、操场等）、人员状况。</li>
+                <li><strong>信息上报</strong>：第一时间拨打学校健康安全保卫部应急值班电话（0731-88872335），说明事件情况、地点、涉及人员信息。</li>
+                <li><strong>现场处置</strong>：前往现场维护秩序，引导具备急救技能的人员实施CPR，根据就近原则指引校园AED设备取用（可参考校园AED分布图）。</li>
+                <li><strong>外部对接</strong>：协助拨打120，向医护人员说明现场情况，引导救护车从校园指定入口进入（如岳麓校区东门）。</li>
+                <li><strong>后续报备</strong>：事件处置完毕后，24小时内填写《校园应急事件处置报备表》报送学校健康安全保卫部。</li>
+                <li><strong>事后复盘</strong>：配合健康安全保卫部完成事件复盘，在本院开展急救知识普及，提升师生应急意识。</li>
+            </ol>
+            <br>
+            <p><strong>重要提示</strong>：联络员需留存健康安全保卫部应急电话、120、校医院急诊电话（0731-88872335），确保紧急情况下快速拨号。</p>
+            <button class="modal-close" id="modalCloseBtn">关闭</button>
+        </div>
+    </div>
+
+    <!-- 校园动态弹窗 -->
+    <div class="modal" id="campusNewsModal">
+        <div class="modal-content">
+            <h2>校园动态 - 校友留言</h2>
+            <p>以下是从校友留言中随机选取的留言：</p>
+            
+            <div class="message-container" id="messageContainer">
+                <!-- 留言将通过JavaScript动态生成 -->
+            </div>
+            
+            <button class="modal-close" id="closeCampusNewsModal">关闭</button>
+        </div>
+    </div>
+
+    <!-- 健康安全保卫弹窗 -->
+    <div class="modal" id="safetyModal">
+        <div class="modal-content">
+            <h2>校园急救联络员体系建设与AED安全保障</h2>
+            <div class="safety-content">
+                <h3>1. 急救联络员与AED设备联动机制</h3>
+                <p>为确保校园突发心脏骤停事件得到及时处置，我校建立了急救联络员与AED设备的联动响应机制：</p>
+                <ul>
+                    <li><strong>网格化管理</strong>：将校园划分为12个急救网格，每个网格配备1名急救联络员和至少2台AED设备</li>
+                    <li><strong>快速响应</strong>：联络员在接到本网格急救事件后，3分钟内可抵达现场并取用AED设备</li>
+                    <li><strong>设备熟悉度</strong>：所有联络员必须熟练掌握网格内所有AED设备位置和操作流程</li>
+                    <li><strong>联动演练</strong>：每季度组织联络员与AED设备的联动应急演练，确保响应流程顺畅</li>
+                </ul>
+                
+                <h3>2. AED设备配置与维护标准</h3>
+                <p>我校按照国际标准配置和维护AED设备，确保设备随时可用：</p>
+                <ul>
+                    <li><strong>配置标准</strong>：每200名师生配置1台AED，重点区域（体育馆、图书馆）加倍配置</li>
+                    <li><strong>设备维护</strong>：实行"日检、周测、月保养"制度，确保设备完好率100%</li>
+                    <li><strong>电极片管理</strong>：建立电极片有效期预警系统，到期前90天自动提醒更换</li>
+                    <li><strong>备用电源</strong>：所有AED设备配备备用电池，确保断电情况下正常使用</li>
+                    <li><strong>环境适配</strong>：根据不同场所特点，配置防水、防尘等特殊防护型AED</li>
+                </ul>
+                
+                <h3>3. 联络员AED操作培训体系</h3>
+                <p>建立系统化的AED操作培训体系，确保联络员专业能力：</p>
+                <ul>
+                    <li><strong>基础培训</strong>：所有联络员必须通过8学时AED操作基础培训并考核合格</li>
+                    <li><strong>进阶培训</strong>：每半年组织4学时进阶培训，更新操作技能和知识</li>
+                    <li><strong>实战演练</strong>：每月组织一次模拟心脏骤停场景的AED使用实战演练</li>
+                    <li><strong>考核认证</strong>：实施年度AED操作技能认证，不合格者需重新培训</li>
+                    <li><strong>继续教育</strong>：提供在线AED操作继续教育课程，支持远程学习</li>
+                </ul>
+                
+                <h3>4. AED使用数据与效果评估</h3>
+                <p>通过数据化管理评估AED设备使用效果，持续优化配置：</p>
+                <ul>
+                    <li><strong>使用记录</strong>：建立AED使用电子档案，记录每次使用情况和效果</li>
+                    <li><strong>响应时间</strong>：统计从事件发生到AED启用的平均响应时间，目标≤3分钟</li>
+                    <li><strong>救治成功率</strong>：跟踪AED使用后的救治成功率，目前校园内成功救治3例</li>
+                    <li><strong>设备利用率</strong>：分析各区域AED设备使用频率，优化设备布局</li>
+                    <li><strong>故障统计</strong>：记录设备故障情况，为设备选型提供依据</li>
+                </ul>
+                
+                <h3>5. 未来发展规划</h3>
+                <p>为提升校园AED安全保障水平，计划实施以下措施：</p>
+                <ul>
+                    <li><strong>智能AED网络</strong>：2026年前建立校园智能AED网络，实现设备状态远程监控</li>
+                    <li><strong>一键呼救系统</strong>：开发校园急救APP，集成AED位置查询和联络员一键呼叫</li>
+                    <li><strong>5G+急救</strong>：探索5G技术在远程AED指导中的应用，实现专家远程协助</li>
+                    <li><strong>社区联动</strong>：与周边社区建立AED设备共享机制，扩大急救覆盖范围</li>
+                    <li><strong>国际认证</strong>：争取获得国际心脏急救组织（IHC）的校园AED配置认证</li>
+                </ul>
+            </div>
+            <button class="modal-close" id="closeSafetyModal">关闭</button>
+        </div>
+    </div>
+
+    <!-- 关于我们弹窗 -->
+    <div class="modal" id="aboutModal">
+        <div class="modal-content">
+            <h2>湖南师范大学健康安全保卫部介绍</h2>
+            <div class="about-content">
+                <h3>部门概况</h3>
+                <p>湖南师范大学健康安全保卫部是学校直属职能部门，成立于2018年，前身为学校保卫处和校医院公共卫生科合并组建。部门现有专职人员36人，其中高级职称8人，中级职称18人，下设应急管理科、公共卫生科、安全教育培训科、设备管理科四个科室。</p>
+                
+                <h3>核心职责</h3>
+                <ul>
+                    <li><strong>校园应急管理</strong>：制定和实施校园应急预案，组织应急演练，处置校园突发安全事件</li>
+                    <li><strong>公共卫生保障</strong>：开展校园传染病防控、食品卫生监督、环境卫生管理等公共卫生工作</li>
+                    <li><strong>急救体系建设</strong>：建设校园急救网络，配置和维护AED等急救设备，培训急救人员</li>
+                    <li><strong>安全教育培训</strong>：组织开展师生安全教育培训，提升校园安全意识和自救互救能力</li>
+                    <li><strong>安全设施管理</strong>：管理校园安全监控系统、消防设施、急救设备等安全基础设施</li>
+                </ul>
+                
+                <h3>工作成就</h3>
+                <ul>
+                    <li><strong>急救网络建设</strong>：在全省高校中率先实现AED设备全覆盖，建立急救联络员体系</li>
+                    <li><strong>培训成果</strong>：累计培训师生急救员3200余人，成功处置校园急救事件15起</li>
+                    <li><strong>安全创新</strong>：开发"湖师大安全校园"智慧管理平台，实现安全设施智能化管理</li>
+                    <li><strong>荣誉表彰</strong>：连续三年荣获"湖南省高校安全管理先进单位"称号</li>
+                    <li><strong>科研贡献</strong>：承担省级校园安全研究课题3项，发表相关学术论文12篇</li>
+                </ul>
+                
+                <h3>组织架构</h3>
+                <ul>
+                    <li><strong>应急管理科（8人）</strong>：负责应急预案制定、应急演练组织、突发事件处置</li>
+                    <li><strong>公共卫生科（10人）</strong>：负责传染病防控、卫生监督、健康教育</li>
+                    <li><strong>安全教育培训科（8人）</strong>：负责安全课程开发、培训组织、宣传教育</li>
+                    <li><strong>设备管理科（10人）</strong>：负责安全设备配置、维护、监控系统管理</li>
+                </ul>
+                
+                <h3>服务承诺</h3>
+                <ul>
+                    <li><strong>快速响应</strong>：应急事件5分钟内响应，30分钟内到达现场</li>
+                    <li><strong>专业服务</strong>：所有工作人员持证上岗，提供专业安全服务</li>
+                    <li><strong>全天候值守</strong>：实行24小时应急值班制度，全年无休</li>
+                    <li><strong>持续改进</strong>：每年开展服务满意度调查，持续改进工作质量</li>
+                    <li><strong>开放合作</strong>：欢迎师生提出意见建议，共建安全校园</li>
+                </ul>
+                
+                <h3>联系方式</h3>
+                <ul>
+                    <li><strong>办公地址</strong>：岳麓校区二里半校区办公大楼108-112室</li>
+                    <li><strong>应急值班电话</strong>：0731-88872335（24小时）</li>
+                    <li><strong>日常工作电话</strong>：0731-88879121（工作日8:00-17:30）</li>
+                    <li><strong>电子邮箱</strong>：jkab@hunnu.edu.cn</li>
+                    <li><strong>微信公众号</strong>：湖师大安全校园</li>
+                </ul>
+            </div>
+            <button class="modal-close" id="closeAboutModal">关闭</button>
+        </div>
+    </div>
+
+    <!-- 页脚（湖师大专属信息） -->
+    <footer>
+        <div class="container">
+            <p>© 2025 湖南师范大学 版权所有</p>
+            <p>地址：湖南省长沙市岳麓区麓山路36号 | 学校总机：0731-88872181</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript 交互逻辑 -->
+    <script>
+        // 校友留言数据（35条）
+        const alumniMessages = [
+            { author: "张明", content: "作为文学院毕业生，看到母校建立急救联络员体系，深感欣慰。这种细致入微的安全保障，体现了母校对师生生命的高度负责。", time: "2025-09-15" },
+            { author: "李华", content: "很高兴母校在应急救护体系建设上走在前列。急救联络员制度的建立，让校园安全更有保障，为母校点赞！", time: "2025-09-12" },
+            { author: "王芳", content: "作为医学院校友，深知急救体系的重要性。母校建立联络员制度，是校园安全建设的重要里程碑。", time: "2025-09-10" },
+            { author: "刘伟", content: "建议为联络员提供更多心理支持培训，他们在应急处置中承担着重要心理压力。支持母校的安全建设！", time: "2025-09-08" },
+            { author: "陈静", content: "看到母校如此重视校园安全，作为校友感到自豪。希望联络员制度能在全国高校推广。", time: "2025-09-05" },
+            { author: "赵刚", content: "建议开发联络员专用的应急响应APP，提高信息传递效率。母校的安全创新令人鼓舞！", time: "2025-09-03" },
+            { author: "杨洋", content: "作为体育学院毕业生，深知运动伤害急救的重要性。联络员制度的建立，对体育场馆安全管理特别有意义。", time: "2025-09-01" },
+            { author: "周涛", content: "希望母校能为联络员提供更多专业发展机会，让他们的付出得到应有的认可和回报。", time: "2025-08-30" },
+            { author: "吴丽", content: "建议将联络员工作纳入教职工绩效考核体系，激励更多人参与校园安全建设。", time: "2025-08-28" },
+            { author: "郑强", content: "作为企业安全主管，我们公司也有类似的应急联络员制度。看到母校建立完善体系，非常欣慰！", time: "2025-08-25" },
+            { author: "孙梅", content: "希望联络员培训能加入更多实战模拟，提高应急处置能力。母校的安全建设考虑很周全。", time: "2025-08-22" },
+            { author: "朱勇", content: "建议联络员制度覆盖到研究生和博士生群体，他们是校园科研活动的主力军。", time: "2025-08-20" },
+            { author: "马超", content: "作为国际教育学院毕业生，希望联络员制度能考虑外籍师生的特殊需求，提供多语言支持。", time: "2025-08-18" },
+            { author: "林雪", content: "看到母校在安全建设上的创新，作为校友感到骄傲。愿母校成为高校安全管理的典范！", time: "2025-08-15" },
+            { author: "徐峰", content: "建议建立联络员轮值制度，确保24小时应急响应能力。母校的安全意识值得称赞！", time: "2025-08-12" },
+            { author: "何婷", content: "作为家长，知道孩子在校园有这样的安全保障，我们非常放心！感谢学校的用心安排。", time: "2025-08-10" },
+            { author: "高翔", content: "希望母校能与其他高校分享联络员制度建设经验，共同提升高校安全水平。", time: "2025-08-08" },
+            { author: "黄敏", content: "建议为联络员提供法律知识培训，让他们了解应急处置中的法律责任与权益保护。", time: "2025-08-05" },
+            { author: "罗宁", content: "作为留学生校友，希望联络员制度能惠及所有师生，不分国籍和文化背景。", time: "2025-08-02" },
+            { author: "梁爽", content: "安全无小事，母校的联络员制度体现了对师生生命的尊重。期待看到更多安全创新！", time: "2025-07-30" },
+            { author: "韩冰", content: "建议联络员培训中加入急救心理学内容，提高心理危机干预能力。母校的安全体系很完善！", time: "2025-07-28" },
+            { author: "宋佳", content: "看到母校AED设备与联络员体系结合，形成完整急救网络，这种前瞻性思维值得学习。", time: "2025-07-25" },
+            { author: "许文", content: "作为急救中心工作人员，很高兴看到高校建立专业急救体系。母校走在了前列！", time: "2025-07-22" },
+            { author: "唐娜", content: "建议联络员定期向师生通报校园安全情况，提高安全透明度。支持母校安全建设！", time: "2025-07-20" },
+            { author: "秦海", content: "希望联络员制度能延伸到校外实习基地，保障学生校外实践安全。", time: "2025-07-18" },
+            { author: "沈洁", content: "作为红十字会志愿者，愿意为母校联络员培训提供支持。共建安全校园！", time: "2025-07-15" },
+            { author: "袁飞", content: "建议设立联络员年度表彰机制，激励更多教职工参与校园安全建设。", time: "2025-07-12" },
+            { author: "陆敏", content: "看到母校安全建设成果，作为校友感到骄傲。愿母校成为全国高校安全标杆！", time: "2025-07-10" },
+            { author: "金鑫", content: "建议联络员参与校园安全规划，从使用者角度提出改进建议。", time: "2025-07-08" },
+            { author: "白杨", content: "希望母校能将安全文化建设纳入校园文化体系，营造全员关注安全的氛围。", time: "2025-07-05" },
+            { author: "丁磊", content: "作为IT行业从业者，愿意为母校安全信息系统建设提供技术支持。", time: "2025-07-02" },
+            { author: "石磊", content: "建议联络员制度与校园志愿者体系结合，形成更广泛的安全网络。", time: "2025-06-30" },
+            { author: "方明", content: "看到母校在应急救护上的投入，体现了教育的人文关怀。为母校点赞！", time: "2025-06-28" },
+            { author: "崔健", content: "建议联络员定期组织安全知识竞赛，提高师生安全知识水平。", time: "2025-06-25" },
+            { author: "顾城", content: "作为文学创作者，希望母校的安全故事能被更多人知晓，传播校园正能量。", time: "2025-06-22" }
+        ];
+
+        // 随机选择4-6条留言
+        function getRandomMessages() {
+            const count = Math.floor(Math.random() * 3) + 4; // 4, 5 或 6
+            const shuffled = [...alumniMessages].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // 显示随机留言
+        function displayRandomMessages() {
+            const container = document.getElementById('messageContainer');
+            container.innerHTML = '';
+            
+            const randomMessages = getRandomMessages();
+            
+            randomMessages.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message-item';
+                messageElement.innerHTML = `
+                    <div class="message-author">${message.author} 校友：</div>
+                    <div class="message-content">${message.content}</div>
+                    <div class="message-time">留言时间：${message.time}</div>
+                `;
+                container.appendChild(messageElement);
+            });
+        }
+
+        // 回到顶部按钮逻辑
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 联络员工作流程弹窗逻辑
+        const contactDetailBtn = document.getElementById('contactDetailBtn');
+        const contactModal = document.getElementById('contactModal');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+        contactDetailBtn.addEventListener('click', () => {
+            contactModal.classList.add('show');
+        });
+
+        modalCloseBtn.addEventListener('click', () => {
+            contactModal.classList.remove('show');
+        });
+
+        // 点击弹窗外部关闭弹窗
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                contactModal.classList.remove('show');
+            }
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = '#1a2530';
+            } else {
+                navbar.style.backgroundColor = '#2c3e50';
+            }
+        });
+
+        // 导航栏功能实现
+        // 学校首页 - 已通过href实现跳转
+        
+        // 校园动态弹窗
+        const campusNewsLink = document.getElementById('campus-news');
+        const campusNewsModal = document.getElementById('campusNewsModal');
+        const closeCampusNewsModal = document.getElementById('closeCampusNewsModal');
+        
+        campusNewsLink.addEventListener('click', () => {
+            displayRandomMessages();
+            campusNewsModal.classList.add('show');
+        });
+        
+        closeCampusNewsModal.addEventListener('click', () => {
+            campusNewsModal.classList.remove('show');
+        });
+        
+        campusNewsModal.addEventListener('click', (e) => {
+            if (e.target === campusNewsModal) {
+                campusNewsModal.classList.remove('show');
+            }
+        });
+        
+        // 健康安全保卫弹窗
+        const safetyLink = document.getElementById('safety-guide');
+        const safetyModal = document.getElementById('safetyModal');
+        const closeSafetyModal = document.getElementById('closeSafetyModal');
+        
+        safetyLink.addEventListener('click', () => {
+            safetyModal.classList.add('show');
+        });
+        
+        closeSafetyModal.addEventListener('click', () => {
+            safetyModal.classList.remove('show');
+        });
+        
+        safetyModal.addEventListener('click', (e) => {
+            if (e.target === safetyModal) {
+                safetyModal.classList.remove('show');
+            }
+        });
+        
+        // 关于我们弹窗
+        const aboutLink = document.getElementById('about-us');
+        const aboutModal = document.getElementById('aboutModal');
+        const closeAboutModal = document.getElementById('closeAboutModal');
+        
+        aboutLink.addEventListener('click', () => {
+            aboutModal.classList.add('show');
+        });
+        
+        closeAboutModal.addEventListener('click', () => {
+            aboutModal.classList.remove('show');
+        });
+        
+        aboutModal.addEventListener('click', (e) => {
+            if (e.target === aboutModal) {
+                aboutModal.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

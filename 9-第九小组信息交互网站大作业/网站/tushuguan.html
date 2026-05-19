@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学校图书馆新馆正式开放 - 校园新闻中心</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', serif;
+        }
+        
+        body {
+            background-color: #f8f6f2;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, #1a2a57 0%, #2c3e6e 100%);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-badge {
+            display: inline-block;
+            background: #d4af37;
+            color: #1a2a57;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #e0e0ff;
+        }
+        
+        .opening-date {
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 5px;
+            border-left: 4px solid #d4af37;
+        }
+        
+        /* 导航样式 */
+        .page-nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-link {
+            padding: 18px 25px;
+            text-decoration: none;
+            color: #1a2a57;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: #d4af37;
+            border-bottom-color: #d4af37;
+        }
+        
+        /* 内容区域 */
+        .content-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #1a2a57;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #d4af37;
+        }
+        
+        /* 图书馆概览 */
+        .library-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .overview-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .overview-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .overview-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .overview-text {
+            padding: 20px;
+        }
+        
+        .overview-text h3 {
+            font-size: 1.8rem;
+            color: #1a2a57;
+            margin-bottom: 20px;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #d4af37;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        /* 功能区介绍 */
+        .facilities {
+            background: #f0f2f5;
+            padding: 80px 0;
+        }
+        
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .facility-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .facility-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .facility-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .facility-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .facility-card:hover .facility-image img {
+            transform: scale(1.1);
+        }
+        
+        .facility-content {
+            padding: 25px;
+        }
+        
+        .facility-content h3 {
+            font-size: 1.4rem;
+            color: #1a2a57;
+            margin-bottom: 15px;
+        }
+        
+        /* 开放时间 */
+        .opening-hours {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .hours-table tr {
+            border-bottom: 1px solid #eee;
+        }
+        
+        .hours-table tr:last-child {
+            border-bottom: none;
+        }
+        
+        .hours-table td {
+            padding: 15px 10px;
+        }
+        
+        .hours-table td:first-child {
+            font-weight: 600;
+            color: #1a2a57;
+        }
+        
+        .note {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f6f2;
+            border-left: 4px solid #d4af37;
+            border-radius: 4px;
+        }
+        
+        /* 虚拟导览 */
+        .virtual-tour {
+            background: #1a2a57;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .tour-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .tour-video {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            margin: 40px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tour-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .tour-description {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /* 联系信息 */
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .contact-details {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-details h3 {
+            color: #1a2a57;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: #f0f2f5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #1a2a57;
+            font-size: 1.2rem;
+        }
+        
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #1a2a57;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: #1a2a57;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #d4af37;
+        }
+        
+        .footer-about {
+            line-height: 1.8;
+            color: #b0b8d0;
+        }
+        
+        .footer-links h3, .footer-social h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #b0b8d0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #d4af37;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: #d4af37;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0b8d0;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .library-overview {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .nav-link {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="container">
+            <div class="header-content fade-in">
+                <div class="header-badge">隆重开幕</div>
+                <h1>学校图书馆新馆正式开放</h1>
+                <p class="subtitle">经过三年的精心建设，这座现代化、智能化的知识殿堂今日正式向全校师生开放，开启智慧学习新篇章</p>
+                <div class="opening-date">
+                    <i class="far fa-calendar-alt"></i> 正式开放日期：2023年10月15日
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 导航 -->
+    <nav class="page-nav">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#overview" class="nav-link active">图书馆概览</a>
+                <a href="#facilities" class="nav-link">功能区介绍</a>
+                <a href="#hours" class="nav-link">开放时间</a>
+                <a href="#tour" class="nav-link">虚拟导览</a>
+                <a href="#contact" class="nav-link">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 图书馆概览 -->
+        <section id="overview" class="content-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>图书馆概览</h2>
+                </div>
+                
+                <div class="library-overview">
+                    <div class="overview-image">
+                        <!-- 使用占位图片，实际应用中替换为真实图片 -->
+                        <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="图书馆外观">
+                    </div>
+                    
+                    <div class="overview-text">
+                        <h3>现代化知识殿堂</h3>
+                        <p>新图书馆总建筑面积达3万平方米，设计藏书量超过200万册，是一座集阅读、研究、交流、创新于一体的现代化知识中心。</p>
+                        <p>建筑采用绿色环保设计，融合传统与现代元素，既保留了学术殿堂的庄重感，又注入了现代建筑的灵动与开放。</p>
+                        <p>图书馆内设有智能借阅系统、多媒体学习区、小组讨论室、静音阅览区等多种功能空间，满足师生多样化的学习研究需求。</p>
+                        
+                        <div class="stats">
+                            <div class="stat-item">
+                                <span class="stat-number">3万</span>
+                                <span class="stat-label">平方米建筑面积</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">200万</span>
+                                <span class="stat-label">册藏书容量</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">1500</span>
+                                <span class="stat-label">个阅览座位</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">24/7</span>
+                                <span class="stat-label">部分区域全天开放</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 功能区介绍 -->
+        <section id="facilities" class="facilities">
+            <div class="container">
+                <div class="section-title">
+                    <h2>功能区介绍</h2>
+                </div>
+                
+                <div class="facilities-grid">
+                    <div class="facility-card">
+                        <div class="facility-image">
+                            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="阅览区">
+                        </div>
+                        <div class="facility-content">
+                            <h3>静音阅览区</h3>
+                            <p>提供安静舒适的学习环境，配备独立阅读灯和电源插座，适合深度学习和研究。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="facility-card">
+                        <div class="facility-image">
+                            <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="多媒体区">
+                        </div>
+                        <div class="facility-content">
+                            <h3>多媒体学习区</h3>
+                            <p>配备高性能电脑、专业软件和视听设备，支持数字资源访问和多媒体内容创作。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="facility-card">
+                        <div class="facility-image">
+                            <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="小组讨论室">
+                        </div>
+                        <div class="facility-content">
+                            <h3>小组讨论室</h3>
+                            <p>设有多个封闭式讨论室，配备智能白板和投影设备，支持团队协作和学术交流。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="facility-card">
+                        <div class="facility-image">
+                            <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="特藏区">
+                        </div>
+                        <div class="facility-content">
+                            <h3>特藏文献区</h3>
+                            <p>收藏珍贵古籍、地方文献和特色馆藏，配备恒温恒湿设备和专业阅览设施。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 开放时间 -->
+        <section id="hours" class="content-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>开放时间</h2>
+                </div>
+                
+                <div class="opening-hours">
+                    <table class="hours-table">
+                        <tr>
+                            <td>周一至周五</td>
+                            <td>8:00 - 22:00</td>
+                        </tr>
+                        <tr>
+                            <td>周六</td>
+                            <td>9:00 - 21:00</td>
+                        </tr>
+                        <tr>
+                            <td>周日</td>
+                            <td>9:00 - 18:00</td>
+                        </tr>
+                        <tr>
+                            <td>24小时自习区</td>
+                            <td>全天开放（凭校园卡进入）</td>
+                        </tr>
+                        <tr>
+                            <td>法定节假日</td>
+                            <td>另行通知</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="note">
+                        <p><strong>注意事项：</strong> 借还书服务截止时间为闭馆前30分钟。节假日开放时间如有调整，将通过图书馆官网和微信公众号提前通知。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 虚拟导览 -->
+        <section id="tour" class="virtual-tour">
+            <div class="container">
+                <div class="tour-container">
+                    <div class="section-title">
+                        <h2 style="color: white;">虚拟导览</h2>
+                    </div>
+                    
+                    <div class="tour-video">
+                        <!-- 虚拟导览视频占位，实际应用中替换为真实视频 -->
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="图书馆虚拟导览" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    
+                    <div class="tour-description">
+                        <p>通过虚拟导览，您可以提前了解图书馆的布局、功能分区和服务设施。导览视频将带您参观各个区域，包括阅览区、多媒体学习区、小组讨论室和休闲区等。</p>
+                        <p>实际到馆时，您还可以通过图书馆APP获取室内导航服务，快速找到目标区域和所需资源。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系我们 -->
+        <section id="contact" class="content-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>联系我们</h2>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="contact-details">
+                        <h3>图书馆联系方式</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>地址</h4>
+                                <p>学校中心区，求知路1号</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>电话</h4>
+                                <p>总服务台：010-12345678</p>
+                                <p>借阅咨询：010-12345679</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>邮箱</h4>
+                                <p>library@campus.edu</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>服务时间</h4>
+                                <p>周一至周五 8:30-17:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-details">
+                        <h3>常见问题</h3>
+                        
+                        <div class="faq-item">
+                            <h4>如何办理借书证？</h4>
+                            <p>本校师生凭校园卡可直接借阅，无需额外办理借书证。</p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h4>最多可以借多少本书？</h4>
+                            <p>教职工可借20册，借期60天；学生可借10册，借期30天。</p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h4>如何预约小组讨论室？</h4>
+                            <p>可通过图书馆网站或APP提前预约，最长可提前7天。</p>
+                        </div>
+                        
+                        <div class="faq-item">
+                            <h4>校外人员可以进入图书馆吗？</h4>
+                            <p>校外人员需凭有效证件在服务台办理临时阅览证。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">校园图书馆</div>
+                    <p>学校图书馆新馆致力于为全校师生提供优质的学习研究环境，丰富的文献资源和先进的服务设施，助力学术创新与知识传播。</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#">图书馆首页</a></li>
+                        <li><a href="#">数字资源</a></li>
+                        <li><a href="#">借阅服务</a></li>
+                        <li><a href="#">学术支持</a></li>
+                        <li><a href="#">活动公告</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>关注我们</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-weibo"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-qq"></i></a>
+                        <a href="#" class="social-icon"><i class="fas fa-rss"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 校园图书馆新馆 版权所有 | 设计制作：校园新闻中心</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 平滑滚动导航
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有active类
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // 添加active类到当前链接
+                    this.classList.add('active');
+                    
+                    // 获取目标元素
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    // 滚动到目标元素
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 根据滚动位置高亮导航链接
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            // 添加滚动动画效果
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            const fadeElements = document.querySelectorAll('.facility-card, .stat-item, .contact-details');
+            fadeElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

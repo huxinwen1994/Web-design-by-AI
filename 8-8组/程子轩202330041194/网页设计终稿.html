@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大学生早餐习惯可视化分析</title>
+    <!-- 引入 ECharts 5.x -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        /* ==============================
+           1. 全局变量与重置
+           ============================== */
+        :root {
+            --primary-blue: #1E88E5;        /* 原主蓝（保留用于部分强调） */
+            --bg-color: #F5F5F5;            /* 背景灰 */
+            --text-dark: #333333;           /* 深灰文本 */
+            --white: #FFFFFF;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius: 8px;
+            --font-main: "Microsoft YaHei", "思源黑体", Arial, sans-serif;
+
+            /* 新增：早餐主题色系 */
+            --warm-orange: #FF9800;         /* 主色：暖橙 */
+            --pale-yellow: #FFF3E0;         /* 辅助色：浅黄 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth; /* 基础平滑滚动 */
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* ==============================
+           2. 导航栏 (Fixed Navbar) - 视觉升级版
+           ============================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px; /* 稍微增高以容纳新样式 */
+            z-index: 1000;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+        }
+
+        /* 导航菜单容器 */
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* 导航项样式 - 桌面端 */
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 20px;
+            font-size: 16px;
+            line-height: 1.2;
+            color: var(--text-dark);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        /* 导航图标 SVG 样式 */
+        .nav-icon {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            fill: currentColor; /* 跟随文字颜色 */
+            transition: fill 0.3s ease;
+        }
+
+        /* Hover 状态 */
+        .nav-link:hover {
+            color: var(--warm-orange);
+            background-color: var(--pale-yellow);
+            transform: scale(1.05);
+        }
+
+        /* 激活状态 (Active) */
+        .nav-link.active {
+            color: var(--white);
+            background-color: var(--warm-orange);
+            box-shadow: 0 2px 4px rgba(255, 152, 0, 0.2);
+        }
+        
+        /* 移动端汉堡菜单 */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--warm-orange);
+            transition: 0.3s;
+        }
+
+        /* ==============================
+           3. 通用布局与动画
+           ============================== */
+        section {
+            padding: 60px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 24px;
+            color: var(--primary-blue);
+            margin-bottom: 40px;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--warm-orange); /* 修正为暖橙色 */
+            margin: 10px auto 0;
+        }
+
+        .spacer { height: 80px; }
+
+        /* ==============================
+           4. 调研背景版块
+           ============================== */
+        #background .content-box {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary-blue);
+        }
+
+        .intro-text {
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-indent: 2em;
+        }
+
+        .info-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-list li::before {
+            content: '✅';
+            margin-right: 10px;
+        }
+
+        /* ==============================
+           5. 数据可视化版块
+           ============================== */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .chart-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .full-width { grid-column: 1 / -1; }
+
+        .chart-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+            color: var(--text-dark);
+            border-left: 4px solid var(--warm-orange);
+            padding-left: 10px;
+            display: inline-block;
+        }
+
+        .echart-container { width: 100%; height: 400px; }
+
+        /* 移动端表格兜底 */
+        .mobile-table-wrapper { display: none; margin-top: 20px; }
+        .mobile-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .mobile-table th, .mobile-table td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        .mobile-table th { background-color: var(--primary-blue); color: white; }
+        .mobile-table tr:nth-child(even) { background-color: #f2f2f2; }
+
+        /* ==============================
+           6. 结论与建议版块 - 交互增强
+           ============================== */
+        .conclusion-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .conclusion-col {
+            flex: 1;
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            min-width: 300px;
+        }
+
+        /* --- 核心结论列表样式优化 --- */
+        .list-numbered { counter-reset: item; }
+
+        .list-numbered li {
+            position: relative;
+            margin-bottom: 15px;
+            padding: 15px 20px 15px 50px; /* 左侧留出 numbering 空间 */
+            border: 1px solid #000;      /* 1px 纯黑细线 */
+            border-radius: 8px;
+            background: inherit;
+            transition: all 0.3s ease;   /* 统一过渡 */
+        }
+
+        /* Numbering pseudo-element */
+        .list-numbered li::before {
+            content: counter(item);
+            counter-increment: item;
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background-color: var(--warm-orange);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Hover 缩放效果 */
+        .list-numbered li:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* --- 针对性建议折叠 (Accordion) --- */
+        .suggestion-group { margin-top: 20px; }
+
+        .suggestion-item {
+            border-bottom: 1px dashed #eee;
+            margin-bottom: 10px;
+        }
+
+        .suggestion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            cursor: pointer;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 16px;
+            user-select: none; /* 防止双击选中文本 */
+        }
+        
+        /* 标题右侧小箭头 SVG */
+        .arrow-icon {
+            width: 16px;
+            height: 16px;
+            fill: var(--text-dark);
+            transition: transform 0.3s ease;
+        }
+
+        /* 展开时的箭头旋转 */
+        .suggestion-header.active .arrow-icon {
+            transform: rotate(180deg);
+            fill: var(--warm-orange);
+        }
+
+        .suggestion-header.active {
+            color: var(--warm-orange);
+        }
+
+        /* 内容区域 - 初始隐藏 */
+        .suggestion-body {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .suggestion-body p {
+            padding: 10px 0 20px 0;
+            font-size: 15px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* --- 表单样式 --- */
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-control {
+            width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+        .form-control:focus { outline: none; border-color: var(--warm-orange); }
+        .btn-submit {
+            background-color: var(--primary-blue);
+            color: white; border: none; padding: 12px 25px; border-radius: 4px;
+            cursor: pointer; width: 100%; transition: background-color 0.3s;
+        }
+        .btn-submit:hover { background-color: #1565C0; }
+
+        /* ==============================
+           7. 响应式适配
+           ============================== */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            
+            /* 移动端菜单样式 */
+            .nav-menu {
+                position: absolute;
+                top: 80px;
+                right: -100%;
+                background-color: var(--white);
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch; /* 纵向全宽 */
+                padding: 0;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                transition: 0.3s;
+                gap: 0;
+            }
+            .nav-menu.active { right: 0; }
+
+            .nav-link {
+                width: 100%;
+                border-radius: 0;
+                padding: 15px 20px;
+                font-size: 14px;
+                justify-content: flex-start; /* 图标居左 */
+            }
+
+            .nav-icon { margin-right: 10px; }
+
+            /* 布局调整 */
+            section { padding: 40px 20px; }
+            .chart-grid { grid-template-columns: 1fr; }
+            .echart-container { height: 300px; }
+            .conclusion-container { flex-direction: column; }
+            .mobile-table-wrapper { display: block; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <header id="header">
+        <div class="nav-container">
+            <!-- 修改点 1: Logo 增加 "大学生" -->
+            <div class="logo">🍳 大学生早餐习惯可视化</div>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <!-- 导航项 1: 调研背景 (图标: 问卷+包子) -->
+                <li>
+                    <a class="nav-link" onclick="scrollToSection('background', this)">
+                        <svg class="nav-icon" viewBox="0 0 24 24">
+                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                            <circle cx="17" cy="18" r="3" fill="var(--warm-orange)" opacity="0.6"/> <!-- 抽象的包子点缀 -->
+                        </svg>
+                        调研背景
+                    </a>
+                </li>
+                
+                <!-- 导航项 2: 数据可视化 (图标: 餐盘+柱状图) -->
+                <li>
+                    <a class="nav-link" onclick="scrollToSection('visuals', this)">
+                        <svg class="nav-icon" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" opacity="0.2"/>
+                        </svg>
+                        数据可视化
+                    </a>
+                </li>
+                
+                <!-- 导航项 3: 结论建议 (图标: 勺子+对话框) -->
+                <li>
+                    <a class="nav-link" onclick="scrollToSection('conclusion', this)">
+                        <svg class="nav-icon" viewBox="0 0 24 24">
+                            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+                            <path d="M11 8H9v5.17L7.38 12 7 12.38 9.38 15h.24l.38-.38V8zm4 0h-1v4h-1v1h2V8z" opacity="0.5"/> 
+                        </svg>
+                        结论建议
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="spacer"></div>
+
+    <main>
+        <!-- 1. 调研背景 -->
+        <section id="background">
+            <h2 class="section-title">调研背景</h2>
+            <div class="content-box">
+                <p class="intro-text">
+                    早餐是大学生日常营养摄入的关键环节，忙碌的早八课程、多样化的消费选择使得大学生早餐习惯呈现差异化特征。本次调研面向某高校大一至大四全日制本科生，共收集200份有效问卷，聚焦早餐消费类型、消费金额、购买渠道、食用场景四大维度，通过数据可视化呈现真实消费习惯，为优化校园早餐供给、提升大学生健康饮食意识提供参考。
+                </p>
+                <ul class="info-list">
+                    <li><strong>调研对象：</strong>某高校大一至大四全日制本科生</li>
+                    <!-- 修改点 2: 样本数量更新 -->
+                    <li><strong>样本数量：</strong>400份有效问卷(每个年级各100份有效问卷)</li>
+                    <li><strong>调研维度：</strong>消费类型、消费金额、购买渠道、食用场景</li>
+                    <li><strong>调研周期：</strong>2025年10月 - 2025年11月</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. 数据可视化 -->
+        <section id="visuals">
+            <h2 class="section-title">大学生早餐消费数据可视化</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-title">早餐类型消费占比</div>
+                    <div id="chart-pie" class="echart-container"></div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">各年级场景与规律率</div>
+                    <div id="chart-line" class="echart-container"></div>
+                </div>
+                <div class="chart-card full-width">
+                    <div class="chart-title">各年级早餐消费金额分布</div>
+                    <div id="chart-bar" class="echart-container"></div>
+                    <div class="mobile-table-wrapper">
+                        <p style="margin-top:10px; font-weight:bold;">详细数据表：</p>
+                        <table class="mobile-table">
+                            <thead><tr><th>年级</th><th>5元以内</th><th>5-10元</th><th>10元以上</th></tr></thead>
+                            <tbody>
+                                <tr><td>大一</td><td>30%</td><td>55%</td><td>15%</td></tr>
+                                <tr><td>大二</td><td>22%</td><td>60%</td><td>18%</td></tr>
+                                <tr><td>大三</td><td>18%</td><td>58%</td><td>24%</td></tr>
+                                <tr><td>大四</td><td>25%</td><td>52%</td><td>23%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 结论与建议 -->
+        <section id="conclusion">
+            <h2 class="section-title">消费习惯总结 & 实用建议</h2>
+            <div class="conclusion-container">
+                <!-- 左侧：结论与建议 -->
+                <div class="conclusion-col">
+                    <h3>📊 核心结论</h3>
+                    <!-- 修改点 4: 核心结论样式升级 (1px黑线，hover放大) -->
+                    <ul class="list-numbered" style="margin-top: 25px;">
+                        <li>近60%学生早餐预算集中在5-10元区间，“性价比”是首要选择因素。</li>
+                        <li>大三学生因实习/社团忙碌，早餐外带比例（72%）远高于其他年级。</li>
+                        <li>仅28%的受访学生能做到“每日规律吃早餐”，其中大一学生规律率最高（35%）。</li>
+                    </ul>
+
+                    <h3 style="margin-top: 30px;">💡 针对性建议</h3>
+                    <div class="suggestion-group">
+                        <!-- 建议条目 1 (手风琴) -->
+                        <div class="suggestion-item">
+                            <div class="suggestion-header" onclick="toggleSuggestion(this)">
+                                🎓 给学生
+                                <!-- 箭头图标 -->
+                                <svg class="arrow-icon" viewBox="0 0 24 24">
+                                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                                </svg>
+                            </div>
+                            <div class="suggestion-body">
+                                <p>优先选择“粥+鸡蛋+蔬菜包”类营养均衡组合，减少高油高糖西式快餐；合理规划早八时间，避免因赶课省略早餐。</p>
+                            </div>
+                        </div>
+
+                        <!-- 建议条目 2 (手风琴) -->
+                        <div class="suggestion-item">
+                            <div class="suggestion-header" onclick="toggleSuggestion(this)">
+                                🏫 给校园食堂
+                                <svg class="arrow-icon" viewBox="0 0 24 24">
+                                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                                </svg>
+                            </div>
+                            <div class="suggestion-body">
+                                <p>增加“便携早餐套餐”（如独立包装的包子+豆浆），延长早八高峰时段的供应窗口至9:00；针对大三集中的校区增加外带装品类。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧：反馈表单 -->
+                <div class="conclusion-col">
+                    <h3>✉️ 你对校园早餐的建议</h3>
+                    <form id="feedbackForm" style="margin-top: 20px;">
+                        <div class="form-group">
+                            <label for="name">姓名 (选填)</label>
+                            <input type="text" id="name" class="form-control" placeholder="请输入姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="grade">年级 (必填)</label>
+                            <select id="grade" class="form-control" required>
+                                <option value="" disabled selected>请选择年级</option>
+                                <option value="大一">大一</option>
+                                <option value="大二">大二</option>
+                                <option value="大三">大三</option>
+                                <option value="大四">大四</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="suggestion">建议内容 (必填，10-500字)</label>
+                            <textarea id="suggestion" rows="5" class="form-control" placeholder="请输入您的宝贵建议..." required minlength="10" maxlength="500"></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">提交建议</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 大学生早餐习惯可视化调研项目组 | 数据仅供学习参考</p>
+    </footer>
+
+    <!-- JavaScript 逻辑 -->
+    <script>
+        // ============================
+        // 1. 导航交互 (点击跳转 + ScrollSpy + 汉堡菜单)
+        // ============================
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+        const hamburger = document.getElementById('hamburger');
+
+        // 点击汉堡菜单
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // 点击导航跳转
+        function scrollToSection(id, element) {
+            // 移动端点击后收起菜单
+            if (window.innerWidth <= 768) {
+                navMenu.classList.remove('active');
+            }
+
+            const targetSection = document.getElementById(id);
+            const headerOffset = 80;
+            const elementPosition = targetSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+        }
+
+        // ScrollSpy: 监听页面滚动，自动切换激活态
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // 当滚动到版块 1/3 处时触发激活
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                // 根据 onclick 属性中的参数匹配 ID
+                if (link.getAttribute('onclick').includes(`'${current}'`)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ============================
+        // 2. 建议版块手风琴交互 (Accordion)
+        // ============================
+        function toggleSuggestion(header) {
+            const content = header.nextElementSibling;
+            
+            // 切换标题激活状态 (旋转箭头 + 变色)
+            header.classList.toggle('active');
+            
+            // 切换内容高度 (过渡动画)
+            if (content.style.maxHeight) {
+                // 收起
+                content.style.maxHeight = null;
+                content.style.opacity = '0';
+            } else {
+                // 展开 - 设置一个足够大的 max-height
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.opacity = '1';
+            }
+        }
+
+        // ============================
+        // 3. 页面进入动画 (Intersection Observer)
+        // ============================
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // ============================
+        // 4. ECharts 图表配置
+        // ============================
+        const colors = ['#1E88E5', '#FF9800', '#81C784', '#E57373'];
+
+        // --- 饼图 ---
+        const chartPie = echarts.init(document.getElementById('chart-pie'));
+        chartPie.setOption({
+            color: colors,
+            tooltip: { trigger: 'item' },
+            legend: { bottom: '0%', left: 'center' },
+            series: [{
+                name: '早餐类型',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                itemStyle: { borderRadius: 8, borderColor: '#fff', borderWidth: 2 },
+                label: { show: false, position: 'center' },
+                emphasis: { label: { show: true, fontSize: 16, fontWeight: 'bold' } },
+                data: [
+                    { value: 42, name: '包子粥类' },
+                    { value: 25, name: '西式快餐' },
+                    { value: 18, name: '便利店饭团' },
+                    { value: 15, name: '自制/面包' }
+                ]
+            }]
+        });
+
+        // --- 柱状图 ---
+        const chartBar = echarts.init(document.getElementById('chart-bar'));
+        chartBar.setOption({
+            color: ['#81C784', '#1E88E5', '#FF9800'],
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            legend: { top: '0%' },
+            grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+            xAxis: { type: 'category', data: ['大一', '大二', '大三', '大四'] },
+            yAxis: { type: 'value', max: 100 },
+            series: [
+                { name: '5元以内', type: 'bar', stack: 'total', data: [30, 22, 18, 25] },
+                { name: '5-10元', type: 'bar', stack: 'total', data: [55, 60, 58, 52] },
+                { name: '10元以上', type: 'bar', stack: 'total', data: [15, 18, 24, 23] }
+            ]
+        });
+
+        // --- 折线图 ---
+        const chartLine = echarts.init(document.getElementById('chart-line'));
+        chartLine.setOption({
+            tooltip: { trigger: 'axis' },
+            legend: { top: 0 },
+            grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+            xAxis: { type: 'category', boundaryGap: false, data: ['大一', '大二', '大三', '大四'] },
+            yAxis: { type: 'value' },
+            series: [
+                { name: '外带率', type: 'line', data: [45, 58, 72, 68], itemStyle: { color: '#FF9800' }, smooth: true },
+                { name: '规律吃早餐率', type: 'line', data: [35, 30, 22, 25], itemStyle: { color: '#1E88E5' }, smooth: true }
+            ]
+        });
+
+        // 响应式调整
+        window.addEventListener('resize', () => {
+            chartPie.resize();
+            chartBar.resize();
+            chartLine.resize();
+            const tableWrapper = document.querySelector('.mobile-table-wrapper');
+            if(window.innerWidth <= 768) tableWrapper.style.display = 'block';
+            else tableWrapper.style.display = 'none';
+        });
+        
+        // 初始化表格显示状态
+        if(window.innerWidth <= 768) {
+            document.querySelector('.mobile-table-wrapper').style.display = 'block';
+        }
+
+        // --- 表单提交 ---
+        document.getElementById('feedbackForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('🎉 提交成功！感谢您对校园早餐提出的宝贵建议。');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>

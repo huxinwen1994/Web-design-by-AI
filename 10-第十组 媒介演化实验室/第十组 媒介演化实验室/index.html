@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>媒介演化实验室</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- 动态粒子背景 -->
+    <div id="particles-js"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-brand">媒介演化实验室</div>
+        <div class="nav-menu">
+            <a href="#home" class="nav-link">首页</a>
+            <a href="#timeline" class="nav-link">时间轴</a>
+            <a href="#projects" class="nav-link">项目</a>
+            <a href="#about" class="nav-link">关于</a>
+        </div>
+    </nav>
+
+    <!-- 主页内容 -->
+    <main class="main-content">
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="typing-text"></span>
+                </h1>
+                <p class="hero-subtitle">探索媒介的过去、现在与未来</p>
+            </div>
+        </section>
+
+        <!-- 3D时间轴（使用列表标签，2行3列展示） -->
+        <section id="timeline" class="timeline-section">
+            <div class="timeline-container">
+                <ul class="timeline-list">
+                    <li class="timeline-item" data-era="oral">
+                        <div class="era-icon">🔊</div>
+                        <h3>口语时代</h3>
+                    </li>
+                    <li class="timeline-item" data-era="text">
+                        <div class="era-icon">📝</div>
+                        <h3>文字时代</h3>
+                    </li>
+                    <li class="timeline-item" data-era="print">
+                        <div class="era-icon">📰</div>
+                        <h3>印刷时代</h3>
+                    </li>
+                    <li class="timeline-item" data-era="electronic">
+                        <div class="era-icon">📺</div>
+                        <h3>电子时代</h3>
+                    </li>
+                    <li class="timeline-item" data-era="network">
+                        <div class="era-icon">🌐</div>
+                        <h3>网络时代</h3>
+                    </li>
+                    <li class="timeline-item" data-era="ai">
+                        <div class="era-icon">🤖</div>
+                        <h3>智能时代</h3>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!-- 项目展示 -->
+        <section id="projects" class="timeline-section">
+            <div class="timeline-container">
+                <div class="timeline-era">
+                    <div class="era-icon">📊</div>
+                    <h3>项目1：媒介数据分析</h3>
+                    <p>基于大数据的媒介传播效果分析系统</p>
+                </div>
+                <div class="timeline-era">
+                    <div class="era-icon">🎯</div>
+                    <h3>项目2：智能推荐系统</h3>
+                    <p>基于用户行为的个性化内容推荐平台</p>
+                </div>
+            </div>
+        </section>
+        <!-- 关于我们 -->
+        <section id="about" class="timeline-section">
+            <div class="timeline-container">
+                <div class="timeline-era">
+                    <h3>开发团队</h3>
+                    <p>单栎扬</p>
+                    <p>韦忆</p>
+                    <p>刘雨晴</p>
+                    <p>周程</p>
+                    <p>汪佳琦</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 时代详情模态框 -->
+    <div id="eraModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="era-detail"></div>
+        </div>
+    </div>
+
+    <!-- 信息茧房模拟器模态框 -->
+    <div id="filterBubbleModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>信息茧房模拟器</h2>
+            <div class="filter-bubble-container">
+                <div class="interest-selector">
+                    <h3>选择你的兴趣标签</h3>
+                    <div class="tag-container">
+                        <button class="tag-btn" data-tag="tech">科技</button>
+                        <button class="tag-btn" data-tag="entertainment">娱乐</button>
+                        <button class="tag-btn" data-tag="sports">体育</button>
+                        <button class="tag-btn" data-tag="news">新闻</button>
+                        <button class="tag-btn" data-tag="food">美食</button>
+                        <button class="tag-btn" data-tag="travel">旅游</button>
+                    </div>
+                    <button id="generateFeed" class="generate-btn">生成信息流</button>
+                </div>
+                <div class="feed-container">
+                    <h3>你的个性化信息流</h3>
+                    <div id="generatedFeed" class="feed-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

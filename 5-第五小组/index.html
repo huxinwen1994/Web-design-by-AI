@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美食探索者 | Flavor Quest</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <i class="fas fa-utensils logo-icon"></i>
+                <span>食·光</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">首页</a></li>
+                <li><a href="pages/regional.html">地方菜系</a></li>
+                <li><a href="pages/recipes.html">食谱探索</a></li>
+                <li><a href="pages/lab.html">食材实验室</a></li>
+            </ul>
+            <div class="search-box">
+                <input type="text" placeholder="搜索菜系、食材...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <!-- 轮播图区域 -->
+        <section class="carousel-section">
+            <div class="carousel-container">
+                <div class="carousel">
+                    <!-- 轮播项1 - 八大菜系 -->
+                    <div class="carousel-item active">
+                        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" alt="中式美食">
+                        <div class="carousel-content">
+                            <h2 class="carousel-title">八大菜系 · 千年传承</h2>
+                            <p class="carousel-description">探索中国传统饮食文化的博大精深，从宫廷御膳到民间小吃</p>
+                            <a href="pages/regional.html" class="carousel-button">了解更多</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 轮播项2 - 地方特色 -->
+                    <div class="carousel-item">
+                        <img src="https://pic.nximg.cn/file/20230330/26139686_095440575102_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" alt="地方特色">
+                        <div class="carousel-content">
+                            <h2 class="carousel-title">地道风味 · 地方特色</h2>
+                            <p class="carousel-description">感受不同地域的独特味道，每一口都是文化的体验</p>
+                            <a href="pages/regional.html" class="carousel-button">探索集市</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 轮播项3 - 烹饪艺术 -->
+                    <div class="carousel-item">
+                        <img src="https://pic.nximg.cn/file/20230711/10347296_100801007123_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" alt="烹饪艺术">
+                        <div class="carousel-content">
+                            <h2 class="carousel-title">烹饪艺术 · 现代创新</h2>
+                            <p class="carousel-description">传统技艺与现代创新的完美结合，创造无限可能</p>
+                            <a href="pages/recipes.html" class="carousel-button">学习食谱</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 轮播项4 - 食材搭配 -->
+                    <div class="carousel-item">
+                        <img src="https://pic.nximg.cn/file/20161019/22607684_133321062000_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80" alt="食材搭配">
+                        <div class="carousel-content">
+                            <h2 class="carousel-title">食材搭配 · 味觉实验</h2>
+                            <p class="carousel-description">发现食材之间的奇妙化学反应，创造属于你的独特风味</p>
+                            <a href="pages/lab.html" class="carousel-button">开始实验</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 轮播控制按钮 -->
+                <button class="carousel-control prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-control next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- 轮播指示器 -->
+                <div class="carousel-indicators">
+                    <button class="indicator active" data-index="0"></button>
+                    <button class="indicator" data-index="1"></button>
+                    <button class="indicator" data-index="2"></button>
+                    <button class="indicator" data-index="3"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 简约版引导区域 -->
+        <section class="hero-simple">
+            <div class="hero-simple-content">
+                <h2>开启你的美食探索之旅</h2>
+                <p>从传统到创新，发现每一道菜背后的故事</p>
+                <a href="pages/regional.html" class="simple-button">开始探索 <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <!-- 特色功能区域 -->
+        <section class="features">
+            <h2 class="section-title">探索美食世界</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-map-marked-alt feature-icon"></i>
+                    <h3>菜系集市</h3>
+                    <p>通过交互式集市，了解中国各地特色菜系，从川菜的麻辣到粤菜的鲜美</p>
+                    <a href="pages/regional.html" class="feature-link">探索集市 →</a>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-book-open feature-icon"></i>
+                    <h3>食谱宝典</h3>
+                    <p>详细步骤图解，手把手教你制作经典菜肴，适合新手和进阶厨师</p>
+                    <a href="pages/recipes.html" class="feature-link">查看食谱 →</a>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-flask feature-icon"></i>
+                    <h3>食材实验室</h3>
+                    <p>创意食材搭配游戏，探索不同食材组合产生的奇妙味觉反应</p>
+                    <a href="pages/lab.html" class="feature-link">开始实验 →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 热门菜系预览 -->
+        <section class="cuisine-preview">
+            <h2 class="section-title">热门菜系推荐</h2>
+            <div class="cuisine-grid">
+                <div class="cuisine-card">
+                    <img src="https://img95.699pic.com/photo/60125/6001.jpg_wh860.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="川菜" class="cuisine-img">
+                    <div class="cuisine-info">
+                        <h3>川菜</h3>
+                        <p>麻辣鲜香，百菜百味，中国最具代表性的菜系之一</p>
+                        <span class="tag">麻辣</span>
+                        <span class="tag">重口味</span>
+                    </div>
+                </div>
+                <div class="cuisine-card">
+                    <img src="https://img95.699pic.com/photo/50108/2675.jpg_wh300.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" alt="粤菜" class="cuisine-img">
+                    <div class="cuisine-info">
+                        <h3>粤菜</h3>
+                        <p>清淡鲜美，讲究原汁原味，擅长海鲜烹饪</p>
+                        <span class="tag">清淡</span>
+                        <span class="tag">鲜美</span>
+                    </div>
+                </div>
+                <div class="cuisine-card">
+                    <img src="https://picb4.photophoto.cn/40/150/40150724_1.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="湘菜" class="cuisine-img">
+                    <div class="cuisine-info">
+                        <h3>湘菜</h3>
+                        <p>香辣开胃，注重酸辣，以剁椒鱼头为代表</p>
+                        <span class="tag">香辣</span>
+                        <span class="tag">酸辣</span>
+                    </div>
+                </div>
+                <div class="cuisine-card">
+                    <img src="https://n.sinaimg.cn/sinacn/w1600h1066/20180311/e615-fxpwyhw9274404.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="鲁菜" class="cuisine-img">
+                    <div class="cuisine-info">
+                        <h3>鲁菜</h3>
+                        <p>咸鲜为主，讲究火候，宫廷菜的源头</p>
+                        <span class="tag">咸鲜</span>
+                        <span class="tag">宫廷菜</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于我们</h3>
+                <p>「食·光」是一个专注于中国美食文化探索的在线平台，致力于传播传统饮食文化，分享现代烹饪技艺。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <a href="index.html">首页</a>
+                <a href="pages/regional.html">地方菜系</a>
+                <a href="pages/recipes.html">食谱探索</a>
+                <a href="pages/lab.html">食材实验室</a>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p><i class="fas fa-envelope"></i> contact@flavorquest.com</p>
+                <p><i class="fas fa-phone"></i> (+86) 138-0000-0000</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 食·光 | 前端开发课程大作业 | 仅供学习使用</p>
+            <p>所有图片素材来自 Unsplash，遵循CC0协议</p>
+        </div>
+    </footer>
+
+    <!-- 主题切换按钮 -->
+    <div class="theme-toggle" id="themeToggle" title="切换深色/浅色模式">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" title="回到顶部">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

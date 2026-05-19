@@ -1,0 +1,2695 @@
+/* ===== 美食集市专属样式 ===== */
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+:root {
+    /* 新增集市专用变量 */
+    --market-day-bg: linear-gradient(180deg, #87CEEB 0%, #E0F7FF 50%, #FFFBF5 100%);
+    --market-night-bg: linear-gradient(180deg, #0A1A2F 0%, #1A2B3C 50%, #2C3B4A 100%);
+    --road-color-day: #8B7355;
+    --road-color-night: #5D4B3A;
+    --stall-shadow-day: rgba(160, 82, 45, 0.2);
+    --stall-shadow-night: rgba(255, 215, 0, 0.15);
+    --lantern-light-day: #FFD700;
+    --lantern-light-night: #FF6B35;
+    --visitor-color-day: #333;
+    --visitor-color-night: #FFF;
+}
+
+/* 主容器 */
+.food-market-container {
+    min-height: 4000px;
+    position: relative;
+    overflow-x: hidden;
+    background: var(--market-day-bg);
+    transition: background 1.5s ease;
+    padding-top: 100px;
+    z-index: 1;
+}
+
+/* 夜间模式 */
+body.dark-mode .food-market-container {
+    background: var(--market-night-bg);
+}
+
+/* 主题切换按钮（集市专用） */
+.theme-toggle-market {
+    position: fixed;
+    top: 90px;
+    right: 25px;
+    z-index: 1002;
+    background: linear-gradient(135deg, var(--accent-color), #FF6B35);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle-market:hover {
+    transform: rotate(30deg) scale(1.1);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
+.theme-toggle-market i {
+    font-size: 1.4rem;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .theme-toggle-market {
+    background: linear-gradient(135deg, #4A5568, #2D3748);
+}
+
+/* 中央道路 */
+.central-road {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 100vh;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.road-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(to bottom, 
+        rgba(255, 215, 0, 0.8) 0%, 
+        rgba(255, 140, 66, 0.6) 100%);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    transition: height 0.1s linear;
+    z-index: 3;
+}
+
+.road-textures {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--road-color-day);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+body.dark-mode .road-textures {
+    background: var(--road-color-night);
+}
+
+.road-stone {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.road-stone:nth-child(1) { top: 10%; left: 10%; width: 15px; height: 8px; }
+.road-stone:nth-child(2) { top: 25%; right: 15%; width: 12px; height: 6px; }
+.road-stone:nth-child(3) { top: 40%; left: 20%; width: 18px; height: 9px; }
+.road-stone:nth-child(4) { top: 60%; right: 25%; width: 14px; height: 7px; }
+.road-stone:nth-child(5) { top: 80%; left: 15%; width: 16px; height: 8px; }
+
+/* 道路灯笼 */
+.road-lanterns {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 100%;
+    z-index: 4;
+}
+
+.lantern {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 30px;
+    background: linear-gradient(to bottom, #C41E3A, #8B0000);
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--lantern-light-day);
+    animation: lantern-sway 3s ease-in-out infinite;
+}
+
+body.dark-mode .lantern {
+    box-shadow: 0 0 20px var(--lantern-light-night);
+}
+
+.lantern:nth-child(1) { top: 15%; animation-delay: 0s; }
+.lantern:nth-child(2) { top: 30%; animation-delay: 0.5s; }
+.lantern:nth-child(3) { top: 45%; animation-delay: 1s; }
+.lantern:nth-child(4) { top: 60%; animation-delay: 1.5s; }
+.lantern:nth-child(5) { top: 75%; animation-delay: 2s; }
+
+@keyframes lantern-sway {
+    0%, 100% { transform: translateX(-50%) rotate(0deg); }
+    25% { transform: translateX(-50%) rotate(2deg); }
+    75% { transform: translateX(-50%) rotate(-2deg); }
+}
+
+/* 集市入口牌坊 */
+.market-entrance {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    z-index: 5;
+    animation: entrance-appear 1s ease-out;
+}
+
+@keyframes entrance-appear {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.entrance-arch {
+    text-align: center;
+}
+
+.entrance-arch h1 {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .entrance-arch h1 {
+    color: var(--dark-primary);
+    text-shadow: 0 0 10px rgba(205, 133, 63, 0.5);
+}
+
+.entrance-pillars {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.pillar {
+    width: 30px;
+    height: 150px;
+    background: linear-gradient(to bottom, #8B4513, #A0522D);
+    border-radius: 5px;
+    position: relative;
+}
+
+.pillar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 10px;
+    background: #CD853F;
+    border-radius: 5px;
+}
+
+/* 摊位通用样式 */
+.market-stalls {
+    position: relative;
+    padding: 300px 20px 200px;
+    z-index: 10;
+}
+
+.stall {
+    position: relative;
+    margin-bottom: 400px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.stall.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stall-left {
+    float: left;
+    width: 40%;
+    margin-left: 5%;
+    clear: left;
+}
+
+.stall-right {
+    float: right;
+    width: 40%;
+    margin-right: 5%;
+    clear: right;
+}
+
+.stall-container {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 
+        0 20px 40px var(--stall-shadow-day),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 3px solid var(--secondary-color);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+body.dark-mode .stall-container {
+    background: var(--dark-card);
+    box-shadow: 
+        0 20px 40px var(--stall-shadow-night),
+        0 0 30px rgba(255, 140, 66, 0.1);
+    border: 3px solid var(--dark-primary);
+}
+
+.stall-container:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+        0 30px 60px rgba(160, 82, 45, 0.3),
+        0 0 40px rgba(255, 140, 66, 0.2);
+}
+
+body.dark-mode .stall-container:hover {
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        0 0 50px rgba(255, 140, 66, 0.3);
+}
+
+/* 摊位招牌 */
+.stall-signboard {
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: linear-gradient(135deg, 
+        rgba(160, 82, 45, 0.1), 
+        rgba(205, 133, 63, 0.05));
+    border-radius: 15px;
+    border: 2px solid rgba(160, 82, 45, 0.2);
+    position: relative;
+    z-index: 20;
+}
+
+body.dark-mode .stall-signboard {
+    background: linear-gradient(135deg, 
+        rgba(205, 133, 63, 0.15), 
+        rgba(160, 82, 45, 0.1));
+    border: 2px solid rgba(205, 133, 63, 0.3);
+}
+
+.stall-name {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+body.dark-mode .stall-name {
+    color: var(--dark-primary);
+    text-shadow: 0 0 10px rgba(205, 133, 63, 0.3);
+}
+
+.stall-slogan {
+    font-size: 1.1rem;
+    color: #666;
+    font-style: italic;
+}
+
+body.dark-mode .stall-slogan {
+    color: #B0B0B0;
+}
+
+/* 老板区域 */
+.stall-owner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(160, 82, 45, 0.1);
+}
+
+.owner-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.owner-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.owner-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+body.dark-mode .owner-name {
+    color: var(--dark-primary);
+}
+
+/* 交互按钮 */
+.stall-interaction {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.talk-btn {
+    background: linear-gradient(135deg, var(--accent-color), #FF6B35);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(255, 140, 66, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.talk-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(255, 107, 53, 0.4);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.talk-btn:active {
+    transform: translateY(0);
+}
+
+/* ===== 各个摊位独特造型 ===== */
+
+/* 1. 川菜摊位 - 麻辣火锅小火车 */
+.sichuan-train {
+    display: flex;
+    align-items: flex-end;
+    height: 200px;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.train-engine {
+    width: 120px;
+    height: 150px;
+    background: linear-gradient(135deg, #C41E3A, #8B0000);
+    border-radius: 15px 5px 5px 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.train-smoke {
+    position: absolute;
+    top: -40px;
+    left: 30px;
+    width: 60px;
+    height: 100px;
+}
+
+.smoke-particle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: smoke-rise 3s infinite ease-in-out;
+}
+
+.smoke-particle:nth-child(1) {
+    left: 10px;
+    animation-delay: 0s;
+}
+.smoke-particle:nth-child(2) {
+    left: 20px;
+    top: 20px;
+    animation-delay: 0.3s;
+}
+.smoke-particle:nth-child(3) {
+    left: 30px;
+    top: 40px;
+    animation-delay: 0.6s;
+}
+
+@keyframes smoke-rise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+.train-windows {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.window {
+    width: 25px;
+    height: 25px;
+    background: rgba(255, 215, 0, 0.9);
+    border-radius: 50%;
+    border: 2px solid #8B0000;
+}
+
+.train-wheels {
+    position: absolute;
+    bottom: -15px;
+    left: 10px;
+    display: flex;
+    gap: 25px;
+}
+
+.wheel {
+    width: 30px;
+    height: 30px;
+    background: #333;
+    border-radius: 50%;
+    border: 3px solid #666;
+    animation: wheel-rotate 2s linear infinite;
+}
+
+@keyframes wheel-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.train-carriage {
+    width: 180px;
+    height: 120px;
+    background: linear-gradient(135deg, #B22222, #8B0000);
+    border-radius: 10px;
+    margin-left: -10px;
+    position: relative;
+    z-index: 1;
+}
+
+.hotpot-pot {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 120px;
+    height: 80px;
+    background: #333;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.hotpot-soup {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, #8B0000, #FF4500);
+    animation: soup-bubble 2s infinite ease-in-out;
+}
+
+@keyframes soup-bubble {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.05); }
+}
+
+.hotpot-ingredient {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    animation: ingredient-float 3s infinite ease-in-out;
+}
+
+.chili {
+    background: #FF0000;
+    top: 20px;
+    left: 30px;
+    animation-delay: 0s;
+}
+
+.pepper {
+    background: #8B4513;
+    top: 15px;
+    right: 40px;
+    animation-delay: 0.5s;
+}
+
+@keyframes ingredient-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* 川菜装饰 */
+.chili-strings {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 30;
+}
+
+.chili-string {
+    width: 100px;
+    height: 2px;
+    background: #8B0000;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.chili-string::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    background: #FF0000;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    animation: chili-swing 2s infinite ease-in-out;
+}
+
+.chili-string:nth-child(1)::before {
+    left: 20px;
+    animation-delay: 0s;
+}
+.chili-string:nth-child(2)::before {
+    left: 50px;
+    animation-delay: 0.3s;
+}
+
+@keyframes chili-swing {
+    0%, 100% { transform: rotate(-45deg) translateY(0); }
+    50% { transform: rotate(-45deg) translateY(5px); }
+}
+
+/* 2. 粤菜摊位 - 点心双层巴士 */
+.guangdong-bus {
+    width: 250px;
+    height: 180px;
+    background: linear-gradient(135deg, #1E90FF, #4169E1);
+    border-radius: 20px;
+    position: relative;
+    margin: 0 auto 2rem;
+}
+
+.bus-floor {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.upper-floor {
+    top: 0;
+    height: 70px;
+    border-radius: 20px 20px 0 0;
+    background: linear-gradient(135deg, #00BFFF, #1E90FF);
+}
+
+.lower-floor {
+    bottom: 0;
+    height: 110px;
+    border-radius: 0 0 20px 20px;
+    border-top: 3px solid white;
+}
+
+.bus-windows {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 20px;
+}
+
+.dimsum-window {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    border: 2px solid #4169E1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.dimsum-item {
+    width: 20px;
+    height: 20px;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: dimsum-rotate 4s infinite linear;
+}
+
+.dimsum-item:nth-child(2) {
+    background: #FF69B4;
+    animation-delay: 1s;
+}
+
+@keyframes dimsum-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.bus-door {
+    position: absolute;
+    left: 30px;
+    bottom: 20px;
+    width: 40px;
+    height: 60px;
+    background: #4682B4;
+    border-radius: 5px;
+}
+
+.door-handle {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 20px;
+    background: gold;
+    border-radius: 4px;
+}
+
+.steamer-stack {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.steamer {
+    width: 50px;
+    height: 20px;
+    background: #B8860B;
+    border-radius: 10px;
+    margin-bottom: -5px;
+    position: relative;
+}
+
+.steam {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: steam-rise 2s infinite ease-in-out;
+}
+
+.steamer:nth-child(2) .steam {
+    animation-delay: 0.5s;
+}
+
+@keyframes steam-rise {
+    0% {
+        transform: translateX(-50%) translateY(0) scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-30px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+.bus-sign {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 粤菜装饰 */
+.neon-sign {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #00FFFF;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 
+        0 0 10px #00FFFF,
+        0 0 20px #00FFFF,
+        0 0 30px #00FFFF;
+    animation: neon-flicker 2s infinite alternate;
+}
+
+@keyframes neon-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* 3. 鲁菜摊位 - 宫廷御膳房 */
+.shandong-palace {
+    height: 220px;
+    position: relative;
+    background: linear-gradient(135deg, #DAA520, #B8860B);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.palace-roof {
+    height: 80px;
+    background: linear-gradient(135deg, #CD853F, #A0522D);
+    position: relative;
+}
+
+.roof-tiles {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    height: 15px;
+    background: repeating-linear-gradient(
+        90deg,
+        #8B4513,
+        #8B4513 10px,
+        #A0522D 10px,
+        #A0522D 20px
+    );
+}
+
+.roof-ridge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+}
+
+.ridge-ornament {
+    width: 20px;
+    height: 20px;
+    background: gold;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.palace-body {
+    height: 140px;
+    background: linear-gradient(135deg, #FFF8DC, #F5DEB3);
+    position: relative;
+    padding: 20px;
+}
+
+.palace-columns {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.column {
+    width: 15px;
+    height: 80px;
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    border-radius: 5px;
+}
+
+.palace-door {
+    width: 50px;
+    height: 70px;
+    background: #8B4513;
+    border-radius: 5px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.door-knocker {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 15px;
+    background: gold;
+    border-radius: 50%;
+}
+
+.palace-windows {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.lattice-window {
+    width: 30px;
+    height: 30px;
+    background: #F0E68C;
+    border: 2px solid #8B4513;
+    position: relative;
+}
+
+.lattice-window::before,
+.lattice-window::after {
+    content: '';
+    position: absolute;
+    background: #8B4513;
+}
+
+.lattice-window::before {
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    transform: translateY(-50%);
+}
+
+.lattice-window::after {
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: translateX(-50%);
+}
+
+.stone-lions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.lion {
+    width: 40px;
+    height: 30px;
+    background: #808080;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+}
+
+.lion::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 10px;
+    background: #808080;
+    border-radius: 50% 50% 0 0;
+}
+
+/* 鲁菜装饰 */
+.golden-signboard {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: gold;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 5;
+}
+
+.palace-lanterns {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    z-index: 5;
+}
+
+.palace-lantern {
+    width: 25px;
+    height: 35px;
+    background: linear-gradient(to bottom, #C41E3A, #8B0000);
+    border-radius: 12px;
+    box-shadow: 0 0 15px gold;
+    animation: palace-lantern-swing 3s infinite ease-in-out;
+}
+
+@keyframes palace-lantern-swing {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-5px) rotate(2deg); }
+    75% { transform: translateY(5px) rotate(-2deg); }
+}
+
+/* 4. 苏菜摊位 - 江南画舫 */
+.jiangsu-boat {
+    height: 180px;
+    position: relative;
+    margin: 0 auto 2rem;
+}
+
+.boat-hull {
+    width: 200px;
+    height: 60px;
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    border-radius: 10px 10px 50px 50px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.boat-wood {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.1) 10px,
+        rgba(255, 255, 255, 0.1) 20px
+    );
+}
+
+.water-ripples {
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+}
+
+.ripple {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(30, 144, 255, 0.5);
+    border-radius: 50%;
+    animation: ripple-expand 3s infinite ease-out;
+}
+
+.ripple:nth-child(1) {
+    left: 30px;
+    animation-delay: 0s;
+}
+
+.ripple:nth-child(2) {
+    left: 100px;
+    animation-delay: 1s;
+}
+
+.ripple:nth-child(3) {
+    left: 170px;
+    animation-delay: 2s;
+}
+
+@keyframes ripple-expand {
+    0% {
+        transform: scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+.boat-cabin {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 80px;
+    background: linear-gradient(135deg, #F5DEB3, #DEB887);
+    border-radius: 10px;
+}
+
+.cabin-roof {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    border-radius: 15px 15px 0 0;
+}
+
+.roof-curve {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    right: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.cabin-windows {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+}
+
+.round-window {
+    width: 25px;
+    height: 25px;
+    background: #87CEEB;
+    border-radius: 50%;
+    border: 2px solid #8B4513;
+}
+
+.cabin-door {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 30px;
+    background: #8B4513;
+    border-radius: 5px;
+}
+
+.bamboo-curtain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(255, 255, 255, 0.3) 3px,
+        rgba(255, 255, 255, 0.3) 6px
+    );
+}
+
+.boat-mast {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 80px;
+    background: #8B4513;
+}
+
+.sail {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 60px;
+    height: 40px;
+    background: #FFF;
+    clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 0% 100%);
+}
+
+.sail-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.1) 60%, transparent 60%);
+}
+
+.mast-flag {
+    position: absolute;
+    top: -20px;
+    right: 5px;
+    width: 30px;
+    height: 20px;
+    background: #DC143C;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+}
+
+/* 5. 湘菜摊位 - 剁椒山居 */
+.hunan-house {
+    height: 200px;
+    position: relative;
+    background: linear-gradient(135deg, #D2691E, #A0522D);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.house-stilt {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 40px;
+}
+
+.stilt-pillar {
+    width: 20px;
+    height: 40px;
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    border-radius: 5px;
+}
+
+.house-body {
+    position: absolute;
+    bottom: 40px;
+    left: 20px;
+    right: 20px;
+    height: 120px;
+    background: linear-gradient(135deg, #DEB887, #CD853F);
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+}
+
+.house-wooden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 5px,
+            rgba(139, 69, 19, 0.3) 5px,
+            rgba(139, 69, 19, 0.3) 10px
+        );
+}
+
+.house-windows {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 30px;
+}
+
+.square-window {
+    width: 25px;
+    height: 25px;
+    background: #FFD700;
+    border: 2px solid #8B0000;
+    position: relative;
+}
+
+.square-window::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #8B0000;
+    transform: translateY(-50%);
+}
+
+.square-window::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #8B0000;
+    transform: translateX(-50%);
+}
+
+.house-balcony {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 30px;
+    background: rgba(139, 69, 19, 0.8);
+    border-radius: 5px;
+}
+
+.drying-rack {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.chili-bunch {
+    width: 3px;
+    height: 20px;
+    background: #8B0000;
+    position: relative;
+    animation: chili-dry 4s infinite ease-in-out;
+}
+
+.chili-bunch::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 12px;
+    background: #FF0000;
+    border-radius: 50% 50% 50% 0;
+    transform-origin: bottom center;
+    animation: chili-sway 3s infinite ease-in-out;
+}
+
+@keyframes chili-dry {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes chili-sway {
+    0%, 100% { transform: translateX(-50%) rotate(-15deg); }
+    50% { transform: translateX(-50%) rotate(15deg); }
+}
+
+.house-roof {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    right: 10px;
+    height: 40px;
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+}
+
+.roof-tile {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    right: 10px;
+    height: 5px;
+    background: repeating-linear-gradient(
+        90deg,
+        #A0522D,
+        #A0522D 8px,
+        #8B4513 8px,
+        #8B4513 16px
+    );
+}
+
+.chimney {
+    position: absolute;
+    top: -20px;
+    right: 30px;
+    width: 15px;
+    height: 20px;
+    background: #696969;
+}
+
+.smoke {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    height: 25px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: smoke-puff 4s infinite ease-in-out;
+}
+
+@keyframes smoke-puff {
+    0% {
+        transform: translateX(-50%) scale(0.5);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-50px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+.house-firepit {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    width: 40px;
+    height: 20px;
+    background: #333;
+    border-radius: 10px;
+}
+
+.fire {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.flame {
+    width: 15px;
+    height: 25px;
+    background: linear-gradient(to top, #FF4500, #FFD700);
+    border-radius: 50% 50% 20% 20%;
+    animation: fire-flicker 1.5s infinite ease-in-out;
+}
+
+.flame:nth-child(2) {
+    width: 12px;
+    height: 20px;
+    margin-left: 5px;
+    animation-delay: 0.3s;
+}
+
+@keyframes fire-flicker {
+    0%, 100% { transform: scaleY(1); opacity: 0.9; }
+    50% { transform: scaleY(1.2); opacity: 1; }
+}
+
+/* 湘菜装饰 */
+.house-sign {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #8B0000;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 15px;
+    border-radius: 15px;
+    z-index: 5;
+}
+
+.hanging-meat {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 5;
+}
+
+.bacon {
+    width: 40px;
+    height: 5px;
+    background: linear-gradient(90deg, #8B0000, #FF4500, #8B0000);
+    border-radius: 3px;
+    animation: meat-swing 4s infinite ease-in-out;
+}
+
+.bacon:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+@keyframes meat-swing {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    75% { transform: rotate(-5deg); }
+}
+
+/* 6. 浙菜摊位 - 西湖舫阁 */
+.zhejiang-pavilion {
+    height: 220px;
+    position: relative;
+    margin: 0 auto 2rem;
+}
+
+.pavilion-base {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+}
+
+.stone-base {
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(135deg, #708090, #778899);
+    border-radius: 10px;
+}
+
+.pavilion-steps {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.step {
+    width: 160px;
+    height: 10px;
+    background: linear-gradient(135deg, #B0C4DE, #87CEEB);
+    border-radius: 3px;
+}
+
+.pavilion-structure {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 140px;
+}
+
+.pavilion-pillars {
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+}
+
+.pillar {
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    border-radius: 3px;
+}
+
+.pavilion-roof {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(135deg, #CD853F, #A0522D);
+    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+}
+
+.roof-corner {
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: gold;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.roof-corner:nth-child(1) {
+    left: 10px;
+}
+
+.roof-corner:nth-child(2) {
+    right: 10px;
+}
+
+.pavilion-details {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+}
+
+.pavilion-table {
+    width: 40px;
+    height: 25px;
+    background: #8B4513;
+    border-radius: 5px;
+    position: relative;
+}
+
+.tea-set {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 15px;
+    background: #FFF;
+    border-radius: 50%;
+}
+
+.calligraphy {
+    width: 50px;
+    height: 30px;
+    background: linear-gradient(135deg, #F5DEB3, #DEB887);
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(139, 69, 19, 0.2) 2px,
+            rgba(139, 69, 19, 0.2) 4px
+        );
+}
+
+.pavilion-pond {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 50px;
+    background: linear-gradient(135deg, #87CEEB, #4682B4);
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.koi-fish {
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    display: flex;
+    gap: 30px;
+}
+
+.fish {
+    width: 20px;
+    height: 10px;
+    background: linear-gradient(90deg, #FF4500, #FFD700);
+    border-radius: 50%;
+    animation: fish-swim 6s infinite ease-in-out;
+}
+
+.fish:nth-child(2) {
+    animation-delay: 1s;
+}
+
+@keyframes fish-swim {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(20px) rotate(10deg); }
+    50% { transform: translateX(40px) rotate(0deg); }
+    75% { transform: translateX(20px) rotate(-10deg); }
+}
+
+.lotus-pad {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    display: flex;
+    gap: 15px;
+}
+
+.pad {
+    width: 25px;
+    height: 15px;
+    background: #228B22;
+    border-radius: 50%;
+    animation: pad-float 4s infinite ease-in-out;
+}
+
+.pad:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+@keyframes pad-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* 浙菜装饰 */
+.pavilion-lantern {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.plum-blossom {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 5;
+}
+
+.blossom {
+    width: 15px;
+    height: 15px;
+    background: #FF69B4;
+    border-radius: 50%;
+    position: relative;
+    animation: blossom-fall 8s infinite linear;
+}
+
+.blossom::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    background: #FFF;
+    border-radius: 50%;
+}
+
+.blossom:nth-child(1) { animation-delay: 0s; }
+.blossom:nth-child(2) { animation-delay: 2s; }
+
+@keyframes blossom-fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 7. 闽菜摊位 - 佛跳墙海船 */
+.fujian-ship {
+    height: 190px;
+    position: relative;
+    margin: 0 auto 2rem;
+}
+
+.ship-hull {
+    width: 180px;
+    height: 60px;
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    border-radius: 20px 20px 50px 50px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.hull-wood {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 15px,
+            rgba(255, 255, 255, 0.1) 15px,
+            rgba(255, 255, 255, 0.1) 30px
+        );
+}
+
+.ship-wave {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    right: 0;
+    height: 20px;
+}
+
+.wave {
+    position: absolute;
+    width: 30px;
+    height: 10px;
+    background: rgba(30, 144, 255, 0.6);
+    border-radius: 50%;
+    animation: wave-move 3s infinite ease-in-out;
+}
+
+.wave:nth-child(1) {
+    left: 30px;
+    animation-delay: 0s;
+}
+
+.wave:nth-child(2) {
+    left: 100px;
+    animation-delay: 0.5s;
+}
+
+@keyframes wave-move {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.ship-deck {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 50px;
+    background: linear-gradient(135deg, #DEB887, #CD853F);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.deck-cabin {
+    display: flex;
+    gap: 10px;
+}
+
+.porthole {
+    width: 20px;
+    height: 20px;
+    background: #87CEEB;
+    border-radius: 50%;
+    border: 2px solid #8B4513;
+}
+
+.ship-items {
+    display: flex;
+    gap: 15px;
+}
+
+.clay-pot {
+    width: 25px;
+    height: 20px;
+    background: #D2691E;
+    border-radius: 50% 50% 0 0;
+    position: relative;
+}
+
+.pot-lid {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 5px;
+    background: #8B4513;
+    border-radius: 50%;
+}
+
+.fishing-net {
+    width: 30px;
+    height: 25px;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 3px,
+            rgba(255, 255, 255, 0.5) 3px,
+            rgba(255, 255, 255, 0.5) 6px
+        );
+    border: 2px solid #8B4513;
+    border-radius: 5px;
+}
+
+.ship-mast {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 80px;
+    background: #8B4513;
+}
+
+.mast-pole {
+    width: 100%;
+    height: 100%;
+}
+
+.ship-sail {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 70px;
+    height: 50px;
+    background: linear-gradient(135deg, #FFF, #F5F5F5);
+    clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 0% 100%);
+}
+
+.sail-fabric {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(45deg, transparent 40%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.1) 60%, transparent 60%),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 10px,
+            rgba(0, 0, 0, 0.05) 10px,
+            rgba(0, 0, 0, 0.05) 20px
+        );
+}
+
+.ship-flag {
+    position: absolute;
+    top: -20px;
+    left: 60px;
+    width: 25px;
+    height: 15px;
+    background: #DC143C;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+}
+
+.seagulls {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+}
+
+.seagull {
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    background: #FFF;
+    clip-path: polygon(0% 50%, 30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%);
+    animation: seagull-fly 15s infinite linear;
+}
+
+.seagull:nth-child(1) {
+    left: 30px;
+    animation-delay: 0s;
+}
+
+.seagull:nth-child(2) {
+    left: 100px;
+    animation-delay: 5s;
+}
+
+@keyframes seagull-fly {
+    0% {
+        transform: translateX(-50px) translateY(0);
+    }
+    25% {
+        transform: translateX(50px) translateY(-10px);
+    }
+    50% {
+        transform: translateX(150px) translateY(0);
+    }
+    75% {
+        transform: translateX(250px) translateY(-10px);
+    }
+    100% {
+        transform: translateX(350px) translateY(0);
+    }
+}
+
+/* 闽菜装饰 */
+.ship-name {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FFF;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background: rgba(139, 69, 19, 0.8);
+    padding: 5px 10px;
+    border-radius: 10px;
+    z-index: 5;
+}
+
+.nautical-decor {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    z-index: 5;
+}
+
+.anchor {
+    width: 30px;
+    height: 30px;
+    background: #696969;
+    position: relative;
+}
+
+.anchor::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: #696969;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.anchor::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    height: 5px;
+    background: #696969;
+}
+
+.rope-coil {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #8B4513;
+    border-radius: 50%;
+    position: relative;
+}
+
+.rope-coil::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border: 2px solid #8B4513;
+    border-radius: 50%;
+}
+
+/* 8. 徽菜摊位 - 徽州民居 */
+.anhui-house {
+    height: 210px;
+    position: relative;
+    background: linear-gradient(135deg, #F5F5F5, #E8E8E8);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.anhui-roof {
+    height: 60px;
+    position: relative;
+    background: linear-gradient(135deg, #2F4F4F, #363636);
+    overflow: hidden;
+}
+
+.horse-wall {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.wall-element {
+    width: 40px;
+    height: 20px;
+    background: linear-gradient(135deg, #363636, #2F4F4F);
+    clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%);
+}
+
+.black-tiles {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    right: 10px;
+    height: 10px;
+    background: repeating-linear-gradient(
+        90deg,
+        #000,
+        #000 8px,
+        #363636 8px,
+        #363636 16px
+    );
+}
+
+.anhui-body {
+    height: 150px;
+    background: linear-gradient(135deg, #FFF, #F5F5F5);
+    position: relative;
+}
+
+.white-wall {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    right: 30px;
+    height: 100px;
+    background: #FFF;
+    border: 2px solid #D3D3D3;
+}
+
+.wall-window {
+    position: absolute;
+    top: 20px;
+    width: 25px;
+    height: 30px;
+    background: #F0E68C;
+    border: 2px solid #808080;
+}
+
+.wall-window:nth-child(1) {
+    left: 20px;
+}
+
+.wall-window:nth-child(2) {
+    right: 20px;
+}
+
+.window-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 5px,
+            #808080 5px,
+            #808080 10px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 5px,
+            #808080 5px,
+            #808080 10px
+        );
+}
+
+.wooden-door {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 60px;
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    border-radius: 5px;
+}
+
+.door-panel {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    background: linear-gradient(135deg, #A0522D, #8B4513);
+    border-radius: 3px;
+}
+
+.door-ring {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    background: #DAA520;
+    border-radius: 50%;
+}
+
+.anhui-base {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+}
+
+.stone-foundation {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #708090, #778899);
+}
+
+.house-yard {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 40px;
+}
+
+.stove {
+    width: 30px;
+    height: 20px;
+    background: linear-gradient(135deg, #696969, #808080);
+    border-radius: 5px;
+    position: relative;
+}
+
+.stove-smoke {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    animation: stove-smoke-rise 3s infinite ease-in-out;
+}
+
+@keyframes stove-smoke-rise {
+    0% {
+        transform: translateX(-50%) scale(0.8);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-30px) scale(1.2);
+        opacity: 0;
+    }
+}
+
+.ferment-jar {
+    width: 25px;
+    height: 30px;
+    background: linear-gradient(135deg, #D2691E, #A0522D);
+    border-radius: 40% 40% 50% 50%;
+    position: relative;
+}
+
+.jar-lid {
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 10px;
+    background: #8B4513;
+    border-radius: 50%;
+}
+
+/* 徽菜装饰 */
+.anhui-sign {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #2F4F4F;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 15px;
+    border-radius: 15px;
+    z-index: 5;
+}
+
+.bamboo-grove {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 5;
+}
+
+.bamboo {
+    width: 8px;
+    height: 50px;
+    background: linear-gradient(90deg, #228B22, #32CD32, #228B22);
+    border-radius: 3px;
+    position: relative;
+    animation: bamboo-sway 5s infinite ease-in-out;
+}
+
+.bamboo::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: -2px;
+    right: -2px;
+    height: 3px;
+    background: #006400;
+    border-radius: 2px;
+}
+
+.bamboo::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: -2px;
+    right: -2px;
+    height: 3px;
+    background: #006400;
+    border-radius: 2px;
+}
+
+.bamboo:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+@keyframes bamboo-sway {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(3px) rotate(1deg); }
+    75% { transform: translateX(-3px) rotate(-1deg); }
+}
+
+/* ===== 食客小人动画 ===== */
+.market-visitors {
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
+    height: 100px;
+    z-index: 15;
+    pointer-events: none;
+}
+
+.visitor {
+    position: absolute;
+    bottom: 0;
+    animation: visitor-walk 20s infinite linear;
+}
+
+.visitor1 {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.visitor2 {
+    left: 30%;
+    animation-delay: 5s;
+}
+
+.visitor3 {
+    left: 50%;
+    animation-delay: 10s;
+}
+
+.visitor-body {
+    width: 20px;
+    height: 40px;
+    background: var(--visitor-color-day);
+    border-radius: 10px 10px 0 0;
+    position: relative;
+}
+
+body.dark-mode .visitor-body {
+    background: var(--visitor-color-night);
+}
+
+.visitor-shadow {
+    width: 30px;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes visitor-walk {
+    0% {
+        transform: translateX(-100px) scaleX(1);
+    }
+    49% {
+        transform: translateX(calc(100vw - 100px)) scaleX(1);
+    }
+    50% {
+        transform: translateX(calc(100vw - 100px)) scaleX(-1);
+    }
+    99% {
+        transform: translateX(-100px) scaleX(-1);
+    }
+    100% {
+        transform: translateX(-100px) scaleX(1);
+    }
+}
+
+/* ===== 对话系统样式 ===== */
+.dialogue-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation: overlay-fade 0.3s ease;
+}
+
+@keyframes overlay-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.dialogue-container {
+    width: 90%;
+    max-width: 600px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    animation: dialogue-slide 0.4s ease;
+    border: 3px solid var(--accent-color);
+}
+
+body.dark-mode .dialogue-container {
+    background: var(--dark-card);
+}
+
+@keyframes dialogue-slide {
+    from {
+        transform: translateY(100px) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.dialogue-header {
+    background: linear-gradient(135deg, var(--accent-color), #FF6B35);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dialogue-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.close-dialogue {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-dialogue:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.dialogue-content {
+    padding: 2rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.owner-portrait {
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.owner-portrait img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 5px solid var(--accent-color);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+}
+
+.owner-title {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+body.dark-mode .owner-title {
+    color: var(--dark-primary);
+}
+
+.dialogue-messages {
+    flex: 1;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dialogue-message {
+    background: rgba(160, 82, 45, 0.1);
+    padding: 1.2rem;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    position: relative;
+    animation: message-appear 0.5s ease;
+    border-left: 4px solid var(--accent-color);
+}
+
+body.dark-mode .dialogue-message {
+    background: rgba(205, 133, 63, 0.15);
+}
+
+@keyframes message-appear {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.dialogue-message::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 10px solid var(--accent-color);
+}
+
+.dialogue-controls {
+    padding: 1.5rem;
+    text-align: center;
+    border-top: 1px solid rgba(160, 82, 45, 0.1);
+}
+
+body.dark-mode .dialogue-controls {
+    border-top: 1px solid rgba(205, 133, 63, 0.2);
+}
+
+.next-btn, .learn-more-btn {
+    background: linear-gradient(135deg, var(--accent-color), #FF6B35);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 0.5rem;
+}
+
+.learn-more-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.next-btn:hover, .learn-more-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 140, 66, 0.3);
+}
+
+/* ===== 菜系详情弹窗 ===== */
+.detail-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-container {
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+    animation: detail-popup 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px solid var(--secondary-color);
+}
+
+body.dark-mode .detail-container {
+    background: var(--dark-card);
+}
+
+@keyframes detail-popup {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.detail-header {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.8rem;
+    font-family: 'Ma Shan Zheng', cursive;
+}
+
+.close-detail {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-detail:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.detail-content {
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: calc(80vh - 80px);
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .stall-left, .stall-right {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+    .market-stalls {
+        padding: 250px 15px 150px;
+    }
+    
+    .stall-left, .stall-right {
+        width: 90%;
+        float: none;
+        margin: 0 auto 300px !important;
+        clear: both;
+    }
+    
+    .central-road {
+        width: 40px;
+    }
+    
+    .market-entrance {
+        width: 250px;
+    }
+    
+    .entrance-arch h1 {
+        font-size: 2.2rem;
+    }
+    
+    .dialogue-content {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .market-stalls {
+        padding: 200px 10px 100px;
+    }
+    
+    .stall-container {
+        padding: 1.5rem;
+    }
+    
+    .stall-name {
+        font-size: 1.6rem;
+    }
+    
+    .talk-btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+    }
+    
+    .theme-toggle-market {
+        top: 80px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* 清除浮动 */
+.market-stalls::after {
+    content: '';
+    display: table;
+    clear: both;
+}

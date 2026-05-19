@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>春季校园招聘会圆满结束 - 校园新闻中心</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .success-badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #e0f2fe;
+        }
+        
+        .event-date {
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 5px;
+            border-left: 4px solid #10b981;
+        }
+        
+        /* 导航样式 */
+        .page-nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-link {
+            padding: 18px 25px;
+            text-decoration: none;
+            color: #1e3a8a;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+        }
+        
+        /* 内容区域 */
+        .content-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #3b82f6;
+        }
+        
+        /* 成果概览 */
+        .achievements {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
+        }
+        
+        .achievement-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #3b82f6;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #64748b;
+        }
+        
+        /* 企业展示 */
+        .companies-section {
+            background: #f1f5f9;
+            padding: 80px 0;
+        }
+        
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .company-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        
+        .company-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .company-logo {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        
+        .company-logo i {
+            font-size: 3rem;
+            color: #3b82f6;
+        }
+        
+        .company-content {
+            padding: 25px;
+        }
+        
+        .company-content h3 {
+            font-size: 1.3rem;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+        
+        .company-content p {
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+        
+        .positions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .position-tag {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        /* 照片展示 */
+        .gallery-section {
+            padding: 80px 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* 学生感言 */
+        .testimonials-section {
+            background: #f1f5f9;
+            padding: 80px 0;
+        }
+        
+        .testimonials-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .testimonial:before {
+            content: """;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #e0f2fe;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #475569;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .author-info h4 {
+            font-size: 1.1rem;
+            color: #1e3a8a;
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        /* 后续活动 */
+        .upcoming-events {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .events-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .event-card {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 4px solid #3b82f6;
+            transition: transform 0.3s;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .event-date {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .event-card h3 {
+            font-size: 1.3rem;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #3b82f6;
+        }
+        
+        .footer-about {
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+        
+        .footer-links h3, .footer-social h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #3b82f6;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: #3b82f6;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .nav-link {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+            
+            .achievement-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .achievement-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .companies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        /* 计数动画 */
+        .count-up {
+            display: inline-block;
+        }
+        /* 添加到原有的style标签中 */
+
+/* 小测验样式 */
+.quiz-feedback {
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.quiz-feedback.correct {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #065f46;
+    border-left: 4px solid #10b981;
+}
+
+.quiz-feedback.wrong {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #991b1b;
+    border-left: 4px solid #ef4444;
+}
+
+.quiz-check:hover {
+    background-color: #2563eb;
+}
+
+.quiz-reset:hover {
+    background-color: #475569;
+}
+
+/* 导航链接也需要更新，添加测验部分 */
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="container">
+            <div class="header-content fade-in">
+                <div class="success-badge">圆满结束</div>
+                <h1>2023年春季校园招聘会</h1>
+                <p class="subtitle">本次招聘会吸引了200余家知名企业参与，提供超过5000个优质岗位，为我校毕业生搭建了高效的就业平台</p>
+                <div class="event-date">
+                    <i class="far fa-calendar-alt"></i> 活动日期：2023年4月15日 - 4月16日
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 导航 -->
+    <nav class="page-nav">
+        <div class="container">
+            <!-- 在导航栏部分添加测验链接 -->
+<div class="nav-container">
+    <a href="#achievements" class="nav-link">成果概览</a>
+    <a href="#companies" class="nav-link">参与企业</a>
+    <a href="#gallery" class="nav-link">精彩瞬间</a>
+    <a href="#testimonials" class="nav-link">学生感言</a>
+    <a href="#quiz" class="nav-link">新闻小测验</a> <!-- 新增 -->
+    <a href="#upcoming" class="nav-link">后续活动</a>
+</div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main>
+        <!-- 成果概览 -->
+        <section id="achievements" class="content-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>招聘会成果概览</h2>
+                </div>
+                
+                <div class="achievements">
+                    <p>2023年春季校园招聘会于4月15日至16日在学校体育馆成功举办。本次招聘会规模空前，参与企业和提供岗位数量均创历史新高，为我校毕业生提供了丰富的就业选择和发展机会。</p>
+                    <p>招聘会期间，学校就业指导中心还举办了多场职业规划讲座、简历优化工作坊和模拟面试活动，全方位助力毕业生提升就业竞争力。</p>
+                    
+                    <div class="achievement-stats">
+                        <div class="stat-item">
+                            <span class="stat-number count-up" data-count="200">0</span>
+                            <span class="stat-label">参与企业</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number count-up" data-count="5000">0</span>
+                            <span class="stat-label">提供岗位</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number count-up" data-count="3500">0</span>
+                            <span class="stat-label">参与学生</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number count-up" data-count="1200">0</span>
+                            <span class="stat-label">初步达成意向</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 参与企业 -->
+        <section id="companies" class="companies-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>知名参与企业</h2>
+                </div>
+                
+                <div class="companies-grid">
+                    <div class="company-card">
+                        <div class="company-logo">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="company-content">
+                            <h3>华为技术有限公司</h3>
+                            <p>全球领先的信息与通信技术解决方案供应商</p>
+                            <div class="positions">
+                                <span class="position-tag">软件开发</span>
+                                <span class="position-tag">硬件工程</span>
+                                <span class="position-tag">产品经理</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="company-card">
+                        <div class="company-logo">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="company-content">
+                            <h3>阿里巴巴集团</h3>
+                            <p>全球领先的电子商务和科技公司</p>
+                            <div class="positions">
+                                <span class="position-tag">数据分析</span>
+                                <span class="position-tag">运营管理</span>
+                                <span class="position-tag">市场营销</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="company-card">
+                        <div class="company-logo">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="company-content">
+                            <h3>中国工商银行</h3>
+                            <p>中国最大的商业银行之一</p>
+                            <div class="positions">
+                                <span class="position-tag">金融分析</span>
+                                <span class="position-tag">客户经理</span>
+                                <span class="position-tag">风险管理</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="company-card">
+                        <div class="company-logo">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <div class="company-content">
+                            <h3>比亚迪股份有限公司</h3>
+                            <p>全球新能源汽车领军企业</p>
+                            <div class="positions">
+                                <span class="position-tag">机械工程</span>
+                                <span class="position-tag">电气工程</span>
+                                <span class="position-tag">研发设计</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 精彩瞬间 -->
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>招聘会精彩瞬间</h2>
+                </div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="招聘会现场">
+                        <div class="gallery-caption">
+                            <p>招聘会现场人头攒动，气氛热烈</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1551830417-bc6a72d3e82b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="学生与企业交流">
+                        <div class="gallery-caption">
+                            <p>学生与企业HR面对面交流</p>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="职业规划讲座">
+                        <div class="gallery-caption">
+                            <p>职业规划讲座现场座无虚席</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 学生感言 -->
+        <section id="testimonials" class="testimonials-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>学生感言</h2>
+                </div>
+                
+                <div class="testimonials-container">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            这次招聘会让我收获颇丰，不仅与多家心仪的企业进行了深入交流，还通过模拟面试活动发现了自己的不足。特别感谢学校就业指导中心提供的专业指导，让我对未来的职业发展有了更清晰的规划。
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">张</div>
+                            <div class="author-info">
+                                <h4>张明</h4>
+                                <p>计算机科学与技术学院 大四学生</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            招聘会组织得非常专业，企业质量很高。我在现场与三家知名企业进行了深入交流，其中两家已经进入了下一轮面试环节。学校提供的简历优化服务也帮了大忙，让我的简历更加突出个人优势。
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">李</div>
+                            <div class="author-info">
+                                <h4>李静</h4>
+                                <p>经济管理学院 大四学生</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            作为大三学生，我本来是来了解就业市场的，没想到收获远超预期。通过与企业HR的交流，我明确了未来一年的学习方向和技能提升重点。职业规划讲座也让我对行业发展趋势有了更清晰的认识。
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">王</div>
+                            <div class="author-info">
+                                <h4>王强</h4>
+                                <p>机械工程学院 大三学生</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- 在页面中找到"学生感言"部分，在这之后添加新闻小测验 -->
+
+<section id="quiz" class="content-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>新闻小测验</h2>
+            <p class="subtitle">测测你是否真正读懂了这篇招聘会报道</p>
+        </div>
+        
+        <div class="quiz-container" style="background: white; border-radius: 15px; padding: 40px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); max-width: 800px; margin: 0 auto;">
+            <h3 style="color: #1e3a8a; margin-bottom: 30px; text-align: center;">小测验：你真的读懂这篇报道了吗？</h3>
+            
+            <!-- 问题1 -->
+            <div class="quiz-question" style="margin-bottom: 30px; padding: 20px; border: 1px solid #e2e8f0; border-radius: 10px;">
+                <p style="font-weight: bold; margin-bottom: 15px; color: #1e3a8a;">1. 本次春季招聘会共吸引了多少家企业参与？</p>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="q1" value="A" style="margin-right: 10px;">
+                        <span>A. 100家</span>
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="q1" value="B" style="margin-right: 10px;">
+                        <span>B. 150家</span>
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="q1" value="C" style="margin-right: 10px;">
+                        <span>C. 200家</span>
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="q1" value="D" style="margin-right: 10px;">
+                        <span>D. 250家</span>
+                    </label>
+                </div>
+                <p class="quiz-feedback q1-feedback" style="margin-top: 15px; padding: 10px; border-radius: 5px; display: none;"></p>
+            </div>
+            
+            <!-- 问题2 -->
+            <div class="quiz-question" style="margin-bottom: 30px; padding: 20px; border: 1px solid #e2e8f0; border-radius: 10px;">
+                <p style="font-weight: bold; margin-bottom: 15px; color: #1e3a8a;">2. 本次招聘会为学生提供了多少个就业岗位？</p>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="q2" value="A" style="margin-right: 10px;">
+                        <span>A. 3000个</span>
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="q2" value="B" style="margin-right: 10px;">
+                        <span>B. 4000个</span>
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="q2" value="C" style="margin-right: 10px;">
+                        <span>C. 5000个</span>
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="q2" value="D" style="margin-right: 10px;">
+                        <span>D. 6000个</span>
+                    </label>
+                </div>
+                <p class="quiz-feedback q2-feedback" style="margin-top: 15px; padding: 10px; border-radius: 5px; display: none;"></p>
+            </div>
+            
+            <!-- 问题3 -->
+            <div class="quiz-question" style="margin-bottom: 30px; padding: 20px; border: 1px solid #e2e8f0; border-radius: 10px;">
+                <p style="font-weight: bold; margin-bottom: 15px; color: #1e3a8a;">3. 以下哪家公司不是本次招聘会的参与企业？</p>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="q3" value="A" style="margin-right: 10px;">
+                        <span>A. 华为技术有限公司</span>
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="q3" value="B" style="margin-right: 10px;">
+                        <span>B. 阿里巴巴集团</span>
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="q3" value="C" style="margin-right: 10px;">
+                        <span>C. 腾讯科技</span>
+                    </label>
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="radio" name="q3" value="D" style="margin-right: 10px;">
+                        <span>D. 比亚迪股份有限公司</span>
+                    </label>
+                </div>
+                <p class="quiz-feedback q3-feedback" style="margin-top: 15px; padding: 10px; border-radius: 5px; display: none;"></p>
+            </div>
+            
+            <div style="text-align: center;">
+                <button class="quiz-check" style="background: #3b82f6; color: white; border: none; padding: 15px 40px; font-size: 1.1rem; border-radius: 8px; cursor: pointer; font-weight: bold; transition: background 0.3s;">
+                    提交答案
+                </button>
+                <button class="quiz-reset" style="background: #64748b; color: white; border: none; padding: 15px 30px; font-size: 1.1rem; border-radius: 8px; cursor: pointer; font-weight: bold; transition: background 0.3s; margin-left: 15px;">
+                    重新测验
+                </button>
+            </div>
+            
+            <div class="quiz-result" style="margin-top: 30px; padding: 20px; background: #f8fafc; border-radius: 10px; text-align: center; display: none;">
+                <h4 style="color: #1e3a8a; margin-bottom: 15px;">测验结果</h4>
+                <p class="quiz-score" style="font-size: 1.2rem; margin-bottom: 10px;">得分：<span class="score-value">0</span>/3</p>
+                <p class="quiz-message" style="font-size: 1.1rem; color: #475569;">请完成所有题目并提交答案</p>
+            </div>
+        </div>
+    </div>
+</section>
+        <!-- 后续活动 -->
+        <section id="upcoming" class="content-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>后续就业活动</h2>
+                </div>
+                
+                <div class="upcoming-events">
+                    <p>为持续助力学生就业，学校就业指导中心将继续举办系列就业服务活动，欢迎同学们积极参与。</p>
+                    
+                    <div class="events-list">
+                        <div class="event-card">
+                            <div class="event-date">2023年5月10日</div>
+                            <h3>简历优化工作坊</h3>
+                            <p>专业HR指导，一对一简历修改，提升简历竞争力。</p>
+                        </div>
+                        
+                        <div class="event-card">
+                            <div class="event-date">2023年5月17日</div>
+                            <h3>模拟面试大赛</h3>
+                            <p>真实面试场景模拟，企业HR现场点评，提升面试技巧。</p>
+                        </div>
+                        
+                        <div class="event-card">
+                            <div class="event-date">2023年5月24日</div>
+                            <h3>行业精英分享会</h3>
+                            <p>邀请各行业优秀校友分享职场经验和行业见解。</p>
+                        </div>
+                        
+                        <div class="event-card">
+                            <div class="event-date">2023年6月5日</div>
+                            <h3>秋季招聘会筹备会</h3>
+                            <p>为秋季招聘会做准备，收集学生就业需求和企业合作意向。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">校园就业指导中心</div>
+                    <p>学校就业指导中心致力于为全校学生提供全方位的就业服务，包括职业规划、就业指导、招聘会组织和校企合作等，助力学生顺利就业、优质就业。</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#">就业指导中心首页</a></li>
+                        <li><a href="#">招聘信息</a></li>
+                        <li><a href="#">职业规划</a></li>
+                        <li><a href="#">校企合作</a></li>
+                        <li><a href="#">就业政策</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>关注我们</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-weixin"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-weibo"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-qq"></i></a>
+                        <a href="#" class="social-icon"><i class="fas fa-rss"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 校园就业指导中心 版权所有 | 设计制作：校园新闻中心</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 平滑滚动导航
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有active类
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // 添加active类到当前链接
+                    this.classList.add('active');
+                    
+                    // 获取目标元素
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    // 滚动到目标元素
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 根据滚动位置高亮导航链接
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            // 数字计数动画
+            function animateCounters() {
+                const counters = document.querySelectorAll('.count-up');
+                
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-count'));
+                    const duration = 2000; // 动画持续时间(毫秒)
+                    const step = target / (duration / 16); // 每16ms增加的值
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        counter.textContent = Math.floor(current);
+                    }, 16);
+                });
+            }
+            
+            // 当数字元素进入视口时触发计数动画
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.3
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            const statsSection = document.querySelector('.achievement-stats');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+            
+            // 添加滚动动画效果
+            const fadeObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            const fadeElements = document.querySelectorAll('.company-card, .testimonial, .event-card, .gallery-item');
+            fadeElements.forEach(el => {
+                fadeObserver.observe(el);
+            });
+        });
+        // 在原有代码的末尾添加以下JavaScript代码
+
+// 新闻小测验功能
+document.addEventListener('DOMContentLoaded', function() {
+    // 定义正确答案
+    const correctAnswers = {
+        q1: 'C', // 200家
+        q2: 'C', // 5000个
+        q3: 'C'  // 腾讯科技（未在文中提到）
+    };
+    
+    // 定义反馈信息
+    const feedbackMessages = {
+        q1: {
+            correct: '✅ 回答正确！报道中提到本次招聘会吸引了200余家知名企业参与。',
+            wrong: '❌ 再想想，建议回去看文中"成果概览"部分。'
+        },
+        q2: {
+            correct: '✅ 回答正确！报道中明确提到本次招聘会提供超过5000个优质岗位。',
+            wrong: '❌ 报道中提到"提供超过5000个优质岗位"，建议仔细阅读。'
+        },
+        q3: {
+            correct: '✅ 回答正确！腾讯科技没有出现在报道提到的参与企业名单中。',
+            wrong: '❌ 报道中提到了华为、阿里巴巴、工商银行和比亚迪，但没有提到腾讯科技。'
+        }
+    };
+    
+    // 获取DOM元素
+    const checkButton = document.querySelector('.quiz-check');
+    const resetButton = document.querySelector('.quiz-reset');
+    const resultDiv = document.querySelector('.quiz-result');
+    const scoreValue = document.querySelector('.score-value');
+    const quizMessage = document.querySelector('.quiz-message');
+    
+    // 检查答案函数
+    function checkQuiz() {
+        let score = 0;
+        let allAnswered = true;
+        
+        // 检查每个问题
+        for (let i = 1; i <= 3; i++) {
+            const questionName = 'q' + i;
+            const selected = document.querySelector(`input[name="${questionName}"]:checked`);
+            const feedbackEl = document.querySelector(`.${questionName}-feedback`);
+            
+            // 隐藏之前的反馈
+            if (feedbackEl) {
+                feedbackEl.style.display = 'none';
+                feedbackEl.classList.remove('correct', 'wrong');
+            }
+            
+            // 如果没有选择答案
+            if (!selected) {
+                allAnswered = false;
+                if (feedbackEl) {
+                    feedbackEl.textContent = '请先选择一个答案';
+                    feedbackEl.style.display = 'block';
+                    feedbackEl.classList.add('wrong');
+                }
+                continue;
+            }
+            
+            // 检查答案是否正确
+            if (selected.value === correctAnswers[questionName]) {
+                score++;
+                if (feedbackEl) {
+                    feedbackEl.textContent = feedbackMessages[questionName].correct;
+                    feedbackEl.style.display = 'block';
+                    feedbackEl.classList.add('correct');
+                }
+            } else {
+                if (feedbackEl) {
+                    feedbackEl.textContent = feedbackMessages[questionName].wrong;
+                    feedbackEl.style.display = 'block';
+                    feedbackEl.classList.add('wrong');
+                }
+            }
+        }
+        
+        // 显示结果
+        if (allAnswered) {
+            scoreValue.textContent = score;
+            resultDiv.style.display = 'block';
+            
+            // 根据得分显示不同消息
+            if (score === 3) {
+                quizMessage.textContent = '🎉 太棒了！你完全读懂了这篇报道！';
+                quizMessage.style.color = '#10b981';
+            } else if (score >= 1) {
+                quizMessage.textContent = '📘 还不错，但有些细节可能错过了，建议再仔细阅读一下。';
+                quizMessage.style.color = '#3b82f6';
+            } else {
+                quizMessage.textContent = '📖 建议重新阅读报道，关注文中提到的关键数据和企业信息。';
+                quizMessage.style.color = '#ef4444';
+            }
+        } else {
+            quizMessage.textContent = '请完成所有题目并提交答案';
+            resultDiv.style.display = 'block';
+        }
+    }
+    
+    // 重置测验函数
+    function resetQuiz() {
+        // 清除所有选择
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            radio.checked = false;
+        });
+        
+        // 隐藏所有反馈
+        document.querySelectorAll('.quiz-feedback').forEach(feedback => {
+            feedback.style.display = 'none';
+            feedback.classList.remove('correct', 'wrong');
+        });
+        
+        // 隐藏结果
+        resultDiv.style.display = 'none';
+    }
+    
+    // 添加事件监听器
+    if (checkButton) {
+        checkButton.addEventListener('click', checkQuiz);
+    }
+    
+    if (resetButton) {
+        resetButton.addEventListener('click', resetQuiz);
+    }
+    
+    // 为每个选项添加点击事件，提供即时视觉反馈
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('click', function() {
+            // 找到对应的反馈元素并暂时隐藏
+            const questionName = this.name;
+            const feedbackEl = document.querySelector(`.${questionName}-feedback`);
+            if (feedbackEl) {
+                feedbackEl.style.display = 'none';
+            }
+        });
+    });
+});
+
+// 同时，在页面的CSS部分添加以下样式（可以放在原有的style标签中）
+    </script>
+</body>
+</html>

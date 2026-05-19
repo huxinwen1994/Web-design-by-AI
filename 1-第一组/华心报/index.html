@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华心报 - 首页</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js"></script>
+    <script src="js/images.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><img src="assets/logo.png" alt="华心报Logo">华心报</div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="pages/观民俗.html">观民俗</a></li>
+                <li><a href="pages/品文学.html">品文学</a></li>
+                <li><a href="pages/讲方言.html">讲方言</a></li>
+                <li><a href="pages/尝味道.html">尝味道</a></li>
+                <li><a href="pages/赏工艺.html">赏工艺</a></li>
+            </ul>
+            <ul class="auth-links">
+                <li><a href="pages/login.html">登录</a></li>
+                <li><a href="pages/register.html">注册</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <section class="banner">
+        <div class="container">
+            <img src="assets/banner.jpg" alt="网站横幅">
+        </div>
+    </section>
+
+    <!-- 头条新闻 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>湖湘文化</h1>
+                    <p>湖湘文化是根植于三湘大地的地域文化瑰宝，它源起于先秦楚文化的浪漫瑰丽，融合了中原文化的厚重底蕴，在千年发展中逐渐凝练出独树一帜的精神内核。这片土地孕育了 “心忧天下、敢为人先” 的担当精神，从屈原上下求索的家国情怀，到范仲淹 “先天下之忧而忧” 的胸襟抱负，再到近代湘军开风气之先的革新气魄，一脉相承；也涵养了 “经世致用、实事求是” 的务实品格，王夫之的唯物思想、曾国藩的治学理政之道，皆强调学问要服务于社会民生；更蕴藏着 “坚韧不拔、自强不息” 的奋斗底色，无论是农耕文明里的勤勉耕耘，还是近现代变革中的奋勇争先，都彰显着湖湘儿女的刚毅风骨。如今，湖湘文化仍鲜活流淌在岳麓书院的千年书香里，在汨罗江畔的端午龙舟竞渡中，在湘剧湘绣的匠心传承间，更在新时代湖南人开拓进取的步伐中，成为连接历史与当下的精神纽带。</p>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/湖湘文化.jpg" alt="湖湘文化">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 搜索功能 -->
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="搜索新闻标题或内容...">
+                <button id="searchBtn" class="btn">搜索</button>
+            </div>
+        </div>
+        
+        <h2 class="page-title">今日要闻</h2>
+        
+        <div class="news-grid">
+            <div class="news-card">
+                <img src="assets/湘绣.jpg" alt="湘绣非遗">
+                <div class="news-card-content">
+                    <h3>湘绣非遗走进高校课堂 千年针线绣出青春传承新篇</h3>
+                    <p>今日，湖南师范大学文学院联合湖南省湘绣研究所，在校园内开展 “湘绣非遗进校园” 主题活动。活动以 “指尖上的湖湘匠心” 为核心，邀请国家级湘绣非遗传承人现场授课，带领师生近距离感受湘绣 “劈丝细如发、配色艳而雅” 的独特魅力。</p>
+                    <p class="date">2025年10月21日</p>
+                    <a href="pages/湘绣非遗走进高校课堂 千年针线绣出青春传承新篇.html" class="btn">查看详情</a>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="assets/“行走的岳麓书院”.jpg" alt=“行走的岳麓书院”>
+                <div class="news-card-content">
+                    <h3>“行走的岳麓书院” 文化宣讲团启动 湖湘治学精神走向全国</h3>
+                    <p>宣讲团将以 “经世致用、实事求是” 的湖湘治学精神为核心，走进全国十余所高校开展巡回分享。内容涵盖岳麓书院千年办学史、王夫之等湖湘思想家的学术思想，以及湖湘文化对近现代中国的影响。</p>
+                    <p class="date">2025年10月21日</p>
+                    <a href="pages/“行走的岳麓书院” 文化宣讲团启动 湖湘治学精神走向全国.html" class="btn">查看详情</a>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="assets/首届湖南方言创意大赛.jpg" alt=“首届湖南方言创意大赛”>
+                <div class="news-card-content">
+                    <h3>首届湖南方言创意大赛收官 方言短视频让 “乡音” 出圈</h3>
+                    <p>历时两个月的首届湖南方言创意大赛今日落下帷幕。大赛以 “守护乡音，传承文脉” 为主题，吸引全省各地千余名选手参赛。参赛作品涵盖方言脱口秀、民俗故事演绎、本土童谣改编等多种形式。</p>
+                    <p class="date">2025年10月21日</p>
+                    <a href="pages/首届湖南方言创意大赛收官 方言短视频让 “乡音” 出圈.html" class="btn">查看详情</a>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="page-title">热点关注</h2>
+        
+        <div class="two-column">
+            <div class="main-content">
+                <div class="news-card">
+                    <img src="assets/非遗焕新.jpg" alt="非遗焕新">
+                    <div class="news-card-content">
+                        <h3>非遗焕新 —— 湘绣跨界联名文创出圈</h3>
+                        <p>非遗湘绣打破传统印象，与潮流品牌推出联名文创产品。从刺绣笔记本到国风服饰纹样，老手艺碰撞新审美，吸引年轻群体打卡收藏。这一现象也引发 “非遗如何活在当下” 的热议，看千年湘绣如何以创新姿态融入现代生活。
+</p>
+                        <p class="date">2025年10月21日</p>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <img src="assets/端午溯源.jpg" alt="端午溯源">
+                    <div class="news-card-content">
+                        <h3>端午溯源 —— 汨罗江畔的千年龙舟传承</h3>
+                        <p>作为端午习俗的重要发源地，汨罗江畔每年都会举办盛大的龙舟竞渡活动。除了紧张刺激的比赛，更有祭龙仪式、端午诗会等特色环节。聚焦当代龙舟赛里的文化传承，感受湖湘儿女延续千年的家国情怀与拼搏精神。</p>
+                        <p class="date">2025年10月21日</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <h3>最新动态</h3>
+                <ul>
+                    <li><a href="pages/“欢乐潇湘”活动长沙落幕，文旅体融合玩出新花样.html">“欢乐潇湘” 活动长沙落幕，文旅体融合玩出新花样</a></li>
+                    <li><a href="pages/启动非遗科技创新三年计划，解锁“科技+新形态”.html">启动非遗科技创新三年计划，解锁 “科技 +” 新形态</a></li>
+                    <li><a href="pages/遇见非遗” 数字平台上线，湖湘工艺迈入 “元宇宙时代”.html">“遇见非遗” 数字平台上线，湖湘工艺迈入元宇宙时代</a></li>
+                    <li><a href="pages/“湘超 +文旅” 联动市州，打造文体旅融合新 IP.html"> “湘超 + 文旅” 联动市州，打造文体旅融合新 IP</a></li>
+                    <li><a href="pages/湖南非遗大集联动全域，480 余场活动贺新春.html">湖南非遗大集联动全域，480 余场活动贺新春</a></li>
+                </ul>
+                
+                <h3 style="margin-top: 20px;">热门话题</h3>
+                <ul>
+                    <li><a>#心忧天下湖湘魂</a></li>
+                    <li><a>#楚风湘韵千年传</a></li>
+                    <li><a>#岳麓书香润三湘</a></li>
+                    <li><a>#湘味湘艺里的烟火气</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <ul class="footer-links">
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">联系方式</a></li>
+                <li><a href="#">广告服务</a></li>
+                <li><a href="#">隐私政策</a></li>
+                <li><a href="#">版权声明</a></li>
+            </ul>
+            <p class="copyright">© 2025 华心报网站 版权所有</p>
+        </div>
+    </footer>
+</body>
+</html> 

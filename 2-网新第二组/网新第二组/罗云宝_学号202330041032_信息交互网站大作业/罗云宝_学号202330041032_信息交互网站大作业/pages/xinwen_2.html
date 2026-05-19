@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11月消防月 - 湖师大将在图书馆报告厅开展心肺复苏演练</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+
+        /* 页面基础样式 */
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 导航栏（保持统一风格：#2c3e50底色） */
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* 新闻头部 */
+        .news-header {
+            padding: 3rem 0;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 2rem;
+        }
+
+        .news-tag {
+            display: inline-block;
+            background-color: #27ae60; /* 急救演练主题：绿色标签 */
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .news-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .news-meta {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* 新闻内容区 */
+        .news-content {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .main-content {
+            flex: 3;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .news-text {
+            margin-bottom: 2rem;
+        }
+
+        .news-text p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        /* 关键信息卡片（绿色边框贴合演练主题） */
+        .key-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #27ae60;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .key-info h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .key-info ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+
+        .key-info li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            flex: 1;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .drill-card {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .drill-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .drill-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .drill-btn:hover {
+            background-color: #219653;
+        }
+
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #3498db;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* 弹窗样式 */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        /* 留言样式 */
+        .message-container {
+            margin-top: 1.5rem;
+        }
+        
+        .message-item {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .message-author {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+        
+        .message-content {
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .message-time {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            text-align: right;
+            margin-top: 0.5rem;
+        }
+        
+        /* 安全保障内容样式 */
+        .safety-content h3 {
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 0.5rem;
+        }
+        
+        .safety-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .safety-content ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .safety-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 页脚（湖师大专属信息） */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .news-content {
+                flex-direction: column;
+            }
+
+            .news-title {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .nav-links a {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏（湖师大专属标识） -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">湖南师范大学</div>
+            <div class="nav-links">
+                <a id="school-homepage" href="https://www.hunnu.edu.cn/" target="_blank">学校首页</a>
+                <a id="campus-news">校园动态</a>
+                <a id="safety-guide">健康安全保卫</a>
+                <a id="library-website" href="https://lib.hunnu.edu.cn/" target="_blank">图书馆</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容容器 -->
+    <div class="container">
+        <!-- 新闻头部（明确演练地点） -->
+        <div class="news-header">
+            <span class="news-tag">急救演练</span>
+            <h1 class="news-title">11月消防月 湖师大将在图书馆报告厅开展心肺复苏专项演练</h1>
+            <div class="news-meta">发布时间：2025年10月20日 | 来源：湖南师范大学安全管理处、图书馆</div>
+        </div>
+
+        <!-- 新闻主体内容（突出湖师大图书馆场景） -->
+        <div class="news-content">
+            <!-- 主要新闻文本 -->
+            <div class="main-content">
+                <div class="news-text">
+                    <p>为响应全国"119消防宣传月""预防为主，生命至上"的主题，进一步提升全校师生应急救护能力，筑牢校园安全防线，结合我校此前校园AED设备投放及急救知识普及工作基础，湖南师范大学安全管理处联合校医院、岳麓区消防救援大队，计划于2025年11月中旬在图书馆报告厅开展心肺复苏（CPR）+AED联合急救专项演练活动，诚邀各学院师生参与。</p>
+                    <p>本次演练选址图书馆报告厅，不仅因场地可容纳较多参训人员，更考虑到图书馆作为师生高频活动场所，周边已配备AED设备（位于图书馆1楼大厅服务台旁），便于演练后实地讲解设备取用与操作，实现"理论-实操-场景结合"的完整培训闭环。</p>
+                    <p>演练将分为三个核心阶段：第一阶段由校医院急诊科医生开展理论教学，讲解心脏骤停急救黄金时间、CPR操作原理及AED设备使用规范；第二阶段为实操训练，使用专业模拟人教具，由医护人员一对一指导胸外按压、人工呼吸等关键动作，确保参训人员掌握标准姿势；第三阶段为模拟场景演练，设置"图书馆内师生突发心脏骤停"情境，考验参训人员应急响应、信息上报及实操处置能力，消防救援人员将同步讲解现场秩序维护要点。</p>
+                    <p>本次演练面向全校师生开放报名，优先接纳各学院学生干部、图书馆志愿者、宿舍管理员等一线服务人员。所有完成演练并通过实操考核的人员，将获得由校医院与安全管理处联合颁发的《心肺复苏操作合格证书》，证书可作为校园志愿服务、社会实践的能力证明。</p>
+                    <p>学校安全管理处负责人表示，此次演练是校园应急体系建设的重要环节，后续将结合师生需求，在教学楼、体育馆等场所开展多场次急救培训，让"人人会急救、急救护人人"的理念融入校园生活，为师生生命安全增添坚实保障。</p>
+                </div>
+
+                <!-- 关键信息卡片（明确图书馆报告厅细节） -->
+                <div class="key-info">
+                    <h3>本次心肺复苏演练核心信息</h3>
+                    <ul>
+                        <li>演练时间：2025年11月15日 14:00-17:00（13:30开始签到）</li>
+                        <li>演练地点：湖南师范大学图书馆1楼报告厅（从图书馆南门进入更便捷）</li>
+                        <li>联合单位：校医院、岳麓区消防救援大队、图书馆</li>
+                        <li>参与对象：全校师生（限150人，报满即止）</li>
+                        <li>报名方式：通过"湖师大安全校园"微信公众号菜单栏"急救演练报名"入口填写信息</li>
+                        <li>考核认证：完成演练并通过实操考核可获《心肺复苏操作合格证书》</li>
+                        <li>注意事项：参训人员需提前10分钟到场签到，请勿穿高跟鞋、短裙等不便实操的衣物</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 侧边栏（湖师大专属信息） -->
+            <div class="sidebar">
+                <h3>CPR科普小知识</h3>
+                <div class="drill-card">
+                    <!-- 功能二：修改图片地址，指向images文件夹 -->
+                    <img src="../images/新闻图片二.jpg" alt="心肺复苏操作示意图">
+                    <p>心肺复苏（CPR）是抢救心脏骤停患者的核心手段，需在黄金4分钟内实施，与AED配合使用可大幅提升抢救成功率。</p>
+                    <button class="drill-btn" id="cprDetailBtn">查看CPR操作步骤</button>
+                </div>
+
+                <h3>演练报名提示</h3>
+                <p>有意参与演练的师生请注意：</p>
+                <p style="font-weight: bold; color: #27ae60;">报名截止时间：12月22日18:00</p>
+                <p style="font-weight: bold; color: #27ae60;">咨询电话：0731-88872181</p>
+                <p style="font-weight: bold; color: #27ae60;">咨询地点：图书馆1楼服务台</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <!-- CPR科普弹窗 -->
+    <div class="modal" id="cprModal">
+        <div class="modal-content">
+            <h2>心肺复苏（CPR）标准操作步骤</h2>
+            <br>
+            <ol>
+                <li><strong>环境评估与呼救</strong>：确认现场安全，轻拍患者呼喊，无反应则立即拨打120和学校应急电话（0731-88872335），请求他人取图书馆AED设备。</li>
+                <li><strong>胸外按压</strong>：将患者平躺于硬质平面，掌根置于胸骨中下段，垂直用力按压，频率100-120次/分钟，深度5-6厘米。</li>
+                <li><strong>开放气道</strong>：清除患者口腔异物，采用仰头抬颏法打开气道。</li>
+                <li><strong>人工呼吸</strong>：捏住患者鼻子，口对口吹气，每次吹气1秒，可见胸廓起伏，按压与通气比例30:2。</li>
+                <li><strong>AED配合</strong>：AED到位后立即使用，按照语音提示操作，除颤后继续CPR直至医护人员到达。</li>
+            </ol>
+            <br>
+            <p><strong>重要提示</strong>：非专业人员操作时无需过度紧张，按标准步骤执行即可，每2分钟可更换按压人员避免疲劳。</p>
+            <button class="modal-close" id="modalCloseBtn">关闭</button>
+        </div>
+    </div>
+
+    <!-- 校园动态弹窗 -->
+    <div class="modal" id="campusNewsModal">
+        <div class="modal-content">
+            <h2>校园动态 - 校友留言</h2>
+            <p>以下是从校友留言中随机选取的留言：</p>
+            
+            <div class="message-container" id="messageContainer">
+                <!-- 留言将通过JavaScript动态生成 -->
+            </div>
+            
+            <button class="modal-close" id="closeCampusNewsModal">关闭</button>
+        </div>
+    </div>
+
+    <!-- 健康安全保卫弹窗 -->
+    <div class="modal" id="safetyModal">
+        <div class="modal-content">
+            <h2>消防月校园AED安全保障体系</h2>
+            <div class="safety-content">
+                <h3>1. 消防月AED设备特别防护措施</h3>
+                <p>为配合11月消防月主题，我校对校园AED设备实施特别安全防护：</p>
+                <ul>
+                    <li><strong>防火防烟保护</strong>：为所有AED设备配备防火保护罩，确保在火灾发生时设备完好可用</li>
+                    <li><strong>疏散路径优化</strong>：结合消防疏散路线图，重新优化AED设备布局，确保疏散途中可快速取用</li>
+                    <li><strong>消防联动机制</strong>：AED设备位置信息接入消防控制系统，火灾发生时自动向消防员推送设备位置</li>
+                    <li><strong>应急照明保障</strong>：为所有AED设备安装应急照明标识，确保在断电情况下仍可快速定位</li>
+                </ul>
+                
+                <h3>2. 消防演练与AED急救结合</h3>
+                <p>将AED使用技能纳入消防演练体系，实现消防安全与医疗急救双提升：</p>
+                <ul>
+                    <li><strong>复合场景演练</strong>：开展"火灾+心脏骤停"复合场景演练，考验消防与急救综合处置能力</li>
+                    <li><strong>消防员AED培训</strong>：对校内消防志愿者进行AED操作专项培训，实现"灭火+救人"双技能</li>
+                    <li><strong>设备双重功能</strong>：在消防栓旁设置AED设备，形成"消防+急救"双节点应急资源站</li>
+                    <li><strong>预案联动优化</strong>：修订消防应急预案，增加AED使用指引，实现预案无缝衔接</li>
+                </ul>
+                
+                <h3>3. AED设备消防环境适应性提升</h3>
+                <p>针对消防环境特点，提升AED设备的环境适应性：</p>
+                <ul>
+                    <li><strong>高温防护升级</strong>：为AED设备增加耐高温保护层，确保在高温环境下正常工作</li>
+                    <li><strong>防水防尘加强</strong>：提升设备防水防尘等级，适应消防喷淋等潮湿环境</li>
+                    <li><strong>应急电源保障</strong>：为关键位置AED设备配备应急电源，确保断电情况下仍可正常工作</li>
+                    <li><strong>快速取用优化</strong>：简化AED设备取用流程，确保在紧急情况下10秒内可取用设备</li>
+                </ul>
+                
+                <h3>4. 消防月AED安全培训专项计划</h3>
+                <p>结合消防月主题，开展AED安全使用专项培训：</p>
+                <ul>
+                    <li><strong>消防员专项培训</strong>：组织校园消防员参加AED操作认证培训，全员持证上岗</li>
+                    <li><strong>师生消防急救培训</strong>：将AED使用纳入消防知识培训体系，提升师生综合应急能力</li>
+                    <li><strong>应急疏散演练</strong>：在消防疏散演练中加入AED取用环节，熟悉应急情况下设备取用流程</li>
+                    <li><strong>培训成果评估</strong>：对参训人员进行实操考核，确保掌握消防环境下AED使用技能</li>
+                </ul>
+                
+                <h3>5. 消防月AED安全保障成效与展望</h3>
+                <p>通过消防月专项保障措施，校园AED安全保障水平显著提升：</p>
+                <ul>
+                    <li><strong>设备完好率提升</strong>：AED设备完好率从99.5%提升至99.9%</li>
+                    <li><strong>响应时间缩短</strong>：从报警到AED启用的平均响应时间缩短至2分30秒</li>
+                    <li><strong>培训覆盖率扩大</strong>：消防月期间AED培训覆盖师生人数达3000人次</li>
+                    <li><strong>消防联动深化</strong>：与岳麓区消防救援大队建立AED设备信息共享机制</li>
+                    <li><strong>未来规划</strong>：计划在2026年前实现所有消防站配备AED设备，建立"消防+医疗"一体化应急响应体系</li>
+                </ul>
+            </div>
+            <button class="modal-close" id="closeSafetyModal">关闭</button>
+        </div>
+    </div>
+
+    <!-- 页脚（湖师大专属信息） -->
+    <footer>
+        <div class="container">
+            <p>© 2025 湖南师范大学 版权所有</p>
+            <p>地址：湖南省长沙市岳麓区麓山路36号 | 学校总机：0731-88872335</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript 交互逻辑 -->
+    <script>
+        // 校友留言数据（35条）
+        const alumniMessages = [
+            { author: "李明", content: "看到母校举办消防月急救演练，非常支持！安全意识和急救技能一样重要，希望学弟学妹们都能掌握。", time: "2025-10-18" },
+            { author: "张华", content: "作为消防员校友，很高兴看到母校将消防与急救结合。这种综合演练更能提升实际应急处置能力！", time: "2025-10-15" },
+            { author: "王芳", content: "建议学校将演练视频制作成教学资料，让更多师生可以学习。安全教育培训应该常态化！", time: "2025-10-12" },
+            { author: "刘伟", content: "图书馆报告厅是个好选择，人流量大，影响面广。希望这样的演练能覆盖到每个校区。", time: "2025-10-10" },
+            { author: "陈静", content: "作为医学院毕业生，深知CPR+AED在急救中的重要性。母校的做法值得点赞！", time: "2025-10-08" },
+            { author: "赵刚", content: "建议在演练中加入烟雾模拟等更真实的场景，提升参与者的应急反应能力。", time: "2025-10-05" },
+            { author: "杨洋", content: "希望学校能开发一个应急演练预约系统，让更多师生有机会参与实战培训。", time: "2025-10-03" },
+            { author: "周涛", content: "作为体育学院毕业生，深知运动伤害急救的重要性。希望体育馆也能开展专项演练。", time: "2025-09-30" },
+            { author: "吴丽", content: "建议演练证书可以计入综合素质评价，鼓励更多学生参与急救技能学习。", time: "2025-09-28" },
+            { author: "郑强", content: "看到母校在安全建设上的投入，作为校友感到骄傲。愿湖师大成为安全校园的典范！", time: "2025-09-25" },
+            { author: "孙梅", content: "建议在新生军训中加入基础急救培训，让安全意识从入学开始培养。", time: "2025-09-22" },
+            { author: "朱勇", content: "作为企业安全主管，我们公司定期开展消防急救演练。看到母校如此重视，非常欣慰！", time: "2025-09-20" },
+            { author: "马超", content: "希望演练能加入夜间场景模拟，毕竟紧急情况可能发生在任何时间。", time: "2025-09-18" },
+            { author: "林雪", content: "图书馆是知识殿堂，也是安全教育的理想场所。为母校的精心安排点赞！", time: "2025-09-15" },
+            { author: "徐峰", content: "建议与市红十字会合作，开展急救员资格认证，让技能获得官方认可。", time: "2025-09-12" },
+            { author: "何婷", content: "作为家长，看到学校如此重视孩子的安全教育，我们非常放心！感谢学校的用心。", time: "2025-09-10" },
+            { author: "高翔", content: "希望演练能加入外籍师生参与环节，提高校园国际化安全服务水平。", time: "2025-09-08" },
+            { author: "黄敏", content: "建议开发校园应急APP，集成AED位置查询、一键报警、演练报名等功能。", time: "2025-09-05" },
+            { author: "罗宁", content: "作为留学生校友，希望母校的安全教育能兼顾多元文化，惠及所有师生。", time: "2025-09-02" },
+            { author: "梁爽", content: "安全无小事，母校将消防与急救结合的做法很有创意。期待看到演练成果！", time: "2025-08-30" },
+            { author: "韩冰", content: "建议学校建立消防安全与医疗急救联合研究课题，推动校园安全理论创新。", time: "2025-08-28" },
+            { author: "宋佳", content: "看到母校在应急救护上的持续投入，作为校友感到自豪。愿母校越办越好！", time: "2025-08-25" },
+            { author: "许文", content: "建议在校园广播中定期播放安全知识，提高师生安全防范意识。", time: "2025-08-22" },
+            { author: "唐娜", content: "作为教育工作者，很高兴看到母校将安全教育融入日常教学。这体现了教育的温度！", time: "2025-08-20" },
+            { author: "秦海", content: "希望母校的安全教育模式能在全国高校推广，让更多学子受益。", time: "2025-08-18" },
+            { author: "沈洁", content: "建议设立校园安全开放日，让家长和社会了解学校的安全建设工作。", time: "2025-08-15" },
+            { author: "袁飞", content: "看到母校在安全设施上的投入，体现了对师生生命的尊重。为母校点赞！", time: "2025-08-12" },
+            { author: "陆敏", content: "希望母校能编写校园安全手册，系统介绍各类应急知识和技能。", time: "2025-08-10" },
+            { author: "金鑫", content: "建议在校园微信公众号定期推送安全知识，方便师生随时随地学习。", time: "2025-08-08" },
+            { author: "白杨", content: "作为IT行业从业者，愿意为母校智慧安防系统建设提供技术支持。", time: "2025-08-05" },
+            { author: "丁磊", content: "看到母校安全建设成果，更加坚定了将孩子送到母校读书的决心。", time: "2025-08-02" },
+            { author: "石磊", content: "建议学校与周边社区开展安全共建活动，提升区域整体安全水平。", time: "2025-07-30" },
+            { author: "方明", content: "希望母校的安全教育能延伸到网络空间，提升师生网络安全意识。", time: "2025-07-28" },
+            { author: "崔健", content: "作为媒体工作者，愿意宣传母校的安全建设经验，让更多人了解湖师大。", time: "2025-07-25" },
+            { author: "顾城", content: "看到母校对安全的重视，感受到了教育的责任和担当。为母校骄傲！", time: "2025-07-22" }
+        ];
+
+        // 随机选择4-6条留言
+        function getRandomMessages() {
+            const count = Math.floor(Math.random() * 3) + 4; // 4, 5 或 6
+            const shuffled = [...alumniMessages].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // 显示随机留言
+        function displayRandomMessages() {
+            const container = document.getElementById('messageContainer');
+            container.innerHTML = '';
+            
+            const randomMessages = getRandomMessages();
+            
+            randomMessages.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message-item';
+                messageElement.innerHTML = `
+                    <div class="message-author">${message.author} 校友：</div>
+                    <div class="message-content">${message.content}</div>
+                    <div class="message-time">留言时间：${message.time}</div>
+                `;
+                container.appendChild(messageElement);
+            });
+        }
+
+        // 回到顶部按钮逻辑
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // CPR科普弹窗逻辑
+        const cprDetailBtn = document.getElementById('cprDetailBtn');
+        const cprModal = document.getElementById('cprModal');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+        cprDetailBtn.addEventListener('click', () => {
+            cprModal.classList.add('show');
+        });
+
+        modalCloseBtn.addEventListener('click', () => {
+            cprModal.classList.remove('show');
+        });
+
+        // 点击弹窗外部关闭弹窗
+        cprModal.addEventListener('click', (e) => {
+            if (e.target === cprModal) {
+                cprModal.classList.remove('show');
+            }
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = '#1a2530';
+            } else {
+                navbar.style.backgroundColor = '#2c3e50';
+            }
+        });
+
+        // 导航栏功能实现
+        // 学校首页 - 已通过href实现跳转
+        
+        // 图书馆 - 已通过href实现跳转
+        
+        // 校园动态弹窗
+        const campusNewsLink = document.getElementById('campus-news');
+        const campusNewsModal = document.getElementById('campusNewsModal');
+        const closeCampusNewsModal = document.getElementById('closeCampusNewsModal');
+        
+        campusNewsLink.addEventListener('click', () => {
+            displayRandomMessages();
+            campusNewsModal.classList.add('show');
+        });
+        
+        closeCampusNewsModal.addEventListener('click', () => {
+            campusNewsModal.classList.remove('show');
+        });
+        
+        campusNewsModal.addEventListener('click', (e) => {
+            if (e.target === campusNewsModal) {
+                campusNewsModal.classList.remove('show');
+            }
+        });
+        
+        // 健康安全保卫弹窗
+        const safetyLink = document.getElementById('safety-guide');
+        const safetyModal = document.getElementById('safetyModal');
+        const closeSafetyModal = document.getElementById('closeSafetyModal');
+        
+        safetyLink.addEventListener('click', () => {
+            safetyModal.classList.add('show');
+        });
+        
+        closeSafetyModal.addEventListener('click', () => {
+            safetyModal.classList.remove('show');
+        });
+        
+        safetyModal.addEventListener('click', (e) => {
+            if (e.target === safetyModal) {
+                safetyModal.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

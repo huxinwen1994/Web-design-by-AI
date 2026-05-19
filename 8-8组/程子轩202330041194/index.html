@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大学生早餐习惯可视化分析</title>
+    <!-- 引入 ECharts 5.x -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <!-- 引入外部CSS文件 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header id="header">
+        <div class="nav-container">
+            <!-- 修改点 1: Logo 增加 "大学生" -->
+            <div class="logo">🍳 大学生早餐习惯可视化</div>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <!-- 导航项 1: 调研背景 (图标: 问卷+包子) -->
+                <li>
+                    <a class="nav-link" data-target="background">
+                        <svg class="nav-icon" viewBox="0 0 24 24">
+                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                            <circle cx="17" cy="18" r="3" fill="var(--warm-orange)" opacity="0.6"/>
+                        </svg>
+                        调研背景
+                    </a>
+                </li>
+                
+                <!-- 导航项 2: 数据可视化 (图标: 餐盘+柱状图) -->
+                <li>
+                    <a class="nav-link" data-target="visuals">
+                        <svg class="nav-icon" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" opacity="0.2"/>
+                        </svg>
+                        数据可视化
+                    </a>
+                </li>
+                
+                <!-- 导航项 3: 结论建议 (图标: 勺子+对话框) -->
+                <li>
+                    <a class="nav-link" data-target="conclusion">
+                        <svg class="nav-icon" viewBox="0 0 24 24">
+                            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+                            <path d="M11 8H9v5.17L7.38 12 7 12.38 9.38 15h.24l.38-.38V8zm4 0h-1v4h-1v1h2V8z" opacity="0.5"/> 
+                        </svg>
+                        结论建议
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="spacer"></div>
+
+    <main>
+        <!-- 1. 调研背景 -->
+        <section id="background">
+            <h2 class="section-title">调研背景</h2>
+            <div class="content-box">
+                <p class="intro-text">
+                    早餐是大学生日常营养摄入的关键环节，忙碌的早八课程、多样化的消费选择使得大学生早餐习惯呈现差异化特征。本次调研面向某高校大一至大四全日制本科生，共收集200份有效问卷，聚焦早餐消费类型、消费金额、购买渠道、食用场景四大维度，通过数据可视化呈现真实消费习惯，为优化校园早餐供给、提升大学生健康饮食意识提供参考。
+                </p>
+                <ul class="info-list">
+                    <li><strong>调研对象：</strong>某高校大一至大四全日制本科生</li>
+                    <!-- 修改点 2: 样本数量更新 -->
+                    <li><strong>样本数量：</strong>400份有效问卷(每个年级各100份有效问卷)</li>
+                    <li><strong>调研维度：</strong>消费类型、消费金额、购买渠道、食用场景</li>
+                    <li><strong>调研周期：</strong>2025年10月 - 2025年11月</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. 数据可视化 -->
+        <section id="visuals">
+            <h2 class="section-title">大学生早餐消费数据可视化</h2>
+            <div class="chart-grid">
+                <div class="chart-card">
+                    <div class="chart-title">早餐类型消费占比</div>
+                    <div id="chart-pie" class="echart-container"></div>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">各年级场景与规律率</div>
+                    <div id="chart-line" class="echart-container"></div>
+                </div>
+                <div class="chart-card full-width">
+                    <div class="chart-title">各年级早餐消费金额分布</div>
+                    <div id="chart-bar" class="echart-container"></div>
+                    <div class="mobile-table-wrapper">
+                        <p style="margin-top:10px; font-weight:bold;">详细数据表：</p>
+                        <table class="mobile-table">
+                            <thead><tr><th>年级</th><th>5元以内</th><th>5-10元</th><th>10元以上</th></tr></thead>
+                            <tbody>
+                                <tr><td>大一</td><td>30%</td><td>55%</td><td>15%</td></tr>
+                                <tr><td>大二</td><td>22%</td><td>60%</td><td>18%</td></tr>
+                                <tr><td>大三</td><td>18%</td><td>58%</td><td>24%</td></tr>
+                                <tr><td>大四</td><td>25%</td><td>52%</td><td>23%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 结论与建议 -->
+        <section id="conclusion">
+            <h2 class="section-title">消费习惯总结 & 实用建议</h2>
+            <div class="conclusion-container">
+                <!-- 左侧：结论与建议 -->
+                <div class="conclusion-col">
+                    <h3>📊 核心结论</h3>
+                    <!-- 修改点 4: 核心结论样式升级 (1px黑线，hover放大) -->
+                    <ul class="list-numbered" style="margin-top: 25px;">
+                        <li>近60%学生早餐预算集中在5-10元区间，"性价比"是首要选择因素。</li>
+                        <li>大三学生因实习/社团忙碌，早餐外带比例（72%）远高于其他年级。</li>
+                        <li>仅28%的受访学生能做到"每日规律吃早餐"，其中大一学生规律率最高（35%）。</li>
+                    </ul>
+
+                    <h3 style="margin-top: 30px;">💡 针对性建议</h3>
+                    <div class="suggestion-group">
+                        <!-- 建议条目 1 (手风琴) -->
+                        <div class="suggestion-item">
+                            <div class="suggestion-header">
+                                🎓 给学生
+                                <!-- 箭头图标 -->
+                                <svg class="arrow-icon" viewBox="0 0 24 24">
+                                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                                </svg>
+                            </div>
+                            <div class="suggestion-body">
+                                <p>优先选择"粥+鸡蛋+蔬菜包"类营养均衡组合，减少高油高糖西式快餐；合理规划早八时间，避免因赶课省略早餐。</p>
+                            </div>
+                        </div>
+
+                        <!-- 建议条目 2 (手风琴) -->
+                        <div class="suggestion-item">
+                            <div class="suggestion-header">
+                                🏫 给校园食堂
+                                <svg class="arrow-icon" viewBox="0 0 24 24">
+                                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                                </svg>
+                            </div>
+                            <div class="suggestion-body">
+                                <p>增加"便携早餐套餐"（如独立包装的包子+豆浆），延长早八高峰时段的供应窗口至9:00；针对大三集中的校区增加外带装品类。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧：反馈表单 -->
+                <div class="conclusion-col">
+                    <h3>✉️ 你对校园早餐的建议</h3>
+                    <form id="feedbackForm" style="margin-top: 20px;">
+                        <div class="form-group">
+                            <label for="name">姓名 (选填)</label>
+                            <input type="text" id="name" class="form-control" placeholder="请输入姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="grade">年级 (必填)</label>
+                            <select id="grade" class="form-control" required>
+                                <option value="" disabled selected>请选择年级</option>
+                                <option value="大一">大一</option>
+                                <option value="大二">大二</option>
+                                <option value="大三">大三</option>
+                                <option value="大四">大四</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="suggestion">建议内容 (必填，10-500字)</label>
+                            <textarea id="suggestion" rows="5" class="form-control" placeholder="请输入您的宝贵建议..." required minlength="10" maxlength="500"></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">提交建议</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 大学生早餐习惯可视化调研项目组 | 数据仅供学习参考</p>
+    </footer>
+
+    <!-- 引入外部JS文件，放在body末尾确保DOM加载完成 -->
+    <script src="script.js"></script>
+</body>
+</html>

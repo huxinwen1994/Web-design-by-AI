@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>校园图书馆借阅数据分析报告</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .report-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .info-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .section-title {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-col {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .chart-title {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: #e5e7eb;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .analysis-text {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .key-findings {
+            background-color: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .key-findings h3 {
+            color: #1e40af;
+            margin-bottom: 15px;
+        }
+        
+        .key-findings ul {
+            padding-left: 20px;
+        }
+        
+        .key-findings li {
+            margin-bottom: 10px;
+        }
+        
+        .comparison-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .comparison-card {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .comparison-title {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .conclusion h2 {
+            color: #1e40af;
+            margin-bottom: 15px;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background-color: #1e3a8a;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .back-btn:hover {
+            background-color: #1e40af;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+            
+            .chart-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>校园图书馆借阅数据分析报告</h1>
+            <p class="subtitle">基于2023年1月至12月的图书馆借阅数据，分析师生阅读习惯与学科偏好</p>
+            <div class="report-info">
+                <div class="info-item">数据来源：图书馆管理系统</div>
+                <div class="info-item">分析时间：2024年1月15日</div>
+                <div class="info-item">覆盖范围：全校师生</div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section class="section">
+            <h2 class="section-title">数据概览</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">42,587</div>
+                    <div class="stat-label">年度总借阅量</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">3,548</div>
+                    <div class="stat-label">活跃借阅用户</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">12.0</div>
+                    <div class="stat-label">人均借阅量</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">28.5%</div>
+                    <div class="stat-label">电子资源使用增长</div>
+                </div>
+            </div>
+            
+            <p class="analysis-text">
+                2023年校园图书馆借阅数据显示，总借阅量达到42,587册，相比2022年增长8.3%。活跃借阅用户为3,548人，占全校师生的36.2%，人均借阅量为12.0册，反映出图书馆资源在学术支持中的重要作用。
+            </p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">借阅趋势分析</h2>
+            <div class="filter-controls">
+                <button class="filter-btn active" onclick="updateChart('monthly')">月度趋势</button>
+                <button class="filter-btn" onclick="updateChart('seasonal')">季节性趋势</button>
+                <button class="filter-btn" onclick="updateChart('yearly')">年度对比</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="trendChart"></canvas>
+            </div>
+            
+            <div class="key-findings">
+                <h3>关键发现</h3>
+                <ul>
+                    <li>3月和9月（学期初）借阅量达到峰值，分别比月均借阅量高出32%和28%</li>
+                    <li>寒暑假期间（1-2月，7-8月）借阅量明显下降，降幅达45-60%</li>
+                    <li>期末复习阶段（12月、6月）借阅量保持较高水平，特别是专业参考书籍</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">图书类别分析</h2>
+            <div class="chart-row">
+                <div class="chart-col">
+                    <h3 class="chart-title">各类图书借阅比例</h3>
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-col">
+                    <h3 class="chart-title">各类图书借阅增长情况</h3>
+                    <div class="chart-container">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="analysis-text">
+                文学类图书借阅量最高，占总借阅量的28.5%，其次是计算机科学类(18.3%)和经济管理类(15.7%)。与去年相比，计算机科学类图书借阅增长最为显著，增幅达22.4%，反映出学校在信息技术领域的发展趋势。
+            </p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">读者群体分析</h2>
+            <div class="chart-row">
+                <div class="chart-col">
+                    <h3 class="chart-title">各学院借阅情况</h3>
+                    <div class="chart-container">
+                        <canvas id="collegeChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-col">
+                    <h3 class="chart-title">读者身份分布</h3>
+                    <div class="chart-container">
+                        <canvas id="readerChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="analysis-text">
+                计算机学院和文学院是借阅量最高的两个学院，分别占总借阅量的24.3%和21.8%。从读者身份来看，本科生是图书馆的主要使用者(58.7%)，研究生借阅量虽然较少但借阅专业性更强，平均借阅周期更长。
+            </p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">热门图书与作者</h2>
+            <div class="chart-row">
+                <div class="chart-col">
+                    <h3 class="chart-title">热门图书TOP 10</h3>
+                    <div class="chart-container">
+                        <canvas id="bookChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-col">
+                    <h3 class="chart-title">热门作者TOP 8</h3>
+                    <div class="chart-container">
+                        <canvas id="authorChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-findings">
+                <h3>阅读偏好分析</h3>
+                <ul>
+                    <li>技术类书籍中，《Python编程：从入门到实践》借阅次数最高，达187次</li>
+                    <li>文学作品中，余华、村上春树和刘慈欣的作品最受欢迎</li>
+                    <li>经济管理类图书中，与创新创业相关的书籍借阅量增长明显</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">电子资源使用情况</h2>
+            <div class="comparison-section">
+                <div class="comparison-card">
+                    <h3 class="comparison-title">电子资源使用趋势</h3>
+                    <div class="chart-container">
+                        <canvas id="digitalChart"></canvas>
+                    </div>
+                </div>
+                <div class="comparison-card">
+                    <h3 class="comparison-title">电子vs纸质资源偏好</h3>
+                    <div class="chart-container">
+                        <canvas id="formatChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="analysis-text">
+                电子资源使用量持续增长，2023年电子书籍和期刊访问量同比增长28.5%。计算机科学、经济管理和医学类电子资源使用率最高。调查显示，76%的学生认为电子资源检索更方便，但仍有42%的教师偏好纸质书籍用于深度阅读。
+            </p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">结论与建议</h2>
+            <div class="conclusion">
+                <h2>主要结论</h2>
+                <p class="analysis-text">
+                    2023年图书馆借阅数据反映了学校师生的阅读习惯和学术需求。借阅量总体呈上升趋势，特别是在学期初和期末阶段。计算机科学类图书需求增长显著，电子资源使用率持续提升。
+                </p>
+                
+                <h2 style="margin-top: 20px;">优化建议</h2>
+                <ul style="padding-left: 20px; margin-top: 10px;">
+                    <li>增加计算机科学和经济管理类热门书籍的复本数量</li>
+                    <li>在学期初和期末延长图书馆开放时间，满足高峰需求</li>
+                    <li>加强电子资源宣传和培训，提高使用效率</li>
+                    <li>根据各学院特点，优化馆藏资源配置</li>
+                    <li>开展阅读推广活动，提升人文社科类图书借阅量</li>
+                </ul>
+            </div>
+            
+            <button class="back-btn" onclick="goBack()">返回新闻首页</button>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2024 校园图书馆数据分析中心 | 数据仅供参考</p>
+        </div>
+    </footer>
+
+    <script>
+        // 初始化所有图表
+        document.addEventListener('DOMContentLoaded', function() {
+            initTrendChart();
+            initCategoryChart();
+            initGrowthChart();
+            initCollegeChart();
+            initReaderChart();
+            initBookChart();
+            initAuthorChart();
+            initDigitalChart();
+            initFormatChart();
+        });
+        
+        // 月度借阅趋势图
+        function initTrendChart() {
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            window.trendChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    datasets: [{
+                        label: '2023年借阅量',
+                        data: [2850, 2100, 4850, 3650, 3420, 3980, 2250, 1980, 5120, 3850, 3620, 4150],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3
+                    }, {
+                        label: '2022年借阅量',
+                        data: [2650, 1950, 4250, 3350, 3120, 3650, 2050, 1750, 4520, 3450, 3220, 3750],
+                        borderColor: '#9ca3af',
+                        backgroundColor: 'rgba(156, 163, 175, 0.1)',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '月度借阅趋势对比',
+                            font: {
+                                size: 16
+                            }
+                        },
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '借阅量（册）'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 图书类别分布图
+        function initCategoryChart() {
+            const ctx = document.getElementById('categoryChart').getContext('2d');
+            window.categoryChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['文学', '计算机科学', '经济管理', '工程技术', '医学', '教育学', '艺术', '其他'],
+                    datasets: [{
+                        data: [28.5, 18.3, 15.7, 12.4, 8.2, 7.5, 5.1, 4.3],
+                        backgroundColor: [
+                            '#3b82f6', '#1e40af', '#60a5fa', '#93c5fd', '#1e3a8a', '#bfdbfe', '#dbeafe', '#eff6ff'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        title: {
+                            display: true,
+                            text: '各类图书借阅比例 (%)',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 借阅增长情况图
+        function initGrowthChart() {
+            const ctx = document.getElementById('growthChart').getContext('2d');
+            window.growthChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['文学', '计算机科学', '经济管理', '工程技术', '医学', '教育学', '艺术', '其他'],
+                    datasets: [{
+                        label: '增长率 (%)',
+                        data: [8.2, 22.4, 15.7, 12.3, 9.8, 6.5, 10.2, 3.4],
+                        backgroundColor: '#10b981',
+                        borderColor: '#047857',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '各类图书借阅增长率 (2023 vs 2022)',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '增长率 (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 各学院借阅情况图
+        function initCollegeChart() {
+            const ctx = document.getElementById('collegeChart').getContext('2d');
+            window.collegeChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['计算机学院', '文学院', '经济学院', '医学院', '工程学院', '教育学院', '艺术学院', '法学院'],
+                    datasets: [{
+                        label: '借阅量 (册)',
+                        data: [10350, 9280, 7450, 5230, 4860, 3420, 2150, 1840],
+                        backgroundColor: '#3b82f6',
+                        borderColor: '#1e40af',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '各学院年度借阅量',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '借阅量 (册)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 读者身份分布图
+        function initReaderChart() {
+            const ctx = document.getElementById('readerChart').getContext('2d');
+            window.readerChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['本科生', '研究生', '教师', '行政人员'],
+                    datasets: [{
+                        data: [58.7, 28.4, 9.5, 3.4],
+                        backgroundColor: [
+                            '#3b82f6', '#1e40af', '#60a5fa', '#93c5fd'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        title: {
+                            display: true,
+                            text: '读者身份分布 (%)',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 热门图书TOP 10
+        function initBookChart() {
+            const ctx = document.getElementById('bookChart').getContext('2d');
+            window.bookChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Python编程', '三体', '活着', '人类简史', '经济学原理', '算法导论', '围城', '时间简史', '百年孤独', '追风筝的人'],
+                    datasets: [{
+                        label: '借阅次数',
+                        data: [187, 165, 152, 143, 138, 132, 128, 121, 115, 108],
+                        backgroundColor: '#3b82f6',
+                        borderColor: '#1e40af',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '热门图书TOP 10',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '借阅次数'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 热门作者TOP 8
+        function initAuthorChart() {
+            const ctx = document.getElementById('authorChart').getContext('2d');
+            window.authorChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['余华', '村上春树', '刘慈欣', 'J.K.罗琳', '东野圭吾', '马尔克斯', '金庸', '毛姆'],
+                    datasets: [{
+                        label: '作品借阅次数',
+                        data: [645, 587, 532, 498, 456, 432, 398, 365],
+                        backgroundColor: '#10b981',
+                        borderColor: '#047857',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '热门作者TOP 8',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '作品借阅次数'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 电子资源使用趋势
+        function initDigitalChart() {
+            const ctx = document.getElementById('digitalChart').getContext('2d');
+            window.digitalChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                    datasets: [{
+                        label: '电子资源访问量',
+                        data: [12500, 9800, 15800, 14200, 13500, 14800, 11200, 10500, 16800, 15200, 14500, 16200],
+                        borderColor: '#8b5cf6',
+                        backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: '电子资源月度访问量',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '访问量（次）'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 电子vs纸质资源偏好
+        function initFormatChart() {
+            const ctx = document.getElementById('formatChart').getContext('2d');
+            window.formatChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['纸质图书', '电子图书', '电子期刊', '数据库访问'],
+                    datasets: [{
+                        data: [58, 22, 15, 5],
+                        backgroundColor: [
+                            '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        title: {
+                            display: true,
+                            text: '资源类型使用分布 (%)',
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 更新图表数据（示例功能）
+        function updateChart(type) {
+            // 更新按钮状态
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // 在实际应用中，这里会根据筛选条件更新图表数据
+            // 此处仅作为示例，实际实现需要根据具体需求调整
+            alert(`已切换到${type === 'monthly' ? '月度' : type === 'seasonal' ? '季节性' : '年度对比'}视图`);
+        }
+        
+        // 返回上一页
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

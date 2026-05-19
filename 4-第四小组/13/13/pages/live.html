@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奥运观察 - 赛事直播</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <img src="../assets/logo.jpg" alt="奥运五环logo" class="logo">
+        <div class="nav-links">
+            <a href="../index.html">首页</a>
+            <a href="overview.html">奥运概况</a>
+            <a href="shining.html">闪耀时刻</a>
+            <a href="news.html">资讯集锦</a>
+            <a href="live.html">赛事直播</a>
+        </div>
+        <div class="search-box">
+    <!--自主修改，每一个页面上方放置一个搜索装置-->
+            <input type="text" placeholder="搜索奥运资讯...">
+        </div>
+        <i class="fas fa-search search-icon"></i>
+    </nav>
+
+    <!-- 主要内容 -->
+    <div class="container">
+        <h1 class="section-title">赛事直播</h1>
+        
+        <!-- 今日直播 -->
+        <div class="live-schedule">
+            <h2 class="rank-title">今日直播</h2>
+            
+            <div class="schedule-item">
+                <div class="schedule-time">09:00</div>
+                <div class="schedule-event">女子100米蝶泳半决赛</div>
+                <div class="schedule-teams">中国、美国、澳大利亚</div>
+                <button class="reserve-btn">预约</button>
+            </div>
+            
+            <div class="schedule-item">
+                <div class="schedule-time">11:30</div>
+                <div class="schedule-event">男子举重73公斤级决赛</div>
+                <div class="schedule-teams">李发彬（中国）、拉姆（伊朗）</div>
+                <button class="reserve-btn">预约</button>
+            </div>
+            
+            <div class="schedule-item">
+                <div class="schedule-time">15:00</div>
+                <div class="schedule-event">乒乓球女子单打1/4决赛</div>
+                <div class="schedule-teams">孙颖莎（中国）VS 郑怡静（中国台湾）</div>
+                <button class="reserve-btn">预约</button>
+            </div>
+            
+            <div class="schedule-item">
+                <div class="schedule-time">19:30</div>
+                <div class="schedule-event">男子400m决赛</div>
+                <div class="schedule-teams">范尼凯克（南非）、加德纳（美国）</div>
+                <button class="reserve-btn">预约</button>
+            </div>
+            
+            <div class="schedule-item">
+                <div class="schedule-time">21:00</div>
+                <div class="schedule-event">羽毛球男子双打决赛</div>
+                <div class="schedule-teams">中国VS中国台湾</div>
+                <button class="reserve-btn">预约</button>
+            </div>
+        </div>
+        
+        <!-- 正在直播（修改部分） -->
+        <div class="live-now">
+            <h2 class="rank-title">正在直播</h2>
+            
+            <div class="live-player">
+                <!-- 添加直播状态指示器 -->
+                <div class="live-status">
+                    <span class="live-dot"></span>
+                    <span class="live-text">正在直播</span>
+                </div>
+                
+                <!-- 视频播放器容器 -->
+                <div class="video-container">
+                    <img src="../assets/live-placeholder.jpg" alt="直播画面" class="live-img">
+                    <!-- 加载动画 -->
+                    <div class="loading-animation"></div>
+                </div>
+                
+                <!-- 直播信息条 -->
+                <div class="live-info">
+                    <h3 class="live-title">女子100米蝶泳半决赛</h3>
+                    <div class="live-meta">
+                        <span class="view-count"><i class="fas fa-eye"></i> 12.5万观看</span>
+                        <span class="live-time"><i class="fas fa-clock"></i> 00:45:22</span>
+                    </div>
+                </div>
+                
+                <!-- 增强的播放器控制 -->
+                <div class="player-controls">
+                    <button class="control-btn play-pause-btn"><i class="fas fa-pause"></i> 暂停</button>
+                    <!-- 音量控制（带滑块） -->
+                     <!--自主修改，增加滑块-->
+                      <div class="volume-control">
+                        <button class="control-btn volume-btn"><i class="fas fa-volume-up"></i> 音量</button>
+                        <div class="volume-slider-container">
+                             <input type="range" class="volume-slider" min="0" max="100" value="80">
+                        </div>
+                      </div>
+                       <!-- 清晰度选择 -->
+                        <!--自主修改，增加选项-->
+                    <div class="quality-control">
+                        <button class="control-btn quality-btn"><i class="fas fa-tv"></i> 清晰度</button>
+                        <div class="quality-options">
+                            <div class="quality-option">自动</div>
+                            <div class="quality-option">480p</div>
+                            <div class="quality-option">720p</div>
+                            <div class="quality-option">1080p</div>
+                        </div>
+                    </div>
+                    <button class="control-btn"><i class="fas fa-expand"></i> 全屏</button>
+                </div>
+                
+                <!-- 直播进度条 -->
+                <div class="progress-bar">
+                    <div class="progress-filled"></div>
+                </div>
+            </div>
+            
+            <!-- 新增：直播解说和赛事数据 -->
+            <div class="live-details">
+                <div class="live-commentary">
+                    <h3>赛事解说</h3>
+                    <p>现在进行的是女子100米蝶泳半决赛，中国选手张雨霏目前处于第三道，她的状态看起来非常不错，上一轮比赛中她以56秒89的成绩晋级...</p>
+                </div>
+                <div class="live-stats">
+                    <h3>实时数据</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">当前轮次</span>
+                            <span class="stat-value">半决赛第1组</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">参赛选手</span>
+                            <span class="stat-value">8人</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">晋级线</span>
+                            <span class="stat-value">57秒20</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">当前最佳</span>
+                            <span class="stat-value">56秒72</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 我的预约 -->
+        <div class="my-reserve">
+            <h2 class="rank-title">我的预约</h2>
+            <div class="reserve-list">
+                <!-- 预约内容由JS动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="footer-links">
+     <!--自主修改，每一个页面下方都有意见反馈-->
+            <span class="feedback-toggle">意见反馈</span>
+         
+        </div>
+        <p class="footer-copyright">© 2024 巴黎奥运会 版权所有</p>
+    </footer>
+
+    <!-- 右侧浮动按钮 -->
+    <div class="float-buttons">
+    <!--自主修改，每一个页面下方都有切换主题、喝彩、留言互动-->
+        <button class="float-btn theme-toggle-btn" title="切换主题"><i class="fas fa-palette"></i></button>
+        <button class="float-btn cheer-btn" title="点击为奥运健儿喝彩"><i class="fas fa-trophy"></i></button>
+        <button class="float-btn message-btn" title="留言板"><i class="fas fa-comment"></i></button>
+    </div>
+
+    <!-- 脚本 -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

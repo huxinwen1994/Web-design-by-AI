@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>未来主题讲座系列 - 校园新闻中心</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c0f2e 0%, #1a1f4b 50%, #0c0f2e 100%);
+            color: #e0e0ff;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            padding: 40px 0 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(74, 0, 224, 0.2) 0%, transparent 70%);
+            z-index: -1;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(106, 17, 203, 0.5);
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0a0ff;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* 导航样式 */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            background: rgba(30, 30, 60, 0.7);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(100, 100, 255, 0.3);
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            box-shadow: 0 0 15px rgba(106, 17, 203, 0.5);
+        }
+        
+        .tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+        
+        /* 内容区域 */
+        .content-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 3px;
+        }
+        
+        /* 讲座卡片样式 */
+        .lectures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .lecture-card {
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(100, 100, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .lecture-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(106, 17, 203, 0.3);
+            border-color: rgba(106, 17, 203, 0.5);
+        }
+        
+        .lecture-header {
+            padding: 20px;
+            background: rgba(30, 30, 60, 0.8);
+            border-bottom: 1px solid rgba(100, 100, 255, 0.2);
+        }
+        
+        .lecture-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        
+        .lecture-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #a0a0ff;
+            font-size: 0.9rem;
+        }
+        
+        .lecture-body {
+            padding: 20px;
+        }
+        
+        .lecture-description {
+            margin-bottom: 20px;
+            color: #c0c0ff;
+        }
+        
+        .lecture-speaker {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .speaker-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            color: white;
+        }
+        
+        .speaker-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .speaker-info p {
+            font-size: 0.9rem;
+            color: #a0a0ff;
+        }
+        
+        .register-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .register-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.5);
+        }
+        
+        /* 时间线样式 */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            width: 50%;
+            padding: 0 40px;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            background: rgba(20, 20, 40, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(100, 100, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #6a11cb;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .timeline-date i {
+            margin-right: 10px;
+        }
+        
+        /* 报名表单样式 */
+        .registration-form {
+            background: rgba(20, 20, 40, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid rgba(100, 100, 255, 0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #c0c0ff;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(30, 30, 60, 0.8);
+            border: 1px solid rgba(100, 100, 255, 0.3);
+            border-radius: 8px;
+            color: #e0e0ff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #6a11cb;
+            box-shadow: 0 0 10px rgba(106, 17, 203, 0.3);
+        }
+        
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236a11cb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 17, 203, 0.5);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: rgba(10, 10, 30, 0.8);
+            padding: 30px 0;
+            margin-top: 50px;
+            text-align: center;
+            border-top: 1px solid rgba(100, 100, 255, 0.2);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info {
+            text-align: left;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(30, 30, 60, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a0a0ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .lectures-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .contact-info {
+                text-align: center;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(106, 17, 203, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(106, 17, 203, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(106, 17, 203, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-bg"></div>
+            <h1 class="floating">未来主题讲座系列</h1>
+            <p class="subtitle">探索人工智能、区块链、量子计算等前沿科技，与行业专家共同探讨未来发展趋势</p>
+            
+            <div class="nav-tabs">
+                <div class="tab active">讲座安排</div>
+                <div class="tab">时间线</div>
+                <div class="tab">在线报名</div>
+            </div>
+        </header>
+        
+        <main>
+            <section class="content-section" id="lectures">
+                <h2 class="section-title">前沿科技讲座</h2>
+                
+                <div class="lectures-grid">
+                    <!-- 讲座1 -->
+                    <div class="lecture-card pulse">
+                        <div class="lecture-header">
+                            <h3 class="lecture-title">人工智能：从理论到实践</h3>
+                            <div class="lecture-meta">
+                                <span><i class="far fa-calendar"></i> 2023年11月15日</span>
+                                <span><i class="far fa-clock"></i> 14:00-16:00</span>
+                            </div>
+                        </div>
+                        <div class="lecture-body">
+                            <p class="lecture-description">深入探讨人工智能的核心算法、机器学习模型及其在各行业的实际应用，了解AI技术的最新进展。</p>
+                            
+                            <div class="lecture-speaker">
+                                <div class="speaker-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="speaker-info">
+                                    <h4>张明教授</h4>
+                                    <p>计算机科学与人工智能专家</p>
+                                </div>
+                            </div>
+                            
+                            <button class="register-btn">立即报名</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 讲座2 -->
+                    <div class="lecture-card">
+                        <div class="lecture-header">
+                            <h3 class="lecture-title">区块链技术与数字经济</h3>
+                            <div class="lecture-meta">
+                                <span><i class="far fa-calendar"></i> 2023年11月22日</span>
+                                <span><i class="far fa-clock"></i> 14:00-16:00</span>
+                            </div>
+                        </div>
+                        <div class="lecture-body">
+                            <p class="lecture-description">探索区块链技术的原理、应用场景及其对数字经济的深远影响，了解加密货币、智能合约和去中心化金融。</p>
+                            
+                            <div class="lecture-speaker">
+                                <div class="speaker-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="speaker-info">
+                                    <h4>李静博士</h4>
+                                    <p>区块链与金融科技研究员</p>
+                                </div>
+                            </div>
+                            
+                            <button class="register-btn">立即报名</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 讲座3 -->
+                    <div class="lecture-card">
+                        <div class="lecture-header">
+                            <h3 class="lecture-title">量子计算的革命性突破</h3>
+                            <div class="lecture-meta">
+                                <span><i class="far fa-calendar"></i> 2023年11月29日</span>
+                                <span><i class="far fa-clock"></i> 14:00-16:00</span>
+                            </div>
+                        </div>
+                        <div class="lecture-body">
+                            <p class="lecture-description">了解量子计算的基本原理、最新进展及其在密码学、药物研发和复杂系统模拟中的潜在应用。</p>
+                            
+                            <div class="lecture-speaker">
+                                <div class="speaker-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="speaker-info">
+                                    <h4>王强教授</h4>
+                                    <p>量子信息与计算物理学家</p>
+                                </div>
+                            </div>
+                            
+                            <button class="register-btn">立即报名</button>
+                        </div>
+                    </div>
+                    
+                    <!-- 讲座4 -->
+                    <div class="lecture-card">
+                        <div class="lecture-header">
+                            <h3 class="lecture-title">元宇宙与虚拟现实技术</h3>
+                            <div class="lecture-meta">
+                                <span><i class="far fa-calendar"></i> 2023年12月6日</span>
+                                <span><i class="far fa-clock"></i> 14:00-16:00</span>
+                            </div>
+                        </div>
+                        <div class="lecture-body">
+                            <p class="lecture-description">探索元宇宙的概念、技术基础及其在教育、娱乐和社交领域的应用，了解VR/AR技术的最新发展。</p>
+                            
+                            <div class="lecture-speaker">
+                                <div class="speaker-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="speaker-info">
+                                    <h4>赵琳博士</h4>
+                                    <p>虚拟现实与交互设计专家</p>
+                                </div>
+                            </div>
+                            
+                            <button class="register-btn">立即报名</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="content-section" id="timeline">
+                <h2 class="section-title">活动时间线</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">
+                                <i class="far fa-calendar-alt"></i> 2023年11月1日 - 11月14日
+                            </div>
+                            <h3>讲座报名阶段</h3>
+                            <p>开放所有讲座的在线报名通道，参与者可选择感兴趣的讲座进行报名。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">
+                                <i class="far fa-calendar-alt"></i> 2023年11月15日
+                            </div>
+                            <h3>人工智能讲座</h3>
+                            <p>张明教授主讲"人工智能：从理论到实践"，探讨AI技术的最新进展与应用。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">
+                                <i class="far fa-calendar-alt"></i> 2023年11月22日
+                            </div>
+                            <h3>区块链技术讲座</h3>
+                            <p>李静博士分享"区块链技术与数字经济"，解析区块链在各行业的应用前景。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">
+                                <i class="far fa-calendar-alt"></i> 2023年11月29日
+                            </div>
+                            <h3>量子计算讲座</h3>
+                            <p>王强教授讲解"量子计算的革命性突破"，探索量子计算对未来的影响。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">
+                                <i class="far fa-calendar-alt"></i> 2023年12月6日
+                            </div>
+                            <h3>元宇宙与VR讲座</h3>
+                            <p>赵琳博士介绍"元宇宙与虚拟现实技术"，展望数字化未来的可能性。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="content-section" id="registration">
+                <h2 class="section-title">在线报名</h2>
+                
+                <div class="registration-form">
+                    <form id="lecture-registration">
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" id="name" class="form-control" placeholder="请输入您的姓名" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">电子邮箱</label>
+                            <input type="email" id="email" class="form-control" placeholder="请输入您的邮箱" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">手机号码</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="请输入您的手机号码" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="affiliation">所在单位/学院</label>
+                            <input type="text" id="affiliation" class="form-control" placeholder="请输入您的单位或学院" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lecture">选择讲座</label>
+                            <select id="lecture" class="form-control form-select" required>
+                                <option value="">请选择您想参加的讲座</option>
+                                <option value="ai">人工智能：从理论到实践 (11月15日)</option>
+                                <option value="blockchain">区块链技术与数字经济 (11月22日)</option>
+                                <option value="quantum">量子计算的革命性突破 (11月29日)</option>
+                                <option value="metaverse">元宇宙与虚拟现实技术 (12月6日)</option>
+                                <option value="all">全部四场讲座</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">留言/问题</label>
+                            <textarea id="message" class="form-control" rows="4" placeholder="如有任何问题或特别需求，请在此留言"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">提交报名</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="contact-info">
+                        <h3>联系我们</h3>
+                        <p><i class="fas fa-envelope"></i> lectures@campus.edu</p>
+                        <p><i class="fas fa-phone"></i> 010-12345678</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 学校科技楼A座301室</p>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-weixin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-weibo"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-qq"></i></a>
+                        <a href="#" class="social-link"><i class="fas fa-rss"></i></a>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px; color: #8080cc;">© 2023 校园新闻中心 - 未来主题讲座系列 版权所有</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Tab切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const sections = document.querySelectorAll('.content-section');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 移除所有active类
+                    tabs.forEach(t => t.classList.remove('active'));
+                    sections.forEach(s => s.style.display = 'none');
+                    
+                    // 添加active类到当前tab
+                    this.classList.add('active');
+                    
+                    // 显示对应内容
+                    if (this.textContent === '讲座安排') {
+                        document.getElementById('lectures').style.display = 'block';
+                    } else if (this.textContent === '时间线') {
+                        document.getElementById('timeline').style.display = 'block';
+                    } else if (this.textContent === '在线报名') {
+                        document.getElementById('registration').style.display = 'block';
+                    }
+                });
+            });
+            
+            // 默认显示讲座安排
+            document.getElementById('lectures').style.display = 'block';
+            
+            // 报名按钮点击事件
+            const registerBtns = document.querySelectorAll('.register-btn');
+            registerBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 切换到报名标签
+                    tabs.forEach(t => t.classList.remove('active'));
+                    document.querySelector('.tab:nth-child(3)').classList.add('active');
+                    
+                    // 显示报名部分
+                    sections.forEach(s => s.style.display = 'none');
+                    document.getElementById('registration').style.display = 'block';
+                    
+                    // 滚动到报名表单
+                    document.getElementById('registration').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // 表单提交处理
+            const registrationForm = document.getElementById('lecture-registration');
+            registrationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // 获取表单数据
+                const name = document.getElementById('name').value;
+                const lecture = document.getElementById('lecture').options[document.getElementById('lecture').selectedIndex].text;
+                
+                // 显示成功消息
+                alert(`感谢 ${name} 报名参加 ${lecture}！我们已收到您的报名信息，将在活动前通过邮件发送详细安排。`);
+                
+                // 重置表单
+                registrationForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>

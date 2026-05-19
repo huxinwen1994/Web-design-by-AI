@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>食谱探索 | 食·光</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/recipes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 - 与首页一致 -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-utensils logo-icon"></i>
+                <span>食·光</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="regional.html">地方菜系</a></li>
+                <li><a href="recipes.html" class="active">食谱探索</a></li>
+                <li><a href="lab.html">食材实验室</a></li>
+            </ul>
+            <div class="search-box">
+                <input type="text" placeholder="搜索菜谱、食材...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <!-- 页面标题 -->
+        <section class="page-header">
+            <h1 class="page-title">食谱探索</h1>
+            <p class="page-subtitle">发现美味，学习烹饪，创造属于你的美食记忆</p>
+        </section>
+
+        <!-- "今天吃什么"随机推荐 -->
+        <section class="daily-recommendation">
+            <h2 class="section-title">今天吃什么？</h2>
+            <div class="recommendation-container">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- 正面：提问 -->
+                        <div class="flip-card-front">
+                            <div class="flip-content">
+                                <i class="fas fa-question-circle flip-icon"></i>
+                                <h3>还在纠结吃什么？</h3>
+                                <p>点击按钮，让食光为你推荐</p>
+                                <button class="flip-button" id="flipButton">
+                                    <i class="fas fa-random"></i> 随机推荐
+                                </button>
+                            </div>
+                        </div>
+                        <!-- 背面：推荐结果 -->
+                        <div class="flip-card-back">
+                            <div class="recommendation-result" id="recommendationResult">
+                                <!-- 推荐内容将由JS动态生成 -->
+                            </div>
+                            <div class="recommendation-actions">
+                                <button class="action-button" id="showRecipeBtn">
+                                    <i class="fas fa-book-open"></i> 查看食谱
+                                </button>
+                                <button class="action-button secondary" id="changeRecommendationBtn">
+                                    <i class="fas fa-redo"></i> 换一个
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 筛选和搜索区域 -->
+        <section class="filters-section">
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="recipeSearch" placeholder="搜索菜谱、食材...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            
+            <div class="filters-container">
+                <div class="filter-group">
+                    <h4>按菜系</h4>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">全部</button>
+                        <button class="filter-btn" data-filter="cuisine-川菜">川菜</button>
+                        <button class="filter-btn" data-filter="cuisine-粤菜">粤菜</button>
+                        <button class="filter-btn" data-filter="cuisine-湘菜">湘菜</button>
+                        <button class="filter-btn" data-filter="cuisine-鲁菜">鲁菜</button>
+                        <button class="filter-btn" data-filter="cuisine-家常菜">家常菜</button>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <h4>按难度</h4>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">全部</button>
+                        <button class="filter-btn" data-filter="difficulty-简单">简单</button>
+                        <button class="filter-btn" data-filter="difficulty-中等">中等</button>
+                        <button class="filter-btn" data-filter="difficulty-困难">困难</button>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <h4>按时间</h4>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">全部</button>
+                        <button class="filter-btn" data-filter="time-15分钟">15分钟内</button>
+                        <button class="filter-btn" data-filter="time-30分钟">30分钟</button>
+                        <button class="filter-btn" data-filter="time-60分钟">1小时以上</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 食谱展示区域 -->
+        <section class="recipes-section">
+            <div class="recipes-header">
+                <h2 class="section-title">精选食谱</h2>
+                <div class="recipes-count">
+                    <span id="recipesCount">0</span> 个食谱
+                </div>
+            </div>
+            
+            <div class="recipes-grid" id="recipesGrid">
+                <!-- 食谱卡片将由JS动态生成 -->
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 - 与首页一致 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于我们</h3>
+                <p>「食·光」是一个专注于中国美食文化探索的在线平台，致力于传播传统饮食文化，分享现代烹饪技艺。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <a href="../index.html">首页</a>
+                <a href="regional.html">地方菜系</a>
+                <a href="recipes.html">食谱探索</a>
+                <a href="lab.html">食材实验室</a>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p><i class="fas fa-envelope"></i> contact@flavorquest.com</p>
+                <p><i class="fas fa-phone"></i> (+86) 138-0000-0000</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 食·光 | 前端开发课程大作业 | 仅供学习使用</p>
+            <p>所有图片素材来自 Unsplash，遵循CC0协议</p>
+        </div>
+    </footer>
+
+    <!-- 主题切换按钮 -->
+    <div class="theme-toggle" id="themeToggle" title="切换深色/浅色模式">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" title="回到顶部">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- 复制成功提示 -->
+    <div class="toast" id="copyToast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span>食谱已复制到剪贴板！</span>
+        </div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/recipes.js"></script>
+</body>
+</html>

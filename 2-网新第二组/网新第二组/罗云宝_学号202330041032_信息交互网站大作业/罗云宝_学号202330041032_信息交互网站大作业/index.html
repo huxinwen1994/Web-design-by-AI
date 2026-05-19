@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>湖师大 AED 急救资源查询平台・校园生命守护站</title>
+    
+    <!-- 自己修改：把之前的CDN链接整理了一下，加了注释说明 -->
+    <!-- AI生成：引入外部样式库 (CDN) - 使用稳定的 jsDelivr 加载 Leaflet 样式 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css"/>
+    
+    <!-- 自己修改：引入本地CSS文件，这个是老师让我们自己写的样式 -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- 导航栏 -->
+<header>
+    <div class="top-bar">
+        <div class="container">
+            <div class="brand">
+                <i class="fa-solid fa-heart-pulse logo-rotate"></i>
+                <div>
+                    湖师大 AED 急救资源查询平台
+                    <br><span>校园生命守护站</span>
+                </div>
+            </div>
+            <div class="top-right">
+                <div class="search-box">
+                    <input type="text" id="global-search" placeholder="搜索校内场所 (如：图书馆)" onkeypress="handleEnter(event)">
+                    <i class="fa-solid fa-magnifying-glass" onclick="handleSearch()"></i>
+                </div>
+                <div class="emergency-btn" id="emergency-phone">
+                    <i class="fa-solid fa-phone-volume"></i> 0731-88872335
+                </div>
+                <div class="date-display" id="current-date">2025-10-27 星期五</div>
+                <div class="notification" id="notification-bell">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-links">
+        <div class="container">
+            <ul>
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#map-module">校园AED地图</a></li>
+                <li><a href="#data-overview">数据动态</a></li>
+                <li><a href="#scene-info">使用指南</a></li>
+                <!-- 自己修改：新增了AED重要性说明栏目，因为觉得这个很重要 -->
+                <li><a href="#aed-importance">AED重要性说明</a></li>
+                <li><a href="#scene-info">AED新闻</a></li>
+                <li><a href="#training">培训报名</a></li>
+                <li><a href="#suggestion-box">联系我们</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<!-- 封面轮播 -->
+<section id="hero-slider">
+    <!-- AI生成：模拟图片背景 -->
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1516574187841-693018f54746?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+        <div class="heartbeat-overlay"></div>
+        <div class="slide-content">
+            <h2>守护生命 救在身边</h2>
+            <p>2024年全校已部署 24 台 AED 自动体外除颤器</p><!-- 自己修改：这个是真实的数据/从湖师大官网查询到的-->
+        </div>
+    </div>
+    <!-- 自己修改：第二张图片链接改为本地图片，用了自己存的图片 -->
+    <div class="slide" style="background-image: url('images/新闻主页图片.jpg');">
+        <div class="slide-content">
+            <h2>人人学急救 急救为人人</h2>
+            <p>本学期已开展 12 场CPR+AED专项培训</p>
+        </div>
+    </div>
+    <!-- AI生成：第三张轮播图 -->
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1584036561566-b93751b3430c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+        <div class="slide-content">
+            <h2>黄金4分钟 校园零距离</h2>
+            <p>二里半、桃花坪、咸嘉湖校区全覆盖</p>
+        </div>
+    </div>
+
+    <!-- AI生成：轮播指示器 -->
+    <div class="indicators">
+        <div class="indicator active" onclick="changeSlide(0)"></div>
+        <div class="indicator" onclick="changeSlide(1)"></div>
+        <div class="indicator" onclick="changeSlide(2)"></div>
+    </div>
+    
+    <div class="slider-overlay-text">
+        <i class="fa-solid fa-chart-pie"></i> 全校AED覆盖率：92% | 平均响应时间：3分20秒
+    </div>
+</section>
+
+<!-- 正文板块一：数据概览 -->
+<section id="data-overview" class="container">
+    <div class="section-title">AED核心数据概览</div>
+    <div class="data-grid">
+        <div class="data-title-col hover-effect" style="cursor: pointer;">
+            <h3>实时监测数据</h3>
+            <i class="fa-solid fa-chart-line" style="font-size:30px; margin-top:20px;"></i>
+        </div>
+        <div class="charts-container">
+            <!-- AI生成：图表1 -->
+            <div class="chart-card hover-effect">
+                <h4>校区AED设备分布</h4>
+                <canvas id="chart-distribution"></canvas>
+            </div>
+            <!-- AI生成：图表2 -->
+            <div class="chart-card hover-effect">
+                <h4>场所类型覆盖率</h4>
+                <canvas id="chart-coverage"></canvas>
+            </div>
+            <!-- AI生成：图表3 -->
+            <div class="chart-card hover-effect">
+                <h4>年度设备增长趋势</h4>
+                <canvas id="chart-growth"></canvas>
+            </div>
+            <!-- AI生成：数字卡片 -->
+            <div class="chart-card big-number-card hover-effect">
+                <i class="fa-solid fa-stopwatch" style="color:var(--color-blue); font-size:30px; margin-bottom:10px;"></i>
+                <div class="big-number count-up" data-target="198">0</div>
+                <div class="big-number-desc">平均急救响应效率 (秒)</div>
+                <div style="font-size:12px; color:#888; margin-top:5px;">同比提升 15% <i class="fa-solid fa-arrow-trend-up" style="color:red"></i></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 新增：AED 重要性说明板块 -->
+<section id="aed-importance" class="container">
+    <div class="section-title">AED 重要性说明</div>
+    <!-- AI生成：概览卡片 -->
+    <div class="importance-preview-card" onclick="openImportanceModal()">
+        <h3 class="importance-title"><i class="fa-solid fa-heart-crack"></i> 为什么 AED 被称为"救命神器"?</h3>
+        <p class="importance-summary">
+            心脏骤停发生后，每延迟 1 分钟，生存率下降 7%-10%。在"黄金4分钟"内正确使用 AED（自动体外除颤器）配合 CPR，可以将患者的生存率提高到 50%-70% 以上。AED 能够自动识别可除颤心律，是校园急救体系中不可或缺的一环...
+        </p>
+        <div class="read-more-overlay">
+            <span class="read-more-text">点击查看完整解读 <i class="fa-solid fa-chevron-down"></i></span>
+        </div>
+    </div>
+</section>
+
+<!-- AI生成：AED 重要性模态框 (隐藏状态) -->
+<div class="modal-overlay" id="importance-modal">
+    <div class="modal-content">
+        <div class="modal-close" onclick="closeImportanceModal()"><i class="fa-solid fa-xmark"></i></div>
+        <div class="modal-body">
+            <h2 style="text-align: center; color: var(--color-blue); margin-bottom: 20px;">生命竞速：AED 的关键价值</h2>
+            
+            <div class="article-h">1. 什么是心源性猝死？</div>
+            <p class="article-p">
+                心源性猝死是指急性症状发作后1小时内发生的以意识骤然丧失为特征的、由心脏原因引起的自然死亡。在我国，每年约有54.4万人死于心源性猝死，相当于每分钟就有1人倒下。在高校校园，由于运动强度大、熬夜等因素，学生突发心跳骤停的案例时有发生。
+            </p>
+
+            <div class="article-h">2. "黄金4分钟"与除颤的意义</div>
+            <p class="article-p">
+                心脏骤停后，大脑血供中断。如果 <span class="highlight">4分钟</span> 内无法恢复供血，脑细胞将遭受不可逆的损伤；超过10分钟，生存几率几乎为零。
+            </p>
+            <p class="article-p">
+                绝大多数成人突发心跳骤停是由 <span class="highlight">室颤（Ventricular Fibrillation）</span> 引起的。此时心脏在颤动而非泵血。治疗室颤最有效、甚至唯一的方法就是电除颤。单纯的心肺复苏（CPR）只能维持基本循环，无法消除室颤，而 <strong>AED（自动体外除颤器）</strong> 是唯一能让心脏"重启"的设备。
+            </p>
+
+            <div class="article-h">3. AED 的傻瓜式操作</div>
+            <p class="article-p">
+                AED 专为非专业人士设计。它能自动分析心律，判断是否需要除颤。
+                <br><strong>操作口诀：</strong> 开机 — 贴片 — 插头 — 除颤（听语音指令）。
+                <br>只要敢于出手，就能挽救生命。在校园配置 AED，是构建安全防线的基石。
+            </p>
+
+            <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f0f4f8; border-radius: 8px;">
+                <i class="fa-solid fa-quote-left" style="color: #ccc;"></i>
+                <span style="font-weight: bold; color: var(--color-dark); margin: 0 10px;">人人学急救，急救为人人</span>
+                <i class="fa-solid fa-quote-right" style="color: #ccc;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 正文板块二：场景化信息 -->
+<section id="scene-info">
+    <div class="container">
+        <div class="three-col-grid">
+            <!-- 左栏：指南 -->
+            <div class="col-card hover-effect">
+                <div class="section-title" style="font-size:18px;">AED 使用指南</div>
+                <div class="guide-step">
+                    <div class="step-num">1</div>
+                    <div><strong style="color:var(--color-blue)">开机</strong>：按下电源键，听语音提示</div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-num">2</div>
+                    <div><strong style="color:var(--color-blue)">贴片</strong>：按图示贴于患者胸部</div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-num">3</div>
+                    <div><strong style="color:var(--color-blue)">插头</strong>：将电极片插头插入主机</div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-num">4</div>
+                    <div><strong style="color:var(--color-red)">除颤</strong>：无人接触下按下除颤键</div>
+                </div>
+                <div class="guide-step">
+                    <div class="step-num">5</div>
+                    <div><strong style="color:var(--color-green)">按压</strong>：除颤后立即心肺复苏</div>
+                </div>
+                
+                <!-- 自己修改：改了教学视频链接，找到了一个B站的链接 -->
+                <a href="https://www.bilibili.com/video/BV1CG4y1x7ai/?spm_id_from=333.337.search-card.all.click&vd_source=927a430f506d6530875a446943460e23" target="_blank" style="text-decoration:none; display:block;">
+                    <button class="video-btn">
+                        <i class="fa-solid fa-play-circle" style="color:var(--color-red); font-size:1.2em;"></i> 观看教学视频
+                    </button>
+                </a>
+            </div>
+
+            <!-- 中栏：AED新闻 -->
+            <div class="col-card hover-effect">
+                <div class="section-title" style="font-size:18px;">AED新闻</div>
+                <!-- 自己修改：新闻1，找了最新的新闻链接 -->
+                <div class="case-item">
+                    <a href="https://www.jiemian.com/article/13339978.html" target="_blank" style="display:block; text-decoration:none; color:inherit;">
+                        <div class="case-title">卫健委：鼓励各单位自主配置AED，鼓励社会各界捐赠AED</div>
+                        <div class="case-meta">2025-03-07 | 界面新闻</div>
+                        <div style="font-size:13px; margin-top:5px; color:#555; line-height: 1.5; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            国家卫健委网站日前发布多份对十四届全国人大三次会议的答复，就人大代表建议完善急救体系，加强公共场所AED配备作出回应。
+                        </div>
+                    </a>
+                </div>
+                <!-- 自己修改：新闻2，也是找的最新新闻 -->
+                <div class="case-item">
+                    <a href="https://news.qq.com/rain/a/20250305A0ADDO00" target="_blank" style="display:block; text-decoration:none; color:inherit;">
+                        <div class="case-title">"救命神器"AED接连挽回患者生命，武汉急救中心呼吁：学会这项技能很重要</div>
+                        <div class="case-meta">2025-03-05 | 腾讯新闻</div>
+                        <div style="font-size:13px; margin-top:5px; color:#555; line-height: 1.5; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            2月26日21时，武汉市江夏区某学校的一名学生突然昏迷，120调度员李嘉楠紧急进行视频指导，现场人员使用AED为该学生进行应急处置后，终于恢复了颈动脉搏动。
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 右栏：政策 -->
+            <div class="col-card hover-effect">
+                <div class="section-title" style="font-size:18px;">政策与投放进度</div>
+                <ul class="policy-list" style="list-style:disc; padding-left:20px; color:#555; font-size:14px; line-height:1.6;">
+                    <li>《湖南师范大学公共场所AED配置管理办法》已发布</li>
+                    <li>2024年计划新增投放 <strong>15</strong> 台</li>
+                    <li>每学期必须开展 <strong>2</strong> 次全校性急救演练</li>
+                </ul>
+                
+                <!-- AI生成：隐藏内容 -->
+                <div id="policy-extra">
+                    <ul class="policy-list" style="list-style:disc; padding-left:20px; color:#555; font-size:14px; line-height:1.6;">
+                        <li>新设立"校园急救员"认证体系，考核通过可获学分。</li>
+                        <li>各学院需设立兼职AED设备维护专员，每周巡检一次。</li>
+                    </ul>
+                </div>
+                
+                <button class="toggle-btn" onclick="togglePolicy()">展开更多 <i class="fa-solid fa-angle-down"></i></button>
+
+                <div style="margin-top:20px;">
+                    <div style="font-size:12px; margin-bottom:5px;">二里半校区覆盖进度</div>
+                    <div style="background:#eee; height:10px; border-radius:5px;">
+                        <div style="background:var(--color-green); width:85%; height:100%; border-radius:5px;"></div>
+                    </div>
+                </div>
+                <div style="margin-top:10px;">
+                    <div style="font-size:12px; margin-bottom:5px;">桃花坪校区覆盖进度</div>
+                    <div style="background:#eee; height:10px; border-radius:5px;">
+                        <div style="background:var(--color-blue); width:60%; height:100%; border-radius:5px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 正文板块三：交互地图 -->
+<section id="map-module" class="container">
+    <div class="section-title">交互式校园 AED 地图</div>
+    
+    <div class="map-controls">
+        <select class="map-select" id="campus-select">
+            <option value="erliban">二里半校区</option>
+            <option value="taohuaping">桃花坪校区 (树达学院附近)</option>
+            <option value="south">南院 (中南大学附近)</option>
+        </select>
+    </div>
+
+    <div class="map-wrapper">
+        <!-- AI生成：Leaflet地图容器 -->
+        <div id="hnu-map"></div>
+        
+        <div class="map-side-panel" id="map-sidebar">
+            <h4 style="margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:10px;">附近 AED 点位</h4>
+            <!-- AI生成：内容将通过JS动态生成 -->
+            <div id="dynamic-loc-list"></div>
+        </div>
+    </div>
+</section>
+
+<!-- 正文板块四：培训报名 -->
+<section id="training" class="container">
+    <div class="section-title">师生认知与培训报名</div>
+    <div class="training-grid">
+        <div class="training-charts">
+            <!-- AI生成：图表1 -->
+            <div class="chart-card hover-effect">
+                <h4>师生AED急救认知度调查</h4>
+                <canvas id="chart-cognition" style="max-height: 250px;"></canvas>
+            </div>
+            <!-- AI生成：图表2 -->
+            <div class="chart-card hover-effect">
+                <h4>使用AED的主要心理障碍</h4>
+                <canvas id="chart-barriers" style="max-height: 250px;"></canvas>
+            </div>
+        </div>
+        
+        <!-- AI生成：培训报名表单 -->
+        <div class="training-form-container hover-effect">
+            <h3 style="margin-bottom:20px; color:var(--color-dark);"><i class="fa-solid fa-user-graduate"></i> 急救培训报名</h3>
+            <p style="font-size:13px; color:#666; margin-bottom:20px;">下期培训时间：2026年1月5日 14:00 (校医院二楼)</p><!--自己改的时间 -->
+            
+            <form id="signup-form" onsubmit="return handleSignup(event)">
+                <div class="form-group">
+                    <label>姓名 <span style="color:red">*</span></label>
+                    <input type="text" id="name" required placeholder="请输入您的姓名">
+                </div>
+                <div class="form-group">
+                    <label>学号/工号 <span style="color:red">*</span></label>
+                    <input type="text" id="id-num" required placeholder="请输入10位学工号" pattern="\d{10,}" title="请输入正确的学号">
+                </div>
+                <div class="form-group">
+                    <label>学院/部门</label>
+                    <select id="dept">
+                        <option value="">请选择...</option>
+                        <option>文学院</option>
+                        <option>数统院</option>
+                        <option>外语院</option>
+                        <option>工设院</option>
+                        <option>其他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>联系电话 <span style="color:red">*</span></label>
+                    <input type="tel" id="phone" required placeholder="请输入手机号" pattern="1[3-9]\d{9}">
+                </div>
+                <button type="submit" class="submit-btn" id="submit-btn">立即报名</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- 新增：建议栏 (联系我们) -->
+<section id="suggestion-box" class="container">
+    <div class="section-title">建议栏 (联系我们)</div>
+    <div class="suggestion-container">
+        <div class="comment-input-area">
+            <textarea id="comment-text" placeholder="请输入您的意见或建议..."></textarea>
+            <button class="submit-btn" onclick="submitComment()" style="width: auto; padding: 10px 30px;">发表建议</button>
+        </div>
+        <h4>最新建议</h4>
+        <div class="comment-list" id="comment-list">
+            <!-- AI生成：默认建议 -->
+            <div class="comment-item">
+                <div class="comment-date">2025-10-26 14:30</div>
+                <div class="comment-text">建议在体育馆入口增加更明显的AED标识，晚上光线不好容易忽略。</div>
+            </div>
+            <div class="comment-item">
+                <div class="comment-date">2024-10-25 09:15</div>
+                <div class="comment-text">希望能增加更多周末的急救培训场次。</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer>
+    <div class="container footer-grid">
+        <div class="footer-col">
+            <h4>网站地图</h4>
+            <ul class="footer-links">
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">免责声明</a></li>
+                <li><a href="#">隐私政策</a></li>
+                <li><a href="#">帮助中心</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>联系方式</h4>
+            <ul class="footer-links">
+                <li><i class="fa-solid fa-phone"></i> 校医院急诊：0731-88872335</li>
+                <li><i class="fa-solid fa-envelope"></i> @hunnu.edu.cn</li>
+                <li><i class="fa-solid fa-location-dot"></i> 长沙市岳麓区麓山南路36号</li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>合作单位</h4>
+            <ul class="footer-links">
+                <li>湖南省红十字会</li>
+                <li>长沙市急救中心</li>
+                <li>迈瑞医疗</li>
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        &copy; 2025 湖南师范大学 AED 急救资源查询平台 | 校园生命守护站|本页面部分数据来源于ai，部分数据来源于自己搜索<!-- 自己写的 -->
+    </div>
+</footer>
+
+<!-- AI生成：固定底部热点推荐 -->
+<div id="ticker-bar">
+    <div class="ticker-label"><i class="fa-solid fa-bullhorn"></i> 热点推荐：</div>
+    <div class="ticker-content">
+        <a href="pages/xinwen_1.html" target="_blank" class="ticker-item">
+            <i class="fa-solid fa-plus-circle"></i> [新增投放] 桃子湖创意园新增2台AED设备
+        </a>
+        <a href="pages/xinwen_2.html" target="_blank" class="ticker-item">
+            <i class="fa-solid fa-flag"></i> [急救演练] 11月消防月将联合开展心肺复苏演练
+        </a>
+        <a href="pages/xinwen_3.html" target="_blank" class="ticker-item">
+            <i class="fa-solid fa-file-alt"></i> [政策通知] 关于各学院设立急救联络员的通知
+        </a>
+    </div>
+    <div class="ticker-controls">
+        <i class="ticker-btn fa-solid fa-pause" onclick="toggleTicker()"></i>
+    </div>
+</div>
+
+<!-- AI生成：侧边栏通知 -->
+<div class="notification-sidebar" id="notification-sidebar">
+    <div class="notification-sidebar-header">
+        <span>校园通知中心</span>
+        <button class="notification-close" id="notification-close">
+            <i class="fa-solid fa-times"></i>
+        </button>
+    </div>
+    <div class="notification-content" id="notification-list">
+        <!-- AI生成：通知列表将通过JavaScript动态生成 -->
+    </div>
+</div>
+
+<!-- AI生成：电话弹窗 -->
+<div class="phone-modal-overlay" id="phone-modal">
+    <div class="phone-modal-content">
+        <div class="phone-modal-header">
+            <div class="phone-icon">
+                <i class="fa-solid fa-phone-volume"></i>
+            </div>
+            <h2>校园急救热线</h2>
+            <div class="phone-number">0731-88872335</div>
+            <p class="phone-description">湖南师范大学校医院24小时急救热线，提供AED设备位置查询、急救指导等服务</p>
+        </div>
+        
+        <div class="phone-buttons">
+            <button class="phone-btn phone-btn-primary" id="call-now-btn">
+                <i class="fa-solid fa-phone"></i> 立即拨打
+            </button>
+            <button class="phone-btn phone-btn-secondary" id="copy-number-btn">
+                <i class="fa-solid fa-copy"></i> 复制号码
+            </button>
+        </div>
+        
+        <div class="phone-modal-footer">
+            <p style="font-size: 12px; color: #888; margin-bottom: 15px;">
+                <i class="fa-solid fa-circle-info"></i> 紧急情况请同时拨打120急救电话
+            </p>
+            <button class="phone-btn-close" id="phone-close-btn">关闭窗口</button>
+        </div>
+    </div>
+</div>
+
+<!-- AI生成：通知详情弹窗 -->
+<div class="notification-modal-overlay" id="notification-modal">
+    <div class="notification-modal-content">
+        <div class="notification-modal-close" id="notification-modal-close">
+            <i class="fa-solid fa-times"></i>
+        </div>
+        <div class="notification-modal-header">
+            <h2 class="notification-modal-title" id="notification-modal-title">通知标题</h2>
+            <div class="notification-modal-time" id="notification-modal-time">2025-10-27 14:30</div>
+        </div>
+        <div class="notification-modal-body">
+            <div class="notification-modal-text" id="notification-modal-text">
+                <!-- AI生成：通知内容将通过JavaScript动态生成 -->
+            </div>
+        </div>
+        <div class="notification-modal-footer">
+            <button class="notification-modal-btn" id="notification-modal-close-btn">关闭</button>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- AI生成：重点修复：使用 jsDelivr 加载 Leaflet，解决地图空白问题 -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- 自己修改：引入本地JS文件，这个是我从AI那里获取的代码，自己保存的 -->
+<script src="js/main.js"></script>
+
+</body>
+</html>

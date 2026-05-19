@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>校园新闻中心</title>
+    <!-- 引入外部CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 在全屏水印容器 -->
+<div id="watermark-container">
+    <div class="watermark-text watermark-1">每日新闻</div>
+    <div class="watermark-text watermark-2">每日新闻</div>
+    <div class="watermark-text watermark-3">每日新闻</div>
+    <div class="watermark-text watermark-4">每日新闻</div>
+</div>
+    <!-- 顶部导航栏 -->
+     <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo-text">每日新闻</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">要闻</a></li>
+                    <li><a href="#">学术</a></li>
+                    <li><a href="#">活动</a></li>
+                    <li><a href="#">通知</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Tab导航栏 -->
+    <div class="tab-nav">
+        <div class="tab-container">
+            <!-- 移除onmouseover，使用JS绑定 -->
+            <div class="tab-item active" data-tab="1">要闻</div>
+            <div class="tab-item" data-tab="2">校园</div>
+            <div class="tab-item" data-tab="3">人物</div>
+            <div class="tab-item" data-tab="4">数据可视化</div>
+            <div class="tab-item" data-tab="5">活动</div>
+        </div>
+    </div>
+<div class="search-section">
+    <div class="container">
+        <div class="search-box">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="搜索新闻标题或内容..." 
+                oninput="filterNews()"
+                onkeydown="handleSearchKeydown(event)"
+            >
+            <button id="clearSearchBtn" onclick="clearSearch()">×</button>
+            <div class="search-count" id="searchCount">共 <span>0</span> 条结果</div>
+        </div>
+    </div>
+</div>
+    <!-- 主要内容区域 -->
+   <div class="container">
+        <div class="content-wrapper">
+            <!-- 左侧主栏 -->
+            <main id="main">
+                <!-- Tab内容区域 -->
+                <div class="tab-content active" id="tab1">
+                    <h2>要闻速递</h2>
+                    <ul class="news-list">
+                        <li class="news-item" data-url="tushuguan.html">
+                            <div class="news-title">学校图书馆新馆今日正式开放</div>
+                            <div class="news-summary">经过三年的建设，学校新图书馆今日正式向师生开放。新馆总面积达3万平方米，藏书量超过200万册。</div>
+                        </li>
+                        <li class="news-item" data-url="news/programming-contest.html">
+                            <div class="news-title">我校学生在国际程序设计大赛中获金奖</div>
+                            <div class="news-summary">在刚刚结束的国际大学生程序设计大赛亚洲区域赛中，我校计算机学院代表队凭借出色的表现荣获金奖。</div>
+                        </li>
+                        <li class="news-item" data-url="news/power-outage.html">
+                            <div class="news-title">因电力检修，明日部分区域将临时停电</div>
+                            <div class="news-summary">根据学校后勤处通知，因校园电网升级维护需要，明日教学区A栋至D栋将临时停电。</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="tab-content" id="tab2">
+                    <h2>校园动态</h2>
+                    <ul class="news-list">
+                        <li class="news-item" data-url="zhaopinhui.html">
+                            <div class="news-title">春季校园招聘会圆满结束</div>
+                            <div class="news-summary">我校2023年春季校园招聘会吸引了200余家企业参加，提供就业岗位超过5000个。</div>
+                        </li>
+                        <li class="news-item" data-url="news/culture-festival.html">
+                            <div class="news-title">校园文化艺术节即将开幕</div>
+                            <div class="news-summary">一年一度的校园文化艺术节将于下周开幕，届时将有各类文艺表演、展览和比赛活动。</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="tab-content" id="tab3">
+                    <h2>人物专访</h2>
+                    <ul class="news-list">
+                        <li class="news-item" data-url="jisuanji.html">
+                            <div class="news-title">专访计算机学院张教授：AI教育的未来</div>
+                            <div class="news-summary">张教授分享了关于人工智能教育的发展趋势以及我校在AI领域的研究成果。</div>
+                        </li>
+                        <li class="news-item" data-url="news/interview-li-ming.html">
+                            <div class="news-title">优秀毕业生李明的创业故事</div>
+                            <div class="news-summary">从校园创业到成功企业家，李明分享了他的创业历程和对学弟学妹的建议。</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="tab-content" id="tab4">
+                    <h2>数据可视化</h2>
+                    <ul class="news-list">
+                        <li class="news-item" data-url="tushuguanshuju.html">
+                            <div class="news-title">校园图书馆借阅数据分析报告</div>
+                            <div class="news-summary">基于过去一年的借阅数据，分析了我校师生的阅读偏好和学科分布。</div>
+                        </li>
+                        <li class="news-item" data-url="news/employment-data.html">
+                            <div class="news-title">学生就业去向可视化展示</div>
+                            <div class="news-summary">通过交互式图表展示近三年毕业生就业行业、地域分布和薪资水平。</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="tab-content" id="tab5">
+                    <h2>活动预告</h2>
+                    <ul class="news-list">
+                        <li class="news-item" data-url="future-lectures.html">
+                            <div class="news-title">"未来科技"主题讲座系列</div>
+                            <div class="news-summary">多位行业专家将就人工智能、区块链、量子计算等前沿科技进行专题讲座。</div>
+                        </li>
+                        <li class="news-item" data-url="news/marathon.html">
+                            <div class="news-title">校园马拉松比赛报名开始</div>
+                            <div class="news-summary">一年一度的校园马拉松比赛将于下月举行，现开始接受师生报名。</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 突发新闻卡片 -->
+                <article class="news-card" data-breaking="true" data-url="news/library-opening.html">
+                    <div class="breaking-badge">突发</div>
+                    <h3>学校图书馆新馆今日正式开放</h3>
+                    <p class="summary">经过三年的建设，学校新图书馆今日正式向师生开放。新馆总面积达3万平方米，藏书量超过200万册，设有多个现代化阅览区和多媒体学习空间，将成为师生学习研究的重要场所。</p>
+                    <div class="meta">
+                        <span class="time">2023-10-15 09:30</span>
+                        <span class="source">校园新闻中心</span>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">校园建设</span>
+                        <span class="tag">图书馆</span>
+                        <span class="tag">学习资源</span>
+                    </div>
+                </article>
+                
+                <article class="news-card" data-url="news/programming-contest.html">
+                    <h3>我校学生在国际程序设计大赛中获金奖</h3>
+                    <p class="summary">在刚刚结束的国际大学生程序设计大赛亚洲区域赛中，我校计算机学院代表队凭借出色的表现荣获金奖。这是我校在该项赛事中获得的第5个金奖，充分展示了我校在计算机教育领域的实力。</p>
+                    <div class="meta">
+                        <span class="time">2023-10-14 16:45</span>
+                        <span class="source">计算机学院</span>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">学科竞赛</span>
+                        <span class="tag">计算机学院</span>
+                        <span class="tag">荣誉</span>
+                    </div>
+                </article>
+                
+                <!-- 计数器 -->
+                <div class="counter-box">
+                    <p id="counter">今日标题被点击：0 次</p>
+                </div>
+                
+                <!-- 返回要闻按钮 -->
+                <button class="back-to-news-btn" id="backToNewsBtn">返回要闻栏目</button>
+            </main>
+            
+            <!-- 右侧侧栏 -->
+            <aside id="sidebar">
+                <!-- 热榜 -->
+                <div class="sidebar-box">
+                    <h3>今日热榜</h3>
+                    <div class="hot-list">
+                        <div class="hot-item" data-url="news/library-opening.html">
+                            <div class="hot-rank top3">1</div>
+                            <div class="hot-title">学校图书馆新馆今日正式开放</div>
+                            <div class="hot-score">986</div>
+                        </div>
+                        <div class="hot-item" data-url="news/power-outage.html">
+                            <div class="hot-rank top3">2</div>
+                            <div class="hot-title">因电力检修，明日部分区域将临时停电</div>
+                            <div class="hot-score">872</div>
+                        </div>
+                        <div class="hot-item" data-url="news/programming-contest.html">
+                            <div class="hot-rank top3">3</div>
+                            <div class="hot-title">我校学生在国际程序设计大赛中获金奖</div>
+                            <div class="hot-score">765</div>
+                        </div>
+                        <div class="hot-item" data-url="news/career-fair.html">
+                            <div class="hot-rank">4</div>
+                            <div class="hot-title">学校举办秋季校园招聘会</div>
+                            <div class="hot-score">654</div>
+                        </div>
+                        <div class="hot-item" data-url="news/culture-festival.html">
+                            <div class="hot-rank">5</div>
+                            <div class="hot-title">文学院举办"古典文学与现代生活"专题讲座</div>
+                            <div class="hot-score">543</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 话题标签 -->
+                <div class="sidebar-box">
+                    <h3>热门话题</h3>
+                    <div class="tag-cloud">
+                        <a href="#">校园建设</a>
+                        <a href="#">学术竞赛</a>
+                        <a href="#">就业指导</a>
+                        <a href="#">社团活动</a>
+                        <a href="#">学术讲座</a>
+                        <a href="#">后勤服务</a>
+                        <a href="#">校园安全</a>
+                        <a href="#">国际交流</a>
+                    </div>
+                </div>
+                
+                <!-- 订阅框 -->
+                <div class="sidebar-box">
+                    <h3>订阅新闻</h3>
+                    <form class="subscribe-form">
+                        <input type="email" placeholder="请输入您的邮箱" required>
+                        <button type="submit">订阅</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2023 校园新闻中心 版权所有</p>
+        <p>联系我们: news@campus.edu | 电话: 010-12345678</p>
+    </footer>
+
+    
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top">↑</button>
+    
+    <!-- 引入外部JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

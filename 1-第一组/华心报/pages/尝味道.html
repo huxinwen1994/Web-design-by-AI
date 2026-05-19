@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>华心报 - 尝味道</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js"></script>
+    <script src="../js/images.js"></script>
+    <style>
+        /* 时间线样式 */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #c62828;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #1e63b8;
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -10px;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-content h3 {
+            margin-bottom: 10px;
+            color: #c62828;
+        }
+        
+        .timeline-content .date {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        /* 响应式样式（为了简单起见，仅保留了基本布局） */
+        @media screen and (max-width: 600px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 22px;
+            }
+            
+            .left::after, .right::after {
+                left: 22px;
+            }
+            
+            .right {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><img src="../assets/logo.png" alt="华心报Logo">华心报</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="观民俗.html">观民俗</a></li>
+                <li><a href="品文学.html">品文学</a></li>
+                <li><a href="讲方言.html">讲方言</a></li>
+                <li><a href="尝味道.html">尝味道</a></li>
+                <li><a href="赏工艺.html">赏工艺</a></li>
+            </ul>
+            <ul class="auth-links">
+                <li><a href="login.html">登录</a></li>
+                <li><a href="register.html">注册</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <div class="container">
+        <h1 class="page-title">味蕾上的湖湘味道</h1>
+        
+     
+        
+        <!-- 时间线新闻 -->
+        <h2 style="margin-bottom: 30px;">湘菜六代表</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item left">
+                 <div class="timeline-content">
+                    <div class="date">2025年10月21日</div>
+                    <a href="剁椒鱼头.html" class="food-link">
+                        <h3>剁椒鱼头</h3>
+                    </a>
+                    <p>剁椒鱼头作为湖南经典名菜之一,名声很响，不仅在国内饱受好评，在其他国家的唐人街上也都有很高的出场率。尤其是在一些喜庆的日子里，拥有着“鸿运当头”意味的剁椒鱼头更是备受推崇，红椒披身，派头十足。</p>
+                </div>
+            </div>
+        </div>   
+         
+        <div class="timeline">
+            <div class="timeline-item right">
+                 <div class="timeline-content">
+                    <div class="date">2025年10月21日</div>
+                    <a href="腊味合蒸.html"class="food-link">
+                        <h3>腊味合蒸</h3>
+                    </a>
+                    <p>腊肉是中国的传统美食，腊味合蒸就如其般将各种辣味放在一起蒸，是湖南经典菜系中最知名的菜品之一。</p>
+                </div>
+            </div>
+        </div>   
+
+        <div class="timeline">
+            <div class="timeline-item left">
+                 <div class="timeline-content">
+                    <div class="date">2025年10月21日</div>
+                    <a href="湘西外婆菜.html"class="food-link">
+                        <h3>湘西外婆菜</h3>
+                    </a>
+                    <p>"湘西外婆菜"，就是这样一道融合了外婆无尽心意的佳肴。它以马齿笕、大青菜叶、萝卜丁等湘西地区的土菜为主料，简单烹饪，保留了食材的原汁原味。每一口都仿佛能品尝到外婆的关爱，那份鲜嫩、味美、营养丰富的菜肴，就像外婆一样，用最朴实无华的方式，滋养着我们的心灵。</p>
+                </div>
+            </div>
+        </div>   
+
+        <div class="timeline">
+            <div class="timeline-item right">
+                 <div class="timeline-content">
+                    <div class="date">2025年10月21日</div>
+                    <a href="毛氏红烧肉.html"class="food-link">
+                        <h3>毛氏红烧肉</h3>
+                    </a>
+                    <p>它所选取的五花肉，肉质紧实、肥瘦均匀，源自原生态的饲养方式，真是让人赞不绝口。这正是“一方水土养一方猪”的最好诠释，也让毛氏红烧肉成为一道超越寻常的美味佳肴。</p>
+                </div>
+            </div>
+        </div>   
+   
+        <div class="timeline">
+            <div class="timeline-item left">
+                    <div class="timeline-content">
+                    <div class="date">2025年10月21日</div>
+                    <a href="发丝百叶.html"class="food-link">
+                        <h3>发丝百叶</h3>
+                    </a>
+                    <p>这款美食，名曰“发丝牛百叶”，其名虽朴，却非同小可。非豆制品之素雅，而是真材实料之美味。其烹饪手法看似简单，实则奥妙无穷，蕴含着咸、鲜、酸、辣四味之和谐交响。精湛的刀工，独特的调味，使其风味远胜于其朴素的菜色，引人遐想。一道色香味俱佳的佳肴，值得你细细品味。</p>
+                </div>
+            </div>
+        </div>   
+            
+        <div class="timeline">
+            <div class="timeline-item right">
+                 <div class="timeline-content">
+                    <div class="date">2025年10月21日</div>
+                    <a href="永州血鸭.html"food-link">
+                        <h3>永州血鸭</h3>
+                    </a>
+                    <p>谈及湘菜之经典，永州血鸭堪称无可争议的代表。尽管如今这道菜的变种繁多，如繁星点点，数不胜数，但好在每家每户的巧手都能烹制出地道的风味。日复一日，年复一年，各家滋味逐渐融汇，不再有间，因为它们在口感上的相似性，恰似相亲相爱的同胞兄弟。</p>
+                </div>
+            </div>
+        </div>   
+        <!-- 国际新闻 -->
+        <h2 style="margin: 40px 0 20px;">名菜排行</h2>
+        
+        <div class="news-grid">
+            <div class="news-card">
+                <img src="http://5b0988e595225.cdn.sohucs.com/images/20200507/60e21a08c8a04098898bc4b247ae0b92.jpeg" alt="气候大会">
+                <div class="news-card-content">
+                    <h3>东安子鸡</h3>
+                    <p>东安子鸡又叫东安鸡、官保鸡，是一道地方传统名菜，属于湘菜系。因用东安新母鸡烹制而成，故名。东安子鸡成菜呈红白绿黄四色，鸡肉肥嫩，味道酸辣鲜香。此菜曾入选2010年上海世博会四大传统湘菜名录。</p>
+                    <p class="date">2025年4月11日</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="http://5b0988e595225.cdn.sohucs.com/images/20200507/b5d32ab0c75147a398a9616e168eb947.jpeg" alt="IMF报告">
+                <div class="news-card-content">
+                    <h3>组庵鱼翅</h3>
+                    <p>组庵鱼翅又叫红煨鱼翅，是湖南省地方传统名菜，属湘菜菜系。此菜颜色淡黄、汁明油亮、软糯柔滑、鲜咸味美、醇香适口。组庵鱼翅用料讲究，制作独特。此菜味道醇厚，鱼翅糯软，营养丰富，实为菜中珍品。解放前，曲园酒家操作此菜，颇得食客赞赏。</p>
+                    <p class="date">2025年4月11日</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="http://5b0988e595225.cdn.sohucs.com/images/20200507/41dc41189bee405ea43e2498d7b7da7b.jpeg" alt="东盟峰会">
+                <div class="news-card-content">
+                    <h3>辣椒炒肉</h3>
+                    <p>辣椒炒肉是以辣椒、五花肉作为主要食材，以豆豉，大蒜子，酱油，油盐，味精等作为辅料制作而成的一道菜肴。口味香辣。辣椒炒肉是湖南人每家每户必吃的招牌“土菜”，是最具代表性的湘菜之一。</p>
+                    <p class="date">2025年4月10日</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <ul class="footer-links">
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">联系方式</a></li>
+                <li><a href="#">广告服务</a></li>
+                <li><a href="#">隐私政策</a></li>
+                <li><a href="#">版权声明</a></li>
+            </ul>
+            <p class="copyright">© 2025 华心报网站 版权所有</p>
+        </div>
+    </footer>
+</body>
+</html> 

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025粤港澳大湾区全运会 - 互动页</title>
+    <link rel="stylesheet" href="./css/互动页.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="./首页.html" class="nav-item">网站首页</a>
+            <a href="./奖牌榜.html" class="nav-item">奖牌榜</a>
+            <a href="./精彩集锦.html" class="nav-item">精彩集锦</a>
+            <div class="nav-item dropdown">
+                <a href="./互动页.html" class="nav-link">互动页</a>
+                <div class="dropdown-menu">
+                    <a href="./互动页.html#call" class="dropdown-item dropdown-link" data-tab="call">运动健儿加油区</a>
+                    <a href="./互动页.html#discuss" class="dropdown-item dropdown-link" data-tab="discuss">赛事讨论区</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 横幅区域 -->
+    <div class="banner">
+        <div class="banner-content">
+            <div class="banner-left">
+                <img src="https://gd-hbimg-edge.huabanimg.com/76f9145b2e8b66a2f94a4653d62f28e12fcbcfc7b9dc-Wgxfgw_fw1200?auth_key=1765555200-480bb505bb6f49f2a30cfb5c36753e19-0-621abe7b1095e4b2e3718f839334ebc5" alt="吉祥物" class="banner-mascot">
+            </div>
+            <div class="banner-center">
+                <h1>中华人民共和国第十五届运动会观察</h1>
+                <div class="subtitle">2025.11.09-11.21</div>
+            </div>
+            <div class="banner-right">
+                <img src="https://gd-hbimg-edge.huabanimg.com/636e2d39d5ab2b302220396e9b3ed25d9dcc91e2137b7-RqZ012_fw1200webp?auth_key=1765555200-480bb505bb6f49f2a30cfb5c36753e19-0-ff72c848bc9d800fbcf79426e0c73c12" alt="吉祥物" class="banner-mascot">
+            </div>
+        </div>
+    </div>
+
+    <!-- 主体容器 -->
+    <div class="main-container">
+        <!-- 已移除"全运互动交流区"标题 -->
+        
+        <!-- 选项卡 -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('call')">运动健儿加油区</button>
+            <button class="tab-button" onclick="switchTab('discuss')">赛事讨论区</button>
+        </div>
+
+        <!-- 打call区域 -->
+        <div id="call" class="tab-content active">
+            <div class="posts-grid" id="call-posts">
+                <!-- 示例帖子 - 无叉号，图片改为相对路径 -->
+                <div class="post-card call">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/nnVR8XD38lyZgmk4D7qUOo0gfKJZRm3oiaBYuibtH5sCVf5RzMeCT4FzmicDRFzpQSJxNtrEFsAlMMicwaXicaAcdicQ/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=1" alt="巩立姣比赛瞬间" class="post-images">
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-author">大湾区体育迷</span>
+                        </div>
+                        <div class="post-text">巩立姣太厉害了!36岁还能投出19米68的成绩,五连冠的传奇！这就是体育精神！#全运传奇#</div>
+                    </div>
+                </div>
+                <div class="post-card call">
+                    <img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/VibQR9B4PHqM1FDslJL5vfeLM2HWGrtMArSSicAIjoYXia7ibJAyJZ9KhxicLvW7semsFjJJzXtzwd0A5Pmz05jibVfQ/640?wx_fmt=jpeg&from=appmsg&wxfrom=5&wx_lazy=1&tp=wxpic#imgIndex=2" alt="苏炳添比赛瞬间" class="post-images">
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-author">田径爱好者</span>
+                        </div>
+                        <div class="post-text">苏炳添虽然没拿到奖牌，但他为中国短跑做出的贡献永远值得铭记！感谢"亚洲飞人"带来的无数感动！#致敬苏炳添#</div>
+                    </div>
+                </div>
+                <div class="post-card call">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/FrlMmzeTicAAiaaVv3Tibdj1vJuIvP1atbLOdEZBljjbyUuPROCefmMVF8Jm7gicSgls8tPIXp8qLX15BqMXMOibicKQ/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=4" alt="陈妤颉比赛瞬间" class="post-images">
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-author">广东体育迷</span>
+                        </div>
+                        <div class="post-text">16岁的陈妤颉太惊艳了!11秒10打破亚洲青年纪录,中国女子短跑未来可期！#新飞人诞生#</div>
+                    </div>
+                </div>
+                <div class="post-card call">
+                    <img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/soLUhRG28jzKjSVZMjOh8OXqQZ5YCGIEqt8LVTpRpdzYTAq17ibZUrbUzn3kwoHJG4CQ1pqaNMZibwlJg1Sic15cA/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=1" alt="柯沁沁比赛瞬间" class="post-images">
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-author">体操爱好者</span>
+                        </div>
+                        <div class="post-text">柯沁沁的逆转夺冠太精彩了!15岁小将顶住压力,5金2银的成绩太出色了！#体操天才少女#</div>
+                    </div>
+                </div>
+                <div class="post-card call">
+                    <img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/7lJCgXic8MVJFB3ANo8P0icfZUBj43mLiaWhpHSc1uCIg0uuEaYvhHZ3ld5bLnKqmStf5QM8QgfY7nKrm2Wcvq7rQ/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=0" alt="全红婵比赛瞬间" class="post-images">
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-author">跳水迷</span>
+                        </div>
+                        <div class="post-text">全红婵的10米台表演太完美了!五个动作三个满分,这种统治力太惊人了！为广东姑娘骄傲！#水花消失术#</div>
+                    </div>
+                </div>
+                <div class="post-card call">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/azXQmS1HA7nve68ZXiagOHqiaSf7SlibPxYjbACaNYRaicibR1cG7xiaTv3EmLxiara1aKibXv69kyeAZWE0QHMsQ2bLdg/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=1" alt="樊振东比赛瞬间" class="post-images">
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-author">乒乓球迷</span>
+                        </div>
+                        <div class="post-text">樊振东顶住压力拿下男单冠军！关键时刻的心理素质太强大了，每一分都看得热血沸腾！#国乒精神#</div>
+                    </div>
+                </div>
+            </div>
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <span class="input-icon">🔥</span>
+                    <input type="text" class="note-input" id="call-input" placeholder="写下你对运动员的加油和祝福...">
+                </div>
+                <div class="input-buttons">
+                    <button class="add-image-button" onclick="document.getElementById('call-image-input').click()">添加图片</button>
+                    <button class="submit-button" onclick="addPost('call')">发布加油</button>
+                </div>
+                <input type="file" id="call-image-input" style="display: none;" accept="image/*" multiple onchange="previewImages(event, 'call')">
+                <div class="image-preview" id="call-preview"></div>
+            </div>
+        </div>
+
+        <!-- 讨论区域 -->
+        <div id="discuss" class="tab-content">
+            <div class="posts-grid" id="discuss-posts">
+                <!-- 示例帖子 - 无跳转功能，图片改为相对路径 -->
+                <div class="post-card discuss">
+                    <img src="https://mmbiz.qpic.cn/sz_mmbiz_png/ZUiaOEMYdeWcsyxBKyoEJJesF5icrtmzo3jBypvb2A9mwvrPziaMY87DHLX3WHWJq8OwHhIVVzUibTOnHY0W2icKiaGw/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=8" alt="场馆设施" class="post-images">
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-author">体育观察员</span>
+                        </div>
+                        <div class="post-text">这次粤港澳大湾区全运会的场馆设施太先进了！特别是深圳湾体育中心的智能化改造，让观赛体验提升了一个档次。</div>
+                        <div class="post-time">2025-11-12 10:30</div>
+                    </div>
+                </div>
+                <div class="post-card discuss">
+                    <img src="https://mmbiz.qpic.cn/mmbiz_png/LDB2zTGGfCDErUJ9afgA6GgK1P3VWqgpYQjqx8yyIMAzIOCJn9bibu8TqobOibnpjJ2u58SERzsictibYTohs0UtsA/640?wx_fmt=png&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=3" alt="志愿者服务" class="post-images">
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-author">观众小李</span>
+                        </div>
+                        <div class="post-text">"小海豚"志愿者们太给力了！昨天看比赛时不小心把门票弄丢了，志愿者很快帮我解决了问题，服务热情又专业！</div>
+                        <div class="post-time">2025-11-12 14:45</div>
+                    </div>
+                </div>
+                <div class="post-card discuss">
+                    <img src="https://mmbiz.qpic.cn/sz_mmbiz_png/kTjt2CiaWBkrV2UYgn7uOYCNib79ZicCwKJnLgnU45t0LmxWwInXm3CKGiaMYIeCIABGwKy8tITpMRJsP7fZQsU28A/640?wx_fmt=png&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=1" alt="吉祥物互动" class="post-images">
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-author">家长王女士</span>
+                        </div>
+                        <div class="post-text">带孩子去看了体操比赛，孩子们超喜欢吉祥物"喜洋洋"和"乐融融"，它们的互动表演太精彩了，完美体现了粤港澳三地文化融合。</div>
+                        <div class="post-time">2025-11-12 16:20</div>
+                    </div>
+                </div>
+                <div class="post-card discuss">
+                    <img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/kgpBO1SicLkponI0wXRnheEjl53zhNmG2EWXeokEs287VfJyib6HG06KibwjCjW3XkuiaVXchYHIwficGSNb7iaDGibnQ/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=0" alt="交通服务" class="post-images">
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-author">广州球迷</span>
+                        </div>
+                        <div class="post-text">这次全运会的跨城交通安排很到位，从广州到深圳看比赛全程无缝衔接，高铁+接驳车非常方便，为组委会点赞！</div>
+                        <div class="post-time">2025-11-12 19:10</div>
+                    </div>
+                </div>
+                <div class="post-card discuss">
+                    <img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/vFr3iaC6EvB3ytompjbw26JicDk5O2NTu2oBql2HaE6evhnxsrCuL9BGAVJGkzhDnDUgbJGuJUd5WE8Zb1pcEK2w/640?wx_fmt=jpeg&from=appmsg&tp=wxpic&wxfrom=5&wx_lazy=1#imgIndex=2" alt="场馆餐饮" class="post-images">
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-author">美食爱好者</span>
+                        </div>
+                        <div class="post-text">场馆里的餐饮选择太丰富了！不仅有广东烧腊，还有香港奶茶和澳门葡挞，一站式体验三地美食，太贴心了！</div>
+                        <div class="post-time">2025-11-13 11:25</div>
+                    </div>
+                </div>
+                <div class="post-card discuss">
+                    <img src="https://mmecoa.qpic.cn/mmecoa_jpg/5zD1AHXtib6TUWBzSJuuJscNWv1zHSibqW1p6ggsBnZWDQzKgwbVZY45eD9UBQQAHcSaY6RnHbHw0ne0Re1W6T5Q/640?wx_fmt=jpeg&tp=wxpic&wxfrom=10005&wx_lazy=1#imgIndex=30" alt="观赛技术" class="post-images">
+                    <div class="post-content">
+                        <div class="post-header">
+                            <span class="post-author">科技爱好者</span>
+                        </div>
+                        <div class="post-text">AR观赛技术太酷了!用手机扫描场地就能看到运动员实时数据和战术分析，科技让观赛体验更精彩！#智慧全运#</div>
+                        <div class="post-time">2025-11-13 15:40</div>
+                    </div>
+                </div>
+            </div>
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <span class="input-icon">💬</span>
+                    <input type="text" class="note-input" id="discuss-input" placeholder="分享你的观赛体验和赛事看法...">
+                </div>
+                <div class="input-buttons">
+                    <button class="add-image-button" onclick="document.getElementById('discuss-image-input').click()">添加图片</button>
+                    <button class="submit-button" onclick="addPost('discuss')">发布讨论</button>
+                </div>
+                <input type="file" id="discuss-image-input" style="display: none;" accept="image/*" multiple onchange="previewImages(event, 'discuss')">
+                <div class="image-preview" id="discuss-preview"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部栏 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <a href="https://www.baygames.cn/" class="footer-link" target="_blank">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+                        <path d="M7 13H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3m4 0h3a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-3m-4-4l4-4m-4 0h4v4"/>
+                    </svg>
+                    更多信息可查询官方网站
+                </a>
+            </div>
+            <div>
+                <span>© 中华人民共和国第十五届运动会观察</span>
+            </div>
+        </div>
+    </footer>
+    <!-- 补充缺失的JS函数(内嵌,避免外部文件依赖) -->
+    <script src="./js/互动页.js"></script>
+</body>
+</html>

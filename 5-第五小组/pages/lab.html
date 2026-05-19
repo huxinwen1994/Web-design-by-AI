@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>食材实验室 | 食·光</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lab.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-utensils logo-icon"></i>
+                <span>食·光</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="regional.html">地方菜系</a></li>
+                <li><a href="recipes.html">食谱探索</a></li>
+                <li><a href="lab.html" class="active">食材实验室</a></li>
+            </ul>
+            <div class="search-box">
+                <input type="text" placeholder="搜索菜系、食材...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content lab-content">
+        <!-- 页面标题 -->
+        <section class="lab-hero">
+            <div class="lab-hero-content">
+                <h1><i class="fas fa-flask"></i> 食材实验室</h1>
+                <p class="subtitle">通过互动实验学习经典菜品的制作，掌握食材搭配与烹饪顺序</p>
+                <p class="instruction">选择一个菜品开始实验，按照步骤提示放入正确的食材，完成烹饪挑战！</p>
+            </div>
+        </section>
+
+        <!-- 第一阶段：实验选择区 -->
+        <section class="challenge-selection" id="selectionArea">
+            <h2 class="section-title">选择你的烹饪挑战</h2>
+            <p class="section-subtitle">从以下经典菜品中选择一个开始实验</p>
+            
+            <div class="recipe-grid">
+                <!-- 菜品卡片 1: 番茄炒蛋 -->
+                <div class="recipe-card" data-recipe-id="tomato-egg">
+                    <div class="recipe-card-image">
+                        <img src="https://pic.nximg.cn/file/20230413/14773619_165357952108_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="番茄炒蛋">
+                        <div class="difficulty easy">简单</div>
+                    </div>
+                    <div class="recipe-card-info">
+                        <h3>番茄炒蛋</h3>
+                        <p>国民家常菜，简单又美味，掌握基础烹饪顺序</p>
+                        <div class="recipe-stats">
+                            <span><i class="fas fa-clock"></i> 10分钟</span>
+                            <span><i class="fas fa-layer-group"></i> 5个步骤</span>
+                        </div>
+                        <button class="start-challenge-btn" data-recipe-id="tomato-egg">
+                            开始实验 <i class="fas fa-play-circle"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 菜品卡片 2: 土豆炖牛肉 -->
+                <div class="recipe-card" data-recipe-id="beef-stew">
+                    <div class="recipe-card-image">
+                        <img src="https://pic.nximg.cn/file/20150521/9422660_120640614000_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="土豆炖牛肉">
+                        <div class="difficulty medium">中等</div>
+                    </div>
+                    <div class="recipe-card-info">
+                        <h3>土豆炖牛肉</h3>
+                        <p>营养丰富的经典炖菜，学习食材处理顺序</p>
+                        <div class="recipe-stats">
+                            <span><i class="fas fa-clock"></i> 60分钟</span>
+                            <span><i class="fas fa-layer-group"></i> 6个步骤</span>
+                        </div>
+                        <button class="start-challenge-btn" data-recipe-id="beef-stew">
+                            开始实验 <i class="fas fa-play-circle"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 菜品卡片 3: 宫保鸡丁 -->
+                <div class="recipe-card" data-recipe-id="kungpao-chicken">
+                    <div class="recipe-card-image">
+                        <img src="https://pic.nximg.cn/file/20230225/29159477_124243476106_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="宫保鸡丁">
+                        <div class="difficulty medium">中等</div>
+                    </div>
+                    <div class="recipe-card-info">
+                        <h3>宫保鸡丁</h3>
+                        <p>川菜经典，学习复合调味与火候控制</p>
+                        <div class="recipe-stats">
+                            <span><i class="fas fa-clock"></i> 25分钟</span>
+                            <span><i class="fas fa-layer-group"></i> 7个步骤</span>
+                        </div>
+                        <button class="start-challenge-btn" data-recipe-id="kungpao-chicken">
+                            开始实验 <i class="fas fa-play-circle"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 菜品卡片 4: 麻婆豆腐 -->
+                <div class="recipe-card" data-recipe-id="mapo-tofu">
+                    <div class="recipe-card-image">
+                        <img src="https://pic.nximg.cn/file/20221219/34418314_130034916104_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="麻婆豆腐">
+                        <div class="difficulty medium">中等</div>
+                    </div>
+                    <div class="recipe-card-info">
+                        <h3>麻婆豆腐</h3>
+                        <p>麻辣鲜香，学习川味调料的使用顺序</p>
+                        <div class="recipe-stats">
+                            <span><i class="fas fa-clock"></i> 20分钟</span>
+                            <span><i class="fas fa-layer-group"></i> 6个步骤</span>
+                        </div>
+                        <button class="start-challenge-btn" data-recipe-id="mapo-tofu">
+                            开始实验 <i class="fas fa-play-circle"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 菜品卡片 5: 清蒸鱼 -->
+                <div class="recipe-card" data-recipe-id="steamed-fish">
+                    <div class="recipe-card-image">
+                        <img src="https://pic.nximg.cn/file/20230327/31527039_182800840128_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="清蒸鱼">
+                        <div class="difficulty medium">中等</div>
+                    </div>
+                    <div class="recipe-card-info">
+                        <h3>清蒸鱼</h3>
+                        <p>粤菜代表，学习海鲜处理与清蒸技巧</p>
+                        <div class="recipe-stats">
+                            <span><i class="fas fa-clock"></i> 30分钟</span>
+                            <span><i class="fas fa-layer-group"></i> 5个步骤</span>
+                        </div>
+                        <button class="start-challenge-btn" data-recipe-id="steamed-fish">
+                            开始实验 <i class="fas fa-play-circle"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 菜品卡片 6: 回锅肉 -->
+                <div class="recipe-card" data-recipe-id="twice-cooked-pork">
+                    <div class="recipe-card-image">
+                        <img src="https://pic.nximg.cn/file/20220923/26853825_223004039127_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="回锅肉">
+                        <div class="difficulty hard">困难</div>
+                    </div>
+                    <div class="recipe-card-info">
+                        <h3>回锅肉</h3>
+                        <p>川菜经典，学习两次烹饪的技巧与火候</p>
+                        <div class="recipe-stats">
+                            <span><i class="fas fa-clock"></i> 40分钟</span>
+                            <span><i class="fas fa-layer-group"></i> 8个步骤</span>
+                        </div>
+                        <button class="start-challenge-btn" data-recipe-id="twice-cooked-pork">
+                            开始实验 <i class="fas fa-play-circle"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 菜品卡片 7: 鱼香肉丝 -->
+                <div class="recipe-card" data-recipe-id="fish-pork">
+                    <div class="recipe-card-image">
+                        <img src="https://pic.nximg.cn/file/20230331/33857552_193519175105_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" alt="鱼香肉丝">
+                        <div class="difficulty medium">中等</div>
+                    </div>
+                    <div class="recipe-card-info">
+                        <h3>鱼香肉丝</h3>
+                        <p>学习鱼香汁的调配与炒制顺序</p>
+                        <div class="recipe-stats">
+                            <span><i class="fas fa-clock"></i> 25分钟</span>
+                            <span><i class="fas fa-layer-group"></i> 7个步骤</span>
+                        </div>
+                        <button class="start-challenge-btn" data-recipe-id="fish-pork">
+                            开始实验 <i class="fas fa-play-circle"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 菜品卡片 8: 红烧肉 -->
+                <div class="recipe-card" data-recipe-id="braised-pork">
+                    <div class="recipe-card-image">
+                        <img src="https://pic.nximg.cn/file/20221031/14773619_122730593102_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" alt="红烧肉">
+                        <div class="difficulty hard">困难</div>
+                    </div>
+                    <div class="recipe-card-info">
+                        <h3>红烧肉</h3>
+                        <p>学习糖色炒制与慢炖的火候控制</p>
+                        <div class="recipe-stats">
+                            <span><i class="fas fa-clock"></i> 90分钟</span>
+                            <span><i class="fas fa-layer-group"></i> 8个步骤</span>
+                        </div>
+                        <button class="start-challenge-btn" data-recipe-id="braised-pork">
+                            开始实验 <i class="fas fa-play-circle"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第二阶段：实验挑战区（初始隐藏） -->
+        <section class="challenge-area" id="challengeArea" style="display: none;">
+            <!-- 顶部控制栏 -->
+            <div class="challenge-header">
+                <button class="back-to-selection-btn" id="backToSelection">
+                    <i class="fas fa-arrow-left"></i> 返回选择
+                </button>
+                <div class="challenge-title">
+                    <h2 id="currentRecipeName">番茄炒蛋</h2>
+                    <p id="currentRecipeDesc">国民家常菜，简单又美味，掌握基础烹饪顺序</p>
+                </div>
+                <div class="challenge-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                    <span class="progress-text">步骤 <span id="currentStep">1</span>/<span id="totalSteps">5</span></span>
+                </div>
+            </div>
+            
+            <div class="challenge-container">
+                <!-- 左侧：操作说明与步骤提示 -->
+                <div class="instructions-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-clipboard-list"></i> 实验说明</h3>
+                        <div class="hint-controls">
+                            <button class="hint-btn" id="showHint">
+                                <i class="fas fa-lightbulb"></i> 提示 <span id="hintCount">3</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="current-task" id="currentTask">
+                        <h4>当前任务</h4>
+                        <p id="stepInstruction">请按照步骤提示，将正确的食材拖入锅中</p>
+                    </div>
+                    
+                    <div class="steps-list">
+                        <h4>烹饪步骤</h4>
+                        <div class="steps-container" id="stepsContainer">
+                            <!-- 步骤将由JS动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <div class="controls">
+                        <button class="control-btn reset-btn" id="resetChallenge">
+                            <i class="fas fa-redo"></i> 重新开始
+                        </button>
+                        <button class="control-btn skip-btn" id="skipStep">
+                            <i class="fas fa-forward"></i> 跳过此步
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 中央：厨房操作台 -->
+                <div class="kitchen-area">
+                    <!-- 食材库 -->
+                    <div class="ingredients-panel">
+                        <h3><i class="fas fa-carrot"></i> 食材库</h3>
+                        <p class="panel-subtitle">拖拽食材到锅中（灰色食材已使用）</p>
+                        <div class="ingredients-grid" id="ingredientsGrid">
+                            <!-- 食材将由JS动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 灶台与锅具 -->
+                    <div class="stove-area">
+                        <div class="stove-top">
+                            <div class="stove-burner"></div>
+                            <div class="stove-burner"></div>
+                        </div>
+                        <div class="pot-container" id="potDropZone">
+                            <div class="pot">
+                                <div class="pot-top"></div>
+                                <div class="pot-body">
+                                    <div class="pot-content" id="potContent">
+                                        <!-- 放入的食材将显示在这里 -->
+                                        <p class="empty-pot-message">将食材拖到这里开始烹饪</p>
+                                    </div>
+                                </div>
+                                <div class="pot-handle"></div>
+                            </div>
+                            <div class="fire-effect" id="fireEffect"></div>
+                        </div>
+                        <div class="cooking-controls">
+                            <button class="cooking-btn" id="startCooking">
+                                <i class="fas fa-fire"></i> 开火烹饪
+                            </button>
+                            <button class="cooking-btn" id="clearPot">
+                                <i class="fas fa-trash"></i> 清空锅
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 步骤提示 -->
+                    <div class="step-hint-panel">
+                        <h3><i class="fas fa-info-circle"></i> 当前步骤提示</h3>
+                        <div class="hint-content">
+                            <p id="currentHintText">1. 热锅，放入油</p>
+                            <div class="hint-status">
+                                <span class="status-indicator waiting" id="hintStatus">
+                                    <i class="fas fa-clock"></i> 等待操作
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧：反馈与结果 -->
+                <div class="feedback-panel">
+                    <div class="feedback-header">
+                        <h3><i class="fas fa-chart-line"></i> 实验反馈</h3>
+                        <div class="score-display">
+                            得分: <span id="scoreValue">0</span>/100
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-content">
+                        <div class="result-message" id="resultMessage">
+                            <p>请开始你的烹饪实验！</p>
+                        </div>
+                        
+                        <div class="ingredients-used">
+                            <h4>已使用食材</h4>
+                            <div class="used-ingredients-list" id="usedIngredients">
+                                <!-- 已使用的食材将显示在这里 -->
+                                <p class="empty-message">尚未使用食材</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tips-section">
+                            <h4>烹饪小贴士</h4>
+                            <div class="tips-content" id="cookingTips">
+                                <p>按照正确顺序放入食材是成功的关键！</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="completion-area" id="completionArea" style="display: none;">
+                        <div class="completion-message">
+                            <h3><i class="fas fa-trophy"></i> 实验完成！</h3>
+                            <p id="finalMessage">恭喜你完成了这道菜的制作！</p>
+                        </div>
+                        <div class="completion-actions">
+                            <button class="action-btn recipe-btn" id="viewRecipeDetail">
+                                <i class="fas fa-book-open"></i> 查看详细食谱
+                            </button>
+                            <button class="action-btn retry-btn" id="retryChallenge">
+                                <i class="fas fa-redo-alt"></i> 再次尝试
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第三部分：引导到食谱探索 -->
+        <section class="lab-guide">
+            <div class="guide-content">
+                <h2>想学习更多菜品的详细做法？</h2>
+                <p>食材实验室让你掌握了烹饪顺序和食材搭配，现在可以深入学习每道菜的详细步骤和技巧了！</p>
+                <a href="recipes.html" class="guide-button">
+                    前往食谱探索页面 <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 成功弹窗 -->
+    <div class="success-modal" id="successModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h3>步骤完成！</h3>
+                <button class="close-modal" id="closeSuccessModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage">太棒了！你放入了正确的食材！</p>
+                <div class="next-step">
+                    <p>继续下一步，完成整个烹饪过程！</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn continue-btn" id="continueChallenge">继续下一步</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 错误弹窗 -->
+    <div class="error-modal" id="errorModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-times-circle error-icon"></i>
+                <h3>哎呀，不太对</h3>
+                <button class="close-modal" id="closeErrorModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage">这个食材不太适合当前步骤...</p>
+                <div class="error-tip">
+                    <p><i class="fas fa-lightbulb"></i> 提示：查看步骤说明，或点击"提示"按钮获取帮助</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn try-again-btn" id="tryAgain">再试一次</button>
+                <button class="modal-btn hint-btn-modal" id="useHintModal">使用提示</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 完成弹窗 -->
+    <div class="completion-modal" id="completionModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-trophy trophy-icon"></i>
+                <h3>实验成功！</h3>
+            </div>
+            <div class="modal-body">
+                <div class="completion-details">
+                    <h4 id="completedRecipeName">番茄炒蛋</h4>
+                    <p id="completionCongrats">恭喜！你成功完成了这道菜的制作！</p>
+                    
+                    <div class="completion-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-star"></i>
+                            <span>得分: <strong id="finalScore">95</strong>/100</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-clock"></i>
+                            <span>用时: <strong id="completionTime">2</strong> 分钟</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>提示使用: <strong id="hintsUsed">1</strong> 次</span>
+                        </div>
+                    </div>
+                    
+                    <div class="completion-message">
+                        <p>你已经掌握了这道菜的关键烹饪顺序，现在可以学习详细做法了！</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn recipe-detail-btn" id="goToRecipe">
+                    <i class="fas fa-book-open"></i> 查看详细食谱
+                </button>
+                <button class="modal-btn retry-btn-modal" id="retryFromModal">
+                    <i class="fas fa-redo-alt"></i> 再次尝试
+                </button>
+                <button class="modal-btn selection-btn-modal" id="backToSelectionModal">
+                    <i class="fas fa-list"></i> 选择其他菜品
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提示弹窗 -->
+    <div class="hint-modal" id="hintModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-lightbulb hint-icon"></i>
+                <h3>步骤提示</h3>
+                <button class="close-modal" id="closeHintModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="hint-details">
+                    <p>当前步骤需要放入的食材是：</p>
+                    <div class="hint-ingredient" id="hintIngredientName">
+                        <i class="fas fa-carrot"></i> <span>鸡蛋</span>
+                    </div>
+                    <p class="hint-tip">将这个食材拖拽到锅中即可继续</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn ok-btn" id="closeHint">知道了</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于我们</h3>
+                <p>「食·光」是一个专注于中国美食文化探索的在线平台，致力于传播传统饮食文化，分享现代烹饪技艺。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <a href="../index.html">首页</a>
+                <a href="regional.html">地方菜系</a>
+                <a href="recipes.html">食谱探索</a>
+                <a href="lab.html">食材实验室</a>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p><i class="fas fa-envelope"></i> contact@flavorquest.com</p>
+                <p><i class="fas fa-phone"></i> (+86) 138-0000-0000</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 食·光 | 前端开发课程大作业 | 仅供学习使用</p>
+            <p>所有图片素材来自 Unsplash，遵循CC0协议</p>
+        </div>
+    </footer>
+
+    <!-- 主题切换按钮 -->
+    <div class="theme-toggle" id="themeToggle" title="切换深色/浅色模式">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" title="回到顶部">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript 文件 -->
+    <script src="../js/main.js"></script>
+    <script src="../js/lab.js"></script>
+</body>
+</html>

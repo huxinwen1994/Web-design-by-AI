@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中华人民共和国第十五届运动会 - 官方网站</title>
+    <link rel="stylesheet" href="./css/首页.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="./首页.html" class="nav-item">网站首页</a>
+            <a href="./奖牌榜.html" class="nav-item">奖牌榜</a>
+            <a href="./精彩集锦.html" class="nav-item">精彩集锦</a>
+            <div class="nav-item dropdown">
+                <a href="./互动页.html" class="nav-link">互动页</a>
+                <div class="dropdown-menu">
+                    <a href="./互动页.html#call" class="dropdown-item dropdown-link" data-tab="call">运动健儿加油区</a>
+                    <a href="./互动页.html#discuss" class="dropdown-item dropdown-link" data-tab="discuss">赛事讨论区</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 首页Banner -->
+    <div class="home-banner">
+        <div class="home-banner-content">
+            <div class="home-banner-left">
+                <div class="banner-logo">
+                    <div class="logo-icon">🏅</div>
+                </div>
+            </div>
+            <div class="home-banner-center">
+                <h1 class="banner-main-title">中华人民共和国第十五届运动会观察</h1>
+                <div class="banner-subtitle">中国·广东·香港·澳门 2025</div>
+                <div class="banner-slogan">激情全运会 活力大湾区</div>
+            </div>
+            <div class="home-banner-right">
+                <div class="banner-mascots">
+                    <div class="mascot-icon">🐬</div>
+                    <div class="mascot-icon">🐬</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 轮播图 -->
+    <div class="carousel-container">
+        <div class="carousel-wrapper">
+            <!-- 克隆最后一张（用于无缝循环） -->
+            <div class="carousel-slide" data-clone="last">
+                <img src="https://tyj.gd.gov.cn/img/1/1448/1448677/4700658.jpg" alt="场馆展示">
+                <div class="carousel-caption">
+                    <h3>场馆：科技与生态融合的新地标</h3>
+                </div>
+            </div>
+            <!-- 原始图片 -->
+            <div class="carousel-slide">
+                <img src="https://www.news.cn/sports/20251109/37e6674e614e425c91a25de7b738bb49/20251109237e5c2794354e408e7457157c482ebd_20251109f5cc0e0a73e5419490f3247e916e37e2.jpeg" alt="开幕式">
+                <div class="carousel-caption">
+                    <h3>开幕式：光影与激情点亮湾区</h3>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://inews.gtimg.com/om_bt/OOQK24phI2zKf1CfTzWE-Fv_MvyPyvYNl_JIdm_QfOJVwAA/1000" alt="精彩赛事">
+                <div class="carousel-caption">
+                    <h3>精彩赛事：速度与力量的对决</h3>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://img12.iqilu.com/10367/sucaiku/compress/202109/13/6712d6e59e5c4472a35d169bde402a1e.png" alt="颁奖时刻">
+                <div class="carousel-caption">
+                    <h3>颁奖：荣誉加冕的高光瞬间</h3>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <img src="https://tyj.gd.gov.cn/img/1/1448/1448677/4700658.jpg" alt="场馆展示">
+                <div class="carousel-caption">
+                    <h3>场馆：科技与生态融合的新地标</h3>
+                </div>
+            </div>
+            <!-- 克隆第一张（用于无缝循环） -->
+            <div class="carousel-slide" data-clone="first">
+                <img src="https://www.news.cn/sports/20251109/37e6674e614e425c91a25de7b738bb49/20251109237e5c2794354e408e7457157c482ebd_20251109f5cc0e0a73e5419490f3247e916e37e2.jpeg" alt="开幕式">
+                <div class="carousel-caption">
+                    <h3>开幕式：光影与激情点亮湾区</h3>
+                </div>
+            </div>
+        </div>
+         <div class="carousel-controls">
+            <button class="carousel-btn" onclick="changeSlide(-1)">❮</button>
+            <button class="carousel-btn" onclick="changeSlide(1)">❯</button>
+        </div>
+    </div>
+
+        
+    <!-- 新闻区域 -->
+    <div class="news-section">
+        <div class="news-container">
+            <!-- 新闻报道 -->
+            <div class="news-block">
+                <h2>新闻报道</h2>
+                <div class="news-item visible">
+                    <div class="news-title">
+                        <a href="http://www.sports.gov.cn/tyj/xxgk/gzdt/sstyxw/202511/t20251110_33845392.html" target="_blank">
+                            《第十五届全国运动会在广东广州隆重开幕 习近平出席开幕式并宣布运动会开幕》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        中华人民共和国第十五届运动会开幕式在广州隆重举行，国家主席习近平出席开幕式并宣布运动会开幕。
+                    </div>
+                    <div class="news-time">2025-11-10</div>
+                </div>
+                <div class="news-item visible">
+                    <div class="news-title">
+                        <a href="http://ent.people.com.cn/n1/2025/1111/c1012-40600826.html" target="_blank">
+                            《十五运会开幕后首个比赛日 选手奋力拼搏 赛事精彩纷呈》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        十五运会开幕后首个比赛日，各项目选手奋力拼搏，赛事精彩纷呈，展现了运动员的竞技风采和体育精神。
+                    </div>
+                    <div class="news-time">2025-11-11</div>
+                </div>
+                <div class="news-item visible">
+                    <div class="news-title">
+                        <a href="https://news.cctv.cn/2025/11/20/ARTIH2A349vEoelolZq4cJTT251120.shtml" target="_blank">
+                            《全运赛场"新"潮澎湃》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        全运赛场上涌现出众多新星，年轻运动员展现出色表现，为全运会注入新的活力和希望。
+                    </div>
+                    <div class="news-time">2025-11-20</div>
+                </div>
+                <div class="news-item visible">
+                    <div class="news-title">
+                        <a href="https://c.m.163.com/news/a/KETUH69A0556BOZV.html" target="_blank">
+                            《全运会创纪录大盘点：8项世界纪录，35项全国以上纪录》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        本届全运会创造了8项世界纪录和35项全国以上纪录，展现了我国体育事业的蓬勃发展。
+                    </div>
+                    <div class="news-time">2025-11-20</div>
+                </div>
+                <div class="news-item visible">
+                    <div class="news-title">
+                        <a href="https://paper.people.com.cn/rmrbhwb/pc/content/202511/20/content_30115835.html" target="_blank">
+                            《青春上场 新秀登峰（激情十五运）》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        年轻运动员在全运赛场上展现青春风采，新秀们不断突破自我，登上新的高峰。
+                    </div>
+                    <div class="news-time">2025-11-20</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">
+                        <a href="https://www.news.cn/sports/20251121/0d15664c47204837a6eec7b9bcb2b3a9/c.html" target="_blank">
+                            《大看台｜全运盛会谱写融合新篇 体育荣光照耀湾区梦想》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        全运盛会谱写融合新篇，体育荣光照耀湾区梦想，展现了粤港澳大湾区协同发展的美好前景。
+                    </div>
+                    <div class="news-time">2025-11-21</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">
+                        <a href="https://www.nfnews.com/content/r6d5N5JXoE.html" target="_blank">
+                            《十五运会独家记忆，这些有温度的瞬间闯进我的镜头里》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        摄影师镜头下的全运会，记录下无数感人瞬间，展现体育运动的温度与魅力。
+                    </div>
+                    <div class="news-time">2025-11-21</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">
+                        <a href="https://www.workercn.cn/c/2025-11-22/8665310.shtml" target="_blank">
+                            《十五运会闭幕式再创历史——首次呈现"城市全景闭幕式"》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        十五运会闭幕式再创历史，首次呈现"城市全景闭幕式"，为全运会画上圆满句号。
+                    </div>
+                    <div class="news-time">2025-11-22</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">
+                        <a href="http://m.toutiao.com/group/7575362158012219944/" target="_blank">
+                            《第十五届全国运动会在深圳闭幕》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        第十五届全国运动会在深圳圆满闭幕，各项赛事精彩纷呈，展现了我国体育事业的蓬勃发展。
+                    </div>
+                    <div class="news-time">2025-11-22</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">
+                        <a href="https://www.xinhuanet.com/20251110/7a32ba6bc65243dda17e099a904706f5/c.html" target="_blank">
+                            《全运会 | 全民全运大湾区 同心同圆中国梦》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        全民全运大湾区，同心同圆中国梦，全运会成为连接粤港澳三地的重要纽带。
+                    </div>
+                    <div class="news-time">2025-11-10</div>
+                </div>
+                <button class="more-btn" onclick="toggleNews(this)">展开更多</button>
+            </div>
+
+            <!-- 评论文章 -->
+            <div class="news-block">
+                <h2>评论文章</h2>
+                <div class="news-item visible">
+                    <div class="news-title">
+                        <a href="https://www.rmsznet.com/mobile/detail?catid=3280&id=461938" target="_blank">
+                            《人民日报评论员：激扬全运力量，建设体育强国》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        "国运兴则体育兴，国家强则体育强"，全运会是体育强国建设的重要支点，为青年成长、全民健身注入新动能。
+                    </div>
+                    <div class="news-time">2025-11-26</div>
+                </div>
+                <div class="news-item visible">
+                    <div class="news-title">
+                        <a href="https://www.chinanews.com/ty/2025/11-25/10521142.shtml" target="_blank">
+                            《光明时评：全运会看点不止于竞技》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        全运会不仅是竞技舞台，更是展现体育精神、促进文化交流的重要平台，看点远不止于竞技本身。
+                    </div>
+                    <div class="news-time">2025-11-25</div>
+                </div>
+                <div class="news-item visible">
+                    <div class="news-title">
+                        <a href="http://news.dayoo.com/china/202511/22/139997_54897422.htm" target="_blank">
+                            《岭南时评：十五运会书写中国体育新篇章》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        十五运会书写中国体育新篇章，展现了我国体育事业的蓬勃发展和粤港澳大湾区的协同发展。
+                    </div>
+                    <div class="news-time">2025-11-22</div>
+                </div>
+                <div class="news-item visible">
+                    <div class="news-title">
+                        <a href="http://m.toutiao.com/group/7575159116465734184/" target="_blank">
+                            《粤港澳全运评论：全运之上，湾区一家》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        全运之上，湾区一家，粤港澳三地通过全运会实现更深层次的融合与发展。
+                    </div>
+                    <div class="news-time">2025-11-21</div>
+                </div>
+                <div class="news-item visible">
+                    <div class="news-title">
+                        <a href="http://opinion.voc.com.cn/mobile/news/202511/30895244.html" target="_blank">
+                            《好评中国：燃情全运赛场，聚力体育强国华章》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        燃情全运赛场，聚力体育强国华章，全运会成为推动体育强国建设的重要力量。
+                    </div>
+                    <div class="news-time">2025-11-20</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">
+                        <a href="http://news.gxnews.com.cn/staticpages/20251118/newgx691be5e4-21871980.shtml" target="_blank">
+                            《桂声网评：奖牌榜消失之后 全运会如何重塑体育精神？》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        奖牌榜消失之后，全运会如何重塑体育精神？这成为本届全运会的重要思考。
+                    </div>
+                    <div class="news-time">2025-11-18</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">
+                        <a href="https://huacheng.gz-cmc.com/pages/2025/11/23/SF14743925d780a95018694d4f89f36f.html" target="_blank">
+                            《这届全运会，点解"冇得弹"？——"全运会启示录"系列评论之一》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        这届全运会，点解"冇得弹"？从办赛理念到赛事组织，全运会交出无可挑剔的答卷。
+                    </div>
+                    <div class="news-time">2025-11-23</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">
+                        <a href="https://politics.gmw.cn/2025-11/09/content_38400723.htm" target="_blank">
+                            《融合之炬，映照新与变（全运大视野）》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        融合之炬，映照新与变，全运会成为展现新时代体育事业发展的重要窗口。
+                    </div>
+                    <div class="news-time">2025-11-09</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">
+                        <a href="https://news.cnr.cn/native/gd/20251126/t20251126_527441914.shtml" target="_blank">
+                            《好评中国丨跨越赛场的接力棒：全运会里的中国传承》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        跨越赛场的接力棒，全运会里的中国传承，展现了体育精神的代代相传。
+                    </div>
+                    <div class="news-time">2025-11-26</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">
+                        <a href="https://www.toutiao.com/article/7578678872347099682/?&source=m_redirect" target="_blank">
+                            《从全运会看中国创新（创新谈）》
+                        </a>
+                    </div>
+                    <div class="news-summary">
+                        从全运会看中国创新，展现了我国在体育科技、赛事组织等方面的创新成果。
+                    </div>
+                    <div class="news-time">2025-11-25</div>
+                </div>
+                <button class="more-btn" onclick="toggleNews(this)">展开更多</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/首页.js">
+    </script>
+     <!-- 底部栏 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <a href="https://www.baygames.cn/" class="footer-link" target="_blank">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+                        <path d="M7 13H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3m4 0h3a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-3m-4-4l4-4m-4 0h4v4"/>
+                    </svg>
+                    更多信息可查询官方网站
+                </a>
+            </div>
+            <div>
+                <span>© 中华人民共和国第十五届运动会观察</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

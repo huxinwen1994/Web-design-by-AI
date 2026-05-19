@@ -1,0 +1,5840 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>湖南省非物质文化遗产网 · 数字资源中心</title>
+  
+  <!-- Leaflet 地图库 -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <!-- Font Awesome 图标库 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- 引入书法风格字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- 引入思源字体 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ----------------- 配色与字体变量 ----------------- */
+    :root{
+      --chi-red:#9C2F32; /* 中国红（湖南非遗标志色）- 调整得更深饱和度更低 */
+      --chi-red-light: #B73F42; /* 原始红色保留 */
+      --xijiang-blue:#436C85; /* 湘江蓝 */
+      --yuelu-green:#82B29B; /* 岳麓青 */
+      --peach:#DE9960; /* 浅橘 */
+      --ivory:#EEE6CB; /* 米白 */
+      --bg:#E1D6C7; /* 页面背景 */
+      --overlay: rgba(0,0,0,0.5);
+      --earth-yellow: #B08D57; /* 土黄色 */
+      --card-color: #C3AB8C; /* 小卡片颜色 */
+      
+      /* 板块四专用配色 */
+      --brown-dark: #5D4037;
+      --brown-darker: #3E2723;
+      --gold-light: #C3AB8C;
+      --gold: #D4AF37;
+      --red-dark: #8B0000;
+      --beige: #F5F5F5;
+      --paper-texture: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.05"><path d="M20,20 Q50,10 80,20 T80,80 Q50,90 20,80 T20,20" fill="%235D4037"/></svg>');
+
+      /* 板块二专用配色 */
+      --ink-color: #2F1B14; /* 墨色 */
+      --ink-light: rgba(47, 27, 20, 0.1); /* 淡墨色 */
+      --section-bg: #F8F4E9; /* 米金色背景 */
+      --accent-color: #8B4513; /* 深褐色 */
+      
+      /* 板块四右侧栏新配色 */
+      --new-blue: rgb(47, 144, 185);
+
+      /* 机构政策页面专用变量 */
+      --primary-color: #B73F42; /* 中国红 */
+      --secondary-color: #436C85; /* 湘江蓝 */
+      --accent-color: #82B29B; /* 岳麓青 */
+      --nav-bg: #EEE6CB; /* 导航背景 */
+      --light-bg: #F5F5F5; /* 页面背景 */
+      --card-bg: #FFFFFF; /* 卡片背景 */
+      --text-dark: #333333; /* 深灰文本 */
+      --text-medium: #555555; /* 中灰文本 */
+      --text-light: #777777; /* 浅灰文本 */
+      --border-color: #E0E0E0; /* 边框颜色 */
+      --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.08);
+      --shadow-heavy: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+      --border-radius: 8px;
+      --container-width: 1200px;
+
+      /* 字号映射（参考：常用字号）
+         五号 ~ 14px, 小四 ~16px, 四号 ~18px, 三号 ~20-22px
+         你可按需要调整 */
+      --fs-wu:14px;    /* 五号 */
+      --fs-xiao-si:16px; /* 小四 */
+      --fs-si:18px;    /* 四号 */
+      --fs-san:20px;   /* 三号 */
+      
+      /* 百科页面专用配色 */
+      --huxiang-red: #B22222; /* 湖湘红 */
+      --paper-brown: #E8DCCF; /* 古纸棕 */
+      --dai-blue: #2F4F4F; /* 黛蓝 */
+      --text-gray: #333333; /* 深灰正文 */
+      
+      /* 各页面标题颜色 */
+      --resource-title: #8B4513; /* 资源中心标题色 - 深棕色 */
+      --academic-title: #2F4F4F; /* 学术研究标题色 - 黛蓝 */
+      --news-title: #B22222; /* 资讯页面标题色 - 湖湘红 */
+      --list-title: #436C85; /* 清单页面标题色 - 湘江蓝 */
+      --encyclopedia-title: #5D4037; /* 百科页面标题色 - 深褐色 */
+    }
+
+    /* 全局样式 */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family: "Microsoft Yahei", "Source Han Sans", simhei, Arial, sans-serif;background:var(--bg);color:#222}
+    
+    /* 页面背景图片 */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%235D4037" opacity="0.5"/><path d="M20,20 Q50,10 80,20 T80,80 Q50,90 20,80 T20,20" fill="%23C3AB8C" opacity="0.3"/></svg>');
+      background-size: cover;
+      opacity: 0.5;
+      z-index: -1;
+    }
+
+    /* 顶部导航（第一栏） */
+    .topbar{
+      width:100%;
+      padding:10px 24px;
+      display:flex;align-items:center;justify-content:space-between;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)); /* 透明度50%的灰色覆盖封面 */
+      color:white;
+      position:relative; /* 非固定 */
+      z-index:20;
+    }
+    .brand{display:flex;gap:14px;align-items:center}
+    /* 吊脚楼图标（简笔画 SVG） */
+    .fj-icon{width:36px;height:36px;display:inline-block}
+    .title-text{
+      font-family: 'HuiWenMingChao','方正清刻本悦宋简体','汇文明朝体', 'HuaWen', serif; /* 指定用户要求的字体名，浏览器回退 */
+      font-size:var(--fs-wu); /* 五号 */
+      color:#fff;
+      white-space:nowrap;
+    }
+
+    .top-right{display:flex;align-items:center;gap:12px}
+    .icon-btn{width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center}
+    .icon-btn svg{width:22px;height:22px;stroke:#fff;fill:none}
+    .date-block{font-family:'汇文明朝体','HuiWenMingChao', serif;font-size:var(--fs-wu);color:#fff}
+
+    /* 顶部搜索栏 */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 5px 12px;
+      margin: 0 15px;
+    }
+    
+    .search-bar input {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 14px;
+      width: 180px;
+      outline: none;
+    }
+    
+    .search-bar input::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .search-bar button {
+      background: transparent;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* 第二栏导航 */
+    .nav2{
+      width:100%;
+      display:flex;justify-content:center;gap:18px;padding:8px 0;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+      font-family:'汇文明朝体','方正清刻本悦宋简体', serif;
+      font-size:var(--fs-xiao-si);
+      font-weight:700;
+      color:#fff;
+      z-index:18;
+    }
+    .nav2 a{
+      color:#fff;
+      text-decoration:none;
+      padding:6px 10px;
+      transition: all 0.3s ease;
+    }
+    .nav2 a:hover {
+      color: var(--chi-red-light);
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+    }
+
+    /* 页面活动状态指示 */
+    .nav2 a.active {
+      color: var(--chi-red-light);
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(183, 63, 66, 0.3);
+    }
+
+    /* 内容页面容器 */
+    .page-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .page-content.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* 封面轮播 */
+    .hero{position:relative;height:100vh;min-height:520px;overflow:hidden}
+    .slides{height:100%;width:100%;display:flex;transition:transform 0.8s ease}
+    .slide{flex:1 0 100%;background-size:cover;background-position:center}
+    /* 使用湖南非遗网图片 */
+    .slide.s1{background-image:url('12.jpg')}
+    .slide.s2{background-image:url('4.jpg')}
+    .slide.s3{background-image:url('10.jpg')}
+    .slide.s4{background-image:url('15.jpg')}
+    .slide.s5{background-image:url('13.jpg')}
+
+    /* 轮播下方特色原点（用小花纹SVG替代） */
+    .dots{position:absolute;left:50%;transform:translateX(-50%);bottom:28px;display:flex;gap:10px}
+    .dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(255,255,255,0.15)}
+    .dot.active{background:var(--chi-red-light)}
+    .dot svg{width:18px;height:18px;fill:#fff}
+
+    /* 热点推荐 底边栏（固定） - 修改为在同一行中滚动 */
+    .hotbar{
+      position:fixed;left:50%;transform:translateX(-50%);bottom:22px;z-index:40;
+      background:linear-gradient(180deg, rgba(183,63,66,0.7), rgba(183,63,66,0.7)); /* 70% 不透明红色 */
+      padding:10px 18px;border-radius:30px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 20px rgba(0,0,0,0.25);
+      font-family:'汇文明朝体', serif;color:#fff;
+      min-width: 350px;
+      max-width: 500px;
+      overflow: hidden;
+    }
+    .hotbar .label{font-size:var(--fs-san);font-weight:700; white-space: nowrap;}
+    .hotbar .hot-content{
+      font-size:var(--fs-xiao-si);
+      position: relative;
+      overflow: hidden;
+      width: 200px;
+      height: 1.5em;
+      line-height: 1.5;
+    }
+    .hotbar .orn{width:20px;height:20px;margin-right:8px;}
+    .hotbar .scroll-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      white-space: nowrap;
+    }
+
+    /* ==================== 机构介绍页面样式 ==================== */
+    .institution-page {
+      background: var(--light-bg);
+      min-height: 100vh;
+      padding-top: 20px;
+    }
+    
+    .policy-page {
+      background: var(--light-bg);
+      min-height: 100vh;
+      padding-top: 20px;
+    }
+    
+    /* 机构/政策页面标题 */
+    .institution-page .page-title,
+    .policy-page .page-title {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 2.2rem;
+      text-align: center;
+      margin: 0 0 30px 0;
+      letter-spacing: 2px;
+      color: var(--primary-color);
+    }
+    
+    .policy-page .page-title {
+      color: var(--secondary-color);
+    }
+    
+    /* 主内容区域 */
+    .main-container {
+      display: flex;
+      min-height: calc(100vh - 250px);
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* 左侧导航菜单 */
+    .sidebar {
+      width: 280px;
+      background-color: var(--nav-bg);
+      border-radius: var(--border-radius);
+      padding: 30px 0;
+      box-shadow: var(--shadow-light);
+      position: sticky;
+      top: 20px;
+      height: fit-content;
+      margin-right: 30px;
+      overflow: hidden;
+    }
+    
+    .sidebar::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23B73F42' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E");
+      opacity: 0.6;
+      z-index: 0;
+    }
+    
+    .policy-page .sidebar::before {
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23436C85' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+    
+    .nav-menu {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .nav-item {
+      padding: 16px 30px;
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 1.3rem;
+      color: var(--text-dark);
+      border-left: 4px solid transparent;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    
+    .nav-item i {
+      font-size: 1.1rem;
+      width: 24px;
+      text-align: center;
+    }
+    
+    .nav-item:hover {
+      background-color: rgba(183, 63, 66, 0.1);
+      color: var(--primary-color);
+    }
+    
+    .policy-page .nav-item:hover {
+      background-color: rgba(67, 108, 133, 0.1);
+      color: var(--secondary-color);
+    }
+    
+    .nav-item.active {
+      background-color: rgba(183, 63, 66, 0.15);
+      border-left-color: var(--primary-color);
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+    
+    .policy-page .nav-item.active {
+      background-color: rgba(67, 108, 133, 0.15);
+      border-left-color: var(--secondary-color);
+      color: var(--secondary-color);
+    }
+    
+    /* 右侧内容区域 */
+    .content {
+      flex: 1;
+      padding-bottom: 60px;
+    }
+    
+    .content-section {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 35px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-light);
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+      scroll-margin-top: 20px;
+      animation: fadeInUp 0.5s ease-out;
+    }
+    
+    .content-section:hover {
+      box-shadow: var(--shadow-medium);
+      transform: translateY(-3px);
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid rgba(183, 63, 66, 0.2);
+    }
+    
+    .policy-page .section-header {
+      border-bottom-color: rgba(67, 108, 133, 0.2);
+    }
+    
+    .section-icon {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(183, 63, 66, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+      color: var(--primary-color);
+      font-size: 1.5rem;
+    }
+    
+    .policy-page .section-icon {
+      background-color: rgba(67, 108, 133, 0.1);
+      color: var(--secondary-color);
+    }
+    
+    .section-title {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      margin: 0;
+    }
+    
+    .policy-page .section-title {
+      color: var(--secondary-color);
+    }
+    
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--secondary-color);
+      margin-top: 5px;
+      font-weight: 500;
+    }
+    
+    .policy-page .section-subtitle {
+      color: var(--primary-color);
+    }
+    
+    .content-text {
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+    
+    .highlight {
+      background-color: rgba(183, 63, 66, 0.08);
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    
+    .policy-highlight {
+      background-color: rgba(67, 108, 133, 0.08);
+      padding: 3px 6px;
+      border-radius: 4px;
+      font-weight: 500;
+      color: var(--secondary-color);
+    }
+    
+    /* 卡片网格布局 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+    }
+    
+    .info-card {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      box-shadow: var(--shadow-light);
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+      height: 100%;
+    }
+    
+    .info-card:hover {
+      box-shadow: var(--shadow-medium);
+      transform: translateY(-5px);
+    }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(183, 63, 66, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+    
+    .policy-page .card-icon {
+      background-color: rgba(67, 108, 133, 0.1);
+      color: var(--secondary-color);
+    }
+    
+    .card-title {
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      margin: 0;
+    }
+    
+    .policy-page .card-title {
+      color: var(--secondary-color);
+    }
+    
+    /* 图片展示样式 */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .gallery-item {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      position: relative;
+      height: 180px;
+      cursor: pointer;
+      box-shadow: var(--shadow-light);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    .image-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      font-size: 0.9rem;
+      text-align: center;
+      transform: translateY(100%);
+      transition: var(--transition);
+    }
+    
+    .gallery-item:hover .image-caption {
+      transform: translateY(0);
+    }
+    
+    /* 标签样式 */
+    .tag {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-right: 8px;
+      margin-bottom: 10px;
+    }
+    
+    .tag-new {
+      background-color: rgba(130, 178, 155, 0.2);
+      color: var(--accent-color);
+      border: 1px solid rgba(130, 178, 155, 0.3);
+    }
+    
+    .tag-important {
+      background-color: rgba(183, 63, 66, 0.15);
+      color: var(--primary-color);
+      border: 1px solid rgba(183, 63, 66, 0.3);
+    }
+    
+    .tag-notice {
+      background-color: rgba(67, 108, 133, 0.15);
+      color: var(--secondary-color);
+      border: 1px solid rgba(67, 108, 133, 0.3);
+    }
+    
+    .tag-law {
+      background-color: rgba(67, 108, 133, 0.2);
+      color: var(--secondary-color);
+      border: 1px solid rgba(67, 108, 133, 0.4);
+    }
+    
+    /* 表格样式 */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    
+    .info-table th, .info-table td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .info-table th {
+      background-color: rgba(183, 63, 66, 0.05);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    
+    .policy-page .info-table th {
+      background-color: rgba(67, 108, 133, 0.05);
+      color: var(--secondary-color);
+    }
+    
+    .info-table tr:hover {
+      background-color: rgba(183, 63, 66, 0.03);
+    }
+    
+    .policy-page .info-table tr:hover {
+      background-color: rgba(67, 108, 133, 0.03);
+    }
+    
+    /* 文件下载样式 */
+    .file-download {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      margin-bottom: 15px;
+      transition: var(--transition);
+    }
+    
+    .file-download:hover {
+      border-color: var(--primary-color);
+      background-color: rgba(183, 63, 66, 0.03);
+    }
+    
+    .policy-page .file-download:hover {
+      border-color: var(--secondary-color);
+      background-color: rgba(67, 108, 133, 0.03);
+    }
+    
+    .file-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .file-icon {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+    }
+    
+    .policy-page .file-icon {
+      color: var(--secondary-color);
+    }
+    
+    .file-details h4 {
+      margin-bottom: 5px;
+      color: var(--text-dark);
+    }
+    
+    .file-meta {
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    
+    .download-btn {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+    
+    .policy-page .download-btn {
+      background-color: var(--secondary-color);
+    }
+    
+    .download-btn:hover {
+      background-color: #9c2f32;
+    }
+    
+    .policy-page .download-btn:hover {
+      background-color: #35526b;
+    }
+    
+    /* 返回顶部按钮 */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: var(--shadow-medium);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 999;
+    }
+    
+    .policy-page .back-to-top {
+      background-color: var(--secondary-color);
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background-color: #9c2f32;
+      transform: translateY(-5px);
+    }
+    
+    .policy-page .back-to-top:hover {
+      background-color: #35526b;
+    }
+
+    /* 主体内容 */
+    main{max-width:1200px;margin:0 auto;padding:36px 16px 80px}
+
+    /* 正文板块一 */
+    .section-one{display:flex;gap:16px;margin-bottom:36px;}
+    .left-vert{width:20%;background:var(--chi-red);color:#fff;display:flex;align-items:center;justify-content:center;padding:18px;position:relative}
+    .left-vert .vert-title{
+      writing-mode:vertical-rl;text-orientation:mixed;
+      font-family:'汇文明朝体',serif;font-weight:700;font-size:var(--fs-san);
+      position:relative;
+    }
+    /* 两侧竖线 */
+    .left-vert .vert-title::before,
+    .left-vert .vert-title::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 80%;
+      background-color: var(--earth-yellow);
+      top: 10%;
+    }
+    .left-vert .vert-title::before { left: -8px; }
+    .left-vert .vert-title::after { right: -8px; }
+    .right-grid{width:80%;background:var(--ivory);padding:18px;position:relative;overflow:visible}
+
+    /* 长方形色块容器 */
+    .blocks{position:relative;height:420px}
+    .block{
+      width:120px;height:220px;border-radius:8px;position:absolute;transform-origin:center;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.12);
+      border:6px solid rgba(255,255,255,0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .block .text{writing-mode:vertical-rl;text-orientation:mixed;font-family:'汇文明朝体',serif;color:#fff;font-weight:700;font-size:18px;z-index:2;position:relative}
+    
+    /* 装饰SVG */
+    .block-decor {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+      z-index: 1;
+      pointer-events: none;
+      transition: transform 0.5s ease, opacity 0.3s ease;
+    }
+
+    /* 花纹边缘（简化） */
+    .block::after{content:'';position:absolute;inset:6px;border-radius:6px;background-image:linear-gradient(45deg, rgba(255,255,255,0.03), rgba(0,0,0,0.02));pointer-events:none}
+
+    /* 悬停效果 */
+    .block:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+    .block:hover .block-decor {
+      opacity: 0.3;
+      transform: rotate(5deg) scale(1.1);
+    }
+
+    /* 正文板块二 - 全新设计 - 修改新闻动态行距和字体 */
+    .section-two {
+      margin-top: 36px;
+      display: flex;
+      gap: 5%;
+      background: var(--section-bg);
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+    
+    .section-two::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 20% 80%, var(--ink-light) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--ink-light) 0%, transparent 50%);
+      z-index: 0;
+    }
+    
+    .col {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 6px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .col:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .col h3 {
+      font-family: 'Ma Shan Zheng', 'Noto Serif SC', serif;
+      margin: 0 0 16px;
+      color: var(--ink-color);
+      font-size: 22px;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+    }
+    
+    .col h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--accent-color);
+    }
+    
+    .more-link {
+      font-size: 14px;
+      color: #999;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+    }
+    
+    .more-link:hover {
+      color: var(--accent-color);
+      transform: rotate(5deg);
+    }
+    
+    .more-link::after {
+      content: '›';
+      margin-left: 4px;
+      font-size: 16px;
+    }
+    
+    /* 左栏 - 新闻动态 - 修改字体不重叠和行距 */
+    .news-image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    
+    .news-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .news-item {
+      padding: 12px 0; /* 增加内边距 */
+      border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+      transition: all 0.3s ease;
+      line-height: 1.8; /* 增加行高 */
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .news-item:last-child {
+      border-bottom: none;
+    }
+    
+    .news-item:hover {
+      background: rgba(139, 69, 19, 0.05);
+      padding-left: 8px;
+    }
+    
+    .news-date {
+      font-size: 12px;
+      color: var(--accent-color);
+      margin-bottom: 6px; /* 增加下边距 */
+      display: block;
+      font-weight: normal;
+    }
+    
+    .news-title {
+      font-size: 16px; /* 增大字体 */
+      color: var(--ink-color);
+      line-height: 1.6;
+      margin-bottom: 0;
+      font-weight: 600; /* 标题加粗 */
+      font-family: 'Microsoft Yahei', sans-serif;
+    }
+    
+    /* 中栏 - 论坛 - 修改字体不重叠 */
+    .forum-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .forum-item {
+      padding: 12px 0;
+      border-bottom: 1px dashed rgba(139, 69, 19, 0.3);
+      position: relative;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      line-height: 1.8; /* 增加行高 */
+    }
+    
+    .forum-item:last-child {
+      border-bottom: none;
+    }
+    
+    .forum-item:hover {
+      background: rgba(139, 69, 19, 0.05);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      border-radius: 4px;
+      padding: 12px 8px;
+    }
+    
+    .forum-content {
+      font-size: 16px; /* 增大字体 */
+      color: var(--ink-color);
+      line-height: 1.8; /* 增加行高 */
+      margin-bottom: 8px;
+      font-family: 'Microsoft Yahei', sans-serif;
+    }
+    
+    .forum-date {
+      font-size: 12px;
+      color: var(--accent-color);
+      bottom: 12px;
+      left: 12px;
+    }
+    
+    /* 右栏 - 专题报道 */
+    .topic-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 16px 0;
+    }
+    
+    .topic-item {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      line-height: 1.8; /* 增加行高 */
+    }
+    
+    .topic-item:last-child {
+      border-bottom: none;
+    }
+    
+    .topic-item:hover {
+      background: rgba(139, 69, 19, 0.05);
+      padding-left: 8px;
+    }
+    
+    .topic-date {
+      font-size: 12px;
+      color: var(--accent-color);
+      margin-bottom: 4px;
+    }
+    
+    .topic-title {
+      font-size: 16px; /* 增大字体 */
+      color: var(--ink-color);
+      line-height: 1.6; /* 增加行高 */
+      font-weight: 600; /* 标题加粗 */
+      font-family: 'Microsoft Yahei', sans-serif;
+    }
+    
+    .topic-image {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    
+    /* 地图与统计（板块三） */
+    .section-three{margin-top:36px; margin-bottom:36px;}
+    .map-wrap{display:flex;gap:16px}
+    .map{flex:7;background:#fff;border-radius:6px;min-height:360px;display:flex;align-items:center;justify-content:center}
+    .stats{flex:3;background:#fff;border-radius:6px;padding:12px}
+    .stats ul{list-style:none;padding:0;margin:0}
+    .stats li{padding:8px 6px;border-bottom:1px solid #f0f0f0}
+
+    /* 地图容器样式 */
+    #hunan-map {
+      height: 400px;
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    /* 地图信息框样式 */
+    .map-info {
+      background: white;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      font-size: 14px;
+      max-width: 200px;
+    }
+    
+    .map-info h4 {
+      margin: 0 0 8px 0;
+      color: var(--chi-red);
+      border-bottom: 1px solid #eee;
+      padding-bottom: 4px;
+    }
+    
+    .map-info p {
+      margin: 4px 0;
+    }
+
+    /* 传承人统计卡片 */
+    .stats-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    
+    .stats-title {
+      font-family: '汇文明朝体', serif;
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--chi-red);
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .stats-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      flex-grow: 1;
+    }
+    
+    .stat-card {
+      background-color: var(--card-color);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.1);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    
+    .stat-card:hover::before {
+      opacity: 1;
+    }
+    
+    .stat-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 5px;
+      transition: transform 0.3s ease;
+    }
+    
+    .stat-card:hover .stat-number {
+      transform: scale(1.2);
+    }
+    
+    .stat-name {
+      font-size: 14px;
+      color: #fff;
+      transition: transform 0.3s ease;
+    }
+    
+    .stat-card:hover .stat-name {
+      transform: translateY(5px);
+    }
+
+    /* 板块四 传承人 - 修改传承人头像不被遮挡和字体大小 */
+    .section-four {
+      margin-top: 36px;
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    
+    .masters-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      background: 
+        linear-gradient(135deg, var(--brown-dark) 0%, var(--gold-light) 100%),
+        var(--paper-texture);
+      background-blend-mode: overlay;
+      padding: 30px;
+      border-radius: 12px;
+      border: 12px solid transparent;
+      border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M10,10 L90,10 L90,90 L10,90 Z" fill="none" stroke="%23D4AF37" stroke-width="8" stroke-dasharray="10,5"/></svg>') 30 stretch;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .masters-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.03"><path d="M20,20 Q50,10 80,20 T80,80 Q50,90 20,80 T20,20" fill="%235D4037"/></svg>');
+      z-index: 0;
+      animation: textureMove 30s linear infinite;
+    }
+    
+    @keyframes textureMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(20px, 20px); }
+    }
+    
+    /* 左侧传承人展示区 - 修改头像不被遮挡 */
+    .master-showcase {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: slideInLeft 1s ease;
+    }
+    
+    @keyframes slideInLeft {
+      from { transform: translateX(-50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    .master-photo-frame {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--gold-light), var(--brown-dark));
+      padding: 10px;
+      position: relative;
+      box-shadow: 
+        0 0 0 8px var(--gold),
+        0 0 20px rgba(212, 175, 55, 0.5),
+        inset 0 0 20px rgba(0,0,0,0.2);
+      filter: contrast(1.1) saturate(1.2);
+      transition: all 0.5s ease;
+      clip-path: ellipse(50% 50% at 50% 50%);
+    }
+    
+    .master-photo-frame:hover {
+      transform: scale(1.05);
+      box-shadow: 
+        0 0 0 8px var(--gold),
+        0 0 40px rgba(212, 175, 55, 0.8),
+        inset 0 0 20px rgba(0,0,0,0.2);
+    }
+    
+    .master-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: linear-gradient(45deg, var(--brown-dark), var(--gold-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--beige);
+      font-size: 18px;
+      overflow: hidden;
+      position: relative;
+      z-index: 2; /* 提高层级 */
+    }
+    
+    .master-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 2; /* 提高层级 */
+    }
+    
+    .master-info {
+      text-align: center;
+      margin-top: 24px;
+      position: relative;
+      z-index: 2; /* 提高层级 */
+    }
+    
+    .master-name {
+      font-family: 'Ma Shan Zheng', 'Noto Serif SC', serif;
+      font-size: 36px; /* 增大字体 */
+      color: var(--beige);
+      margin-bottom: 12px; /* 增加间距 */
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      position: relative;
+      display: inline-block;
+      font-weight: bold;
+    }
+    
+    .master-name::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 10%;
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    
+    .master-title {
+      font-size: 22px; /* 增大字体 */
+      color: var(--gold);
+      font-weight: 400;
+      letter-spacing: 2px;
+    }
+    
+    /* 右侧传承人名录 - 修改版 */
+    .masters-list {
+      overflow-x: hidden;
+      position: relative;
+      z-index: 1;
+      background: rgba(245, 245, 245, 0.9);
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      animation: slideInRight 1s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    @keyframes slideInRight {
+      from { transform: translateX(50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    .masters-list-title {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      position: absolute;
+      right: 45px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Ma Shan Zheng', 'Noto Serif SC', serif;
+      font-size: 28px;
+      color: var(--brown-darker);
+      letter-spacing: 5px;
+      padding: 10px 5px;
+      background: var(--gold-light);
+      border-radius: 4px;
+      box-shadow: 3px 3px 5px rgba(0,0,0,0.1);
+    }
+    
+    .masters-list-title::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid var(--gold-light);
+    }
+    
+    .masters-list-content {
+      max-height: 380px;
+      overflow-y: auto;
+      padding-right: 60px;
+      margin-bottom: 20px;
+    }
+    
+    /* 横向传承人展示 */
+    .masters-horizontal {
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding: 10px 0;
+      margin-bottom: 20px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--new-blue) rgba(47, 144, 185, 0.2);
+    }
+    
+    .masters-horizontal::-webkit-scrollbar {
+      height: 8px;
+    }
+    
+    .masters-horizontal::-webkit-scrollbar-track {
+      background: rgba(47, 144, 185, 0.1);
+      border-radius: 4px;
+    }
+    
+    .masters-horizontal::-webkit-scrollbar-thumb {
+      background: var(--new-blue);
+      border-radius: 4px;
+    }
+    
+    .master-horizontal-item {
+      flex: 0 0 auto;
+      width: 120px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .master-horizontal-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .master-horizontal-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 8px;
+      border: 3px solid var(--new-blue);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+    
+    .master-horizontal-name {
+      font-size: 16px; /* 增大字体 */
+      font-weight: bold;
+      color: var(--new-blue);
+      margin-bottom: 4px;
+    }
+    
+    .master-horizontal-project {
+      font-size: 14px; /* 增大字体 */
+      color: #666;
+    }
+    
+    .master-item {
+      padding: 14px 16px; /* 增加内边距 */
+      margin-bottom: 8px;
+      border-bottom: 1px dashed var(--brown-dark);
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      opacity: 0;
+      animation: itemSlideIn 0.5s ease forwards;
+    }
+    
+    @keyframes itemSlideIn {
+      to { opacity: 1; }
+    }
+    
+    .master-item:nth-child(1) { animation-delay: 0.1s; }
+    .master-item:nth-child(2) { animation-delay: 0.2s; }
+    .master-item:nth-child(3) { animation-delay: 0.3s; }
+    .master-item:nth-child(4) { animation-delay: 0.4s; }
+    .master-item:nth-child(5) { animation-delay: 0.5s; }
+    .master-item:nth-child(6) { animation-delay: 0.6s; }
+    .master-item:nth-child(7) { animation-delay: 0.7s; }
+    .master-item:nth-child(8) { animation-delay: 0.8s; }
+    .master-item:nth-child(9) { animation-delay: 0.9s; }
+    .master-item:nth-child(10) { animation-delay: 1.0s; }
+    
+    .master-item:hover {
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), transparent);
+      transform: translateX(5px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border-bottom-color: var(--gold);
+    }
+    
+    .master-item:hover .item-number {
+      transform: scale(1.2);
+      color: var(--red-dark);
+    }
+    
+    .item-number {
+      font-family: 'Ma Shan Zheng', 'Noto Serif SC', serif;
+      font-size: 24px; /* 增大字体 */
+      color: var(--brown-darker);
+      margin-right: 20px; /* 增加间距 */
+      min-width: 45px; /* 增加宽度 */
+      transition: all 0.3s ease;
+    }
+    
+    .item-details {
+      flex: 1;
+    }
+    
+    .item-name {
+      font-size: 20px; /* 增大字体 */
+      font-weight: bold;
+      color: var(--brown-darker);
+      margin-bottom: 6px; /* 增加间距 */
+    }
+    
+    .item-project {
+      font-size: 16px; /* 增大字体 */
+      color: var(--brown-dark);
+    }
+    
+    .view-more-btn {
+      display: block;
+      width: 200px;
+      margin: 24px auto 0;
+      padding: 12px 24px;
+      background: linear-gradient(45deg, var(--brown-dark), var(--red-dark));
+      color: var(--beige);
+      border: none;
+      border-radius: 30px;
+      font-family: 'Ma Shan Zheng', 'Noto Serif SC', serif;
+      font-size: 18px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .view-more-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: all 0.5s ease;
+      z-index: -1;
+    }
+    
+    .view-more-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    
+    .view-more-btn:hover::before {
+      left: 100%;
+    }
+    
+    .view-more-btn svg {
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
+    
+    .view-more-btn:hover svg {
+      transform: translateX(5px);
+    }
+    
+    /* ==================== 各页面标题样式优化 ==================== */
+    
+    /* 资源中心页面样式 - 调整为与机构页面相同 */
+    .resource-page {
+      background: var(--light-bg);
+      min-height: 100vh;
+      padding-top: 20px;
+    }
+    
+    .resource-page .page-title {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 2.2rem;
+      text-align: center;
+      margin: 0 0 30px 0;
+      letter-spacing: 2px;
+      color: var(--resource-title) !important; /* 使用新颜色 */
+    }
+    
+    /* 学术研究页面样式 - 调整为与机构页面相同 */
+    .academic-page {
+      background: var(--light-bg);
+      min-height: 100vh;
+      padding-top: 20px;
+    }
+    
+    .academic-page .page-title {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 2.2rem;
+      text-align: center;
+      margin: 0 0 30px 0;
+      letter-spacing: 2px;
+      color: var(--academic-title) !important; /* 使用新颜色 */
+    }
+    
+    /* 资讯页面样式 - 调整为与机构页面相同 */
+    .news-page {
+      background: var(--light-bg);
+      min-height: 100vh;
+      padding-top: 20px;
+    }
+    
+    .news-page .page-title {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 2.2rem;
+      text-align: center;
+      margin: 0 0 30px 0;
+      letter-spacing: 2px;
+      color: var(--news-title) !important; /* 使用新颜色 */
+    }
+    
+    /* 清单页面样式 - 调整为与机构页面相同 */
+    .list-page {
+      background: var(--light-bg);
+      min-height: 100vh;
+      padding-top: 20px;
+    }
+    
+    .list-page .page-title {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 2.2rem;
+      text-align: center;
+      margin: 0 0 30px 0;
+      letter-spacing: 2px;
+      color: var(--list-title) !important; /* 使用新颜色 */
+    }
+    
+    /* 百科页面样式 - 调整为与机构页面相同 */
+    .encyclopedia-page {
+      background: var(--light-bg);
+      min-height: 100vh;
+      padding-top: 20px;
+    }
+    
+    .encyclopedia-page .page-title {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 2.2rem;
+      text-align: center;
+      margin: 0 0 30px 0;
+      letter-spacing: 2px;
+      color: var(--encyclopedia-title) !important; /* 使用新颜色 */
+    }
+    
+    /* 各页面内容区域统一使用机构页面样式 */
+    .resource-page .main-container,
+    .academic-page .main-container,
+    .news-page .main-container,
+    .list-page .main-container,
+    .encyclopedia-page .main-container {
+      display: flex;
+      min-height: calc(100vh - 250px);
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* 各页面左侧导航菜单 */
+    .resource-page .sidebar,
+    .academic-page .sidebar,
+    .news-page .sidebar,
+    .list-page .sidebar,
+    .encyclopedia-page .sidebar {
+      width: 280px;
+      background-color: var(--nav-bg);
+      border-radius: var(--border-radius);
+      padding: 30px 0;
+      box-shadow: var(--shadow-light);
+      position: sticky;
+      top: 20px;
+      height: fit-content;
+      margin-right: 30px;
+      overflow: hidden;
+    }
+    
+    /* 各页面右侧内容区域 */
+    .resource-page .content,
+    .academic-page .content,
+    .news-page .content,
+    .list-page .content,
+    .encyclopedia-page .content {
+      flex: 1;
+      padding-bottom: 60px;
+    }
+    
+    /* 各页面内容区块 */
+    .resource-page .content-section,
+    .academic-page .content-section,
+    .news-page .content-section,
+    .list-page .content-section,
+    .encyclopedia-page .content-section {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 35px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-light);
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+      scroll-margin-top: 20px;
+      animation: fadeInUp 0.5s ease-out;
+    }
+    
+    /* 页脚 */
+    footer{margin-top:40px;background:#f7f2ea;padding:16px;border-top:1px solid #e6d8bf}
+    .footer-content{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+    .footer-links{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+    .footer-column{flex:1;min-width:200px}
+    .footer-column h4{color:var(--chi-red);margin-bottom:12px;font-family:'汇文明朝体',serif}
+    .footer-column ul{list-style:none;padding:0;margin:0}
+    .footer-column li{margin-bottom:8px}
+    .footer-column a{color:#666;text-decoration:none;transition:color 0.3s ease}
+    .footer-column a:hover{color:var(--chi-red)}
+    .footer-bottom{text-align:center;padding-top:20px;border-top:1px solid #e6d8bf;color:#666;font-size:14px}
+    .footer-social{display:flex;justify-content:center;gap:15px;margin-top:10px}
+    .social-icon{width:32px;height:32px;background:var(--chi-red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;transition:transform 0.3s ease}
+    .social-icon:hover{transform:translateY(-3px)}
+    
+    /* 响应式 */
+    @media(max-width:900px){
+      .section-one{flex-direction:column}
+      .left-vert{width:100%;order:2}
+      .right-grid{width:100%;order:1}
+      .nav2{flex-wrap:wrap}
+      .hotbar{bottom:12px;padding:8px; min-width: 300px;}
+      .map-wrap{flex-direction:column}
+      .stats-cards{grid-template-columns: repeat(2, 1fr)}
+      .footer-links{flex-direction:column}
+      .masters-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .master-showcase {
+        order: 1;
+      }
+      
+      .masters-list {
+        order: 2;
+        height: auto;
+        min-height: 500px;
+      }
+      
+      .master-photo-frame {
+        width: 220px;
+        height: 220px;
+      }
+      
+      .master-name {
+        font-size: 28px;
+      }
+      
+      .master-title {
+        font-size: 18px;
+      }
+      
+      .item-name {
+        font-size: 18px;
+      }
+      
+      .item-number {
+        font-size: 20px;
+        min-width: 35px;
+      }
+      
+      .masters-horizontal {
+        gap: 10px;
+      }
+      
+      .master-horizontal-item {
+        width: 100px;
+      }
+      
+      .master-horizontal-photo {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .main-container {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 30px;
+        position: static;
+      }
+      
+      .nav-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .nav-item {
+        border-left: none;
+        border-bottom: 3px solid transparent;
+        padding: 12px 20px;
+      }
+      
+      .nav-item.active {
+        border-left: none;
+        border-bottom-color: var(--primary-color);
+      }
+      
+      .policy-page .nav-item.active {
+        border-bottom-color: var(--secondary-color);
+      }
+      
+      .search-bar {
+        display: none;
+      }
+    }
+    
+    @media(max-width:768px){
+      .master-photo-frame {
+        width: 180px;
+        height: 180px;
+      }
+      
+      .master-name {
+        font-size: 24px;
+      }
+      
+      .master-title {
+        font-size: 16px;
+      }
+      
+      .item-name {
+        font-size: 16px;
+      }
+      
+      .item-number {
+        font-size: 18px;
+        min-width: 30px;
+      }
+      
+      .masters-horizontal {
+        gap: 8px;
+      }
+      
+      .master-horizontal-item {
+        width: 85px;
+      }
+      
+      .master-horizontal-photo {
+        width: 50px;
+        height: 50px;
+      }
+    }
+    
+    @media(max-width:480px){
+      .masters-container {
+        padding: 20px 15px;
+      }
+      
+      .master-photo-frame {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .master-name {
+        font-size: 20px;
+      }
+      
+      .master-item {
+        padding: 10px 12px;
+      }
+      
+      .item-name {
+        font-size: 14px;
+      }
+      
+      .item-project {
+        font-size: 12px;
+      }
+      
+      .masters-horizontal {
+        gap: 6px;
+      }
+      
+      .master-horizontal-item {
+        width: 70px;
+      }
+      
+      .master-horizontal-photo {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .master-horizontal-name {
+        font-size: 12px;
+      }
+      
+      .master-horizontal-project {
+        font-size: 10px;
+      }
+    }
+
+    /* 交互功能样式 */
+    .click-counter {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--xijiang-blue);
+      color: white;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+    }
+    
+    /* 返回首页和返回顶部按钮 - 修改位置不重叠 */
+    #backToTopHome {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--chi-red);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      box-shadow: var(--shadow-medium);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 999;
+      border: none;
+    }
+    
+    #backToTopHome.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    #backToTopHome:hover {
+      background-color: #9c2f32;
+      transform: translateY(-5px);
+    }
+    
+    /* 点击计数显示 */
+    #counter {
+      position: fixed;
+      bottom: 140px;
+      right: 30px;
+      background: var(--xijiang-blue);
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      box-shadow: var(--shadow-medium);
+      z-index: 999;
+      opacity: 0.9;
+    }
+    
+    /* 搜索筛选样式 */
+    .search-container {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-light);
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    .search-input:focus {
+      outline: none;
+      border-color: var(--chi-red);
+      box-shadow: 0 0 0 3px rgba(183, 63, 66, 0.1);
+    }
+    
+    /* 表单样式 */
+    .feedback-form {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 30px;
+      box-shadow: var(--shadow-light);
+      margin-top: 40px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--chi-red);
+      box-shadow: 0 0 0 3px rgba(183, 63, 66, 0.1);
+    }
+    
+    .submit-btn {
+      background: var(--chi-red);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .submit-btn:hover {
+      background: var(--chi-red-light);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(183, 63, 66, 0.3);
+    }
+    
+    /* 内容展开/折叠 */
+    .expandable-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    
+    .expandable-content.expanded {
+      max-height: 1000px;
+    }
+    
+    .expand-btn {
+      background: transparent;
+      color: var(--chi-red);
+      border: none;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: var(--transition);
+    }
+    
+    .expand-btn:hover {
+      color: var(--chi-red-light);
+    }
+    
+    /* 主题切换 */
+    .theme-switcher {
+      position: fixed;
+      top: 100px;
+      right: 30px;
+      z-index: 999;
+      display: flex;
+      gap: 10px;
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-light);
+    }
+    
+    .theme-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .theme-btn:hover {
+      transform: scale(1.1);
+    }
+    
+    .theme-btn.active {
+      border: 2px solid var(--chi-red);
+    }
+    
+    /* 新闻标题高亮 */
+    .news-title.highlighted,
+    .forum-content.highlighted,
+    .topic-title.highlighted {
+      color: var(--chi-red) !important;
+      background-color: rgba(183, 63, 66, 0.1) !important;
+      padding: 5px !important;
+      border-radius: 4px !important;
+    }
+    
+    /* 百科页面知识问答小游戏样式 */
+    .quiz-game {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 30px;
+      margin-top: 30px;
+      box-shadow: var(--shadow-light);
+      border: 2px solid var(--encyclopedia-title);
+    }
+    
+    .quiz-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    
+    .quiz-title {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 1.8rem;
+      color: var(--encyclopedia-title);
+      margin-bottom: 10px;
+    }
+    
+    .quiz-progress {
+      font-size: 1rem;
+      color: var(--text-medium);
+    }
+    
+    .quiz-question {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+    
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    
+    .quiz-option {
+      padding: 15px;
+      border: 2px solid var(--border-color);
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1rem;
+    }
+    
+    .quiz-option:hover {
+      border-color: var(--encyclopedia-title);
+      background-color: rgba(93, 64, 55, 0.05);
+    }
+    
+    .quiz-option.selected {
+      border-color: var(--encyclopedia-title);
+      background-color: rgba(93, 64, 55, 0.1);
+    }
+    
+    .quiz-option.correct {
+      border-color: #4CAF50;
+      background-color: rgba(76, 175, 80, 0.1);
+    }
+    
+    .quiz-option.wrong {
+      border-color: #F44336;
+      background-color: rgba(244, 67, 54, 0.1);
+    }
+    
+    .quiz-controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+    }
+    
+    .quiz-btn {
+      padding: 12px 25px;
+      border-radius: var(--border-radius);
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .quiz-btn-next {
+      background-color: var(--encyclopedia-title);
+      color: white;
+    }
+    
+    .quiz-btn-next:hover {
+      background-color: #4E342E;
+    }
+    
+    .quiz-btn-restart {
+      background-color: #E0E0E0;
+      color: var(--text-dark);
+    }
+    
+    .quiz-btn-restart:hover {
+      background-color: #BDBDBD;
+    }
+    
+    .quiz-result {
+      text-align: center;
+      padding: 30px;
+    }
+    
+    .quiz-score {
+      font-size: 2rem;
+      color: var(--encyclopedia-title);
+      margin-bottom: 15px;
+    }
+    
+    .quiz-message {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+    }
+    
+    /* （原节气库页面样式已移除） */
+    
+    .solar-term-page .page-title {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 2.2rem;
+      text-align: center;
+      margin: 0 0 30px 0;
+      letter-spacing: 2px;
+      color: var(--secondary-color);
+    }
+    
+    .solar-term-container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+    
+    .solar-term-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-light);
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+    
+    .solar-term-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-medium);
+    }
+    
+    .solar-term-name {
+      font-family: 'Ma Shan Zheng', cursive;
+      font-size: 1.8rem;
+      color: var(--secondary-color);
+      margin-bottom: 15px;
+      border-bottom: 2px solid rgba(67, 108, 133, 0.2);
+      padding-bottom: 10px;
+    }
+    
+    .solar-term-date {
+      font-size: 1.1rem;
+      color: var(--text-medium);
+      margin-bottom: 15px;
+    }
+    
+    .solar-term-description {
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    
+    .solar-term-customs {
+      background: rgba(130, 178, 155, 0.1);
+      padding: 15px;
+      border-radius: var(--border-radius);
+      border-left: 4px solid var(--accent-color);
+    }
+    
+    .solar-term-customs h4 {
+      color: var(--accent-color);
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部导航第一栏 -->
+  <header>
+    <div class="topbar">
+      <div class="brand">
+        <!-- 吊脚楼简笔 SVG -->
+        <div class="fj-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64"><path d="M8 36 L32 12 L56 36" stroke="#B73F42" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="title-text">湖南省非物质文化遗产网·湖南省非物质文化遗产数字资源中心</div>
+      </div>
+
+      <div class="top-right">
+        <!-- 顶部搜索栏 -->
+        <div class="search-bar">
+          <input type="text" placeholder="搜索非遗项目、传承人..." id="topSearchInput">
+          <button id="topSearchBtn"><i class="fas fa-search"></i></button>
+        </div>
+        
+       
+        <div class="date-block" id="dateBlock" aria-live="polite">--</div>
+      </div>
+    </div>
+
+    <!-- 第二栏导航 -->
+    <nav class="nav2">
+      <a href="#" onclick="showPage('home')">首页</a>
+      <a href="#" onclick="showPage('institution')">机构</a>
+      <a href="#" onclick="showPage('resource')">资源</a>
+      <a href="#" onclick="showPage('academic')">学术</a>
+      <a href="#" onclick="showPage('news')">资讯</a>
+      <a href="#" onclick="showPage('list')">清单</a>
+      <a href="#" onclick="showPage('policy')">政策</a>
+      <a href="#" onclick="showPage('encyclopedia')">百科</a>
+    </nav>
+  </header>
+
+  <!-- 首页内容 -->
+  <div id="home-page" class="page-content active">
+    <!-- 封面轮播 -->
+    <section class="hero" id="hero">
+      <div class="slides" id="slides">
+        <div class="slide s1" aria-label="slide 1"></div>
+        <div class="slide s2" aria-label="slide 2"></div>
+        <div class="slide s3" aria-label="slide 3"></div>
+        <div class="slide s4" aria-label="slide 4"></div>
+        <div class="slide s5" aria-label="slide 5"></div>
+      </div>
+      <div class="dots" id="dots">
+        <div class="dot" data-index="0"><svg viewBox="0 0 24 24"><path d="M12 2c2.2 3 6 3 8 0 0 6-6 12-8 20C10 14 4 8 4 2c2 3 5.8 3 8 0z"/></svg></div>
+        <div class="dot" data-index="1"><svg viewBox="0 0 24 24"><path d="M12 2c2.2 3 6 3 8 0 0 6-6 12-8 20C10 14 4 8 4 2c2 3 5.8 3 8 0z"/></svg></div>
+        <div class="dot" data-index="2"><svg viewBox="0 0 24 24"><path d="M12 2c2.2 3 6 3 8 0 0 6-6 12-8 20C10 14 4 8 4 2c2 3 5.8 3 8 0z"/></svg></div>
+        <div class="dot" data-index="3"><svg viewBox="0 0 24 24"><path d="M12 2c2.2 3 6 3 8 0 0 6-6 12-8 20C10 14 4 8 4 2c2 3 5.8 3 8 0z"/></svg></div>
+        <div class="dot" data-index="4"><svg viewBox="0 0 24 24"><path d="M12 2c2.2 3 6 3 8 0 0 6-6 12-8 20C10 14 4 8 4 2c2 3 5.8 3 8 0z"/></svg></div>
+      </div>
+    </section>
+
+    <!-- 热点推荐 底边栏 - 修改为滚动效果 -->
+    <div class="hotbar" id="hotbar">
+      <div class="label">热点推荐</div>
+      <div class="hot-content" id="hotContent">
+        <div class="orn"><svg viewBox="0 0 24 24"><path d="M12 2c2 2 4 2 6 0 0 4-4 8-6 12-2-4-6-8-6-12 2 2 4 2 6 0z"/></svg></div>
+        <div class="scroll-text" id="hotText">花鼓戏 · 湘绣 · 滩头年画 · 土家织锦 · 苗族银饰 · 醴陵釉下五彩瓷</div>
+      </div>
+    </div>
+
+    <!-- 主体 -->
+    <main>
+      <!-- 正文板块一 -->
+      <section class="section-one" id="section-one">
+        <aside class="left-vert">
+          <div class="vert-title">湖南省非物质文化遗产代表性项目名录</div>
+        </aside>
+
+        <div class="right-grid">
+          <div class="blocks" id="blocks">
+            <!-- JS 会动态生成 10 个色块 -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 正文板块二 - 全新设计 -->
+      <section class="section-two" id="section-two">
+        <div class="col">
+          <h3>新闻动态 <a href="#" class="more-link">更多</a></h3>
+          <img src="1.jpg" alt="非遗新闻" class="news-image">
+          <ul class="news-list">
+            <li class="news-item">
+              <div class="news-date">2025-10-01</div>
+              <div class="news-title">湖南非遗传承人活动启动，促进传统文化保护</div>
+            </li>
+            <li class="news-item">
+              <div class="news-date">2025-09-22</div>
+              <div class="news-title">花鼓戏进校园，青少年感受传统戏曲魅力</div>
+            </li>
+            <li class="news-item">
+              <div class="news-date">2025-09-10</div>
+              <div class="news-title">湘绣国际展览筹备中，展示湖南非遗风采</div>
+            </li>
+            <li class="news-item">
+              <div class="news-date">2025-08-28</div>
+              <div class="news-title">土家织锦技艺传承班开班，培养新一代传承人</div>
+            </li>
+            <li class="news-item">
+              <div class="news-date">2025-07-15</div>
+              <div class="news-title">非遗数字化成果发布，推动文化创新传承</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>论坛 <a href="#" class="more-link">更多</a></h3>
+          <ul class="forum-list">
+            <li class="forum-item">
+              <div class="forum-content">论坛帖子：如何保护非遗技艺，让传统文化在现代社会中焕发新生</div>
+              <div class="forum-date">2025-10-10</div>
+            </li>
+            <li class="forum-item">
+              <div class="forum-content">论坛帖子：非遗与乡村振兴，探索传统文化助力农村发展新路径</div>
+              <div class="forum-date">2025-09-05</div>
+            </li>
+            <li class="forum-item">
+              <div class="forum-content">论坛帖子：数字化资源共享，构建非遗保护新生态</div>
+              <div class="forum-date">2025-08-21</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>专题报道 <a href="#" class="more-link">更多</a></h3>
+          <ul class="topic-list">
+            <li class="topic-item">
+              <div class="topic-date">2025-10-12</div>
+              <div class="topic-title">湖南花鼓戏专题报道：传统艺术的现代传承</div>
+            </li>
+            <li class="topic-item">
+              <div class="topic-date">2025-09-30</div>
+              <div class="topic-title">湘绣传承人专访：针线间的匠心精神</div>
+            </li>
+            <li class="topic-item">
+              <div class="topic-date">2025-08-20</div>
+              <div class="topic-title">吊脚楼文化保护：传统建筑与现代生活的融合</div>
+            </li>
+          </ul>
+          <img src="2.jpg" alt="专题报道" class="topic-image">
+        </div>
+      </section>
+
+      <!-- 正文板块三 地图与统计 -->
+      <section class="section-three" id="section-three">
+        <h3 style="font-family:'汇文明朝体',serif">非物质文化遗产地图</h3>
+        <div class="map-wrap">
+          <div class="map">
+            <div id="hunan-map"></div>
+          </div>
+          <div class="stats">
+            <div class="stats-container">
+              <div class="stats-title">湖南省代表性项目、湖南省代表性传承人</div>
+              <div class="stats-cards">
+                <div class="stat-card">
+                  <div class="stat-number">120</div>
+                  <div class="stat-name">民间文学</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number">98</div>
+                  <div class="stat-name">传统音乐</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number">76</div>
+                  <div class="stat-name">传统舞蹈</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number">54</div>
+                  <div class="stat-name">传统戏剧</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number">45</div>
+                  <div class="stat-name">传统曲艺</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number">28</div>
+                  <div class="stat-name">传统体育、游艺与杂技</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number">63</div>
+                  <div class="stat-name">传统美术</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number">134</div>
+                  <div class="stat-name">传统技艺</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number">31</div>
+                  <div class="stat-name">传统医药</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 正文板块四 传承人 - 全新设计 -->
+      <section class="section-four">
+        <div class="masters-container">
+          <!-- 左侧传承人展示区 -->
+          <div class="master-showcase">
+            <div class="master-photo-frame">
+              <div class="master-photo">
+                <img src="6.jpg" alt="传承人">
+              </div>
+            </div>
+            <div class="master-info">
+              <h2 class="master-name">周承云</h2>
+              <p class="master-title">龙船崽崽 · 国家级传承人</p>
+            </div>
+          </div>
+          
+          <!-- 右侧传承人名录 -->
+          <div class="masters-list">
+            <div class="masters-list-title">代表性传承人</div>
+            
+            <!-- 横向传承人展示 -->
+            <div class="masters-horizontal">
+              <div class="master-horizontal-item">
+                <img src="6.jpg" alt="周承云" class="master-horizontal-photo">
+                <div class="master-horizontal-name">周承云</div>
+                <div class="master-horizontal-project">龙船崽崽</div>
+              </div>
+              <div class="master-horizontal-item">
+                <img src="8.jpg" alt="丁小妮" class="master-horizontal-photo">
+                <div class="master-horizontal-name">丁小妮</div>
+                <div class="master-horizontal-project">釉下五彩瓷</div>
+              </div>
+              <div class="master-horizontal-item">
+                <img src="侗锦 栗田梅.jpg" alt="栗田梅" class="master-horizontal-photo">
+                <div class="master-horizontal-name">栗田梅</div>
+                <div class="master-horizontal-project">侗锦</div>
+              </div>
+              <div class="master-horizontal-item">
+                <img src="花瑶挑花 沈燕希.jpg" alt="沈燕希" class="master-horizontal-photo">
+                <div class="master-horizontal-name">沈燕希</div>
+                <div class="master-horizontal-project">花瑶挑花</div>
+              </div>
+              <div class="master-horizontal-item">
+                <img src="苗族银饰 麻茂庭.jpg" alt="麻茂庭" class="master-horizontal-photo">
+                <div class="master-horizontal-name">麻茂庭</div>
+                <div class="master-horizontal-project">苗族银饰</div>
+              </div>
+              <div class="master-horizontal-item">
+                <img src="女书 何艳新.jpg" alt="何艳新" class="master-horizontal-photo">
+                <div class="master-horizontal-name">何艳新</div>
+                <div class="master-horizontal-project">女书</div>
+              </div>
+              <div class="master-horizontal-item">
+                <img src="滩头年画 尹冬香.jpg" alt="尹冬香" class="master-horizontal-photo">
+                <div class="master-horizontal-name">尹冬香</div>
+                <div class="master-horizontal-project">滩头年画</div>
+              </div>
+              <div class="master-horizontal-item">
+                <img src="湘绣 刘爱云.jpg" alt="刘爱云" class="master-horizontal-photo">
+                <div class="master-horizontal-name">刘爱云</div>
+                <div class="master-horizontal-project">湘绣</div>
+              </div>
+              <div class="master-horizontal-item">
+                <img src="印染 刘新建.jpg" alt="刘新建" class="master-horizontal-photo">
+                <div class="master-horizontal-name">刘新建</div>
+                <div class="master-horizontal-project">印染</div>
+              </div>
+              <div class="master-horizontal-item">
+                <img src="油纸伞 曹正新.jpg" alt="曹正新" class="master-horizontal-photo">
+                <div class="master-horizontal-name">曹正新</div>
+                <div class="master-horizontal-project">油纸伞</div>
+              </div>
+            </div>
+            
+            <div class="masters-list-content">
+              <div class="master-item">
+                <span class="item-number">一</span>
+                <div class="item-details">
+                  <div class="item-name">周承云</div>
+                  <div class="item-project">龙船崽崽</div>
+                </div>
+              </div>
+              <div class="master-item">
+                <span class="item-number">二</span>
+                <div class="item-details">
+                  <div class="item-name">丁小妮</div>
+                  <div class="item-project">釉下五彩瓷</div>
+                </div>
+              </div>
+              <div class="master-item">
+                <span class="item-number">三</span>
+                <div class="item-details">
+                  <div class="item-name">栗田梅</div>
+                  <div class="item-project">侗锦</div>
+                </div>
+              </div>
+              <div class="master-item">
+                <span class="item-number">四</span>
+                <div class="item-details">
+                  <div class="item-name">沈燕希</div>
+                  <div class="item-project">花瑶挑花</div>
+                </div>
+              </div>
+              <div class="master-item">
+                <span class="item-number">五</span>
+                <div class="item-details">
+                  <div class="item-name">麻茂庭</div>
+                  <div class="item-project">苗族银饰</div>
+                </div>
+              </div>
+              <div class="master-item">
+                <span class="item-number">六</span>
+                <div class="item-details">
+                  <div class="item-name">何艳新</div>
+                  <div class="item-project">女书</div>
+                </div>
+              </div>
+              <div class="master-item">
+                <span class="item-number">七</span>
+                <div class="item-details">
+                  <div class="item-name">尹冬香</div>
+                  <div class="item-project">滩头年画</div>
+                </div>
+              </div>
+              <div class="master-item">
+                <span class="item-number">八</span>
+                <div class="item-details">
+                  <div class="item-name">刘爱云</div>
+                  <div class="item-project">湘绣</div>
+                </div>
+              </div>
+              <div class="master-item">
+                <span class="item-number">九</span>
+                <div class="item-details">
+                  <div class="item-name">刘新建</div>
+                  <div class="item-project">印染</div>
+                </div>
+              </div>
+              <div class="master-item">
+                <span class="item-number">十</span>
+                <div class="item-details">
+                  <div class="item-name">曹正新</div>
+                  <div class="item-project">油纸伞</div>
+                </div>
+              </div>
+            </div>
+            <button class="view-more-btn">
+              查看更多
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 搜索筛选区域 -->
+      <div class="search-container" id="searchContainer" style="display: none;">
+        <input type="text" class="search-input" id="searchInput" placeholder="搜索非遗项目、传承人、新闻等...">
+      </div>
+
+      <!-- 反馈表单 -->
+      <div class="feedback-form" id="feedbackForm">
+        <h3 style="font-family:'Ma Shan Zheng', cursive; color: var(--chi-red); margin-bottom: 20px;">意见反馈</h3>
+        <div class="form-group">
+          <label for="name">姓名</label>
+          <input type="text" class="form-control" id="name" placeholder="请输入您的姓名">
+        </div>
+        <div class="form-group">
+          <label for="email">邮箱</label>
+          <input type="email" class="form-control" id="email" placeholder="请输入您的邮箱">
+        </div>
+        <div class="form-group">
+          <label for="message">反馈内容</label>
+          <textarea class="form-control" id="message" rows="4" placeholder="请输入您的反馈意见"></textarea>
+        </div>
+        <button class="submit-btn" onclick="submitFeedback()">提交反馈</button>
+      </div>
+
+      <!-- 页脚 -->
+      <footer>
+        <div class="footer-content">
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>关于我们</h4>
+              <ul>
+                <li><a href="#" onclick="showPage('institution')">中心简介</a></li>
+                <li><a href="#">组织机构</a></li>
+                <li><a href="#">工作动态</a></li>
+                <li><a href="#">联系我们</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>政策法规</h4>
+              <ul>
+                <li><a href="#" onclick="showPage('policy')">国家政策</a></li>
+                <li><a href="#">省级法规</a></li>
+                <li><a href="#">管理办法</a></li>
+                <li><a href="#">申报指南</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>非遗资源</h4>
+              <ul>
+                <li><a href="#" onclick="showPage('resource')">项目名录</a></li>
+                <li><a href="#">传承人名录</a></li>
+                <li><a href="#">数字资源库</a></li>
+                <li><a href="#">研究成果</a></li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>联系方式</h4>
+              <ul>
+                <li>地址：湖南省长沙市芙蓉区韶山北路</li>
+                <li>电话：0731-88888888</li>
+                <li>邮箱：hunanfeiyi@example.com</li>
+                <li>邮编：410000</li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>版权所有 © 2025 湖南省非物质文化遗产保护中心 湘ICP备12345678号</p>
+            <p>本网站部分内容来源于网络，如有侵犯您的权益，请及时联系我们</p>
+            <div class="footer-social">
+              <a href="#" class="social-icon">微</a>
+              <a href="#" class="social-icon">博</a>
+              <a href="#" class="social-icon">抖</a>
+              <a href="#" class="social-icon">快</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+
+  <!-- 资源中心页面 -->
+  <div id="resource-page" class="page-content resource-page">
+    <h1 class="page-title">数字资源中心</h1>
+    
+    <div class="main-container">
+      <!-- 左侧导航菜单 -->
+      <aside class="sidebar">
+        <nav class="nav-menu">
+          <div class="nav-item active" data-target="section-archive">
+            <i class="fas fa-archive"></i>
+            <span>数字档案库</span>
+          </div>
+          <div class="nav-item" data-target="section-media">
+            <i class="fas fa-video"></i>
+            <span>多媒体资源</span>
+          </div>
+          <div class="nav-item" data-target="section-interactive">
+            <i class="fas fa-gamepad"></i>
+            <span>互动体验</span>
+          </div>
+      
+          <div class="nav-item" data-target="section-stats">
+            <i class="fas fa-chart-bar"></i>
+            <span>资源统计</span>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- 右侧内容区域 -->
+      <main class="content">
+        <!-- 数字档案库 -->
+        <section id="section-archive" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-archive"></i>
+            </div>
+            <div>
+              <h2 class="section-title">数字档案库</h2>
+              <p class="section-subtitle">湖南省非物质文化遗产数字档案资源</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-scroll"></i>
+                </div>
+                <h3 class="card-title">湘绣技艺完整数字档案</h3>
+              </div>
+              <p>收录湘绣技艺的完整历史资料、技艺流程、代表性作品高清图像等数字资源。</p>
+              <div class="expandable-content" id="archive1">
+                <p>包含：历史文献扫描件120份，技艺流程图解45套，高清作品图像300余幅，传承人口述史访谈视频15小时。</p>
+              </div>
+              <button class="expand-btn" onclick="toggleExpand('archive1')">
+                <i class="fas fa-chevron-down"></i>
+                <span>展开详情</span>
+              </button>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-music"></i>
+                </div>
+                <h3 class="card-title">花鼓戏传统乐谱集</h3>
+              </div>
+              <p>收集整理湖南花鼓戏传统乐谱、唱腔谱例及表演程式记录。</p>
+              <div class="expandable-content" id="archive2">
+                <p>包含：传统乐谱280首，唱腔谱例150套，表演程式视频记录40小时，老艺人教学录像25小时。</p>
+              </div>
+              <button class="expand-btn" onclick="toggleExpand('archive2')">
+                <i class="fas fa-chevron-down"></i>
+                <span>展开详情</span>
+              </button>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-tshirt"></i>
+                </div>
+                <h3 class="card-title">土家族织锦图案库</h3>
+              </div>
+              <p>系统整理土家族织锦传统图案纹样，建立数字化图案数据库。</p>
+              <div class="expandable-content" id="archive3">
+                <p>包含：传统图案纹样480种，现代创新图案120种，织造工艺图解60套，色彩搭配方案85套。</p>
+              </div>
+              <button class="expand-btn" onclick="toggleExpand('archive3')">
+                <i class="fas fa-chevron-down"></i>
+                <span>展开详情</span>
+              </button>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 多媒体资源 -->
+        <section id="section-media" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <div>
+              <h2 class="section-title">多媒体资源</h2>
+              <p class="section-subtitle">音频、视频、图像等多媒体非遗资源</p>
+            </div>
+          </div>
+          
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th>资源名称</th>
+                <th>类型</th>
+                <th>时长/数量</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>湘西苗族民歌音频集</td>
+                <td>音频</td>
+                <td>128首</td>
+                <td><button class="download-btn" style="padding: 5px 10px; font-size: 0.9rem;">下载</button></td>
+              </tr>
+              <tr>
+                <td>滩头年画制作工艺视频</td>
+                <td>视频</td>
+                <td>45分钟</td>
+                <td><button class="download-btn" style="padding: 5px 10px; font-size: 0.9rem;">下载</button></td>
+              </tr>
+              <tr>
+                <td>非遗传承人口述史访谈</td>
+                <td>视频</td>
+                <td>32小时</td>
+                <td><button class="download-btn" style="padding: 5px 10px; font-size: 0.9rem;">下载</button></td>
+              </tr>
+              <tr>
+                <td>传统节日活动纪录片</td>
+                <td>视频</td>
+                <td>8部</td>
+                <td><button class="download-btn" style="padding: 5px 10px; font-size: 0.9rem;">下载</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <!-- 互动体验 -->
+        <section id="section-interactive" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-gamepad"></i>
+            </div>
+            <div>
+              <h2 class="section-title">互动体验</h2>
+              <p class="section-subtitle">虚拟现实、增强现实等互动体验资源</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-vr-cardboard"></i>
+                </div>
+                <h3 class="card-title">VR湘西苗寨漫游</h3>
+              </div>
+              <p>通过虚拟现实技术体验湘西苗寨的传统建筑、民俗活动和日常生活。</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-theater-masks"></i>
+                </div>
+                <h3 class="card-title">花鼓戏角色扮演体验</h3>
+              </div>
+              <p>在线体验花鼓戏角色扮演，学习传统戏曲表演技巧。</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3 class="card-title">互动年画制作工坊</h3>
+              </div>
+              <p>在线互动体验滩头年画的制作过程，创作个性化年画作品。</p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 资源统计 -->
+        <section id="section-stats" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <div>
+              <h2 class="section-title">资源统计</h2>
+              <p class="section-subtitle">数字资源中心资源统计信息</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-file"></i>
+                </div>
+                <h3 class="card-title">文档资源</h3>
+              </div>
+              <p>总计：1,245份文档</p>
+              <p>包含：研究报告、申报材料、历史文献等</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-image"></i>
+                </div>
+                <h3 class="card-title">图像资源</h3>
+              </div>
+              <p>总计：8,750张图片</p>
+              <p>包含：非遗作品、技艺流程、活动现场等</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-video"></i>
+                </div>
+                <h3 class="card-title">视频资源</h3>
+              </div>
+              <p>总计：450小时视频</p>
+              <p>包含：技艺传承、活动记录、访谈纪录片等</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="backToTopResource">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+  </div>
+
+  <!-- 学术研究页面 -->
+  <div id="academic-page" class="page-content academic-page">
+    <h1 class="page-title">学术研究</h1>
+    
+    <div class="main-container">
+      <!-- 左侧导航菜单 -->
+      <aside class="sidebar">
+        <nav class="nav-menu">
+          <div class="nav-item active" data-target="section-papers">
+            <i class="fas fa-file-alt"></i>
+            <span>学术论文</span>
+          </div>
+          <div class="nav-item" data-target="section-projects">
+            <i class="fas fa-tasks"></i>
+            <span>研究课题</span>
+          </div>
+          <div class="nav-item" data-target="section-events">
+            <i class="fas fa-calendar-alt"></i>
+            <span>学术活动</span>
+          </div>
+          <div class="nav-item" data-target="section-scholars">
+            <i class="fas fa-user-tie"></i>
+            <span>学者介绍</span>
+          </div>
+          
+        </nav>
+      </aside>
+
+      <!-- 右侧内容区域 -->
+      <main class="content">
+        <!-- 学术论文 -->
+        <section id="section-papers" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div>
+              <h2 class="section-title">学术论文</h2>
+              <p class="section-subtitle">非物质文化遗产研究学术论文</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card" onclick="incrementClick(this)">
+              <div class="click-counter">点击: <span>0</span></div>
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-scroll"></i>
+                </div>
+                <h3 class="card-title">《湘绣技艺保护与传承研究》</h3>
+              </div>
+              <p>本文系统研究了湘绣技艺的历史发展、技术特点和传承现状，提出了数字化保护与传统传承相结合的新路径。</p>
+              <p class="content-text" style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                <i class="far fa-user" style="margin-right: 5px;"></i>张三
+                <span style="margin-left: 15px;"><i class="far fa-calendar-alt" style="margin-right: 5px;"></i>2024年</span>
+              </p>
+            </div>
+            
+            <div class="info-card" onclick="incrementClick(this)">
+              <div class="click-counter">点击: <span>0</span></div>
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-music"></i>
+                </div>
+                <h3 class="card-title">《湖南花鼓戏的现代化发展路径》</h3>
+              </div>
+              <p>探讨了湖南花鼓戏在当代社会中的传承困境与创新可能，提出了传统戏曲与现代舞台艺术融合发展的具体策略。</p>
+              <p class="content-text" style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                <i class="far fa-user" style="margin-right: 5px;"></i>李四
+                <span style="margin-left: 15px;"><i class="far fa-calendar-alt" style="margin-right: 5px;"></i>2024年</span>
+              </p>
+            </div>
+            
+            <div class="info-card" onclick="incrementClick(this)">
+              <div class="click-counter">点击: <span>0</span></div>
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-laptop-code"></i>
+                </div>
+                <h3 class="card-title">《非物质文化遗产数字化保护技术研究》</h3>
+              </div>
+              <p>系统分析了数字化技术在非遗保护中的应用现状，提出了基于虚拟现实、人工智能等技术的非遗数字化保护新方法。</p>
+              <p class="content-text" style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                <i class="far fa-user" style="margin-right: 5px;"></i>王五
+                <span style="margin-left: 15px;"><i class="far fa-calendar-alt" style="margin-right: 5px;"></i>2023年</span>
+              </p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 研究课题 -->
+        <section id="section-projects" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <div>
+              <h2 class="section-title">研究课题</h2>
+              <p class="section-subtitle">非物质文化遗产研究课题项目</p>
+            </div>
+          </div>
+          
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th>课题名称</th>
+                <th>负责人</th>
+                <th>起止时间</th>
+                <th>资助单位</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>湖南省非遗代表性项目保护现状调研</td>
+                <td>张教授</td>
+                <td>2023-2024</td>
+                <td>湖南省文旅厅</td>
+              </tr>
+              <tr>
+                <td>传统技艺在当代的活化利用研究</td>
+                <td>李研究员</td>
+                <td>2022-2025</td>
+                <td>国家社科基金</td>
+              </tr>
+              <tr>
+                <td>非遗数字化保护标准体系研究</td>
+                <td>王博士</td>
+                <td>2024-2026</td>
+                <td>国家自然科学基金</td>
+              </tr>
+              <tr>
+                <td>湖南少数民族非遗传承机制研究</td>
+                <td>赵教授</td>
+                <td>2023-2025</td>
+                <td>教育部人文社科</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <!-- 学术活动 -->
+        <section id="section-events" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-calendar-alt"></i>
+            </div>
+            <div>
+              <h2 class="section-title">学术活动</h2>
+              <p class="section-subtitle">学术会议、研讨会、讲座等</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+                <h3 class="card-title">湖南省非遗保护学术研讨会</h3>
+              </div>
+              <p>时间：2025年11月15日</p>
+              <p>地点：湖南省文化馆</p>
+              <p>主题：非遗数字化保护与传承创新</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="card-title">非遗传承人培训讲座</h3>
+              </div>
+              <p>时间：2025年10月-12月（每月一期）</p>
+              <p>地点：线上+线下结合</p>
+              <p>内容：传统技艺创新、品牌建设、市场营销等</p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 学者介绍 -->
+        <section id="section-scholars" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <div>
+              <h2 class="section-title">学者介绍</h2>
+              <p class="section-subtitle">非遗研究领域专家学者</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-user-graduate"></i>
+                </div>
+                <h3 class="card-title">张明教授</h3>
+              </div>
+              <p>湖南大学文化遗产保护研究中心主任</p>
+              <p>研究方向：非物质文化遗产保护、传统技艺传承</p>
+              <p>代表作：《湖南传统手工艺保护研究》</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-user-graduate"></i>
+                </div>
+                <h3 class="card-title">李芳研究员</h3>
+              </div>
+              <p>湖南省社会科学院文化研究所副所长</p>
+              <p>研究方向：民俗文化、非物质文化遗产传承机制</p>
+              <p>代表作：《湖南少数民族非遗传承研究》</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="backToTopAcademic">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+  </div>
+
+  <!-- 机构介绍页面 -->
+  <div id="institution-page" class="page-content institution-page">
+    <h1 class="page-title">机构介绍</h1>
+    
+    <div class="main-container">
+      <!-- 左侧导航菜单 -->
+      <aside class="sidebar">
+        <nav class="nav-menu">
+          <div class="nav-item active" data-target="section-overview">
+            <i class="fas fa-building"></i>
+            <span>机构概况</span>
+          </div>
+          <div class="nav-item" data-target="section-organization">
+            <i class="fas fa-sitemap"></i>
+            <span>组织机构</span>
+          </div>
+          <div class="nav-item" data-target="section-responsibility">
+            <i class="fas fa-tasks"></i>
+            <span>工作职责</span>
+          </div>
+          <div class="nav-item" data-target="section-contact">
+            <i class="fas fa-address-card"></i>
+            <span>联系方式</span>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- 右侧内容区域 -->
+      <main class="content">
+        <!-- 机构概况 -->
+        <section id="section-overview" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-building"></i>
+            </div>
+            <div>
+              <h2 class="section-title">机构概况</h2>
+              <p class="section-subtitle">湖南省非物质文化遗产保护中心简介</p>
+            </div>
+          </div>
+          
+          <p class="content-text">湖南省非物质文化遗产保护中心成立于2008年，是湖南省文化和旅游厅直属事业单位，负责全省非物质文化遗产的保护、研究、传承和宣传工作。中心以"保护为主、抢救第一、合理利用、传承发展"为工作方针，致力于湖湘非物质文化遗产的数字化保护与活态传承。</p>
+          
+          <p class="content-text">中心现有专业技术人员<span class="highlight">56名</span>，其中高级职称<span class="highlight">18名</span>，中级职称<span class="highlight">25名</span>，涵盖民俗学、艺术学、历史学、信息技术等多个学科领域。中心下设保护部、研究部、传承部、数字资源部、宣传教育部等五个业务部门。</p>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-award"></i>
+                </div>
+                <h3 class="card-title">保护成果</h3>
+              </div>
+              <p>成功申报国家级非遗代表性项目<span class="highlight">121项</span>，省级项目<span class="highlight">358项</span>，建立非遗传承基地<span class="highlight">45个</span>。</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+                <h3 class="card-title">传承队伍</h3>
+              </div>
+              <p>认定国家级非遗代表性传承人<span class="highlight">78位</span>，省级传承人<span class="highlight">356位</span>，培训青年传承人<span class="highlight">1200余人</span>。</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-database"></i>
+                </div>
+                <h3 class="card-title">数字资源</h3>
+              </div>
+              <p>完成数字化记录项目<span class="highlight">215项</span>，建立专题资源库<span class="highlight">12个</span>，数字资源总量<span class="highlight">8.7TB</span>。</p>
+            </div>
+          </div>
+          
+          <div class="image-gallery">
+            <div class="gallery-item">
+              <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="非遗展示">
+              <div class="image-caption">非遗展示活动</div>
+            </div>
+            <div class="gallery-item">
+              <img src="https://images.unsplash.com/photo-1511192336575-5a79af67a629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="湘绣技艺">
+              <div class="image-caption">湘绣技艺传承</div>
+            </div>
+            <div class="gallery-item">
+              <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="传统戏曲">
+              <div class="image-caption">传统戏曲表演</div>
+            </div>
+            <div class="gallery-item">
+              <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="非遗研讨会">
+              <div class="image-caption">非遗学术研讨会</div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 组织机构 -->
+        <section id="section-organization" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-sitemap"></i>
+            </div>
+            <div>
+              <h2 class="section-title">组织机构</h2>
+              <p class="section-subtitle">湖南省非物质文化遗产保护中心组织架构</p>
+            </div>
+          </div>
+          
+          <p class="content-text">中心实行主任负责制，下设五个业务部门和一个综合办公室，各部门分工明确，协同推进全省非物质文化遗产保护工作。</p>
+          
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th>部门名称</th>
+                <th>主要职责</th>
+                <th>联系方式</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>保护部</td>
+                <td>非遗项目调查、记录、建档，代表性项目与传承人申报与管理</td>
+                <td>0731-8888 0001</td>
+              </tr>
+              <tr>
+                <td>研究部</td>
+                <td>非遗理论研究，学术交流，编辑出版学术成果</td>
+                <td>0731-8888 0002</td>
+              </tr>
+              <tr>
+                <td>传承部</td>
+                <td>传承人培训，传承基地建设，传习活动组织</td>
+                <td>0731-8888 0003</td>
+              </tr>
+              <tr>
+                <td>数字资源部</td>
+                <td>非遗数字化采集、存储、管理，数字资源平台建设与维护</td>
+                <td>0731-8888 0004</td>
+              </tr>
+              <tr>
+                <td>宣传教育部</td>
+                <td>非遗宣传推广，教育培训，展览展示活动组织</td>
+                <td>0731-8888 0005</td>
+              </tr>
+              <tr>
+                <td>综合办公室</td>
+                <td>行政事务，财务人事，后勤保障，内外协调</td>
+                <td>0731-8888 0006</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <!-- 工作职责 -->
+        <section id="section-responsibility" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <div>
+              <h2 class="section-title">工作职责</h2>
+              <p class="section-subtitle">湖南省非物质文化遗产保护中心主要工作职责</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-search"></i>
+                </div>
+                <h3 class="card-title">调查与记录</h3>
+              </div>
+              <p>组织开展全省非物质文化遗产资源的普查、调查、认定和记录工作，建立完整的非遗档案和数据库。</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="card-title">保护与保存</h3>
+              </div>
+              <p>制定和实施非物质文化遗产保护规划，组织开展抢救性保护工作，确保珍贵非遗项目的存续。</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3 class="card-title">传承与传播</h3>
+              </div>
+              <p>组织开展非遗传承人培训，支持传承基地建设，推动非遗进校园、进社区，促进非遗的活态传承。</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-book"></i>
+                </div>
+                <h3 class="card-title">研究与出版</h3>
+              </div>
+              <p>开展非遗理论研究，组织学术交流活动，编辑出版非遗研究成果和普及读物。</p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 联系方式 -->
+        <section id="section-contact" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-address-card"></i>
+            </div>
+            <div>
+              <h2 class="section-title">联系方式</h2>
+              <p class="section-subtitle">湖南省非物质文化遗产保护中心联系信息</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3 class="card-title">办公地址</h3>
+              </div>
+              <p>湖南省长沙市芙蓉区韶山北路123号</p>
+              <p>湖南省文化馆大楼5层</p>
+              <p>邮编：410000</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <h3 class="card-title">联系电话</h3>
+              </div>
+              <p>综合办公室：0731-8888 0006</p>
+              <p>保护部：0731-8888 0001</p>
+              <p>研究部：0731-8888 0002</p>
+              <p>传真：0731-8888 0000</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <h3 class="card-title">电子邮箱</h3>
+              </div>
+              <p>办公室：office@hunanfeiyi.cn</p>
+              <p>保护部：protect@hunanfeiyi.cn</p>
+              <p>研究部：research@hunanfeiyi.cn</p>
+              <p>宣传教育部：edu@hunanfeiyi.cn</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="card-title">办公时间</h3>
+              </div>
+              <p>周一至周五：上午8:30-12:00</p>
+              <p>下午14:00-17:30</p>
+              <p>（法定节假日除外）</p>
+            </div>
+          </div>
+          
+          <div class="content-text">
+            <h4>来访路线</h4>
+            <p><strong>公共交通：</strong>乘坐地铁2号线至芙蓉广场站，从3号出口出站，步行约500米即到。或乘坐公交车1路、101路、112路至韶山北路站下车。</p>
+            <p><strong>自驾车辆：</strong>导航至"湖南省文化馆"，馆内设有停车场。</p>
+          </div>
+        </section>
+      </main>
+    </div>
+    
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="backToTopInstitution">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+  </div>
+
+  <!-- 政策法规页面 -->
+  <div id="policy-page" class="page-content policy-page">
+    <h1 class="page-title">政策法规</h1>
+    
+    <div class="main-container">
+      <!-- 左侧导航菜单 -->
+      <aside class="sidebar">
+        <nav class="nav-menu">
+          <div class="nav-item active" data-target="section-policy">
+            <i class="fas fa-file-alt"></i>
+            <span>政策文件</span>
+          </div>
+          <div class="nav-item" data-target="section-interpretation">
+            <i class="fas fa-comments"></i>
+            <span>政策解读</span>
+          </div>
+          <div class="nav-item" data-target="section-dynamic">
+            <i class="fas fa-newspaper"></i>
+            <span>法规动态</span>
+          </div>
+          <div class="nav-item" data-target="section-notice">
+            <i class="fas fa-bullhorn"></i>
+            <span>通知公告</span>
+          </div>
+          <div class="nav-item" data-target="section-legal">
+            <i class="fas fa-gavel"></i>
+            <span>法律框架</span>
+          </div>
+          <div class="nav-item" data-target="section-application">
+            <i class="fas fa-clipboard-list"></i>
+            <span>申报指南</span>
+          </div>
+          <div class="nav-item" data-target="section-download">
+            <i class="fas fa-download"></i>
+            <span>下载中心</span>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- 右侧内容区域 -->
+      <main class="content">
+        <!-- 政策文件 -->
+        <section id="section-policy" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div>
+              <h2 class="section-title">政策文件</h2>
+              <p class="section-subtitle">非物质文化遗产保护相关政策文件</p>
+            </div>
+          </div>
+          
+          <div class="content-text">
+            <p>以下是湖南省非物质文化遗产保护相关的主要政策文件，按发布时间排序。点击文件名可查看详细信息，点击下载按钮可获取完整PDF版本。</p>
+          </div>
+          
+          <div class="content-text">
+            <span class="tag tag-important">最新</span>
+            <span class="tag tag-new">2024年</span>
+            <span class="tag tag-law">法律法规</span>
+          </div>
+          
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th>文件名称</th>
+                <th>文号</th>
+                <th>发布单位</th>
+                <th>发布日期</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>《湖南省非物质文化遗产保护条例》</td>
+                <td>湘文旅发〔2023〕15号</td>
+                <td>湖南省文化和旅游厅</td>
+                <td>2023-08-15</td>
+                <td><button class="download-btn" style="padding: 5px 10px; font-size: 0.9rem;">下载</button></td>
+              </tr>
+              <tr>
+                <td>《关于进一步加强非物质文化遗产保护工作的实施意见》</td>
+                <td>湘政办发〔2022〕42号</td>
+                <td>湖南省人民政府办公厅</td>
+                <td>2022-11-30</td>
+                <td><button class="download-btn" style="padding: 5px 10px; font-size: 0.9rem;">下载</button></td>
+              </tr>
+              <tr>
+                <td>《湖南省非物质文化遗产代表性项目管理办法》</td>
+                <td>湘文旅规〔2022〕8号</td>
+                <td>湖南省文化和旅游厅</td>
+                <td>2022-06-20</td>
+                <td><button class="download-btn" style="padding: 5px 10px; font-size: 0.9rem;">下载</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <!-- 政策解读 -->
+        <section id="section-interpretation" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div>
+              <h2 class="section-title">政策解读</h2>
+              <p class="section-subtitle">非物质文化遗产保护政策解读与说明</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-book-open"></i>
+                </div>
+                <h3 class="card-title">《湖南省非物质文化遗产保护条例》解读</h3>
+              </div>
+              <p>详细解读条例的立法背景、主要内容、实施要点和重要意义，帮助社会各界更好地理解和执行条例规定。</p>
+              <div class="expandable-content" id="interpretation1">
+                <p><strong>立法背景：</strong>为加强湖南省非物质文化遗产保护工作，继承和弘扬优秀传统文化，根据《中华人民共和国非物质文化遗产法》等法律法规，结合本省实际制定本条例。</p>
+                <p><strong>主要内容：</strong>包括总则、调查与保存、代表性项目名录、传承与传播、保障措施、法律责任等七章共四十二条。</p>
+                <p><strong>实施要点：</strong>明确了各级政府及有关部门的职责，规定了非遗保护的具体措施，建立了非遗代表性项目名录制度和传承人认定制度。</p>
+              </div>
+              <button class="expand-btn" onclick="toggleExpand('interpretation1')">
+                <i class="fas fa-chevron-down"></i>
+                <span>展开详情</span>
+              </button>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-question-circle"></i>
+                </div>
+                <h3 class="card-title">非遗代表性项目申报常见问题解答</h3>
+              </div>
+              <p>针对非遗代表性项目申报过程中常见的问题进行解答，帮助申报单位更好地准备申报材料。</p>
+              <div class="expandable-content" id="interpretation2">
+                <p><strong>Q1：哪些项目可以申报非遗代表性项目？</strong></p>
+                <p>A：具有重要历史、文学、艺术、科学价值，体现中华民族优秀传统文化，在湖南省行政区域内流传三代以上，具有清晰的传承谱系和广泛的群众基础的项目。</p>
+                <p><strong>Q2：申报材料需要准备哪些？</strong></p>
+                <p>A：包括项目申报书、项目简介、传承情况说明、保护计划、申报录像片、辅助材料等。</p>
+                <p><strong>Q3：申报流程是怎样的？</strong></p>
+                <p>A：申报单位向所在地县级文化和旅游主管部门提出申请，经逐级审核推荐后，由省文化和旅游厅组织专家评审，公示后公布。</p>
+              </div>
+              <button class="expand-btn" onclick="toggleExpand('interpretation2')">
+                <i class="fas fa-chevron-down"></i>
+                <span>展开详情</span>
+              </button>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 法规动态 -->
+        <section id="section-dynamic" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-newspaper"></i>
+            </div>
+            <div>
+              <h2 class="section-title">法规动态</h2>
+              <p class="section-subtitle">非物质文化遗产法规最新动态</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3 class="card-title">《湖南省非遗保护条例》实施一周年成效显著</h3>
+              </div>
+              <p>2024年8月15日，《湖南省非物质文化遗产保护条例》实施一周年，全省非遗保护工作取得显著成效。</p>
+              <p class="content-text" style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                <i class="far fa-calendar-alt" style="margin-right: 5px;"></i>2024-08-15
+              </p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-gavel"></i>
+                </div>
+                <h3 class="card-title">国家非遗保护法修订草案征求意见</h3>
+              </div>
+              <p>2024年6月，国家文化和旅游部就《中华人民共和国非物质文化遗产法》修订草案公开征求意见。</p>
+              <p class="content-text" style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                <i class="far fa-calendar-alt" style="margin-right: 5px;"></i>2024-06-10
+              </p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 通知公告 -->
+        <section id="section-notice" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-bullhorn"></i>
+            </div>
+            <div>
+              <h2 class="section-title">通知公告</h2>
+              <p class="section-subtitle">非物质文化遗产保护相关通知公告</p>
+            </div>
+          </div>
+          
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th>标题</th>
+                <th>发布单位</th>
+                <th>发布日期</th>
+                <th>状态</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>关于开展第六批省级非遗代表性项目申报工作的通知</td>
+                <td>湖南省文化和旅游厅</td>
+                <td>2025-01-15</td>
+                <td><span class="tag tag-important">进行中</span></td>
+              </tr>
+              <tr>
+                <td>关于举办非遗保护政策培训班的通知</td>
+                <td>湖南省非遗保护中心</td>
+                <td>2024-11-20</td>
+                <td><span class="tag tag-new">已完成</span></td>
+              </tr>
+              <tr>
+                <td>关于征集非遗保护典型案例的通知</td>
+                <td>湖南省文化和旅游厅</td>
+                <td>2024-10-10</td>
+                <td><span class="tag tag-important">进行中</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <!-- 法律框架 -->
+        <section id="section-legal" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-gavel"></i>
+            </div>
+            <div>
+              <h2 class="section-title">法律框架</h2>
+              <p class="section-subtitle">非物质文化遗产保护法律体系</p>
+            </div>
+          </div>
+          
+          <div class="content-text">
+            <h4>国家级法律法规</h4>
+            <ul>
+              <li><strong>《中华人民共和国非物质文化遗产法》</strong>（2011年颁布）</li>
+              <li><strong>《中华人民共和国文物保护法》</strong>（涉及非遗相关内容）</li>
+              <li><strong>《中华人民共和国传统工艺美术保护条例》</strong></li>
+            </ul>
+            
+            <h4>省级法规规章</h4>
+            <ul>
+              <li><strong>《湖南省非物质文化遗产保护条例》</strong>（2023年颁布）</li>
+              <li><strong>《湖南省传统工艺美术保护办法》</strong></li>
+              <li><strong>《湖南省文化生态保护区管理办法》</strong></li>
+            </ul>
+            
+            <h4>部门规章</h4>
+            <ul>
+              <li><strong>《国家级非物质文化遗产代表性项目管理办法》</strong></li>
+              <li><strong>《国家级非物质文化遗产代表性传承人认定与管理办法》</strong></li>
+              <li><strong>《国家级文化生态保护区管理办法》</strong></li>
+            </ul>
+          </div>
+        </section>
+        
+        <!-- 申报指南 -->
+        <section id="section-application" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-clipboard-list"></i>
+            </div>
+            <div>
+              <h2 class="section-title">申报指南</h2>
+              <p class="section-subtitle">非物质文化遗产项目申报指南</p>
+            </div>
+          </div>
+          
+          <div class="content-text">
+            <h4>申报条件</h4>
+            <ol>
+              <li>具有重要历史、文学、艺术、科学价值；</li>
+              <li>体现中华民族优秀传统文化；</li>
+              <li>在湖南省行政区域内流传三代以上；</li>
+              <li>具有清晰的传承谱系；</li>
+              <li>具有广泛的群众基础和社会影响。</li>
+            </ol>
+            
+            <h4>申报材料</h4>
+            <ol>
+              <li>项目申报书；</li>
+              <li>项目简介（包括分布区域、历史渊源、基本内容、主要特征、重要价值、存续状况等）；</li>
+              <li>传承情况说明；</li>
+              <li>保护计划；</li>
+              <li>有助于说明项目的视听资料、图片等辅助材料。</li>
+            </ol>
+            
+            <h4>申报程序</h4>
+            <ol>
+              <li>申报单位向所在地县级文化和旅游主管部门提出申请；</li>
+              <li>县级文化和旅游主管部门审核后向市级文化和旅游主管部门推荐；</li>
+              <li>市级文化和旅游主管部门审核后向省文化和旅游厅推荐；</li>
+              <li>省文化和旅游厅组织专家评审；</li>
+              <li>评审结果公示；</li>
+              <li>公布省级非物质文化遗产代表性项目名录。</li>
+            </ol>
+          </div>
+        </section>
+        
+        <!-- 下载中心 -->
+        <section id="section-download" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-download"></i>
+            </div>
+            <div>
+              <h2 class="section-title">下载中心</h2>
+              <p class="section-subtitle">政策法规相关文件下载</p>
+            </div>
+          </div>
+          
+          <div class="file-download">
+            <div class="file-info">
+              <div class="file-icon">
+                <i class="fas fa-file-pdf"></i>
+              </div>
+              <div class="file-details">
+                <h4>《湖南省非物质文化遗产保护条例》全文</h4>
+                <div class="file-meta">PDF格式 | 文件大小：2.5MB | 更新日期：2023-08-15</div>
+              </div>
+            </div>
+            <button class="download-btn">下载</button>
+          </div>
+          
+          <div class="file-download">
+            <div class="file-info">
+              <div class="file-icon">
+                <i class="fas fa-file-word"></i>
+              </div>
+              <div class="file-details">
+                <h4>省级非遗代表性项目申报书模板</h4>
+                <div class="file-meta">DOCX格式 | 文件大小：1.2MB | 更新日期：2025-01-15</div>
+              </div>
+            </div>
+            <button class="download-btn">下载</button>
+          </div>
+          
+          <div class="file-download">
+            <div class="file-info">
+              <div class="file-icon">
+                <i class="fas fa-file-excel"></i>
+              </div>
+              <div class="file-details">
+                <h4>非遗保护资金申报表</h4>
+                <div class="file-meta">XLSX格式 | 文件大小：0.8MB | 更新日期：2024-10-20</div>
+              </div>
+            </div>
+            <button class="download-btn">下载</button>
+          </div>
+        </section>
+      </main>
+    </div>
+    
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="backToTopPolicy">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+  </div>
+
+  <!-- 资讯页面 -->
+  <div id="news-page" class="page-content news-page">
+    <h1 class="page-title">最新资讯</h1>
+    
+    <div class="main-container">
+      <!-- 左侧导航菜单 -->
+      <aside class="sidebar">
+        <nav class="nav-menu">
+          <div class="nav-item active" data-target="section-latest">
+            <i class="fas fa-newspaper"></i>
+            <span>最新动态</span>
+          </div>
+          <div class="nav-item" data-target="section-featured">
+            <i class="fas fa-star"></i>
+            <span>重点新闻</span>
+          </div>
+          <div class="nav-item" data-target="section-categories">
+            <i class="fas fa-tags"></i>
+            <span>分类资讯</span>
+          </div>
+          <div class="nav-item" data-target="section-archives">
+            <i class="fas fa-archive"></i>
+            <span>新闻归档</span>
+          </div>
+          <div class="nav-item" data-target="section-subscribe">
+            <i class="fas fa-bell"></i>
+            <span>订阅资讯</span>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- 右侧内容区域 -->
+      <main class="content">
+        <!-- 最新动态 -->
+        <section id="section-latest" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-newspaper"></i>
+            </div>
+            <div>
+              <h2 class="section-title">最新动态</h2>
+              <p class="section-subtitle">湖南省非物质文化遗产最新资讯</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-globe-asia"></i>
+                </div>
+                <h3 class="card-title">湘绣技艺入选联合国教科文组织人类非物质文化遗产代表作名录</h3>
+              </div>
+              <p>2025年9月28日，湘绣技艺成功入选联合国教科文组织人类非物质文化遗产代表作名录，标志着湖南非遗保护工作取得重大突破。</p>
+              <p class="content-text" style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                <i class="far fa-calendar-alt" style="margin-right: 5px;"></i>2025-09-28
+                <span style="margin-left: 15px;"><i class="far fa-eye" style="margin-right: 5px;"></i>1,245次阅读</span>
+              </p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-award"></i>
+                </div>
+                <h3 class="card-title">湖南省新增15项省级非物质文化遗产代表性项目</h3>
+              </div>
+              <p>2025年9月20日，湖南省文化和旅游厅公布新一批省级非物质文化遗产代表性项目名录，新增15项具有重要价值的非遗项目。</p>
+              <p class="content-text" style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                <i class="far fa-calendar-alt" style="margin-right: 5px;"></i>2025-09-20
+                <span style="margin-left: 15px;"><i class="far fa-eye" style="margin-right: 5px;"></i>892次阅读</span>
+              </p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="card-title">"非遗进校园"系列活动在全省中小学展开</h3>
+              </div>
+              <p>2025年9月10日起，"非遗进校园"系列活动在全省中小学全面展开，让青少年近距离感受非遗魅力，增强文化自信。</p>
+              <p class="content-text" style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                <i class="far fa-calendar-alt" style="margin-right: 5px;"></i>2025-09-10
+                <span style="margin-left: 15px;"><i class="far fa-eye" style="margin-right: 5px;"></i>756次阅读</span>
+              </p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 重点新闻 -->
+        <section id="section-featured" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div>
+              <h2 class="section-title">重点新闻</h2>
+              <p class="section-subtitle">非物质文化遗产保护重点新闻报道</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-trophy"></i>
+                </div>
+                <h3 class="card-title">湖南非遗项目在国家级评选中获得佳绩</h3>
+              </div>
+              <p>在2025年度国家级非物质文化遗产代表性项目评选中，湖南省有8个项目入选，入选数量位居全国前列。</p>
+              <p class="content-text" style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                <i class="far fa-calendar-alt" style="margin-right: 5px;"></i>2025-08-15
+                <span style="margin-left: 15px;"><i class="far fa-eye" style="margin-right: 5px;"></i>1,023次阅读</span>
+              </p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3 class="card-title">非遗助力乡村振兴成果显著</h3>
+              </div>
+              <p>湖南省通过发展非遗产业，带动农村就业，促进农民增收，非遗助力乡村振兴取得显著成效。</p>
+              <p class="content-text" style="margin-top: 10px; font-size: 0.9rem; color: var(--text-light);">
+                <i class="far fa-calendar-alt" style="margin-right: 5px;"></i>2025-07-30
+                <span style="margin-left: 15px;"><i class="far fa-eye" style="margin-right: 5px;"></i>934次阅读</span>
+              </p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 分类资讯 -->
+        <section id="section-categories" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-tags"></i>
+            </div>
+            <div>
+              <h2 class="section-title">分类资讯</h2>
+              <p class="section-subtitle">按类别查看非物质文化遗产资讯</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3 class="card-title">传统美术</h3>
+              </div>
+              <p>湘绣、滩头年画、苗族银饰等传统美术类非遗项目的最新动态。</p>
+              <button class="expand-btn" onclick="showCategoryNews('traditional-art')">
+                <i class="fas fa-chevron-right"></i>
+                <span>查看资讯</span>
+              </button>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-music"></i>
+                </div>
+                <h3 class="card-title">传统表演艺术</h3>
+              </div>
+              <p>花鼓戏、湘剧、侗族大歌等传统表演艺术类非遗项目的最新动态。</p>
+              <button class="expand-btn" onclick="showCategoryNews('performing-art')">
+                <i class="fas fa-chevron-right"></i>
+                <span>查看资讯</span>
+              </button>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-tshirt"></i>
+                </div>
+                <h3 class="card-title">传统技艺</h3>
+              </div>
+              <p>土家织锦、醴陵釉下五彩瓷、黑茶制作等传统技艺类非遗项目的最新动态。</p>
+              <button class="expand-btn" onclick="showCategoryNews('traditional-skills')">
+                <i class="fas fa-chevron-right"></i>
+                <span>查看资讯</span>
+              </button>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 新闻归档 -->
+        <section id="section-archives" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-archive"></i>
+            </div>
+            <div>
+              <h2 class="section-title">新闻归档</h2>
+              <p class="section-subtitle">按时间查看历史新闻</p>
+            </div>
+          </div>
+          
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th>时间</th>
+                <th>新闻数量</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2025年</td>
+                <td>86篇</td>
+                <td><button class="download-btn" style="padding: 5px 10px; font-size: 0.9rem;">查看</button></td>
+              </tr>
+              <tr>
+                <td>2024年</td>
+                <td>124篇</td>
+                <td><button class="download-btn" style="padding: 5px 10px; font-size: 0.9rem;">查看</button></td>
+              </tr>
+              <tr>
+                <td>2023年</td>
+                <td>98篇</td>
+                <td><button class="download-btn" style="padding: 5px 10px; font-size: 0.9rem;">查看</button></td>
+              </tr>
+              <tr>
+                <td>2022年及以前</td>
+                <td>256篇</td>
+                <td><button class="download-btn" style="padding: 5px 10px; font-size: 0.9rem;">查看</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <!-- 订阅资讯 -->
+        <section id="section-subscribe" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-bell"></i>
+            </div>
+            <div>
+              <h2 class="section-title">订阅资讯</h2>
+              <p class="section-subtitle">订阅非物质文化遗产最新资讯</p>
+            </div>
+          </div>
+          
+          <div class="content-text">
+            <p>订阅我们的资讯服务，第一时间获取湖南省非物质文化遗产保护的最新动态、政策解读、活动通知等信息。</p>
+          </div>
+          
+          <div class="form-group">
+            <label for="subscribe-email">电子邮箱</label>
+            <input type="email" class="form-control" id="subscribe-email" placeholder="请输入您的电子邮箱">
+          </div>
+          
+          <div class="form-group">
+            <label>订阅类别</label>
+            <div>
+              <input type="checkbox" id="category1" checked>
+              <label for="category1" style="display: inline; margin-left: 5px;">最新动态</label>
+            </div>
+            <div>
+              <input type="checkbox" id="category2" checked>
+              <label for="category2" style="display: inline; margin-left: 5px;">政策法规</label>
+            </div>
+            <div>
+              <input type="checkbox" id="category3">
+              <label for="category3" style="display: inline; margin-left: 5px;">活动通知</label>
+            </div>
+            <div>
+              <input type="checkbox" id="category4">
+              <label for="category4" style="display: inline; margin-left: 5px;">学术研究</label>
+            </div>
+          </div>
+          
+          <button class="submit-btn" onclick="subscribeNews()">订阅资讯</button>
+        </section>
+      </main>
+    </div>
+    
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="backToTopNews">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+  </div>
+  
+  <!-- 清单页面 -->
+  <div id="list-page" class="page-content list-page">
+    <h1 class="page-title">项目清单</h1>
+    
+    <div class="main-container">
+      <!-- 左侧导航菜单 -->
+      <aside class="sidebar">
+        <nav class="nav-menu">
+          <div class="nav-item active" data-target="section-national">
+            <i class="fas fa-flag"></i>
+            <span>国家级项目</span>
+          </div>
+          <div class="nav-item" data-target="section-provincial">
+            <i class="fas fa-landmark"></i>
+            <span>省级项目</span>
+          </div>
+          <div class="nav-item" data-target="section-categories">
+            <i class="fas fa-list"></i>
+            <span>分类统计</span>
+          </div>
+          <div class="nav-item" data-target="section-regions">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>地区分布</span>
+          </div>
+          <div class="nav-item" data-target="section-download">
+            <i class="fas fa-download"></i>
+            <span>名录下载</span>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- 右侧内容区域 -->
+      <main class="content">
+        <!-- 国家级项目 -->
+        <section id="section-national" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-flag"></i>
+            </div>
+            <div>
+              <h2 class="section-title">国家级非物质文化遗产代表性项目</h2>
+              <p class="section-subtitle">湖南省国家级非遗项目名录（部分）</p>
+            </div>
+          </div>
+          
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>项目名称</th>
+                <th>类别</th>
+                <th>申报地区</th>
+                <th>批次</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>湘绣</td>
+                <td><span class="tag tag-important">传统美术</span></td>
+                <td>长沙市</td>
+                <td>第一批</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>湖南花鼓戏</td>
+                <td><span class="tag tag-important">传统戏剧</span></td>
+                <td>湖南省</td>
+                <td>第一批</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>土家织锦技艺</td>
+                <td><span class="tag tag-important">传统技艺</span></td>
+                <td>湘西土家族苗族自治州</td>
+                <td>第一批</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>醴陵釉下五彩瓷烧制技艺</td>
+                <td><span class="tag tag-important">传统技艺</span></td>
+                <td>醴陵市</td>
+                <td>第一批</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>湘剧</td>
+                <td><span class="tag tag-important">传统戏剧</span></td>
+                <td>长沙市</td>
+                <td>第一批</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <!-- 省级项目 -->
+        <section id="section-provincial" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-landmark"></i>
+            </div>
+            <div>
+              <h2 class="section-title">省级非物质文化遗产代表性项目</h2>
+              <p class="section-subtitle">湖南省省级非遗项目名录（部分）</p>
+            </div>
+          </div>
+          
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>项目名称</th>
+                <th>类别</th>
+                <th>申报地区</th>
+                <th>批次</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>长沙窑铜官陶瓷烧制技艺</td>
+                <td><span class="tag tag-important">传统技艺</span></td>
+                <td>长沙市</td>
+                <td>第一批</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>岳阳巴陵戏</td>
+                <td><span class="tag tag-important">传统戏剧</span></td>
+                <td>岳阳市</td>
+                <td>第一批</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>湘西苗族鼓舞</td>
+                <td><span class="tag tag-important">传统舞蹈</span></td>
+                <td>湘西土家族苗族自治州</td>
+                <td>第二批</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>常德丝弦</td>
+                <td><span class="tag tag-important">传统曲艺</span></td>
+                <td>常德市</td>
+                <td>第一批</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>益阳小郁竹艺</td>
+                <td><span class="tag tag-important">传统技艺</span></td>
+                <td>益阳市</td>
+                <td>第三批</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <!-- 分类统计 -->
+        <section id="section-categories" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-list"></i>
+            </div>
+            <div>
+              <h2 class="section-title">分类统计</h2>
+              <p class="section-subtitle">湖南省非物质文化遗产项目分类统计</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-book"></i>
+                </div>
+                <h3 class="card-title">民间文学</h3>
+              </div>
+              <p>国家级：8项</p>
+              <p>省级：45项</p>
+              <p>总计：53项</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-music"></i>
+                </div>
+                <h3 class="card-title">传统音乐</h3>
+              </div>
+              <p>国家级：12项</p>
+              <p>省级：65项</p>
+              <p>总计：77项</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-dancing"></i>
+                </div>
+                <h3 class="card-title">传统舞蹈</h3>
+              </div>
+              <p>国家级：9项</p>
+              <p>省级：58项</p>
+              <p>总计：67项</p>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-theater-masks"></i>
+                </div>
+                <h3 class="card-title">传统戏剧</h3>
+              </div>
+              <p>国家级：15项</p>
+              <p>省级：72项</p>
+              <p>总计：87项</p>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 地区分布 -->
+        <section id="section-regions" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h2 class="section-title">地区分布</h2>
+              <p class="section-subtitle">湖南省非物质文化遗产项目地区分布</p>
+            </div>
+          </div>
+          
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th>地区</th>
+                <th>国家级项目</th>
+                <th>省级项目</th>
+                <th>总计</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>长沙市</td>
+                <td>18</td>
+                <td>86</td>
+                <td>104</td>
+              </tr>
+              <tr>
+                <td>湘西土家族苗族自治州</td>
+                <td>24</td>
+                <td>92</td>
+                <td>116</td>
+              </tr>
+              <tr>
+                <td>岳阳市</td>
+                <td>12</td>
+                <td>58</td>
+                <td>70</td>
+              </tr>
+              <tr>
+                <td>常德市</td>
+                <td>10</td>
+                <td>52</td>
+                <td>62</td>
+              </tr>
+              <tr>
+                <td>怀化市</td>
+                <td>14</td>
+                <td>68</td>
+                <td>82</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <!-- 名录下载 -->
+        <section id="section-download" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-download"></i>
+            </div>
+            <div>
+              <h2 class="section-title">名录下载</h2>
+              <p class="section-subtitle">非物质文化遗产项目名录下载</p>
+            </div>
+          </div>
+          
+          <div class="file-download">
+            <div class="file-info">
+              <div class="file-icon">
+                <i class="fas fa-file-excel"></i>
+              </div>
+              <div class="file-details">
+                <h4>湖南省国家级非遗代表性项目名录（完整版）</h4>
+                <div class="file-meta">XLSX格式 | 文件大小：1.8MB | 更新日期：2025-09-20</div>
+              </div>
+            </div>
+            <button class="download-btn">下载</button>
+          </div>
+          
+          <div class="file-download">
+            <div class="file-info">
+              <div class="file-icon">
+                <i class="fas fa-file-excel"></i>
+              </div>
+              <div class="file-details">
+                <h4>湖南省省级非遗代表性项目名录（完整版）</h4>
+                <div class="file-meta">XLSX格式 | 文件大小：3.2MB | 更新日期：2025-09-20</div>
+              </div>
+            </div>
+            <button class="download-btn">下载</button>
+          </div>
+          
+          <div class="file-download">
+            <div class="file-info">
+              <div class="file-icon">
+                <i class="fas fa-file-pdf"></i>
+              </div>
+              <div class="file-details">
+                <h4>湖南省非遗项目分布图</h4>
+                <div class="file-meta">PDF格式 | 文件大小：5.6MB | 更新日期：2025-08-15</div>
+              </div>
+            </div>
+            <button class="download-btn">下载</button>
+          </div>
+        </section>
+      </main>
+    </div>
+    
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="backToTopList">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+  </div>
+  
+  <!-- 百科页面 -->
+  <div id="encyclopedia-page" class="page-content encyclopedia-page">
+    <h1 class="page-title">非遗百科</h1>
+    
+    <div class="main-container">
+      <!-- 左侧导航菜单 -->
+      <aside class="sidebar">
+        <nav class="nav-menu">
+          <div class="nav-item active" data-target="section-guide">
+            <i class="fas fa-book"></i>
+            <span>申报指南</span>
+          </div>
+          <div class="nav-item" data-target="section-knowledge">
+            <i class="fas fa-lightbulb"></i>
+            <span>知识窗</span>
+          </div>
+          <div class="nav-item" data-target="section-terms">
+            <i class="fas fa-glossary"></i>
+            <span>术语解释</span>
+          </div>
+          <div class="nav-item" data-target="section-faq">
+            <i class="fas fa-question-circle"></i>
+            <span>常见问题</span>
+          </div>
+          <div class="nav-item" data-target="section-history">
+            <i class="fas fa-history"></i>
+            <span>发展历史</span>
+          </div>
+          <div class="nav-item" data-target="section-cases">
+            <i class="fas fa-clipboard-check"></i>
+            <span>成功案例</span>
+          </div>
+          <div class="nav-item" data-target="section-quiz">
+            <i class="fas fa-gamepad"></i>
+            <span>知识问答</span>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- 右侧内容区域 -->
+      <main class="content">
+        <!-- 申报指南 -->
+        <section id="section-guide" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <div>
+              <h2 class="section-title">申报指南</h2>
+              <p class="section-subtitle">非物质文化遗产项目申报流程与要求</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-landmark"></i>
+                </div>
+                <h3 class="card-title">湖南省非遗代表性项目</h3>
+              </div>
+              <p>申报省级非遗代表性项目的条件、流程、材料要求及相关注意事项。</p>
+              <div class="expandable-content" id="guide1">
+                <p><strong>申报条件：</strong></p>
+                <ul>
+                  <li>具有重要历史、文学、艺术、科学价值</li>
+                  <li>体现中华民族优秀传统文化</li>
+                  <li>在湖南省行政区域内流传三代以上</li>
+                  <li>具有清晰的传承谱系</li>
+                  <li>具有广泛的群众基础和社会影响</li>
+                </ul>
+              </div>
+              <button class="expand-btn" onclick="toggleExpand('guide1')">
+                <i class="fas fa-chevron-down"></i>
+                <span>展开详情</span>
+              </button>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 class="card-title">湖南省非遗代表性传承人</h3>
+              </div>
+              <p>申报省级非遗代表性传承人的条件、流程、材料要求及相关注意事项。</p>
+              <div class="expandable-content" id="guide2">
+                <p><strong>申报条件：</strong></p>
+                <ul>
+                  <li>完整掌握并承续某项省级非遗代表性项目</li>
+                  <li>在该项目相关领域内具有代表性和较大影响</li>
+                  <li>积极开展传承活动，培养后继人才</li>
+                  <li>爱国敬业，遵纪守法，德艺双馨</li>
+                  <li>居住或长期工作在湖南省行政区域内</li>
+                </ul>
+              </div>
+              <button class="expand-btn" onclick="toggleExpand('guide2')">
+                <i class="fas fa-chevron-down"></i>
+                <span>展开详情</span>
+              </button>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-route"></i>
+                </div>
+                <h3 class="card-title">湖南省文化生态保护区</h3>
+              </div>
+              <p>设立省级文化生态保护区的条件、流程、材料要求及相关注意事项。</p>
+              <div class="expandable-content" id="guide3">
+                <p><strong>申报条件：</strong></p>
+                <ul>
+                  <li>非物质文化遗产资源丰富、形式多样、特色鲜明</li>
+                  <li>非物质文化遗产存续状态良好，传承实践活跃</li>
+                  <li>非物质文化遗产与当地自然环境、历史遗迹等结合紧密</li>
+                  <li>当地政府和社区、群体保护意识强</li>
+                  <li>已建立有效的非物质文化遗产保护工作机制</li>
+                </ul>
+              </div>
+              <button class="expand-btn" onclick="toggleExpand('guide3')">
+                <i class="fas fa-chevron-down"></i>
+                <span>展开详情</span>
+              </button>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 知识窗 -->
+        <section id="section-knowledge" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <div>
+              <h2 class="section-title">知识窗</h2>
+              <p class="section-subtitle">非物质文化遗产基础知识</p>
+            </div>
+          </div>
+          
+          <div class="card-grid">
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-question"></i>
+                </div>
+                <h3 class="card-title">什么是非物质文化遗产？</h3>
+              </div>
+              <p>非物质文化遗产是指各族人民世代相传并视为其文化遗产组成部分的各种传统文化表现形式，以及与传统文化表现形式相关的实物和场所。</p>
+              <div class="expandable-content" id="knowledge1">
+                <p>根据《中华人民共和国非物质文化遗产法》，非物质文化遗产包括：</p>
+                <ol>
+                  <li>传统口头文学以及作为其载体的语言；</li>
+                  <li>传统美术、书法、音乐、舞蹈、戏剧、曲艺和杂技；</li>
+                  <li>传统技艺、医药和历法；</li>
+                  <li>传统礼仪、节庆等民俗；</li>
+                  <li>传统体育和游艺；</li>
+                  <li>其他非物质文化遗产。</li>
+                </ol>
+              </div>
+              <button class="expand-btn" onclick="toggleExpand('knowledge1')">
+                <i class="fas fa-chevron-down"></i>
+                <span>展开详情</span>
+              </button>
+            </div>
+            
+            <div class="info-card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <i class="fas fa-history"></i>
+                </div>
+                <h3 class="card-title">非遗保护的基本原则</h3>
+              </div>
+              <p>非物质文化遗产保护工作应当贯彻"保护为主、抢救第一、合理利用、传承发展"的方针。</p>
+              <div class="expandable-content" id="knowledge2">
+                <p><strong>保护为主：</strong>将非遗保护放在首位，确保非遗的真实性、完整性。</p>
+                <p><strong>抢救第一：</strong>对濒危非遗项目优先进行抢救性保护。</p>
+                <p><strong>合理利用：</strong>在保护的基础上合理利用非遗资源。</p>
+                <p><strong>传承发展：</strong>推动非遗的活态传承和创新发展。</p>
+              </div>
+              <button class="expand-btn" onclick="toggleExpand('knowledge2')">
+                <i class="fas fa-chevron-down"></i>
+                <span>展开详情</span>
+              </button>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 术语解释 -->
+        <section id="section-terms" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-glossary"></i>
+            </div>
+            <div>
+              <h2 class="section-title">术语解释</h2>
+              <p class="section-subtitle">非物质文化遗产相关术语解释</p>
+            </div>
+          </div>
+          
+          <table class="info-table">
+            <thead>
+              <tr>
+                <th>术语</th>
+                <th>解释</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>非物质文化遗产</td>
+                <td>指各族人民世代相传并视为其文化遗产组成部分的各种传统文化表现形式，以及与传统文化表现形式相关的实物和场所。</td>
+              </tr>
+              <tr>
+                <td>代表性项目</td>
+                <td>经政府认定并列入非物质文化遗产代表性项目名录的非物质文化遗产项目。</td>
+              </tr>
+              <tr>
+                <td>代表性传承人</td>
+                <td>经政府认定，承担非物质文化遗产代表性项目传承责任，在特定领域内具有代表性，并在一定区域内有较大影响的人员。</td>
+              </tr>
+              <tr>
+                <td>文化生态保护区</td>
+                <td>以保护非物质文化遗产为核心，对历史文化积淀丰厚、存续状态良好，具有重要价值和鲜明特色的文化形态进行整体性保护的区域。</td>
+              </tr>
+              <tr>
+                <td>活态传承</td>
+                <td>非物质文化遗产在人民群众生产生活中传承和发展的状态。</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <!-- 知识问答小游戏 -->
+        <section id="section-quiz" class="content-section">
+          <div class="section-header">
+            <div class="section-icon">
+              <i class="fas fa-gamepad"></i>
+            </div>
+            <div>
+              <h2 class="section-title">知识问答</h2>
+              <p class="section-subtitle">非物质文化遗产知识问答小游戏</p>
+            </div>
+          </div>
+          
+          <div class="quiz-game" id="quizGame">
+            <div class="quiz-header">
+              <h3 class="quiz-title">非遗知识挑战</h3>
+              <div class="quiz-progress" id="quizProgress">第1题/共5题</div>
+            </div>
+            
+            <div class="quiz-question" id="quizQuestion">
+              问题加载中...
+            </div>
+            
+            <div class="quiz-options" id="quizOptions">
+              <!-- 选项将由JavaScript动态生成 -->
+            </div>
+            
+            <div class="quiz-controls" id="quizControls">
+              <button class="quiz-btn quiz-btn-restart" id="quizRestartBtn" style="display: none;">重新开始</button>
+              <button class="quiz-btn quiz-btn-next" id="quizNextBtn">下一题</button>
+            </div>
+            
+            <div class="quiz-result" id="quizResult" style="display: none;">
+              <h3 class="quiz-score" id="quizScore">得分：0/5</h3>
+              <p class="quiz-message" id="quizMessage">测试结果信息</p>
+              <button class="quiz-btn quiz-btn-restart" onclick="restartQuiz()">再玩一次</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="backToTopEncyclopedia">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+  </div>
+
+  <!-- 交互功能元素 -->
+  <div id="counter" style="display: none;">今日标题被点击：0次</div>
+  <button id="backToTopHome">返回<br>首页</button>
+  
+  <script>
+    /* ----------------- 页面切换函数 ----------------- */
+    function showPage(pageId) {
+      // 隐藏所有页面
+      const pages = document.querySelectorAll('.page-content');
+      pages.forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      // 更新导航活动状态
+      const navLinks = document.querySelectorAll('.nav2 a');
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+      
+      // 显示目标页面
+      const targetPage = document.getElementById(pageId + '-page');
+      if (targetPage) {
+        targetPage.classList.add('active');
+        
+        // 找到对应的导航链接并激活
+        navLinks.forEach(link => {
+          if (link.textContent === getPageName(pageId)) {
+            link.classList.add('active');
+          }
+        });
+      }
+      
+      // 滚动到顶部
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // 如果是首页，重新初始化轮播和地图
+      if (pageId === 'home') {
+        initHomePage();
+        // 重新初始化地图
+        setTimeout(initMap, 100);
+      }
+      
+      // 如果是机构或政策页面，初始化内部导航
+      if (pageId === 'institution' || pageId === 'policy' || 
+          pageId === 'resource' || pageId === 'academic' || 
+          pageId === 'news' || pageId === 'list' || 
+          pageId === 'encyclopedia' || pageId === 'solarTerm') {
+        setTimeout(() => {
+          setupPageNavigation(pageId);
+          initBackToTop(pageId);
+        }, 100);
+      }
+      
+      // 如果是百科页面，初始化知识问答游戏
+      if (pageId === 'encyclopedia') {
+        setTimeout(() => {
+          initQuiz();
+        }, 100);
+      }
+      
+      return false; // 阻止链接默认行为
+    }
+    
+    /* ----------------- 获取页面名称 ----------------- */
+    function getPageName(pageId) {
+      const pageNames = {
+        'home': '首页',
+        'institution': '机构',
+        'resource': '资源',
+        'academic': '学术',
+        'news': '资讯',
+        'list': '清单',
+        'policy': '政策',
+        'encyclopedia': '百科'
+      };
+      return pageNames[pageId] || pageId;
+    }
+    
+    /* ----------------- 首页初始化函数 ----------------- */
+    function initHomePage() {
+      // 确保轮播图和其他首页功能正常工作
+      if (typeof initSlides === 'function') {
+        initSlides();
+      }
+    }
+    
+    /* ----------------- 地图初始化 ----------------- */
+    let map = null;
+    
+    function initMap() {
+      // 如果地图容器不存在，直接返回
+      const mapContainer = document.getElementById('hunan-map');
+      if (!mapContainer) return;
+      
+      // 清除已有的地图
+      if (map) {
+        map.remove();
+        map = null;
+      }
+      
+      // 初始化地图
+      map = L.map('hunan-map').setView([27.5, 112.0], 7);
+      
+      // 添加地图底图
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+      
+      // 湖南省各市数据（模拟）
+      const hunanCities = [
+        { name: "长沙市", lat: 28.2, lng: 112.9, projects: 45, inheritors: 120 },
+        { name: "株洲市", lat: 27.8, lng: 113.1, projects: 32, inheritors: 85 },
+        { name: "湘潭市", lat: 27.8, lng: 112.9, projects: 28, inheritors: 76 },
+        { name: "衡阳市", lat: 26.9, lng: 112.6, projects: 38, inheritors: 98 },
+        { name: "邵阳市", lat: 27.2, lng: 111.5, projects: 29, inheritors: 72 },
+        { name: "岳阳市", lat: 29.4, lng: 113.1, projects: 35, inheritors: 92 },
+        { name: "常德市", lat: 29.0, lng: 111.7, projects: 31, inheritors: 80 },
+        { name: "张家界市", lat: 29.1, lng: 110.5, projects: 26, inheritors: 65 },
+        { name: "益阳市", lat: 28.6, lng: 112.3, projects: 27, inheritors: 70 },
+        { name: "郴州市", lat: 25.8, lng: 113.0, projects: 33, inheritors: 88 },
+        { name: "永州市", lat: 26.4, lng: 111.6, projects: 30, inheritors: 78 },
+        { name: "怀化市", lat: 27.6, lng: 110.0, projects: 34, inheritors: 90 },
+        { name: "娄底市", lat: 27.7, lng: 112.0, projects: 25, inheritors: 63 },
+        { name: "湘西土家族苗族自治州", lat: 28.3, lng: 109.7, projects: 40, inheritors: 105 }
+      ];
+      
+      // 创建自定义图标
+      const redIcon = L.divIcon({
+        className: 'red-icon',
+        html: '<div style="background-color: #B73F42; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 5px rgba(0,0,0,0.5);"></div>',
+        iconSize: [16, 16],
+        iconAnchor: [8, 8]
+      });
+      
+      // 添加各市标记
+      hunanCities.forEach(city => {
+        const marker = L.marker([city.lat, city.lng], { icon: redIcon }).addTo(map);
+        
+        // 鼠标悬停显示市名
+        marker.bindTooltip(city.name, {
+          permanent: false,
+          direction: 'top',
+          offset: [0, -8]
+        });
+        
+        // 点击显示详细信息
+        marker.bindPopup(`
+          <div class="map-info">
+            <h4>${city.name}</h4>
+            <p><strong>代表性项目:</strong> ${city.projects} 项</p>
+            <p><strong>代表性传承人:</strong> ${city.inheritors} 人</p>
+          </div>
+        `);
+      });
+      
+      // 添加湖南省边界（简化的多边形）
+      const hunanBounds = [
+        [29.5, 111.0], [29.5, 114.0], [24.5, 114.0], [24.5, 111.0]
+      ];
+      
+      L.polygon(hunanBounds, {
+        color: '#B73F42',
+        weight: 2,
+        fillColor: 'rgba(183,63,66,0.2)',
+        fillOpacity: 0.3
+      }).addTo(map);
+      
+      // 添加动画效果
+      setTimeout(() => {
+        map.invalidateSize();
+        map.setView([27.5, 112.0], 7.5);
+      }, 300);
+    }
+    
+    /* ----------------- 机构/政策页面功能 ----------------- */
+    function setupPageNavigation(pageId) {
+      const currentPage = document.getElementById(pageId + '-page');
+      if (!currentPage) return;
+      
+      const navItems = currentPage.querySelectorAll('.nav-item');
+      
+      navItems.forEach(item => {
+        item.addEventListener('click', function() {
+          // 移除所有导航项的活动状态
+          navItems.forEach(nav => {
+            nav.classList.remove('active');
+          });
+          
+          // 添加当前项的活动状态
+          this.classList.add('active');
+          
+          // 获取目标部分ID
+          const targetId = this.getAttribute('data-target');
+          const targetSection = currentPage.querySelector(`#${targetId}`);
+          
+          // 平滑滚动到目标部分
+          if (targetSection) {
+            window.scrollTo({
+              top: targetSection.offsetTop - 20,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    }
+    
+    function initBackToTop(pageId) {
+      const backToTopButton = document.getElementById(`backToTop${pageId.charAt(0).toUpperCase() + pageId.slice(1)}`);
+      
+      if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+          if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+          } else {
+            backToTopButton.classList.remove('visible');
+          }
+          
+          // 更新导航活动状态基于滚动位置
+          updateActiveNavOnScroll(pageId);
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+    }
+    
+    function updateActiveNavOnScroll(pageId) {
+      const currentPage = document.getElementById(pageId + '-page');
+      if (!currentPage) return;
+      
+      const sections = currentPage.querySelectorAll('.content-section');
+      const navItems = currentPage.querySelectorAll('.nav-item');
+      
+      let currentSectionId = '';
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        
+        if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionBottom) {
+          currentSectionId = section.id;
+        }
+      });
+      
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('data-target') === currentSectionId) {
+          item.classList.add('active');
+        }
+      });
+    }
+    
+    /* ----------------- 交互功能1: 点击标题弹出详情提示 ----------------- */
+    function setupNewsClickEvents() {
+      // 获取所有新闻标题元素
+      const newsTitles = document.querySelectorAll('.news-title, .forum-content, .topic-title');
+      
+      newsTitles.forEach(title => {
+        // 使用 addEventListener 绑定点击事件
+        title.addEventListener('click', function(event) {
+          event.stopPropagation();
+          
+          // 获取新闻内容
+          const newsText = this.textContent.trim();
+          
+          // 弹出详情提示
+          alert(`这是关于"${newsText}"的详细报道。如需了解更多信息，请访问我们的资讯页面或联系相关部门。`);
+          
+          // 同时触发点击计数功能
+          incrementClickCount();
+        });
+      });
+    }
+    
+    /* ----------------- 交互功能2: 鼠标移入新闻标题高亮 ----------------- */
+    function setupNewsHoverEvents() {
+      // 获取所有新闻标题元素
+      const newsTitles = document.querySelectorAll('.news-title, .forum-content, .topic-title');
+      
+      newsTitles.forEach(title => {
+        // 使用 onmouseover 属性赋值方式
+        title.onmouseover = function() {
+          this.classList.add('highlighted');
+        };
+        
+        // 使用 onmouseout 属性赋值方式
+        title.onmouseout = function() {
+          this.classList.remove('highlighted');
+        };
+      });
+    }
+    
+    /* ----------------- 交互功能3: 统计点击次数 ----------------- */
+    let clickCount = 0;
+    
+    function incrementClickCount() {
+      clickCount++;
+      
+      // 更新显示
+      const counterElement = document.getElementById('counter');
+      if (counterElement) {
+        counterElement.textContent = `今日标题被点击：${clickCount}次`;
+        counterElement.style.display = 'block';
+        
+        // 3秒后隐藏
+        setTimeout(() => {
+          counterElement.style.display = 'none';
+        }, 3000);
+      }
+    }
+    
+    /* ----------------- 交互功能4: 返回首页和返回顶部按钮 ----------------- */
+    function setupBackToTopButton() {
+      const backToTopBtn = document.getElementById('backToTopHome');
+      
+      if (backToTopBtn) {
+        // 显示/隐藏按钮
+        window.addEventListener('scroll', () => {
+          if (window.pageYOffset > 300) {
+            backToTopBtn.style.opacity = '1';
+            backToTopBtn.style.visibility = 'visible';
+          } else {
+            backToTopBtn.style.opacity = '0';
+            backToTopBtn.style.visibility = 'hidden';
+          }
+        });
+        
+        // 点击事件
+        backToTopBtn.addEventListener('click', () => {
+          // 切换到首页
+          showPage('home');
+          
+          // 滚动到顶部
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+    }
+    
+    /* ----------------- 交互功能5: 顶部搜索栏功能 ----------------- */
+    function setupTopSearchFunction() {
+      const topSearchInput = document.getElementById('topSearchInput');
+      const topSearchBtn = document.getElementById('topSearchBtn');
+      
+      if (topSearchInput && topSearchBtn) {
+        // 搜索功能
+        topSearchBtn.addEventListener('click', function() {
+          const searchTerm = topSearchInput.value.toLowerCase().trim();
+          
+          if (searchTerm === '') {
+            alert('请输入搜索关键词');
+            return;
+          }
+          
+          // 显示搜索结果提示
+          alert(`正在搜索："${searchTerm}"\n\n搜索结果将显示在页面中。`);
+          
+          // 模拟搜索功能
+          simulateSearch(searchTerm);
+        });
+        
+        // 按回车键搜索
+        topSearchInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            topSearchBtn.click();
+          }
+        });
+      }
+    }
+    
+    function simulateSearch(searchTerm) {
+      // 模拟搜索结果
+      const results = [
+        '湘绣技艺',
+        '花鼓戏',
+        '土家织锦',
+        '醴陵釉下五彩瓷',
+        '苗族银饰',
+        '滩头年画'
+      ];
+      
+      const filteredResults = results.filter(item => 
+        item.toLowerCase().includes(searchTerm)
+      );
+      
+      if (filteredResults.length > 0) {
+        alert(`找到 ${filteredResults.length} 个相关结果：\n\n${filteredResults.join('\n')}`);
+      } else {
+        alert(`未找到与"${searchTerm}"相关的非遗项目。`);
+      }
+    }
+    
+    /* ----------------- 交互功能6: 表单提交功能 ----------------- */
+    function submitFeedback() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      if (!name || !email || !message) {
+        alert('请填写所有必填字段！');
+        return;
+      }
+      
+      // 简单验证邮箱格式
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('请输入有效的邮箱地址！');
+        return;
+      }
+      
+      // 模拟提交成功
+      alert(`感谢 ${name} 的反馈！我们已经收到您的意见，会尽快处理。`);
+      
+      // 清空表单
+      document.getElementById('name').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('message').value = '';
+    }
+    
+    /* ----------------- 交互功能7: 内容展开/折叠 ----------------- */
+    function toggleExpand(elementId) {
+      const element = document.getElementById(elementId);
+      if (!element) return;
+      const button = element.nextElementSibling;
+      
+      if (element.classList.contains('expanded')) {
+        element.classList.remove('expanded');
+        element.style.maxHeight = '0';
+        if (button) {
+          button.innerHTML = '<i class="fas fa-chevron-down"></i><span>展开详情</span>';
+        }
+      } else {
+        element.classList.add('expanded');
+        element.style.maxHeight = element.scrollHeight + 'px';
+        if (button) {
+          button.innerHTML = '<i class="fas fa-chevron-up"></i><span>收起详情</span>';
+        }
+      }
+    }
+    
+    /* ----------------- 交互功能8: 首页板块点击交互效果 ----------------- */
+    function setupSectionClickEffects() {
+      const sections = ['section-one', 'section-two', 'section-three'];
+      
+      sections.forEach(sectionId => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.addEventListener('click', function() {
+            // 添加点击效果
+            this.style.transform = 'translateY(-10px)';
+            this.style.boxShadow = '0 15px 30px rgba(0,0,0,0.2)';
+            this.style.transition = 'all 0.3s ease';
+            
+            // 显示提示信息
+            let message = '';
+            switch(sectionId) {
+              case 'section-one':
+                message = '湖南省非物质文化遗产代表性项目名录展示了十大类非遗项目，点击色块可查看详细信息。';
+                break;
+              case 'section-two':
+                message = '这里展示了最新的非遗动态、论坛讨论和专题报道，点击标题可阅读详情。';
+                break;
+              case 'section-three':
+                message = '湖南省非遗地图显示了各地区非遗项目分布情况，点击地图标记可查看详细信息。';
+                break;
+            }
+            
+            alert(message);
+            
+            // 恢复原状
+            setTimeout(() => {
+              this.style.transform = '';
+              this.style.boxShadow = '';
+            }, 1000);
+          });
+        }
+      });
+    }
+    
+    /* ----------------- 学术论文点击计数 ----------------- */
+    function incrementClick(element) {
+      const counter = element.querySelector('.click-counter span');
+      let count = parseInt(counter.textContent) || 0;
+      count++;
+      counter.textContent = count;
+      
+      // 保存到本地存储
+      const paperTitle = element.querySelector('.card-title').textContent;
+      localStorage.setItem(`paperClick_${paperTitle}`, count);
+    }
+    
+    /* ----------------- 日期显示 ----------------- */
+    (function(){
+      const el = document.getElementById('dateBlock');
+      function updateDate(){
+        const d = new Date();
+        const y = d.getFullYear();
+        const m = d.getMonth()+1;
+        const day = d.getDate();
+        const weekday = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'][d.getDay()];
+        // 农历与二十四节气：示例占位
+        const lunar = '农历：待接入农历库';
+        const solarTerm = '节气：待接入节气库';
+        el.textContent = `${y}年${m}月${day}日  ${weekday}  ${lunar}  ${solarTerm}`;
+      }
+      updateDate();
+      setInterval(updateDate,60*1000);
+    })();
+
+    /* ----------------- 轮播基础逻辑 ----------------- */
+    function initSlides() {
+      const slides = document.getElementById('slides');
+      const dots = Array.from(document.querySelectorAll('.dot'));
+      const total = dots.length; let idx = 0;
+      function show(i){
+        idx = (i + total) % total;
+        slides.style.transform = `translateX(-${idx*100}%)`;
+        dots.forEach(d=>d.classList.remove('active'));
+        dots[idx].classList.add('active');
+      }
+      dots.forEach(d=>d.addEventListener('click', ()=>show(parseInt(d.dataset.index))));
+      show(0);
+      let ticker = setInterval(()=>show(idx+1),4000);
+      // 停止自动播放当用户交互
+      document.getElementById('hero').addEventListener('mouseenter',()=>clearInterval(ticker));
+      document.getElementById('hero').addEventListener('mouseleave',()=>ticker=setInterval(()=>show(idx+1),4000));
+    }
+
+    /* ----------------- 热点推荐轮播（无缝跑马灯） ----------------- */
+    (function () {
+      const hotContent = document.getElementById('hotContent');
+      const hotText = document.getElementById('hotText');
+      if (!hotContent || !hotText) return;
+
+      // 文本内容（可以在这里修改）
+      const text =
+        '花鼓戏 · 湘绣 · 滩头年画 · 土家织锦 · 苗族银饰 · 醴陵釉下五彩瓷';
+      hotText.textContent = text;
+
+      // 取消原来的 CSS 动画，改用 JS 控制
+      hotText.style.animation = 'none';
+
+      // 克隆一份文本，用来实现无缝衔接
+      const clone = hotText.cloneNode(true);
+      clone.removeAttribute('id'); // 避免重复 id
+      hotContent.appendChild(clone);
+
+      let offset = 0;
+      const speed = 0.5; // 每帧移动的像素，可自行调节速度
+
+      function step() {
+        const textWidth = hotText.offsetWidth || 0;
+        if (!textWidth) {
+          requestAnimationFrame(step);
+          return;
+        }
+
+        offset -= speed;
+        // 当第一段文本完全移出视口时，将偏移量重置，实现无缝循环
+        if (-offset >= textWidth) {
+          offset += textWidth;
+        }
+
+        hotText.style.transform = 'translateX(' + offset + 'px)';
+        clone.style.transform = 'translateX(' + (offset + textWidth) + 'px)';
+
+        requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    })();
+
+    /* ----------------- 生成并控制十个竖版色块（错落降落） ----------------- */
+    (function(){
+      const colors = ['#436C85','#DE9960','#82B29B','#C22525','#6F5E56'];
+      const labels = ['民间文学','传统音乐','传统舞蹈','传统戏剧','传统曲艺','传统体育、游艺与杂技','传统美术','传统技艺','传统医药','民俗'];
+      
+      // 装饰SVG图案
+      const decorSVGs = [
+        // 民间文学 - 湘绣花瓣图样
+        '<svg viewBox="0 0 100 100"><path d="M50 10 C70 15 85 35 80 55 C75 75 55 85 35 80 C15 75 5 55 10 35 C15 15 35 5 50 10 Z" fill="white"/><path d="M50 30 C60 32 65 40 63 50 C61 60 55 65 45 63 C35 61 30 55 32 45 C34 35 40 28 50 30 Z" fill="white"/></svg>',
+        // 传统音乐 - 鼓槌与丝线
+        '<svg viewBox="0 0 100 100"><rect x="30" y="20" width="10" height="60" fill="white"/><rect x="60" y="20" width="10" height="60" fill="white"/><path d="M20 50 Q50 30 80 50" stroke="white" stroke-width="3" fill="none"/><path d="M20 60 Q50 40 80 60" stroke="white" stroke-width="3" fill="none"/></svg>',
+        // 传统舞蹈 - 伞面扇形（油纸伞）
+        '<svg viewBox="0 0 100 100"><path d="M50 20 L70 40 L60 70 L40 70 L30 40 Z" fill="white"/><line x1="50" y1="20" x2="50" y2="80" stroke="white" stroke-width="3"/><path d="M30 40 Q50 45 70 40" stroke="white" stroke-width="2" fill="none"/></svg>',
+        // 传统戏剧 - 花鼓戏脸谱线条
+        '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="none"/><circle cx="35" cy="40" r="5" fill="white"/><circle cx="65" cy="40" r="5" fill="white"/><path d="M40 65 Q50 75 60 65" stroke="white" stroke-width="3" fill="none"/></svg>',
+        // 传统曲艺 - 琴弦波纹
+        '<svg viewBox="0 0 100 100"><line x1="30" y1="30" x2="70" y2="30" stroke="white" stroke-width="2"/><line x1="30" y1="40" x2="70" y2="40" stroke="white" stroke-width="2"/><line x1="30" y1="50" x2="70" y2="50" stroke="white" stroke-width="2"/><line x1="30" y1="60" x2="70" y2="60" stroke="white" stroke-width="2"/><line x1="30" y1="70" x2="70" y2="70" stroke="white" stroke-width="2"/><path d="M40 30 Q45 35 50 30 Q55 25 60 30" stroke="white" stroke-width="2" fill="none"/></svg>',
+        // 传统体育 - 太极/山形图案
+        '<svg viewBox="0 0 100 100"><path d="M20 80 L50 30 L80 80 Z" fill="white"/><circle cx="50" cy="50" r="15" stroke="white" stroke-width="3" fill="none"/><circle cx="50" cy="50" r="8" fill="white"/></svg>',
+        // 传统美术 - 毛笔纹理
+        '<svg viewBox="0 0 100 100"><path d="M40 20 L60 20 L55 80 L45 80 Z" fill="white"/><path d="M35 20 L65 20 L70 10 L30 10 Z" fill="white"/><path d="M45 40 Q50 35 55 40" stroke="white" stroke-width="2" fill="none"/></svg>',
+        // 传统技艺 - 织机线纹
+        '<svg viewBox="0 0 100 100"><line x1="20" y1="30" x2="80" y2="30" stroke="white" stroke-width="2"/><line x1="20" y1="45" x2="80" y2="45" stroke="white" stroke-width="2"/><line x1="20" y1="60" x2="80" y2="60" stroke="white" stroke-width="2"/><line x1="20" y1="75" x2="80" y2="75" stroke="white" stroke-width="2"/><line x1="35" y1="20" x2="35" y2="80" stroke="white" stroke-width="2"/><line x1="50" y1="20" x2="50" y2="80" stroke="white" stroke-width="2"/><line x1="65" y1="20" x2="65" y2="80" stroke="white" stroke-width="2"/></svg>',
+        // 传统医药 - 药草叶脉
+        '<svg viewBox="0 0 100 100"><path d="M50 20 L70 40 L65 70 L50 80 L35 70 L30 40 Z" fill="white"/><line x1="50" y1="20" x2="50" y2="80" stroke="white" stroke-width="2"/><line x1="40" y1="30" x2="60" y2="50" stroke="white" stroke-width="2"/><line x1="60" y1="30" x2="40" y2="50" stroke="white" stroke-width="2"/></svg>',
+        // 民俗 - 苗银纹饰线条
+        '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" stroke="white" stroke-width="2" fill="none"/><circle cx="50" cy="50" r="20" stroke="white" stroke-width="2" fill="none"/><circle cx="50" cy="50" r="10" stroke="white" stroke-width="2" fill="none"/><path d="M30 30 L70 70 M70 30 L30 70" stroke="white" stroke-width="2"/></svg>'
+      ];
+      
+      const container = document.getElementById('blocks');
+      if (!container) return;
+      
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+
+      // 为避免相邻相同颜色，先生成一个颜色序列
+      function shuffledColors(n){
+        const out=[];
+        for(let k=0;k<n;k++){
+          // pick a color that's not equal to last
+          let c;
+          do{c = colors[Math.floor(Math.random()*colors.length)];}while(c===out[out.length-1]);
+          out.push(c);
+        }
+        return out;
+      }
+      const colorSeq = shuffledColors(10);
+
+      // 生成不重叠的位置（粗略布局）
+      const positions = [];
+      const cols = 5; const rows = 2; // 5x2 网格中放置10个块，之后微调随机偏移
+      const cellW = width / cols; const cellH = height / rows;
+      for(let r=0;r<rows;r++){
+        for(let c=0;c<cols;c++){
+          const x = c*cellW + (cellW-120)/2 + (Math.random()*cellW- cellW/2)*0.18; // 微偏移
+          const y = r*cellH + (cellH-220)/2 + (Math.random()*cellH - cellH/2)*0.25;
+          positions.push({x,y});
+        }
+      }
+
+      // 创建元素
+      for(let i=0;i<10;i++){
+        const b = document.createElement('div'); b.className='block';
+        b.style.background = colorSeq[i];
+        b.style.left = `${positions[i].x}px`;
+        b.style.top = `-${Math.random()*200 + 80}px`; // 从上方降落
+        b.style.transition = `top 0.9s cubic-bezier(.2,.9,.2,1) ${(i*0.12)}s, transform 0.5s`;
+        
+        // 添加装饰SVG
+        const decor = document.createElement('div');
+        decor.className = 'block-decor';
+        decor.innerHTML = decorSVGs[i];
+        decor.style.transform = `rotate(${Math.random()*20 - 10}deg)`;
+        b.appendChild(decor);
+        
+        const t = document.createElement('div'); t.className='text'; t.textContent = labels[i];
+        b.appendChild(t); container.appendChild(b);
+
+        // 在一定时间后落位
+        setTimeout(()=>{
+          b.style.top = `${positions[i].y}px`;
+          b.style.transform = `rotate(${(Math.random()*8-4)}deg)`;
+        }, 300 + i*120);
+      }
+
+      // 保证最终不重叠：简单碰撞调整（单次扫描）
+      setTimeout(()=>{
+        const elems = Array.from(container.querySelectorAll('.block'));
+        for(let a=0;a<elems.length;a++){
+          const A = elems[a].getBoundingClientRect();
+          for(let b=a+1;b<elems.length;b++){
+            const B = elems[b].getBoundingClientRect();
+            if(!(A.right < B.left || A.left > B.right || A.bottom < B.top || A.top > B.bottom)){
+              // 如果重叠，则把后者微调到右侧或下方
+              elems[b].style.left = (parseFloat(elems[b].style.left) + 40) + 'px';
+            }
+          }
+        }
+      }, 1500);
+
+    })();
+
+    /* ----------------- 传承人列表交互效果 ----------------- */
+    (function() {
+      const masterItems = document.querySelectorAll('.master-item');
+      const masterPhoto = document.querySelector('.master-photo img');
+      const masterName = document.querySelector('.master-name');
+      const masterTitle = document.querySelector('.master-title');
+      const horizontalItems = document.querySelectorAll('.master-horizontal-item');
+      
+      // 传承人数据
+      const mastersData = [
+        {
+          name: '周承云',
+          title: '龙船崽崽 · 国家级传承人',
+          photo: '6.jpg'
+        },
+        {
+          name: '丁小妮',
+          title: '丁小妮 · 省级传承人',
+          photo: '8.jpg'
+        },
+        {
+          name: '栗田梅',
+          title: '侗锦 · 代表性传承人',
+          photo: '侗锦 栗田梅.jpg'
+        },
+        {
+          name: '沈燕希',
+          title: '花瑶挑花 · 代表性传承人',
+          photo: '花瑶挑花 沈燕希.jpg'
+        },
+        {
+          name: '麻茂庭',
+          title: '苗族银饰 · 代表性传承人',
+          photo: '苗族银饰 麻茂庭.jpg'
+        },
+        {
+          name: '何艳新',
+          title: '女书 · 代表性传承人',
+          photo: '女书 何艳新.jpg'
+        },
+        {
+          name: '尹冬香',
+          title: '滩头年画 · 代表性传承人',
+          photo: '滩头年画 尹冬香.jpg'
+        },
+        {
+          name: '刘爱云',
+          title: '湘绣 · 代表性传承人',
+          photo: '湘绣 刘爱云.jpg'
+        },
+        {
+          name: '刘新建',
+          title: '印染 · 代表性传承人',
+          photo: '印染 刘新建.jpg'
+        },
+        {
+          name: '曹正新',
+          title: '油纸伞 · 代表性传承人',
+          photo: '油纸伞 曹正新.jpg'
+        }
+      ];
+      
+      // 为每个列表项添加点击事件
+      masterItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          // 更新传承人展示区
+          masterPhoto.src = mastersData[index].photo;
+          masterName.textContent = mastersData[index].name;
+          masterTitle.textContent = mastersData[index].title;
+          
+          // 添加点击反馈
+          masterItems.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+        });
+      });
+      
+      // 为横向展示项添加点击事件（与 mastersData 按索引一一对应）
+      horizontalItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          if (index < mastersData.length) {
+            // 更新传承人展示区
+            masterPhoto.src = mastersData[index].photo;
+            masterName.textContent = mastersData[index].name;
+            masterTitle.textContent = mastersData[index].title;
+            
+            // 添加点击反馈
+            masterItems.forEach(i => i.classList.remove('active'));
+            if (index < masterItems.length) {
+              masterItems[index].classList.add('active');
+            }
+          }
+        });
+      });
+      
+      // 默认选中第一个
+      if (masterItems.length > 0) {
+        masterItems[0].click();
+      }
+    })();
+    
+    /* ----------------- 百科页面知识问答小游戏 ----------------- */
+    let quizData = [
+      {
+        question: "湘绣是湖南省的哪一类非物质文化遗产代表性项目？",
+        options: ["传统音乐", "传统美术", "传统戏剧", "传统技艺"],
+        answer: 1
+      },
+      {
+        question: "湖南花鼓戏属于非物质文化遗产的哪一类别？",
+        options: ["传统舞蹈", "传统戏剧", "传统曲艺", "传统体育"],
+        answer: 1
+      },
+      {
+        question: "土家织锦技艺主要流传于湖南省的哪个地区？",
+        options: ["长沙市", "湘西土家族苗族自治州", "岳阳市", "常德市"],
+        answer: 1
+      },
+      {
+        question: "下列哪项不是湖南省的国家级非物质文化遗产？",
+        options: ["湘绣", "醴陵釉下五彩瓷", "土家织锦", "京剧"],
+        answer: 3
+      },
+      {
+        question: "非物质文化遗产保护的工作方针是什么？",
+        options: [
+          "保护为主、抢救第一、合理利用、传承发展",
+          "开发为主、保护为辅、创新发展",
+          "全面保护、禁止利用、原样传承",
+          "市场化运作、产业化发展"
+        ],
+        answer: 0
+      }
+    ];
+    
+    let currentQuizQuestion = 0;
+    let quizScore = 0;
+    let selectedOption = -1;
+    
+    function initQuiz() {
+      currentQuizQuestion = 0;
+      quizScore = 0;
+      selectedOption = -1;
+      showQuizQuestion();
+    }
+    
+    function showQuizQuestion() {
+      const quizQuestion = document.getElementById('quizQuestion');
+      const quizOptions = document.getElementById('quizOptions');
+      const quizProgress = document.getElementById('quizProgress');
+      const quizNextBtn = document.getElementById('quizNextBtn');
+      const quizRestartBtn = document.getElementById('quizRestartBtn');
+      const quizResult = document.getElementById('quizResult');
+      
+      // 隐藏结果，显示问题
+      quizResult.style.display = 'none';
+      document.querySelector('.quiz-game .quiz-header').style.display = 'block';
+      document.querySelector('.quiz-game .quiz-question').style.display = 'block';
+      document.querySelector('.quiz-game .quiz-options').style.display = 'grid';
+      quizNextBtn.style.display = 'block';
+      quizRestartBtn.style.display = 'none';
+      
+      if (currentQuizQuestion < quizData.length) {
+        const currentQuestion = quizData[currentQuizQuestion];
+        
+        // 更新问题
+        quizQuestion.textContent = currentQuestion.question;
+        
+        // 更新进度
+        quizProgress.textContent = `第${currentQuizQuestion + 1}题/共${quizData.length}题`;
+        
+        // 清空选项
+        quizOptions.innerHTML = '';
+        
+        // 添加选项
+        currentQuestion.options.forEach((option, index) => {
+          const optionElement = document.createElement('div');
+          optionElement.className = 'quiz-option';
+          optionElement.textContent = option;
+          optionElement.dataset.index = index;
+          
+          optionElement.addEventListener('click', function() {
+            // 清除之前的选择
+            document.querySelectorAll('.quiz-option').forEach(opt => {
+              opt.classList.remove('selected');
+            });
+            
+            // 标记当前选择
+            this.classList.add('selected');
+            selectedOption = parseInt(this.dataset.index);
+            
+            // 启用下一题按钮
+            quizNextBtn.disabled = false;
+          });
+          
+          quizOptions.appendChild(optionElement);
+        });
+        
+        // 禁用下一题按钮，直到选择了答案
+        quizNextBtn.disabled = true;
+        quizNextBtn.textContent = currentQuizQuestion === quizData.length - 1 ? '查看结果' : '下一题';
+      } else {
+        // 显示结果
+        showQuizResult();
+      }
+    }
+    
+    function showQuizResult() {
+      const quizQuestion = document.getElementById('quizQuestion');
+      const quizOptions = document.getElementById('quizOptions');
+      const quizNextBtn = document.getElementById('quizNextBtn');
+      const quizRestartBtn = document.getElementById('quizRestartBtn');
+      const quizResult = document.getElementById('quizResult');
+      const quizScoreElement = document.getElementById('quizScore');
+      const quizMessage = document.getElementById('quizMessage');
+      
+      // 隐藏问题，显示结果
+      document.querySelector('.quiz-game .quiz-header').style.display = 'none';
+      quizQuestion.style.display = 'none';
+      quizOptions.style.display = 'none';
+      quizNextBtn.style.display = 'none';
+      quizRestartBtn.style.display = 'block';
+      quizResult.style.display = 'block';
+      
+      // 显示得分
+      quizScoreElement.textContent = `得分：${quizScore}/${quizData.length}`;
+      
+      // 根据得分显示不同消息
+      let message = '';
+      if (quizScore === quizData.length) {
+        message = '太棒了！你对湖南非遗知识非常了解！';
+      } else if (quizScore >= quizData.length * 0.7) {
+        message = '很不错！你对湖南非遗有较好的了解！';
+      } else if (quizScore >= quizData.length * 0.5) {
+        message = '还可以，但对湖南非遗的了解还有提升空间。';
+      } else {
+        message = '需要多了解湖南非遗知识哦！';
+      }
+      
+      quizMessage.textContent = message;
+    }
+    
+    function checkAnswer() {
+      if (selectedOption === -1) return;
+      
+      const currentQuestion = quizData[currentQuizQuestion];
+      const options = document.querySelectorAll('.quiz-option');
+      
+      // 标记正确答案和错误答案
+      options.forEach((option, index) => {
+        if (index === currentQuestion.answer) {
+          option.classList.add('correct');
+        } else if (index === selectedOption && index !== currentQuestion.answer) {
+          option.classList.add('wrong');
+        }
+      });
+      
+      // 检查答案是否正确
+      if (selectedOption === currentQuestion.answer) {
+        quizScore++;
+      }
+      
+      // 禁用选项点击
+      options.forEach(option => {
+        option.style.pointerEvents = 'none';
+      });
+      
+      // 更新下一题按钮文本
+      const quizNextBtn = document.getElementById('quizNextBtn');
+      quizNextBtn.disabled = false;
+      quizNextBtn.textContent = currentQuizQuestion === quizData.length - 1 ? '查看结果' : '下一题';
+    }
+    
+    function nextQuizQuestion() {
+      if (selectedOption === -1) return;
+      
+      // 检查当前题目的答案
+      checkAnswer();
+      
+      // 延迟后进入下一题
+      setTimeout(() => {
+        currentQuizQuestion++;
+        selectedOption = -1;
+        showQuizQuestion();
+      }, 1000);
+    }
+    
+    function restartQuiz() {
+      initQuiz();
+    }
+    
+    /* ----------------- 初始化页面 ----------------- */
+    window.addEventListener('DOMContentLoaded', () => {
+      // 初始化首页功能
+      initHomePage();
+      
+      // 初始化地图
+      setTimeout(initMap, 500);
+      
+      // 初始化交互功能
+      setupNewsClickEvents();
+      setupNewsHoverEvents();
+      setupBackToTopButton();
+      setupTopSearchFunction();
+      setupSectionClickEffects();
+      
+      // 为下载按钮添加点击事件
+      document.querySelectorAll('.download-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          let fileName = '';
+          
+          // 根据按钮位置获取文件名
+          if (this.closest('.file-download')) {
+            fileName = this.closest('.file-download').querySelector('h4').textContent;
+          } else if (this.closest('tr')) {
+            fileName = this.closest('tr').querySelector('td').textContent;
+          }
+          
+          // 模拟下载计数
+          console.log(`文件 "${fileName}" 下载次数+1`);
+          
+          // 显示下载提示
+          alert(`文件 "${fileName}" 开始下载（演示模式）`);
+        });
+      });
+      
+      // 初始化学术论文点击计数
+      document.querySelectorAll('.info-card .click-counter').forEach(counter => {
+        const title = counter.closest('.info-card').querySelector('.card-title').textContent;
+        const savedClicks = localStorage.getItem(`paperClick_${title}`);
+        if (savedClicks) {
+          const counterSpan = counter.querySelector('span');
+          counterSpan.textContent = savedClicks;
+        }
+      });
+      
+      // 为展开/折叠按钮添加事件
+      document.querySelectorAll('.expand-btn').forEach(btn => {
+        const targetId = btn.getAttribute('onclick')?.match(/toggleExpand\('(.+)'\)/)?.[1];
+        if (targetId) {
+          const content = document.getElementById(targetId);
+          if (content && !content.classList.contains('expanded')) {
+            content.style.maxHeight = '0';
+          }
+        }
+      });
+      
+      // 初始化知识问答游戏
+      const quizNextBtn = document.getElementById('quizNextBtn');
+      if (quizNextBtn) {
+        quizNextBtn.addEventListener('click', nextQuizQuestion);
+      }
+      
+      const quizRestartBtn = document.getElementById('quizRestartBtn');
+      if (quizRestartBtn) {
+        quizRestartBtn.addEventListener('click', restartQuiz);
+      }
+      
+      // 初始化百科页面导航
+      const encyclopediaNavItems = document.querySelectorAll('#encyclopedia-page .nav-item');
+      if (encyclopediaNavItems.length > 0) {
+        encyclopediaNavItems.forEach(item => {
+          item.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            if (targetId === 'section-quiz') {
+              // 如果是知识问答，初始化游戏
+              setTimeout(() => {
+                initQuiz();
+              }, 100);
+            }
+          });
+        });
+      }
+    });
+
+    // 页面切换时重新初始化地图
+    window.addEventListener('resize', function() {
+      if (map) {
+        setTimeout(() => {
+          map.invalidateSize();
+        }, 300);
+      }
+    });
+    
+    /* ----------------- 资讯页面分类查看功能 ----------------- */
+    function showCategoryNews(category) {
+      alert(`正在加载"${category}"类别的资讯...\n\n由于是演示版本，完整功能将在正式版中提供。`);
+    }
+    
+    /* ----------------- 资讯订阅功能 ----------------- */
+    function subscribeNews() {
+      const email = document.getElementById('subscribe-email').value;
+      
+      if (!email) {
+        alert('请输入电子邮箱地址');
+        return;
+      }
+      
+      // 简单验证邮箱格式
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('请输入有效的邮箱地址！');
+        return;
+      }
+      
+      alert(`感谢订阅！我们已经向 ${email} 发送了确认邮件。\n\n您将定期收到湖南省非物质文化遗产的最新资讯。`);
+      
+      // 清空邮箱输入框
+      document.getElementById('subscribe-email').value = '';
+    }
+
+  </script>
+</body>
+</html>

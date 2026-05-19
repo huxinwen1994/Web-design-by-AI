@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>疯狂动物城2 - 联系我们</title>
+    <link href="css/style.css" rel="stylesheet" media="screen" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <!-- 头部区域 -->
+        <header class="header">
+            <!-- 导航区域 - 顶部 -->
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="./index.html">网站首页</a></li>
+                    <li class="nav-item"><a href="./index2.html">角色介绍</a></li>
+                    <li class="nav-item"><a href="./index3.html">精彩看点</a></li>
+                    <li class="nav-item"><a href="./index4.html">幕后制作</a></li>
+                    <li class="nav-item"><a href="./index5.html">联系我们</a></li>
+                </ul>
+            </nav>
+            <!-- 轮播图 -->
+            <div class="banner-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide"><img src="./assets/banner.png" alt="疯狂动物城2"></div>
+                    <div class="carousel-slide"><img src="./assets/18.jpg" alt="疯狂动物城2"></div>
+                    <div class="carousel-slide"><img src="./assets/14 (2).jpg" alt="疯狂动物城2"></div>
+                    <div class="carousel-slide"><img src="./assets/17.jpg" alt="疯狂动物城2"></div>
+                </div>
+                <button class="carousel-btn prev">&lt;</button>
+                <button class="carousel-btn next">&gt;</button>
+                <div class="carousel-dots"></div>
+            </div>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="main">
+            <div class="contact-section">
+                <h2 class="section-title">联系我们</h2>
+                <div class="contact-form-container">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">您的姓名：</label>
+                            <input type="text" id="name" name="name" placeholder="请输入您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">电子邮箱：</label>
+                            <input type="email" id="email" name="email" placeholder="请输入您的电子邮箱" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">联系电话：</label>
+                            <input type="tel" id="phone" name="phone" placeholder="请输入您的联系电话">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">主题：</label>
+                            <select id="subject" name="subject" required>
+                                <option value="" disabled selected>请选择留言主题</option>
+                                <option value="feedback">影片反馈</option>
+                                <option value="suggestion">意见建议</option>
+                                <option value="cooperation">商务合作</option>
+                                <option value="other">其他问题</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">留言内容：</label>
+                            <textarea id="message" name="message" rows="6" placeholder="请输入您的留言内容..." required></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="submit-btn">提交留言</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 精选图片 -->
+            <section class="scenic-spots">
+                <h2>精彩剧照</h2>
+                <div class="scenic-list">
+                    <div class="scenic-item">
+                        <img src="./assets/2.webp" alt="疯狂动物城2">
+                    </div>
+                    <div class="scenic-item">
+                        <img src="./assets/3 - 副本.webp" alt="疯狂动物城2">
+                    </div>
+                    <div class="scenic-item">
+                        <img src="./assets/1.webp" alt="疯狂动物城2">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚区域 -->
+        <footer class="footer">
+            <p>疯狂动物城2 - 全新冒险即将开启</p>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

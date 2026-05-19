@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>湖南师范大学新增AED设备 - 安全保障再升级</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+
+        /* 页面背景与基础样式 */
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* 主容器样式 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* 新闻头部样式 */
+        .news-header {
+            padding: 3rem 0;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 2rem;
+        }
+
+        .news-tag {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .news-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .news-meta {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        /* 新闻内容样式 */
+        .news-content {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .main-content {
+            flex: 3;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .news-text {
+            margin-bottom: 2rem;
+        }
+
+        .news-text p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+        }
+
+        /* 关键信息卡片 */
+        .key-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .key-info h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .key-info ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+
+        .key-info li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 侧边栏样式 */
+        .sidebar {
+            flex: 1;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .aed-card {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .aed-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .aed-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .aed-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #3498db;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* 弹窗样式 */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        /* 留言样式 */
+        .message-container {
+            margin-top: 1.5rem;
+        }
+        
+        .message-item {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .message-author {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+        }
+        
+        .message-content {
+            color: #555;
+            line-height: 1.5;
+        }
+        
+        .message-time {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            text-align: right;
+            margin-top: 0.5rem;
+        }
+        
+        /* 安全保障内容样式 */
+        .safety-content h3 {
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 0.5rem;
+        }
+        
+        .safety-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .safety-content ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .safety-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* 桃子湖图片展示样式 */
+        .peach-lake-images {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .peach-lake-image {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .peach-lake-image img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+        
+        .peach-lake-image p {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* CPR图片样式 */
+        .cpr-image-container {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        
+        .cpr-image-container img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cpr-image-container p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* 页脚样式 */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .news-content {
+                flex-direction: column;
+            }
+
+            .news-title {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .nav-links a {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+            }
+            
+            .peach-lake-images {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">湖南师范大学</div>
+            <div class="nav-links">
+                <a id="school-homepage" href="https://www.hunnu.edu.cn/" target="_blank">学校首页</a>
+                <a id="campus-news">校园动态</a>
+                <a id="safety-guard">安全保卫</a>
+                <a id="peach-lake-view">桃子湖美景</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容容器 -->
+    <div class="container">
+        <!-- 新闻头部 -->
+        <div class="news-header">
+            <span class="news-tag">新增投放</span>
+            <h1 class="news-title">湖南师范大学桃子湖片区新增2台AED设备 筑牢校园生命安全防线</h1>
+            <div class="news-meta">发布时间：2025年04月15日 | 来源：湖南师范大学健康安全保卫部</div>
+        </div>
+
+        <!-- 新闻主体内容 -->
+        <div class="news-content">
+            <!-- 主要新闻文本 -->
+            <div class="main-content">
+                <div class="news-text">
+                    <p>为进一步提升校园应急救护能力，保障桃子湖片区师生及周边往来人员的生命安全，湖南师范大学健康安全保卫部于近日完成2台自动体外除颤仪（AED）的采购与投放工作。这是学校继消防安全设施升级后，在桃子湖片区公共安全保障领域的又一重要举措。</p>
+                    <p>本次新增的2台AED设备均部署在桃子湖附近的校园区域，具体为桃子湖校区教学楼1栋大厅服务台旁和桃子湖创意园（校内片区）综合楼中庭应急物资柜内，均位于师生流动量大、易识别、易到达的核心位置。每台设备旁均配备了清晰的使用指引标识和操作说明，同时学校健康安全保卫部已组织桃子湖片区全体安保人员、教学楼及创意园工作人员完成AED使用及心肺复苏（CPR）专项培训。</p>
+                    <p>据学校安全负责人介绍，AED设备操作简便，即使是无专业医疗背景的师生，也能通过设备语音指引快速完成除颤操作，在心脏骤停的黄金4分钟内实施有效急救，可大幅提高抢救成功率。此次在桃子湖片区投放AED设备，不仅填补了该片区应急救护设备的空白，也体现了学校"以人为本、安全第一"的办学理念。</p>
+                    <p>下一步，学校将联合校医院在桃子湖片区开展AED使用公益培训活动，面向片区内师生免费开放，力争让更多人掌握应急救护技能。同时，学校将建立桃子湖片区AED设备定期巡检和维护制度，确保设备始终处于良好工作状态。</p>
+                </div>
+
+                <!-- 关键信息卡片 -->
+                <div class="key-info">
+                    <h3>本次AED投放关键信息</h3>
+                    <ul>
+                        <li>投放数量：2台自动体外除颤仪（AED）</li>
+                        <li>投放位置：桃子湖校区教学楼1栋大厅服务台旁、桃子湖创意园（校内片区）综合楼中庭应急物资柜内</li>
+                        <li>培训覆盖：桃子湖片区全体安保、教学楼及创意园工作人员完成专项培训</li>
+                        <li>后续计划：开展面向桃子湖片区师生的公益急救培训</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 侧边栏 -->
+            <div class="sidebar">
+                <h3>AED科普小知识</h3>
+                <div class="aed-card">
+                    <img src="../images/新闻图片一.jpg" alt="AED设备示意图">
+                    <p>自动体外除颤仪（AED）是一种便携式的医疗设备，可用于抢救心脏骤停患者，非专业人员也可快速操作。</p>
+                    <button class="aed-btn" id="aedDetailBtn">查看详细使用说明</button>
+                </div>
+
+                <h3>校园安全提示</h3>
+                <p>如遇紧急情况，请立即拨打：</p>
+                <p style="font-weight: bold; color: #e74c3c;">学校应急电话：0731-88872335</p>
+                <p style="font-weight: bold; color: #e74c3c;">桃子湖片区应急专线：0731-88872335</p>
+                <p style="font-weight: bold; color: #e74c3c;">120 急救电话</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 回到顶部按钮 -->
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <!-- AED科普弹窗 -->
+    <div class="modal" id="aedModal">
+        <div class="modal-content">
+            <h2>AED使用操作步骤</h2>
+            <br>
+            <ol>
+                <li><strong>评估现场安全</strong>：确认现场无危险，拨打120和学校或桃子湖片区应急电话</li>
+                <li><strong>开启AED</strong>：打开设备电源，按照语音提示操作</li>
+                <li><strong>粘贴电极片</strong>：解开患者衣物，将电极片粘贴在指定位置（胸部两侧）</li>
+                <li><strong>分析心律</strong>：确保所有人远离患者，让AED自动分析心律</li>
+                <li><strong>电击除颤</strong>：若设备建议电击，按下电击按钮；若无，继续心肺复苏</li>
+                <li><strong>持续抢救</strong>：直到专业医护人员到达</li>
+            </ol>
+            <br>
+            <p><strong>重要提示</strong>：AED仅适用于心脏骤停患者，使用时需严格遵循语音指引，非专业人员操作前无需担心，设备会全程指导。</p>
+            <button class="modal-close" id="modalCloseBtn">关闭</button>
+        </div>
+    </div>
+
+    <!-- 校园动态弹窗 -->
+    <div class="modal" id="campusNewsModal">
+        <div class="modal-content">
+            <h2>校园动态 - 校友留言</h2>
+            <p>以下是从校友留言中随机选取的留言：</p>
+            
+            <div class="message-container" id="messageContainer">
+                <!-- 留言将通过JavaScript动态生成 -->
+            </div>
+            
+            <button class="modal-close" id="closeCampusNewsModal">关闭</button>
+        </div>
+    </div>
+
+    <!-- 安全保卫弹窗 -->
+    <div class="modal" id="safetyModal">
+        <div class="modal-content">
+            <h2>校园AED安全保障新闻</h2>
+            <div class="safety-content">
+                <h3>湖南师范大学AED设备全面覆盖，打造"黄金4分钟"急救圈</h3>
+                <p>近年来，湖南师范大学高度重视校园安全保障工作，特别是在应急医疗设备配置方面投入了大量资源。学校健康安全保卫部联合校医院，在全校范围内科学规划AED设备布局，打造了覆盖全校的"黄金4分钟"急救圈。</p>
+                
+                <h3>AED设备部署成效显著</h3>
+                <p>截至目前，湖南师范大学已在各校区关键位置部署了总计32台AED设备：</p>
+                <ul>
+                    <li><strong>桃子湖校区</strong>：新增2台，累计达到8台，覆盖教学楼、图书馆、体育馆等关键区域</li>
+                    <li><strong>二里半校区</strong>：12台，实现主要教学楼和公共区域全覆盖</li>
+                    <li><strong>南院校区</strong>：7台，重点保障学生宿舍区和运动场所</li>
+                    <li><strong>咸嘉湖校区</strong>：5台，满足医学院及周边区域急救需求</li>
+                </ul>
+                
+                <h3>培训体系完善，师生急救能力提升</h3>
+                <p>学校不仅重视硬件配置，更注重急救技能的普及：</p>
+                <ul>
+                    <li>每年组织不少于4次AED使用及CPR培训</li>
+                    <li>累计培训师生超过5000人次</li>
+                    <li>安保人员100%持有急救证书</li>
+                    <li>建立校园急救志愿者队伍，成员超过200人</li>
+                </ul>
+                
+                <h3>成功施救案例</h3>
+                <p>2024年3月，在二里半校区体育馆，一名学生在篮球比赛中突发心脏骤停。现场师生利用体育馆内配置的AED设备，在黄金时间内实施了有效急救，为后续专业医疗救治赢得了宝贵时间。这是学校AED设备配置以来第3例成功施救案例。</p>
+                
+                <h3>未来规划</h3>
+                <p>学校计划在未来两年内：</p>
+                <ul>
+                    <li>新增部署10台AED设备，实现"200米范围内必有AED"的目标</li>
+                    <li>开发校园急救APP，实现AED设备一键定位、导航</li>
+                    <li>与长沙市急救中心建立联动机制，打造"校园-社会"一体化急救网络</li>
+                    <li>将急救知识纳入新生入学教育必修内容</li>
+                </ul>
+                
+                <p><strong>结语</strong>：湖南师范大学通过完善的AED设备配置和系统的急救培训，构建了坚实的校园生命安全防线，为师生的学习生活提供了有力保障。</p>
+            </div>
+            <button class="modal-close" id="closeSafetyModal">关闭</button>
+        </div>
+    </div>
+
+    <!-- 桃子湖美景弹窗 -->
+    <div class="modal" id="peachLakeModal">
+        <div class="modal-content">
+            <h2>桃子湖美景</h2>
+            <p>桃子湖位于湖南师范大学校内，是校园内一道亮丽的风景线。湖畔柳树成荫，四季景色各异，是师生休闲、学习的好去处。</p>
+            
+            <div class="peach-lake-images">
+                <div class="peach-lake-image">
+                    <img src="../images/桃子湖景色一.jpg" alt="桃子湖景色一">
+                    <p>桃子湖景色一</p>
+                </div>
+                <div class="peach-lake-image">
+                    <img src="../images/桃子湖景色二.jpg" alt="桃子湖景色二">
+                    <p>桃子湖景色二</p>
+                </div>
+                <div class="peach-lake-image">
+                    <img src="../images/桃子湖景色三.jpg" alt="桃子湖景色三">
+                    <p>桃子湖景色三</p>
+                </div>
+            </div>
+            
+            <p>桃子湖不仅景色优美，更是学校文化建设的重要组成部分。湖边常有学子晨读、交流，形成了独特的校园文化氛围。近年来，学校对桃子湖周边环境进行了升级改造，增加了休闲座椅、照明设施和安全护栏，为师生的安全提供了更多保障。</p>
+            
+            <button class="modal-close" id="closePeachLakeModal">关闭</button>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>© 2025 湖南师范大学 版权所有</p>
+            <p>地址：湖南省长沙市岳麓区麓山路36号（桃子湖校区：岳麓区桃子湖路XX号） | 联系电话：0731-88872335</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript 交互逻辑 -->
+    <script>
+        // 校友留言数据（40条）
+        const alumniMessages = [
+            { author: "张明", content: "作为毕业多年的校友，看到母校在AED设备上的投入，感到非常自豪！生命安全教育太重要了。", time: "2025-04-10" },
+            { author: "李华", content: "去年回校参观时，看到图书馆里的AED设备，真心为学弟学妹们感到安心。学校考虑得很周到！", time: "2025-04-08" },
+            { author: "王芳", content: "希望学校能继续加强急救培训，让更多师生掌握这项救命的技能。为湖师大点赞！", time: "2025-04-05" },
+            { author: "刘伟", content: "作为医学院毕业生，深知AED在急救中的重要性。母校的做法值得所有高校学习！", time: "2025-04-03" },
+            { author: "陈静", content: "看到新闻说学校新增了AED设备，特意留言支持！安全校园需要这样的硬件保障。", time: "2025-03-30" },
+            { author: "赵刚", content: "建议学校开发一个AED设备位置查询小程序，方便师生快速找到最近的设备。", time: "2025-03-28" },
+            { author: "杨洋", content: "在国外留学时，看到公共场所都有AED设备。现在母校也做到了，真是与时俱进！", time: "2025-03-25" },
+            { author: "周涛", content: "作为体育特长生，深知运动中心脏骤停的风险。学校在体育馆增加AED太有必要了！", time: "2025-03-22" },
+            { author: "吴丽", content: "希望学校能组织更多急救知识讲座，提高大家的安全意识。支持母校的安全建设！", time: "2025-03-20" },
+            { author: "郑强", content: "看到母校在安全方面的投入，作为校友感到特别欣慰。愿湖师大越来越好！", time: "2025-03-18" },
+            { author: "孙梅", content: "建议在新生入学教育中加入AED使用培训，让安全知识从入学开始就深入人心。", time: "2025-03-15" },
+            { author: "朱勇", content: "作为企业负责人，我们公司也配备了AED。看到母校如此重视安全，为母校点赞！", time: "2025-03-12" },
+            { author: "马超", content: "希望学校能定期组织急救演练，让理论知识转化为实际操作能力。", time: "2025-03-10" },
+            { author: "林雪", content: "看到AED设备的普及，感受到了学校对师生生命安全的重视。温暖又安心！", time: "2025-03-08" },
+            { author: "徐峰", content: "建议学校与红十字会合作，开展急救员资格认证培训，让更多师生持证上岗。", time: "2025-03-05" },
+            { author: "何婷", content: "作为家长，知道孩子在学校有这样的安全保障，我们放心多了！感谢学校的用心。", time: "2025-03-02" },
+            { author: "高翔", content: "希望学校能将AED设备信息接入校园导航系统，方便师生快速定位。", time: "2025-02-28" },
+            { author: "黄敏", content: "看到学校不断升级安全设施，作为校友感到骄傲。愿母校成为安全校园的典范！", time: "2025-02-25" },
+            { author: "罗宁", content: "建议在AED设备旁增加多语言操作说明，方便国际师生使用。", time: "2025-02-22" },
+            { author: "梁爽", content: "安全无小事，AED设备的普及体现了学校的人文关怀。为母校的安全建设点赞！", time: "2025-02-20" },
+            { author: "欧阳晨", content: "桃子湖边的AED设备安装位置很合理，既醒目又不影响景观，考虑得很周到。", time: "2025-02-18" },
+            { author: "司马文", content: "作为在桃子湖校区学习过的校友，看到这里的安全设施越来越完善，很欣慰。", time: "2025-02-15" },
+            { author: "东方明", content: "AED设备的投入体现了学校对师生生命的高度负责，这样的母校让人自豪！", time: "2025-02-12" },
+            { author: "慕容雪", content: "希望学校能继续扩大AED覆盖范围，让校园的每一个角落都安全有保障。", time: "2025-02-10" },
+            { author: "诸葛云", content: "看到母校在安全保障方面走在高校前列，作为校友脸上有光！", time: "2025-02-08" },
+            { author: "令狐冲", content: "建议学校建立AED设备使用奖励机制，鼓励更多人学习急救知识。", time: "2025-02-05" },
+            { author: "岳不群", content: "安全保卫工作做得好，师生才能安心教学学习。母校在这方面做得很好！", time: "2025-02-02" },
+            { author: "任盈盈", content: "看到学校新闻说新增了AED设备，特意来留言支持！希望母校越来越安全。", time: "2025-01-30" },
+            { author: "风清扬", content: "作为老一辈校友，看到学校与时俱进的安全设施，感到特别欣慰。", time: "2025-01-28" },
+            { author: "张三丰", content: "安全保障是学校的基础工作，母校在这方面投入大量资源，值得称赞！", time: "2025-01-25" },
+            { author: "李寻欢", content: "AED设备是生命的守护神，学校在这方面走在了很多高校前面。", time: "2025-01-22" },
+            { author: "楚留香", content: "希望学校能将AED设备维护工作做得更细致，确保随时可用。", time: "2025-01-20" },
+            { author: "陆小凤", content: "看到母校的安全保障工作，想起了当年在桃子湖边学习的美好时光。", time: "2025-01-18" },
+            { author: "花满楼", content: "安全校园的建设需要持续投入，母校在这方面做得很好，点个赞！", time: "2025-01-15" },
+            { author: "西门吹雪", content: "作为校友，愿意为学校的安全建设贡献自己的一份力量。", time: "2025-01-12" },
+            { author: "郭靖", content: "母校的安全设施越来越完善，为在校学子感到高兴。愿湖师大越办越好！", time: "2025-01-10" },
+            { author: "黄蓉", content: "看到AED设备，想起了当年在校时的安全讲座。现在的设施更先进了！", time: "2025-01-08" },
+            { author: "杨过", content: "作为校友会成员，我们将积极支持母校的安全建设工作。", time: "2025-01-05" },
+            { author: "小龙女", content: "安全校园是每位学子的期盼，母校在这方面做得很好。", time: "2025-01-02" },
+            { author: "张无忌", content: "建议学校建立安全应急响应团队，进一步提升校园应急能力。", time: "2024-12-30" }
+        ];
+
+        // 随机选择4-6条留言
+        function getRandomMessages() {
+            const count = Math.floor(Math.random() * 3) + 4; // 4-6条
+            const shuffled = [...alumniMessages].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // 显示随机留言
+        function displayRandomMessages() {
+            const container = document.getElementById('messageContainer');
+            container.innerHTML = '';
+            
+            const randomMessages = getRandomMessages();
+            
+            randomMessages.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message-item';
+                messageElement.innerHTML = `
+                    <div class="message-author">${message.author} 校友：</div>
+                    <div class="message-content">${message.content}</div>
+                    <div class="message-time">留言时间：${message.time}</div>
+                `;
+                container.appendChild(messageElement);
+            });
+        }
+
+        // 回到顶部按钮逻辑
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // AED科普弹窗逻辑
+        const aedDetailBtn = document.getElementById('aedDetailBtn');
+        const aedModal = document.getElementById('aedModal');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+        aedDetailBtn.addEventListener('click', () => {
+            aedModal.classList.add('show');
+        });
+
+        modalCloseBtn.addEventListener('click', () => {
+            aedModal.classList.remove('show');
+        });
+
+        // 点击弹窗外部关闭弹窗
+        aedModal.addEventListener('click', (e) => {
+            if (e.target === aedModal) {
+                aedModal.classList.remove('show');
+            }
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = '#1a2530';
+            } else {
+                navbar.style.backgroundColor = '#2c3e50';
+            }
+        });
+
+        // 导航栏功能实现
+        // 学校首页 - 已通过href实现跳转
+        
+        // 校园动态弹窗
+        const campusNewsLink = document.getElementById('campus-news');
+        const campusNewsModal = document.getElementById('campusNewsModal');
+        const closeCampusNewsModal = document.getElementById('closeCampusNewsModal');
+        
+        campusNewsLink.addEventListener('click', () => {
+            displayRandomMessages();
+            campusNewsModal.classList.add('show');
+        });
+        
+        closeCampusNewsModal.addEventListener('click', () => {
+            campusNewsModal.classList.remove('show');
+        });
+        
+        campusNewsModal.addEventListener('click', (e) => {
+            if (e.target === campusNewsModal) {
+                campusNewsModal.classList.remove('show');
+            }
+        });
+        
+        // 安全保卫弹窗
+        const safetyLink = document.getElementById('safety-guard');
+        const safetyModal = document.getElementById('safetyModal');
+        const closeSafetyModal = document.getElementById('closeSafetyModal');
+        
+        safetyLink.addEventListener('click', () => {
+            safetyModal.classList.add('show');
+        });
+        
+        closeSafetyModal.addEventListener('click', () => {
+            safetyModal.classList.remove('show');
+        });
+        
+        safetyModal.addEventListener('click', (e) => {
+            if (e.target === safetyModal) {
+                safetyModal.classList.remove('show');
+            }
+        });
+        
+        // 桃子湖美景弹窗
+        const peachLakeLink = document.getElementById('peach-lake-view');
+        const peachLakeModal = document.getElementById('peachLakeModal');
+        const closePeachLakeModal = document.getElementById('closePeachLakeModal');
+        
+        peachLakeLink.addEventListener('click', () => {
+            peachLakeModal.classList.add('show');
+        });
+        
+        closePeachLakeModal.addEventListener('click', () => {
+            peachLakeModal.classList.remove('show');
+        });
+        
+        peachLakeModal.addEventListener('click', (e) => {
+            if (e.target === peachLakeModal) {
+                peachLakeModal.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

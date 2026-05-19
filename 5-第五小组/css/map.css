@@ -1,0 +1,241 @@
+/* ===== 完整中国地图样式 ===== */
+
+/* 地图容器 */
+.china-map-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    margin: 2rem auto;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: calc(var(--radius) - 10px);
+    overflow: hidden;
+    border: 2px solid rgba(160, 82, 45, 0.1);
+    box-shadow: 0 8px 32px rgba(160, 82, 45, 0.1);
+}
+
+.dark-mode .china-map-container {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    border: 2px solid rgba(205, 133, 63, 0.2);
+}
+
+/* 地图SVG */
+.china-map-svg {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* 省份路径 */
+.province-path {
+    fill: #a0d2f7;
+    stroke: #ffffff;
+    stroke-width: 1;
+    stroke-linejoin: round;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.province-path:hover {
+    fill: var(--accent-color);
+    opacity: 1;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 8px rgba(255, 140, 66, 0.5));
+    transform: translateY(-2px);
+}
+
+.province-path.active {
+    fill: var(--accent-color);
+    opacity: 1;
+    stroke-width: 3;
+    stroke: #ffffff;
+    filter: drop-shadow(0 0 12px rgba(255, 140, 66, 0.7));
+    animation: province-pulse 2s infinite;
+}
+
+@keyframes province-pulse {
+    0%, 100% { 
+        stroke-width: 3;
+        filter: drop-shadow(0 0 12px rgba(255, 140, 66, 0.7));
+    }
+    50% { 
+        stroke-width: 4;
+        filter: drop-shadow(0 0 20px rgba(255, 140, 66, 0.9));
+    }
+}
+
+/* 菜系高亮颜色 */
+.province-sichuan { fill: #FF6B6B; }
+.province-guangdong { fill: #4ECDC4; }
+.province-hunan { fill: #FFD166; }
+.province-shandong { fill: #06D6A0; }
+.province-jiangsu { fill: #118AB2; }
+.province-zhejiang { fill: #EF476F; }
+.province-fujian { fill: #7209B7; }
+.province-anhui { fill: #FF9E00; }
+
+/* 省份标签 */
+.province-label {
+    font-size: 10px;
+    font-weight: bold;
+    fill: #333;
+    pointer-events: none;
+    user-select: none;
+    text-anchor: middle;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.province-path:hover + .province-label,
+.province-path.active + .province-label {
+    font-weight: bold;
+    fill: #000;
+    font-size: 11px;
+    opacity: 1;
+}
+
+.dark-mode .province-label {
+    fill: #E0E0E0;
+}
+
+.dark-mode .province-path:hover + .province-label,
+.dark-mode .province-path.active + .province-label {
+    fill: #ffffff;
+}
+
+/* 工具提示 */
+.map-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 200px;
+}
+
+.map-tooltip.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.map-tooltip h4 {
+    margin: 0 0 5px 0;
+    color: var(--accent-color);
+    font-size: 16px;
+}
+
+.map-tooltip p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* 地图图例 */
+.map-legend {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(160, 82, 45, 0.1);
+    z-index: 10;
+}
+
+.dark-mode .map-legend {
+    background: rgba(45, 45, 45, 0.95);
+    border: 1px solid rgba(205, 133, 63, 0.2);
+}
+
+.map-legend h4 {
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+    font-size: 1rem;
+    text-align: center;
+}
+
+.dark-mode .map-legend h4 {
+    color: var(--dark-primary);
+}
+
+.legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    padding: 0.2rem 0;
+}
+
+.legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .legend-color {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .china-map-container {
+        height: 500px;
+    }
+    
+    .province-label {
+        font-size: 9px;
+    }
+    
+    .map-legend {
+        top: 10px;
+        right: 10px;
+        padding: 0.8rem;
+    }
+    
+    .map-tooltip {
+        max-width: 150px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .china-map-container {
+        height: 400px;
+    }
+    
+    .province-label {
+        font-size: 8px;
+    }
+    
+    .map-legend {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin-top: 1rem;
+        width: 100%;
+    }
+    
+    .legend-items {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+}

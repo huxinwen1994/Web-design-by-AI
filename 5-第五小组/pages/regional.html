@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美食集市 | 地方菜系</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/regional-new.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏（与首页一致） -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">
+                <i class="fas fa-utensils logo-icon"></i>
+                <span>食·光</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="regional.html" class="active">地方菜系</a></li>
+                <li><a href="recipes.html">食谱探索</a></li>
+                <li><a href="lab.html">食材实验室</a></li>
+            </ul>
+            <div class="search-box">
+                <input type="text" placeholder="搜索菜系、食材...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主题切换按钮 -->
+    <div class="theme-toggle-market" id="themeToggle" title="切换昼/夜模式">
+        <i class="fas fa-sun"></i>
+    </div>
+
+    <!-- 美食集市主容器 -->
+    <main class="food-market-container">
+        <!-- 中央道路 -->
+        <div class="central-road">
+            <div class="road-progress" id="roadProgress"></div>
+            <div class="road-textures">
+                <div class="road-stone"></div>
+                <div class="road-stone"></div>
+                <div class="road-stone"></div>
+                <div class="road-stone"></div>
+                <div class="road-stone"></div>
+            </div>
+            <div class="road-lanterns">
+                <div class="lantern"></div>
+                <div class="lantern"></div>
+                <div class="lantern"></div>
+                <div class="lantern"></div>
+                <div class="lantern"></div>
+            </div>
+        </div>
+
+        <!-- 集市入口牌坊 -->
+        <div class="market-entrance">
+            <div class="entrance-arch">
+                <h1>中华美食街</h1>
+                <div class="entrance-pillars">
+                    <div class="pillar"></div>
+                    <div class="pillar"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 八个美食摊位 -->
+        <div class="market-stalls">
+            <!-- 摊位1：川菜 - 麻辣火锅小火车 -->
+            <div class="stall stall-left" data-cuisine="sichuan">
+                <div class="stall-container">
+                    <div class="stall-body sichuan-train">
+                        <div class="train-engine">
+                            <div class="train-smoke">
+                                <div class="smoke-particle"></div>
+                                <div class="smoke-particle"></div>
+                                <div class="smoke-particle"></div>
+                            </div>
+                            <div class="train-windows">
+                                <div class="window"></div>
+                                <div class="window"></div>
+                            </div>
+                            <div class="train-wheels">
+                                <div class="wheel"></div>
+                                <div class="wheel"></div>
+                                <div class="wheel"></div>
+                                <div class="wheel"></div>
+                            </div>
+                        </div>
+                        <div class="train-carriage">
+                            <div class="hotpot-pot">
+                                <div class="hotpot-soup"></div>
+                                <div class="hotpot-ingredient chili"></div>
+                                <div class="hotpot-ingredient pepper"></div>
+                            </div>
+                            <div class="train-details">
+                                <div class="train-door"></div>
+                                <div class="train-sign">麻辣火锅号</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-decorations">
+                        <div class="red-lanterns">
+                            <div class="lantern"></div>
+                            <div class="lantern"></div>
+                            <div class="lantern"></div>
+                        </div>
+                        <div class="chili-strings">
+                            <div class="chili-string"></div>
+                            <div class="chili-string"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-signboard">
+                        <h3 class="stall-name">川菜·辣子坊</h3>
+                        <p class="stall-slogan">麻辣鲜香，百菜百味</p>
+                    </div>
+                    
+                    <div class="stall-owner">
+                        <div class="owner-avatar">
+                            <img src="https://image-assets.mihuashi.com/permanent/180020%7C-2021/11/11/14/FgSveDctWqqGGAMw-6pPM-keOjQG.jpg!artwork.detail?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="川菜老板">
+                        </div>
+                        <div class="owner-name">张师傅</div>
+                    </div>
+                    
+                    <div class="stall-interaction">
+                        <button class="talk-btn" onclick="startDialogue('sichuan')">
+                            <i class="fas fa-comment"></i> 与老板交谈
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 摊位2：粤菜 - 点心双层巴士 -->
+            <div class="stall stall-right" data-cuisine="guangdong">
+                <div class="stall-container">
+                    <div class="stall-body guangdong-bus">
+                        <div class="bus-floor upper-floor">
+                            <div class="bus-windows">
+                                <div class="window dimsum-window">
+                                    <div class="dimsum-item"></div>
+                                    <div class="dimsum-item"></div>
+                                </div>
+                                <div class="window dimsum-window">
+                                    <div class="dimsum-item"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bus-floor lower-floor">
+                            <div class="bus-door">
+                                <div class="door-handle"></div>
+                            </div>
+                            <div class="steamer-stack">
+                                <div class="steamer">
+                                    <div class="steam"></div>
+                                </div>
+                                <div class="steamer">
+                                    <div class="steam"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bus-wheels">
+                            <div class="wheel"></div>
+                            <div class="wheel"></div>
+                            <div class="wheel"></div>
+                            <div class="wheel"></div>
+                        </div>
+                        <div class="bus-sign">鲜味巴士</div>
+                    </div>
+                    
+                    <div class="stall-decorations">
+                        <div class="neon-sign">饮茶先啦</div>
+                        <div class="bus-lights">
+                            <div class="light"></div>
+                            <div class="light"></div>
+                            <div class="light"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-signboard">
+                        <h3 class="stall-name">粤菜·鲜味居</h3>
+                        <p class="stall-slogan">清而不淡，鲜而不俗</p>
+                    </div>
+                    
+                    <div class="stall-owner">
+                        <div class="owner-avatar">
+                            <img src="https://pic.nximg.cn/file/20170727/10673188_144330922000_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="粤菜老板">
+                        </div>
+                        <div class="owner-name">陈师傅</div>
+                    </div>
+                    
+                    <div class="stall-interaction">
+                        <button class="talk-btn" onclick="startDialogue('guangdong')">
+                            <i class="fas fa-comment"></i> 与老板交谈
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 摊位3：鲁菜 - 宫廷御膳房 -->
+            <div class="stall stall-left" data-cuisine="shandong">
+                <div class="stall-container">
+                    <div class="stall-body shandong-palace">
+                        <div class="palace-roof">
+                            <div class="roof-tiles"></div>
+                            <div class="roof-ridge">
+                                <div class="ridge-ornament"></div>
+                                <div class="ridge-ornament"></div>
+                            </div>
+                        </div>
+                        <div class="palace-body">
+                            <div class="palace-columns">
+                                <div class="column"></div>
+                                <div class="column"></div>
+                                <div class="column"></div>
+                            </div>
+                            <div class="palace-door">
+                                <div class="door-knocker"></div>
+                            </div>
+                            <div class="palace-windows">
+                                <div class="window lattice-window"></div>
+                                <div class="window lattice-window"></div>
+                            </div>
+                        </div>
+                        <div class="palace-base"></div>
+                        <div class="stone-lions">
+                            <div class="lion left-lion"></div>
+                            <div class="lion right-lion"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-decorations">
+                        <div class="golden-signboard">宫廷御膳</div>
+                        <div class="palace-lanterns">
+                            <div class="lantern palace-lantern"></div>
+                            <div class="lantern palace-lantern"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-signboard">
+                        <h3 class="stall-name">鲁菜·宫廷宴</h3>
+                        <p class="stall-slogan">咸鲜醇厚，讲究火候</p>
+                    </div>
+                    
+                    <div class="stall-owner">
+                        <div class="owner-avatar">
+                            <img src="https://pic.nximg.cn/file/20170727/10673188_144229271000_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="鲁菜老板">
+                        </div>
+                        <div class="owner-name">王师傅</div>
+                    </div>
+                    
+                    <div class="stall-interaction">
+                        <button class="talk-btn" onclick="startDialogue('shandong')">
+                            <i class="fas fa-comment"></i> 与老板交谈
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 摊位4：苏菜 - 江南画舫 -->
+            <div class="stall stall-right" data-cuisine="jiangsu">
+                <div class="stall-container">
+                    <div class="stall-body jiangsu-boat">
+                        <div class="boat-hull">
+                            <div class="boat-wood"></div>
+                            <div class="water-ripples">
+                                <div class="ripple"></div>
+                                <div class="ripple"></div>
+                                <div class="ripple"></div>
+                            </div>
+                        </div>
+                        <div class="boat-cabin">
+                            <div class="cabin-roof">
+                                <div class="roof-curve"></div>
+                            </div>
+                            <div class="cabin-windows">
+                                <div class="window round-window"></div>
+                                <div class="window round-window"></div>
+                            </div>
+                            <div class="cabin-door">
+                                <div class="bamboo-curtain"></div>
+                            </div>
+                        </div>
+                        <div class="boat-mast">
+                            <div class="sail">
+                                <div class="sail-pattern"></div>
+                            </div>
+                            <div class="mast-flag">苏</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-decorations">
+                        <div class="boat-lantern">
+                            <div class="lantern light"></div>
+                        </div>
+                        <div class="lotus-flowers">
+                            <div class="lotus"></div>
+                            <div class="lotus"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-signboard">
+                        <h3 class="stall-name">苏菜·江南阁</h3>
+                        <p class="stall-slogan">清淡鲜甜，咸鲜适中</p>
+                    </div>
+                    
+                    <div class="stall-owner">
+                        <div class="owner-avatar">
+                            <img src="https://pic.nximg.cn/file/20170725/10673188_152746712000_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="苏菜老板">
+                        </div>
+                        <div class="owner-name">李师傅</div>
+                    </div>
+                    
+                    <div class="stall-interaction">
+                        <button class="talk-btn" onclick="startDialogue('jiangsu')">
+                            <i class="fas fa-comment"></i> 与老板交谈
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 摊位5：湘菜 - 剁椒山居 -->
+            <div class="stall stall-left" data-cuisine="hunan">
+                <div class="stall-container">
+                    <div class="stall-body hunan-house">
+                        <div class="house-stilt">
+                            <div class="stilt-pillar"></div>
+                            <div class="stilt-pillar"></div>
+                        </div>
+                        <div class="house-body">
+                            <div class="house-wooden"></div>
+                            <div class="house-windows">
+                                <div class="window square-window"></div>
+                                <div class="window square-window"></div>
+                            </div>
+                            <div class="house-balcony">
+                                <div class="drying-rack">
+                                    <div class="chili-bunch"></div>
+                                    <div class="chili-bunch"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="house-roof">
+                            <div class="roof-tile"></div>
+                            <div class="chimney">
+                                <div class="smoke"></div>
+                            </div>
+                        </div>
+                        <div class="house-firepit">
+                            <div class="fire">
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-decorations">
+                        <div class="house-sign">湘味山居</div>
+                        <div class="hanging-meat">
+                            <div class="bacon"></div>
+                            <div class="bacon"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-signboard">
+                        <h3 class="stall-name">湘菜·剁椒坊</h3>
+                        <p class="stall-slogan">香辣开胃，注重酸辣</p>
+                    </div>
+                    
+                    <div class="stall-owner">
+                        <div class="owner-avatar">
+                            <img src="https://pic.nximg.cn/file/20170725/10673188_152745339000_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="湘菜老板">
+                        </div>
+                        <div class="owner-name">刘师傅</div>
+                    </div>
+                    
+                    <div class="stall-interaction">
+                        <button class="talk-btn" onclick="startDialogue('hunan')">
+                            <i class="fas fa-comment"></i> 与老板交谈
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 摊位6：浙菜 - 西湖舫阁 -->
+            <div class="stall stall-right" data-cuisine="zhejiang">
+                <div class="stall-container">
+                    <div class="stall-body zhejiang-pavilion">
+                        <div class="pavilion-base">
+                            <div class="stone-base"></div>
+                            <div class="pavilion-steps">
+                                <div class="step"></div>
+                                <div class="step"></div>
+                                <div class="step"></div>
+                            </div>
+                        </div>
+                        <div class="pavilion-structure">
+                            <div class="pavilion-pillars">
+                                <div class="pillar"></div>
+                                <div class="pillar"></div>
+                                <div class="pillar"></div>
+                                <div class="pillar"></div>
+                            </div>
+                            <div class="pavilion-roof">
+                                <div class="roof-corner"></div>
+                                <div class="roof-corner"></div>
+                            </div>
+                        </div>
+                        <div class="pavilion-details">
+                            <div class="pavilion-table">
+                                <div class="tea-set"></div>
+                            </div>
+                            <div class="calligraphy">
+                                <div class="scroll"></div>
+                            </div>
+                        </div>
+                        <div class="pavilion-pond">
+                            <div class="koi-fish">
+                                <div class="fish"></div>
+                                <div class="fish"></div>
+                            </div>
+                            <div class="lotus-pad">
+                                <div class="pad"></div>
+                                <div class="pad"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-decorations">
+                        <div class="pavilion-lantern">
+                            <div class="lantern"></div>
+                        </div>
+                        <div class="plum-blossom">
+                            <div class="blossom"></div>
+                            <div class="blossom"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-signboard">
+                        <h3 class="stall-name">浙菜·西湖舫</h3>
+                        <p class="stall-slogan">清淡鲜嫩，注重原味</p>
+                    </div>
+                    
+                    <div class="stall-owner">
+                        <div class="owner-avatar">
+                            <img src="https://pic.nximg.cn/file/20170723/10673188_164659938000_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="浙菜老板">
+                        </div>
+                        <div class="owner-name">赵师傅</div>
+                    </div>
+                    
+                    <div class="stall-interaction">
+                        <button class="talk-btn" onclick="startDialogue('zhejiang')">
+                            <i class="fas fa-comment"></i> 与老板交谈
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 摊位7：闽菜 - 佛跳墙海船 -->
+            <div class="stall stall-left" data-cuisine="fujian">
+                <div class="stall-container">
+                    <div class="stall-body fujian-ship">
+                        <div class="ship-hull">
+                            <div class="hull-wood"></div>
+                            <div class="ship-wave">
+                                <div class="wave"></div>
+                                <div class="wave"></div>
+                            </div>
+                        </div>
+                        <div class="ship-deck">
+                            <div class="deck-cabin">
+                                <div class="cabin-window porthole"></div>
+                                <div class="cabin-window porthole"></div>
+                            </div>
+                            <div class="ship-items">
+                                <div class="clay-pot">
+                                    <div class="pot-lid"></div>
+                                </div>
+                                <div class="fishing-net"></div>
+                            </div>
+                        </div>
+                        <div class="ship-mast">
+                            <div class="mast-pole"></div>
+                            <div class="ship-sail">
+                                <div class="sail-fabric"></div>
+                            </div>
+                        </div>
+                        <div class="ship-flag">闽</div>
+                        <div class="seagulls">
+                            <div class="seagull"></div>
+                            <div class="seagull"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-decorations">
+                        <div class="ship-name">佛跳墙号</div>
+                        <div class="nautical-decor">
+                            <div class="anchor"></div>
+                            <div class="rope-coil"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-signboard">
+                        <h3 class="stall-name">闽菜·海味舫</h3>
+                        <p class="stall-slogan">清鲜和醇，荤香不腻</p>
+                    </div>
+                    
+                    <div class="stall-owner">
+                        <div class="owner-avatar">
+                            <img src="https://pic.nximg.cn/file/20170727/10673188_144328614000_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="闽菜老板">
+                        </div>
+                        <div class="owner-name">郑师傅</div>
+                    </div>
+                    
+                    <div class="stall-interaction">
+                        <button class="talk-btn" onclick="startDialogue('fujian')">
+                            <i class="fas fa-comment"></i> 与老板交谈
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 摊位8：徽菜 - 徽州民居 -->
+            <div class="stall stall-right" data-cuisine="anhui">
+                <div class="stall-container">
+                    <div class="stall-body anhui-house">
+                        <div class="anhui-roof">
+                            <div class="horse-wall">
+                                <div class="wall-element"></div>
+                                <div class="wall-element"></div>
+                            </div>
+                            <div class="black-tiles"></div>
+                        </div>
+                        <div class="anhui-body">
+                            <div class="white-wall">
+                                <div class="wall-window">
+                                    <div class="window-grid"></div>
+                                </div>
+                                <div class="wall-window">
+                                    <div class="window-grid"></div>
+                                </div>
+                            </div>
+                            <div class="wooden-door">
+                                <div class="door-panel">
+                                    <div class="door-ring"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="anhui-base">
+                            <div class="stone-foundation"></div>
+                        </div>
+                        <div class="house-yard">
+                            <div class="stove">
+                                <div class="stove-smoke"></div>
+                            </div>
+                            <div class="ferment-jar">
+                                <div class="jar-lid"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-decorations">
+                        <div class="anhui-sign">徽州味道</div>
+                        <div class="bamboo-grove">
+                            <div class="bamboo"></div>
+                            <div class="bamboo"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="stall-signboard">
+                        <h3 class="stall-name">徽菜·山味斋</h3>
+                        <p class="stall-slogan">咸鲜浓醇，重油重色</p>
+                    </div>
+                    
+                    <div class="stall-owner">
+                        <div class="owner-avatar">
+                            <img src="https://pic.nximg.cn/file/20170725/10673188_152746712000_2.jpg?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="徽菜老板">
+                        </div>
+                        <div class="owner-name">吴师傅</div>
+                    </div>
+                    
+                    <div class="stall-interaction">
+                        <button class="talk-btn" onclick="startDialogue('anhui')">
+                            <i class="fas fa-comment"></i> 与老板交谈
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 对话系统 -->
+        <div class="dialogue-overlay" id="dialogueOverlay">
+            <div class="dialogue-container" id="dialogueContainer">
+                <div class="dialogue-header">
+                    <h3 id="dialogueOwner">老板对话</h3>
+                    <button class="close-dialogue" onclick="closeDialogue()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="dialogue-content">
+                    <div class="owner-portrait">
+                        <img id="ownerPortrait" src="" alt="老板头像">
+                        <div class="owner-title" id="ownerTitle"></div>
+                    </div>
+                    <div class="dialogue-messages" id="dialogueMessages">
+                        <!-- 对话内容通过JS动态生成 -->
+                    </div>
+                </div>
+                <div class="dialogue-controls">
+                    <button class="next-btn" id="nextBtn" onclick="nextDialogue()">继续</button>
+                    <button class="learn-more-btn" id="learnMoreBtn" onclick="showCuisineDetail()" style="display: none;">
+                        了解更多
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 菜系详情弹窗 -->
+        <div class="detail-overlay" id="detailOverlay">
+            <div class="detail-container">
+                <div class="detail-header">
+                    <h3 id="detailTitle">菜系详情</h3>
+                    <button class="close-detail" onclick="closeDetail()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="detail-content" id="detailContent">
+                    <!-- 内容通过JS动态生成 -->
+                </div>
+            </div>
+        </div>
+
+    
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" title="回到顶部">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- 音频元素（隐藏） -->
+    <audio id="marketAmbient" loop>
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-busy-market-ambience-461.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="stallHoverSound">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-market-bell-1091.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="dialogueSound">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-cartoon-talking-012.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="cookingSound">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-frying-food-1765.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/regional-new.js"></script>
+</body>
+</html>
