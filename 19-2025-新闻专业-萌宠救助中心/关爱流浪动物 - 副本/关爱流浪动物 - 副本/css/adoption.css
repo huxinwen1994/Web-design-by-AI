@@ -1,0 +1,105 @@
+/* 待领养动物页 */
+.filter-bar {
+    margin-top: 24px;
+    background-color: #fff;
+    border: none;
+    padding: 16px 24px;
+    font-size: 13px;
+    color: #555;
+}
+
+.filter-bar span {
+    margin-right: 10px;
+}
+
+.filter-bar a {
+    margin-right: 8px;
+    padding: 6px 14px;
+    border: 1px solid #C8E6C9;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.filter-bar a.active {
+    background-color: #4CAF50;
+    color: #fff;
+    border-color: #4CAF50;
+}
+
+.adopt-list {
+    margin-top: 24px;
+}
+
+.adopt-card {
+    float: left;
+    width: 370px;
+    margin: 0 18px 20px 0;
+    background-color: #fff;
+    border: none;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.adopt-card:nth-child(4n) {
+    margin-right: 0;
+}
+
+.adopt-img img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.adopt-card:hover {
+    opacity: 0.9;
+}
+
+.adopt-body {
+    padding: 10px 12px 12px;
+}
+
+.adopt-body h3 {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.adopt-body h3 a {
+    color: #333;
+}
+
+.adopt-body h3 a:hover {
+    color: #4CAF50;
+}
+
+.adopt-img a {
+    display: block;
+}
+
+.adopt-meta {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.adopt-desc {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+    height: 58px;
+    overflow: hidden;
+}
+
+.adopt-actions {
+    margin-top: 8px;
+}
+
+.adopt-actions .btn-primary {
+    padding: 8px 18px;
+    font-size: 12px;
+}
+
+.adopt-side .card-list li {
+    font-size: 13px;
+    color: #555;
+}

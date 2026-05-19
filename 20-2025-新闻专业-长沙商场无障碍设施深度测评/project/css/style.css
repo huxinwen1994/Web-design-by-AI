@@ -1,0 +1,241 @@
+:root {
+    --klein-blue: #002FA7;
+    --black: #000000;
+    --white: #FFFFFF;
+    --light-gray: #F5F5F5;
+    --medium-gray: #E0E0E0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+    background-color: var(--light-gray);
+    color: var(--black);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 页面容器 */
+.page-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.8s ease;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    opacity: 0;
+    display: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: var(--light-gray);
+    padding-bottom: 100px;
+}
+
+.page.active {
+    opacity: 1;
+    display: block;
+    transform: none !important;
+}
+
+/* 页面内容样式 */
+.page-content {
+    width: 100%;
+    min-height: 100%;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--black);
+    padding: 20px 5%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 5%;
+    width: 90%;
+    height: 1px;
+    background-color: var(--medium-gray);
+}
+
+.title-decoration {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 17.32px solid var(--klein-blue);
+}
+
+/* 内容区域 */
+.content-area {
+    flex: 1;
+    display: flex;
+    padding: 0 5%;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+/* 首页特定样式 */
+.home-content {
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px;
+    gap: 60px;
+}
+
+.left-panel, .right-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 图片拼贴区域 */
+.image-collage {
+    width: 100%;
+    height: 600px;
+    position: relative;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.collage-img {
+    position: absolute;
+    width: calc(50% - 10px); /* 固定宽度为容器的一半 */
+    height: calc(50% - 10px); /* 固定高度为容器的一半 */
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.collage-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* 修改图片布局 */
+.img-1 {
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+}
+
+.img-2 {
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+    transform: scale(0.95); /* 稍微小一点 */
+}
+
+.img-3 {
+    bottom: 20px;
+    right: 20px;
+    z-index: 3;
+    transform: scale(0.95); /* 稍微小一点 */
+}
+
+/* 添加堆叠效果 */
+.collage-img:hover {
+    transform: scale(1.05) !important; /* 悬停时放大 */
+    z-index: 10; /* 悬停时置顶 */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.collage-img:hover img {
+    transform: scale(1.1);
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+    .home-content {
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+    }
+
+    .left-panel {
+        width: 100%;
+        max-width: 600px;
+        margin-bottom: 40px;
+    }
+
+    .right-panel {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .image-collage {
+        height: 500px;
+    }
+
+    .collage-img {
+        width: calc(50% - 8px);
+        height: calc(50% - 8px);
+    }
+
+    .img-1 { top: 16px; left: 16px; }
+    .img-2 { top: 16px; right: 16px; }
+    .img-3 { bottom: 16px; right: 16px; }
+}
+
+@media (max-width: 768px) {
+    .home-content {
+        padding: 20px;
+    }
+
+    .image-collage {
+        height: 400px;
+    }
+
+    .collage-img {
+        position: relative;
+        width: 100%;
+        height: calc(33.333% - 7px);
+        margin-bottom: 10px;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+    }
+
+    .collage-img:last-child {
+        margin-bottom: 0;
+    }
+
+    .collage-img:hover {
+        transform: scale(1.02) !important;
+    }
+}

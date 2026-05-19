@@ -1,0 +1,913 @@
+<!-- 趋势折线图部分数据由AI生成，非真实数据，其余皆为真实数据，完整代码都是AI辅助生成的 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纪念中国人民抗日战争暨世界反法西斯战争胜利</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav id="main-nav" role="navigation" aria-label="主导航">
+        <div class="nav-container">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <img src="LOGO.jpg" alt="Logo" style="width:100px;height:50px;">
+                    <h1>抗战胜利纪念</h1>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link" aria-current="page">首页</a>
+                <a href="#news" class="nav-link">新闻</a>
+                <a href="#commentary" class="nav-link">解说</a>
+                <a href="#videos" class="nav-link">视频</a>
+                <a href="#heroes" class="nav-link">英烈缅怀</a>
+                <a href="#archives" class="nav-link">史料文献</a>
+                <a href="#interactive" class="nav-link">互动纪念</a>
+                <a href="#history" class="nav-link">历史回顾</a>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="搜索..." aria-label="站内搜索">
+                    <div id="searchResults" class="search-results hidden"></div>
+                </div>
+            </div>
+            <div class="mobile-menu-button">
+                <button id="mobile-menu-button" aria-label="菜单">
+                    <svg class="menu-icon" viewBox="0 0 24 24" width="28" height="28">
+                        <path class="line line1" d="M4 6h16"></path>
+                        <path class="line line2" d="M4 12h16"></path>
+                        <path class="line line3" d="M4 18h16"></path>
+                    </svg>
+                </button>
+
+
+            </div>
+        </div>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section id="home" class="hero-section">
+        <img src="background1.jpg" alt="背景图片" class="background1-jpg">
+        <div class="hero-overlay">
+            <div class="hero-text">
+                <h1>纪念中国人民抗日战争</h1>
+                <h1>暨世界反法西斯战争胜利</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- 新闻板块 -->
+    <section id="news" class="content-section news-section">
+        <div class="section-container">
+            <h2 class="section-title">新闻资讯</h2>
+            
+            <!-- 新闻分类标签 -->
+            <div class="news-tabs">
+                <button class="news-tab active" data-tab="politics">时政新闻</button>
+                <button class="news-tab" data-tab="local">地方动态</button>
+                <button class="news-tab" data-tab="international">国际视角</button>
+            </div>
+
+            <div class="news-flex-container">
+                <main class="news-main">
+                    <!-- 时政新闻 -->
+                    <div class="news-tab-content active" id="politics-news">
+                        <article class="article-card" data-breaking="true" data-priority="high" aria-label="突发新闻">
+                            <h3 class="article-title">中国人民抗日战争暨世界反法西斯战争胜利80周年纪念大会举行</h3>
+                            <p class="article-meta">中国共产党新闻网 | 2025-09-03</p>
+                            <p class="article-content">
+                                9月3日上午，中共中央、全国人大常委会、国务院、全国政协、中央军委在北京天安门广场隆重举行纪念大会，包括阅兵式环节。习近平总书记发表重要讲话，回顾抗战历史、缅怀先烈，重申珍爱和平的坚定立场。纪念大会庄严隆重，全面展现了中国人民抗日战争在世界反法西斯战争中的重要作用，彰显了中华民族不屈不挠的抗战精神。
+                            </p>
+                            <button class="toggle-btn">内容展开...</button><br>
+                            <a href="https://cpc.people.com.cn/n1/2025/0903/c64387-40556346.html"
+                                class="article-link">阅读更多</a>
+                        </article>
+
+                        <article class="article-card">
+                            <h3 class="article-title">全国抗战胜利80周年纪念章颁发暨慰问活动开展</h3>
+                            <p class="article-meta">退役军人事务部 | 2025-10-10</p>
+                            <p class="article-content">
+                                以中共中央、国务院、中央军委名义，为健在的抗战老战士、老同志、抗战将领或其遗属颁发"中国人民抗日战争胜利80周年"纪念章。各地退役军人事务部门同步开展上门慰问、义诊服务等关爱行动，表达对抗战英雄的崇高敬意和深切关怀，让英雄精神代代相传。
+                            </p>
+                            <button class="toggle-btn">内容展开...</button><br>
+                            <a href="https://www.mva.gov.cn/sy/zt/qmshggzxd/gx/jxzx/yw/202510/t20251010_515159.html"
+                                class="article-link">阅读更多</a>
+                        </article>
+                    </div>
+
+                    <!-- 地方动态 -->
+                    <div class="news-tab-content" id="local-news">
+                        <article class="article-card" data-breaking="true">
+                            <h3 class="article-title">广西"铭记抗战史・传承英雄志"系列纪念活动</h3>
+                            <p class="article-meta">退役军人事务部 | 2025-10-10</p>
+                            <p class="article-content">
+                                广西多地开展"老兵进军营""抗战主题影展""烈士陵园祭扫"等活动，95岁老兵陆志宗现场讲述侗族抗日义勇军事迹，103岁抗战老兵获上门义诊，"小小讲解员"在革命纪念馆传递红色故事。系列活动传承红色基因，弘扬抗战精神，在全社会营造了尊崇英雄、学习英雄的浓厚氛围。
+                            </p>
+                            <button class="toggle-btn">内容展开...</button><br>
+                            <a href="https://www.mva.gov.cn/sy/zt/qmshggzxd/gx/jxzx/yw/202510/t20251010_515159.html"
+                                class="article-link">阅读更多</a>
+                        </article>
+
+                        <article class="article-card">
+                            <h3 class="article-title">辽宁勿忘"九一八"撞钟鸣警仪式</h3>
+                            <p class="article-meta">新华网 | 2025-09-18</p>
+                            <p class="article-content">
+                                9月18日，辽宁省委、省政府在沈阳市"九一八"历史博物馆举行撞钟鸣警仪式，各界代表共同缅怀抗战先烈，铭记民族苦难历史。仪式庄严肃穆，警钟长鸣，提醒人们勿忘国耻、珍爱和平，激励后人继承先烈遗志，为实现中华民族伟大复兴而努力奋斗。
+                            </p>
+                            <button class="toggle-btn">内容展开...</button><br>
+                            <a href="http://www.xinhuanet.com/local/20250918/0e0d14fc97b34e11afe1e455a84de436/c.html"
+                                class="article-link">阅读更多</a>
+                        </article>
+                    </div>
+
+                    <!-- 国际视角 -->
+                    <div class="news-tab-content" id="international-news">
+                        <article class="article-card">
+                            <h3 class="article-title">加拿大华人团体联合举办抗战胜利80周年系列活动</h3>
+                            <p class="article-meta">中国新闻网 | 2025-03-25</p>
+                            <p class="article-content">
+                                加拿大各地百余家华人社团联手举办持续半年的纪念活动，包括大型音乐舞蹈史诗《和平颂》演出、抗战历史图片展、国际学术研讨会、老兵后裔口述历史座谈会等。活动展现了海外华人对祖国的深厚感情，传承了抗战精神，促进了中加文化交流。
+                            </p>
+                            <button class="toggle-btn">内容展开...</button><br>
+                            <a href="http://www.chinanews.com.cn/hr/2025/03-25/10388418.shtml"
+                                class="article-link">阅读更多</a>
+                        </article>
+
+                        <article class="article-card">
+                            <h3 class="article-title">马来西亚南侨机工纪念设施揭幕仪式</h3>
+                            <p class="article-meta">海外网 | 2025-09-03</p>
+                            <p class="article-content">
+                                当地时间8月14日，马来西亚吉隆坡南侨机工纪念公园和纪念馆正式揭幕，环形纪念墙镌刻3200多名南侨机工名字，纪念馆通过文物、图片系统展示其支援抗战的历史贡献。这一纪念设施成为海外华人抗战历史的重要见证，彰显了南侨机工为抗战胜利作出的巨大牺牲和贡献。
+                            </p>
+                            <button class="toggle-btn">内容展开...</button><br>
+                            <a href="https://m.haiwainet.cn/middle/232657/2025/0903/content_32891404_1.html"
+                                class="article-link">阅读更多</a>
+                        </article>
+                    </div>
+                </main>
+
+
+                <aside class="news-sidebar">
+
+ <!-- 🔹新增轮播区域 -->
+    <div class="sidebar-carousel">
+        <div class="carousel-viewport">
+            <div class="carousel-track">
+                <div class="carousel-slide">
+                    <img src="./l1.png" alt="">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./l2.png" alt="">
+                </div>
+                <div class="carousel-slide">
+                    <img src="./l3.png" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- 小圆点 -->
+        <div class="carousel-dots"></div>
+    </div>
+
+
+
+                    
+                    <div class="hot-rank-section">
+                        <h3 class="sidebar-title">热门排行</h3>
+                        <ol class="hot-rank-list">
+                            <li data-hotscore="95" data-rank="1">
+                                <a href="" class="rank-link">
+                                    <span class="rank-title">抗战胜利80周年纪念大会隆重举行</span>
+                                </a>
+                            </li>
+                            <li data-hotscore="90" data-rank="2">
+                                <a href="#" class="rank-link">
+                                    <span class="rank-title">抗战老兵回忆录出版发行</span>
+                                </a>
+                            </li>
+                            <li data-hotscore="85" data-rank="3">
+                                <a href="https://www.gov.cn/yaowen/shipin/202507/content_7034757.html" class="rank-link">
+                                    <span class="rank-title">红色教育基地参观人数创新高</span>
+                                </a>
+                            </li>
+                            <li data-hotscore="80" data-rank="4">
+                                <a href="https://news.cctv.cn/2025/07/03/ARTIbq84iFcEOkmvciWABjAD250703.shtml" class="rank-link">
+                                    <span class="rank-title">抗战文物展在京开幕</span>
+                                </a>
+                            </li>
+                            <li data-hotscore="75" data-rank="5">
+                                <a href="#" class="rank-link">
+                                    <span class="rank-title">纪念邮票套装正式发行</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- 解说专区 -->
+    <section id="commentary" class="content-section commentary-section">
+        <div class="section-container">
+            <h2 class="section-title">专业解说</h2>
+            
+            <!-- 解说分类标签 -->
+            <div class="commentary-tabs">
+                <button class="commentary-tab active" data-tab="parade">九三阅兵</button>
+                <button class="commentary-tab" data-tab="battles">战役盘点</button>
+            </div>
+
+            <div class="commentary-flex-container">
+                <main class="commentary-main">
+                    <!-- 九三阅兵 -->
+                    <div class="commentary-tab-content active" id="parade-commentary">
+                        <article class="article-card">
+                            <h3 class="article-title">九三阅兵式深度解读</h3>
+                            <p class="article-meta">重庆晨报 | 2025-09-05</p>
+                            <p class="article-content">
+                                本次阅兵式展示了我国国防和军队建设的最新成就，体现了维护世界和平的坚定决心。
+                                受阅部队中不仅有陆海空火箭军等多军兵种力量，还加入了战略支援、联勤保障等新型力量，
+                                展现了我军体系化、信息化作战能力不断提升。阅兵式中的装备，如隐形战机、
+                                新一代主战坦克、远程防空系统，也代表着我国国防科技的前沿水平。
+                                阅兵不仅是一场视觉震撼，更是对历史的铭记和对未来的宣示——
+                                和平需要力量守护，但力量永远指向和平。
+                            </p>
+                            <button class="toggle-btn">内容展开...</button><br>
+                            <a href="https://cqrb.cn/shishi/2025-09-05/2403053_pc.html" class="article-link">查看详情</a>
+                        </article>
+
+                        <article class="article-card">
+                            <h3 class="article-title">阅兵式背后的故事</h3>
+                            <p class="article-meta">搜狐新闻 | 2025-09-04</p>
+                            <p class="article-content">
+                                无论是整齐划一的步伐，还是铿锵有力的口号，背后都凝聚着官兵们数月甚至更久的训练。
+                                为了在阅兵场上呈现最完美的一刻，每名参训官兵严格执行高强度训练计划，
+                                在高温下坚持站军姿、练齐步、举枪姿势稳定数小时。
+                                一位参训战士说："阅兵不是为了展示自己，而是为了向先辈致敬。"
+                                每一次踏响长安街的脚步，
+                                都是向牺牲的英雄诉说：我们正在守护你们用生命换来的和平。
+                            </p>
+                            <button class="toggle-btn">内容展开...</button><br>
+                            <a href="https://www.sohu.com/a/932161511_122478945" class="article-link">查看详情</a>
+                        </article>
+
+                        <article class="article-card">
+                            <h3 class="article-title">抗战精神的时代价值与传承</h3>
+                            <p class="article-meta">光明日报 | 2025-08-20</p>
+                            <p class="article-content">
+                                抗战精神的核心，是天下兴亡、匹夫有责的爱国信念，是不畏强暴、血战到底的英雄气概，
+                                是百折不挠、坚韧不拔的民族意志。今天，我们依然需要这种精神。
+                                在新的时代背景下，它激励我们在科技创新、国防建设与国家发展中，
+                                勇攀高峰、砥砺前行。无数青年以实际行动证明：
+                                抗战英雄未竟事业，我们必将继续！
+                            </p>
+                            <button class="toggle-btn">内容展开...</button><br>
+                            <a href="#" class="article-link">查看详情</a>
+                        </article>
+                    </div>
+
+                    <!-- 战役盘点 -->
+                    <div class="commentary-tab-content" id="battles-commentary">
+                        <article class="article-card battle-card">
+                            <div class="battle-image-container">
+                                <img src="./网页设计/照片/平型关.jpg" alt="平型关大捷" class="battle-image">
+                            </div>
+                            <h3 class="article-title">平型关大捷</h3>
+                            <p class="article-meta">1937年9月25日</p>
+                            <div class="battle-summary">
+                                <h4>主要概括</h4>
+                                <p class="article-content">
+                                    平型关大捷发生于1937年9月25日，是全面抗战爆发后中国军队取得的首次重大胜利。战役由八路军第115师师长林彪、副师长聂荣臻指挥，参战部队在山西省大同市灵丘县平型关附近，依托险峻地形设伏，对日军精锐第5师团第21旅团一部及辎重车队发起突袭。战斗中，八路军官兵奋勇拼杀，经过近一天的激战，成功歼灭日军千余人，击毁汽车百余辆、马车200余辆，缴获大量武器弹药、军用物资及地图、文件等重要资料，有效阻滞了日军西进的攻势。
+                                </p>
+                            </div>
+                            <div class="battle-significance">
+                                <h4>历史意义</h4>
+                                <p class="article-content">
+                                    打破了"日军不可战胜"的神话，极大振奋了全国军民的抗战士气，扭转了抗战初期的悲观情绪，让全国人民看到了战胜日本侵略者的希望。彰显了中国共产党领导的八路军的战斗力，提高了中国共产党和八路军在全国的政治声望与影响力，为后续抗日民族统一战线的巩固与发展奠定了重要基础。有力配合了正面战场的防御作战，牵制了日军兵力，减轻了国民党军队在平型关一线的防守压力，推动了全国抗战局面的发展。
+                                </p>
+                            </div>
+                            <button class="toggle-btn">内容展开...</button>
+                        </article>
+
+                        <article class="article-card battle-card">
+                            <div class="battle-image-container">
+                                <img src="./网页设计/照片/台儿庄.jpg" alt="台儿庄战役" class="battle-image">
+                            </div>
+                            <h3 class="article-title">台儿庄战役</h3>
+                            <p class="article-meta">1938年3月-4月</p>
+                            <div class="battle-summary">
+                                <h4>主要概括</h4>
+                                <p class="article-content">
+                                    台儿庄战役是1938年3月至4月期间，中国军队在山东省枣庄市台儿庄及其周边地区进行的大规模会战，是抗战以来正面战场取得的最大胜利。战役由第五战区司令长官李宗仁统一指挥，参战部队包括国民党军第20军团、第2集团军等主力部队，总兵力约29万人。战役分为阻击牵制和全线反击两个阶段，中国军队先在临沂、滕县等地顽强阻击日军进攻，为台儿庄主战场部署争取时间；随后对进攻台儿庄的日军第5师团、第10师团一部发起围歼，经过激烈巷战、拉锯战，最终歼灭日军约2万余人，缴获大量武器装备，收复台儿庄等战略要地。
+                                </p>
+                            </div>
+                            <div class="battle-significance">
+                                <h4>历史意义</h4>
+                                <p class="article-content">
+                                    沉重打击了日本侵略者的嚣张气焰，打破了日军"速战速决"灭亡中国的战略企图，延缓了日军的进攻步伐。坚定了全国军民坚持抗战的信心与决心，凝聚了全民族的抗战意志，激发了各地民众支援抗战的热情，形成了全民抗战的浓厚氛围。提升了中国在国际上的地位与影响力，让国际社会看到了中国军队的战斗力和中国人民抗战的决心，为后续争取国际援助与支持创造了有利条件。
+                                </p>
+                            </div>
+                            <button class="toggle-btn">内容展开...</button>
+                        </article>
+
+                        <article class="article-card battle-card">
+                            <div class="battle-image-container">
+                                <img src="./网页设计/照片/百团大战.jpg" alt="百团大战" class="battle-image">
+                            </div>
+                            <h3 class="article-title">百团大战</h3>
+                            <p class="article-meta">1940年8月-12月</p>
+                            <div class="battle-summary">
+                                <h4>主要概括</h4>
+                                <p class="article-content">
+                                    百团大战爆发于1940年8月至12月，是八路军在华北敌后发动的一次大规模进攻和反"扫荡"战役，因参战部队达105个团，故称"百团大战"。战役由彭德怀副总司令统一指挥，主要战场覆盖华北广大地区的铁路、公路交通线及敌伪据点。战役分为三个阶段：第一阶段以破坏日军交通线、摧毁敌伪据点为核心，重点破袭正太铁路；第二阶段继续扩大战果，进攻交通线两侧及根据地内的敌伪据点；第三阶段主要应对日军的疯狂报复性"扫荡"，展开艰苦的反"扫荡"作战。整个战役共进行大小战斗1800余次，歼灭日伪军4万余人，破坏铁路470余公里、公路1500余公里，摧毁敌伪据点2900余个，沉重打击了华北日军的统治。
+                                </p>
+                            </div>
+                            <div class="battle-significance">
+                                <h4>历史意义</h4>
+                                <p class="article-content">
+                                    有力打击了日军在华北的"囚笼政策"，打破了日军对华北抗日根据地的封锁与压迫，巩固了华北敌后抗日根据地。牵制了大量日军兵力，缓解了正面战场的作战压力，支援了国民党军队的抗战，配合了全国抗战的整体部署。振奋了全国军民的抗战信心，展现了中国共产党领导的敌后抗日根据地的强大力量，进一步扩大了中国共产党和八路军的国际声誉，为抗战胜利奠定了坚实的基础。
+                                </p>
+                            </div>
+                            <button class="toggle-btn">内容展开...</button>
+                        </article>
+                    </div>
+                </main>
+
+
+                <aside class="commentary-sidebar">
+                    <div class="hot-rank-section">
+                        <h3 class="sidebar-title">热门解读</h3>
+                        <ol class="hot-rank-list">
+                            <li data-hotscore="92" data-rank="1">
+                                <a href="http://www.mod.gov.cn/gfbw/qwfb/16407232.html" class="rank-link">
+                                    <span class="rank-title">从九三阅兵看我国国防现代化进程</span>
+                                </a>
+                            </li>
+                            <li data-hotscore="88" data-rank="2">
+                                <a href="#" class="rank-link">
+                                    <span class="rank-title">抗战胜利的历史意义与时代启示</span>
+                                </a>
+                            </li>
+                            <li data-hotscore="83" data-rank="3">
+                                <a href="http://m.toutiao.com/group/7546589862237946377/?upstream_biz=doubao" class="rank-link">
+                                    <span class="rank-title">铭记历史，珍爱和平——专家访谈</span>
+                                </a>
+                            </li>
+                            <li data-hotscore="79" data-rank="4">
+                                <a href="http://world.gmw.cn/2025-09/02/content_38259021.htm" class="rank-link">
+                                    <span class="rank-title">国际社会如何评价中国抗战贡献</span>
+                                </a>
+                            </li>
+                            <li data-hotscore="76" data-rank="5">
+                                <a href="http://edu.people.com.cn/n1/2025/1208/c1006-40619881.html" class="rank-link">
+                                    <span class="rank-title">抗战精神融入当代青少年教育</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+
+
+
+<div class="trend-section">
+    <h3 class="sidebar-title">趋势数据</h3>
+
+    <div class="chart-tabs">
+        <button data-chart="traffic" class="active">文章互动</button>
+        <button data-chart="tourism">文旅数据</button>
+        <button data-chart="hot">热度趋势</button>
+    </div>
+
+    <div id="trendChart" style="width:100%; height:260px;"></div>
+</div>
+
+
+
+
+
+
+
+
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- 视频中心 -->
+    <section id="videos" class="content-section videos-section">
+        <div class="section-container">
+            <h2 class="section-title">视频中心</h2>
+            
+            <!-- 视频分类标签 -->
+            <div class="video-tabs">
+                <button class="video-tab active" data-tab="documentary">抗战历史纪录片合集</button>
+                <button class="video-tab" data-tab="oral">口述历史</button>
+                <button class="video-tab" data-tab="parade-video">九三阅兵</button>
+            </div>
+
+            <!-- 抗战历史纪录片合集 -->
+            <div class="video-tab-content active" id="documentary-videos">
+                <div class="videos-container">
+                    <div class="video-card">
+                        <img src="./网页设计/照片/东方主战场.jpg" alt="东方主战场" class="video-thumbnail">
+                        <div class="video-info">
+                            <h3 class="video-title">《东方主战场》（8集大型纪录片）</h3>
+                            <p class="video-source">央视网</p>
+                            <p class="video-description">全面展现中国抗日战争在世界反法西斯战争中的东方主战场地位，通过大量珍贵史料、口述回忆还原14年抗战历程，涵盖平型关大捷、百团大战等关键战役。</p>
+                            <a href="https://tv.cctv.com/2025/05/06/VIDAdUhw9P3oc65w00Pz1L2H250506.shtm"
+                                class="video-link">观看视频</a>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <img src="./网页设计/照片/为了民族解放与世界和平.jpg" alt="为了民族解放与世界和平" class="video-thumbnail">
+                        <div class="video-info">
+                            <h3 class="video-title">《为了民族解放与世界和平》</h3>
+                            <p class="video-source">北京广播电视台</p>
+                            <p class="video-description">围绕同名主题展览展开，镜头深入展览筹备现场，重点拍摄赵一曼档案、杨靖宇信函等核心文物的展出细节，同时收录抗战老兵后代讲述的家族英雄故事。</p>
+                            <a href="https://wap.bjd.com.cn/news/2025/08/16/90065739.shtml" class="video-link">观看视频</a>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <img src="./网页设计/照片/大抗战.jpg" alt="大抗战" class="video-thumbnail">
+                        <div class="video-info">
+                            <h3 class="video-title">《大抗战》</h3>
+                            <p class="video-source">央视网</p>
+                            <p class="video-description">以客观还原14年抗日战争历史为核心的军事题材纪实纪录片，深度挖掘历史资料，涵盖1000余小时各国战场原声影像、10万张高清真实历史照片。</p>
+                            <a href="https://jishi.cctv.com/2014/09/03/VIDA1409711965718441.shtml" class="video-link">观看视频</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 口述历史 -->
+            <div class="video-tab-content" id="oral-videos">
+                <div class="videos-container">
+                    <div class="video-card">
+                        <img src="./网页设计/照片/广西老兵李恒彪.jpg" alt="抗战老兵李恒彪" class="video-thumbnail">
+                        <div class="video-info">
+                            <h3 class="video-title">抗战老兵李恒彪回冉庄讲述抗战记忆</h3>
+                            <p class="video-source">央视网</p>
+                            <p class="video-description">抗战老兵李恒彪回到冉庄，深情讲述那段烽火岁月，回忆抗战时期的艰苦斗争和英勇事迹。</p>
+                            <a href="https://tv.cctv.com/2025/09/19/VIDEVis1kF6LTZOZRJO3ybzh250919.shtml"
+                                class="video-link">观看视频</a>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <img src="./网页设计/照片/陈华.jpg" alt="抗战老兵陈华" class="video-thumbnail">
+                        <div class="video-info">
+                            <h3 class="video-title">抗战老兵陈华讲述东江纵队敌后作战故事</h3>
+                            <p class="video-source">南方都市报</p>
+                            <p class="video-description">抗战老兵陈华讲述东江纵队在敌后开展游击战、配合正面战场作战的英勇事迹。</p>
+                            <a href="https://m.mp.oeeee.com/special/4448_f9c9398b0fd03090cf3b25c8f1819d08.html#chenhua" class="video-link">观看视频</a>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <img src="./网页设计/照片/杨荣华.jpg" alt="抗战老兵杨荣华" class="video-thumbnail">
+                        <div class="video-info">
+                            <h3 class="video-title">98岁抗战老兵杨荣华：身边都是子弹的响声</h3>
+                            <p class="video-source">央视网</p>
+                            <p class="video-description">98岁抗战老兵杨荣华回忆抗战岁月，讲述那段枪林弹雨中的战斗经历，铭记历史，缅怀先烈。</p>
+                            <a href="https://tv.cctv.cn/2025/06/21/VIDEujTDZLyjPSLjhnT1CJRN250621.shtml" class="video-link">观看视频</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 九三阅兵 -->
+            <div class="video-tab-content" id="parade-video-videos">
+                <div class="videos-container">
+                    <div class="video-card">
+                        <img src="video1.jpg" alt="视频缩略图" class="video-thumbnail">
+                        <div class="video-info">
+                            <h3 class="video-title">九三阅兵完整视频</h3>
+                            <p class="video-source">央视网</p>
+                            <a href="https://tv.cctv.com/2025/08/23/VIDESRtw5KyzrREsntvN2lzL250823.shtml"
+                                class="video-link">观看视频</a>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <img src="video2.jpg" alt="视频缩略图" class="video-thumbnail">
+                        <div class="video-info">
+                            <h3 class="video-title">阅兵精彩片段</h3>
+                            <p class="video-source">央视网</p>
+                            <a href="https://www.news.cn/20250903/045a41dd0ede42f8b08a1bb490c5080a/c.html" class="video-link">观看视频</a>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <img src="video3.jpg" alt="视频缩略图" class="video-thumbnail">
+                        <div class="video-info">
+                            <h3 class="video-title">幕后故事</h3>
+                            <p class="video-source">央视网</p>
+                            <a href="https://news.qq.com/rain/a/20250908A01AA700" class="video-link">观看视频</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 英烈缅怀 -->
+    <section id="heroes" class="content-section heroes-section">
+        <div class="section-container">
+            <h2 class="section-title">英烈缅怀</h2>
+            
+            <!-- 英烈分类标签 -->
+            <div class="heroes-tabs">
+                <button class="heroes-tab active" data-tab="heroes-list">英烈名录</button>
+                <button class="heroes-tab" data-tab="heroes-stories">英雄事迹</button>
+                <button class="heroes-tab" data-tab="heroes-message">祭扫寄语</button>
+            </div>
+
+            <!-- 英烈名录 -->
+            <div class="heroes-tab-content active" id="heroes-list-content">
+                <div class="heroes-carousel-container">
+                    <div class="heroes-carousel">
+                        <div class="heroes-carousel-track">
+                            <div class="hero-card">
+                                <img src="./网页设计/照片/杨靖宇.jpg" alt="杨靖宇" class="hero-image">
+                                <h3 class="hero-name">杨靖宇</h3>
+                                <p class="hero-title">东北抗日联军</p>
+                            </div>
+                            <div class="hero-card">
+                                <img src="./网页设计/照片/赵一曼.jpg" alt="赵一曼" class="hero-image">
+                                <h3 class="hero-name">赵一曼</h3>
+                                <p class="hero-title">东北抗日联军</p>
+                            </div>
+                            <div class="hero-card">
+                                <img src="./网页设计/照片/张自忠.jpg" alt="张自忠" class="hero-image">
+                                <h3 class="hero-name">张自忠</h3>
+                                <p class="hero-title">国民革命军第33集团军</p>
+                            </div>
+                            <div class="hero-card">
+                                <img src="./网页设计/照片/彭德怀.jpg" alt="彭德怀" class="hero-image">
+                                <h3 class="hero-name">彭德怀</h3>
+                                <p class="hero-title">八路军副总司令，百团大战指挥官</p>
+                            </div>
+                            <div class="hero-card">
+                                <img src="./网页设计/照片/林彪.jpg" alt="林彪" class="hero-image">
+                                <h3 class="hero-name">林彪</h3>
+                                <p class="hero-title">八路军第115师师长，平型关大捷指挥官</p>
+                            </div>
+                            <div class="hero-card">
+                                <img src="./网页设计/照片/李宗仁.jpg" alt="李宗仁" class="hero-image">
+                                <h3 class="hero-name">李宗仁</h3>
+                                <p class="hero-title">国民革命军第五战区司令长官，台儿庄战役指挥官</p>
+                            </div>
+                            <div class="hero-card">
+                                <img src="./网页设计/照片/左权.jpg" alt="左权" class="hero-image">
+                                <h3 class="hero-name">左权</h3>
+                                <p class="hero-title">八路军副参谋长，敌后抗战重要将领</p>
+                            </div>
+                            <div class="hero-card">
+                                <img src="./网页设计/照片/戴安澜.jpg" alt="戴安澜" class="hero-image">
+                                <h3 class="hero-name">戴安澜</h3>
+                                <p class="hero-title">国民革命军第200师师长，中国远征军名将</p>
+                            </div>
+                            <div class="hero-card">
+                                <img src="./网页设计/照片/佟麟阁.webp" alt="佟麟阁" class="hero-image">
+                                <h3 class="hero-name">佟麟阁</h3>
+                                <p class="hero-title">国民革命军第29军副军长，七七事变殉国将领</p>
+                            </div>
+                            <div class="hero-card">
+                                <img src="./网页设计/照片/谢晋元.jpg" alt="谢晋元" class="hero-image">
+                                <h3 class="hero-name">谢晋元</h3>
+                                <p class="hero-title">国民革命军第88师524团团长，四行仓库保卫战指挥官</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="heroes-carousel-btn prev-btn" aria-label="上一页">‹</button>
+                    <button class="heroes-carousel-btn next-btn" aria-label="下一页">›</button>
+                </div>
+            </div>
+
+            <!-- 英雄事迹 -->
+            <div class="heroes-tab-content" id="heroes-stories-content">
+                <div class="hero-story-container">
+                    <article class="article-card hero-story-card">
+                        <h3 class="article-title">杨靖宇：白山黑水间的铁血忠魂</h3>
+                        <p class="article-content">
+                            杨靖宇原名马尚德，是东北抗日联军第一路军总司令兼政委，他将毕生精力献给了东北抗日游击战争，用生命诠释了民族气节。1927年加入中国共产党后，他先后在河南、东北等地开展革命工作，1932年起以"杨靖宇"为化名，整合磐石游击队等抗日力量，在长白山麓建立起广阔的抗日游击根据地，转战千里、屡创佳绩，被日军视为"满洲治安之癌"。
+                        </p>
+                        <p class="article-content">
+                            1938年起，日军对东北抗联发动大规模"扫荡"，实施"归屯并户"切断抗联与群众的联系，还悬赏万元缉拿杨靖宇。在叛徒出卖密营、补给断绝的绝境中，他率领部队在零下三四十度的严寒中露宿山林，以草根、树皮甚至棉絮充饥，仍坚持与数倍于己的敌人周旋。1940年2月，孤身奋战的杨靖宇在濛江县三道崴子陷入重围，面对敌人的劝降，他以枪声回应，直至身中数弹壮烈殉国，年仅35岁。日军解剖其遗体时发现，他的胃里只有未消化的草根和棉花，无一粒粮食，这一幕让侵略者也为之震撼，承认他是"大大的英雄"。
+                        </p>
+                    </article>
+
+                    <article class="article-card hero-story-card">
+                        <h3 class="article-title">赵一曼：文武双全的巾帼英烈</h3>
+                        <p class="article-content">
+                            赵一曼是东北抗日战场上杰出的女性指挥员，兼具侠骨与柔肠，牺牲时年仅31岁。九一八事变后，她受中共中央指派奔赴东北，先后在奉天、哈尔滨开展革命工作，组织领导哈尔滨电车工人大罢工，成功维护了工人权益。1934年，她转战珠河县山区，发动群众建立抗日根据地，凭借出色的军事指挥才能，带领游击队伍多次配合东北人民革命军主力作战，因挎双枪、骑白马、作战英勇，被当地群众誉为"文武双全的女指挥""密林女王"。
+                        </p>
+                        <p class="article-content">
+                            1935年11月，因汉奸告密，赵一曼与战士们在左撇子沟遭数倍日军包围，激战中她身负重伤不幸被俘。关押期间，日军对她施加了极其残酷的刑讯，试图逼问抗日机密，但赵一曼始终坚贞不屈、守口如瓶。1936年8月2日，在押赴刑场前，她写下致儿子宁儿的绝笔信，字里行间既有对儿子的思念与愧疚，更有对民族解放事业的坚定信念。这份藏在日军审讯档案中的遗嘱，直至1957年才被发现，成为见证英雄母亲家国情怀的珍贵史料。
+                        </p>
+                    </article>
+
+                    <article class="article-card hero-story-card">
+                        <h3 class="article-title">张自忠：以身殉国的抗日名将</h3>
+                        <p class="article-content">
+                            张自忠是国民革命军第33集团军总司令，著名抗日民族英雄，他一生征战沙场，最终以血肉之躯践行了"为国捐躯"的誓言。全面抗战爆发后，他先后参与台儿庄战役、武汉会战等重大战役，在临沂会战中率部激战七昼夜，成功阻击日军精锐师团，为台儿庄大捷奠定基础，其勇猛作战的风格让日军闻风丧胆。
+                        </p>
+                        <p class="article-content">
+                            1940年5月，枣宜会战爆发，张自忠主动请缨，率领总部特务营和两个团渡河作战，深入日军腹地牵制敌军主力。在敌我兵力悬殊的情况下，他率部在南瓜店一带与日军展开殊死搏斗，面对数倍敌军的轮番进攻，坚守阵地不退半步。激战中，张自忠多处负伤，仍坚持指挥战斗，鼓励将士们"为国家民族死之决心，海不清，石不烂，决不半点改变"。最终，他在阵地被攻破后仍孤身作战，身中数弹壮烈殉国，年仅49岁。张自忠是抗战时期牺牲的职务最高的国军将领，他的牺牲极大地激励了全国军民的抗战士气，彰显了中国军人的爱国赤诚。
+                        </p>
+                    </article>
+                </div>
+            </div>
+
+            <!-- 祭扫寄语 -->
+            <div class="heroes-tab-content" id="heroes-message-content">
+                <div class="message-container">
+                    <form id="heroesMessageForm" class="message-form">
+                        <div class="form-group">
+                            <label for="heroesName">姓名</label>
+                            <input type="text" id="heroesName" placeholder="请输入您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <label for="heroesMessage">祭扫寄语</label>
+                            <textarea id="heroesMessage" rows="4" placeholder="请输入您的祭扫寄语" maxlength="500"></textarea>
+                            <div class="char-count">0/500</div>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit">提交寄语</button>
+                        </div>
+                    </form>
+                    <div id="heroesMessageList" class="message-list">
+                        <!-- 寄语将动态添加到这里 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 史料文献 -->
+    <section id="archives" class="content-section archives-section">
+        <div class="section-container">
+            <h2 class="section-title">史料文献</h2>
+            
+            <!-- 史料分类标签 -->
+            <div class="archives-tabs">
+                <button class="archives-tab active" data-tab="photos">历史照片</button>
+                <button class="archives-tab" data-tab="letters">历史家书</button>
+            </div>
+
+            <!-- 历史照片 -->
+            <div class="archives-tab-content active" id="photos-content">
+                <div class="photos-grid">
+                    <div class="photo-item">
+                        <img src="./网页设计/照片/抗战1.jpg" alt="历史照片1" class="archive-photo">
+                        <p class="photo-caption">抗战时期珍贵历史照片</p>
+                    </div>
+                    <div class="photo-item">
+                        <img src="./网页设计/照片/抗战2.jpg" alt="历史照片2" class="archive-photo">
+                        <p class="photo-caption">抗战时期珍贵历史照片</p>
+                    </div>
+                    <div class="photo-item">
+                        <img src="./网页设计/照片/抗战3.jpg" alt="历史照片3" class="archive-photo">
+                        <p class="photo-caption">抗战时期珍贵历史照片</p>
+                    </div>
+                    <div class="photo-item">
+                        <img src="./网页设计/照片/抗战4.jpg" alt="历史照片4" class="archive-photo">
+                        <p class="photo-caption">抗战时期珍贵历史照片</p>
+                    </div>
+                    <div class="photo-item">
+                        <img src="./网页设计/照片/抗战5.jpg" alt="历史照片5" class="archive-photo">
+                        <p class="photo-caption">抗战时期珍贵历史照片</p>
+                    </div>
+                    <div class="photo-item">
+                        <img src="./网页设计/照片/家书6.jpg" alt="历史照片6" class="archive-photo">
+                        <p class="photo-caption">抗战时期珍贵历史照片</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 历史家书 -->
+            <div class="archives-tab-content" id="letters-content">
+                <div class="letters-container">
+                    <article class="article-card letter-card">
+                        <h3 class="article-title">赵一曼致儿子宁儿的绝笔信</h3>
+                        <p class="article-meta">1936年8月2日</p>
+                        <div class="letter-content">
+                            <p>宁儿：</p>
+                            <p>母亲对于你没有能尽到教育的责任，实在是遗憾的事情。</p>
+                            <p>母亲因为坚决地做了反满抗日的斗争，今天已经到了牺牲的前夕了。</p>
+                            <p>母亲和你在生前是永久没有再见的机会了。希望你，宁儿啊！赶快成人，来安慰你地下的母亲！</p>
+                            <p>我最亲爱的孩子啊！母亲不用千言万语来教育你，就用实行来教育你。</p>
+                            <p>在你长大成人之后，希望不要忘记你的母亲是为国而牺牲的！</p>
+                            <p class="letter-signature">你的母亲 赵一曼 于车中</p>
+                        </div>
+                    </article>
+
+                    <article class="article-card letter-card">
+                        <h3 class="article-title">左权致妻子刘志兰的家书</h3>
+                        <p class="article-meta">1942年5月22日</p>
+                        <div class="letter-content">
+                            <p>志兰：</p>
+                            <p>就江明同志回延安之便，再带给你几个字。</p>
+                            <p>乔迁同志那批过路的人，在几天前已安全通过敌之封锁线了，很快可以到达延安，想不久你可看到我的信。</p>
+                            <p>希特勒"春季攻势"作战已爆发，这将影响日寇行动及我国国内局势，国内局势将如何变迁，不久或可明朗化了。</p>
+                            <p>我担心着你及北北，你入学后望能好好地恢复身体，有暇时多去看看太北，小孩子极需人照顾的。</p>
+                            <p class="letter-signature">此间一切如常，惟生活则较前艰难多了。 左权</p>
+                        </div>
+                    </article>
+
+                    <article class="article-card letter-card">
+                        <h3 class="article-title">张自忠致冯治安的绝笔信</h3>
+                        <p class="article-meta">1940年5月6日</p>
+                        <div class="letter-content">
+                            <p>仰之我弟如晤：</p>
+                            <p>因为战区全面战争之关系，及本身之责任，均须过河与敌一拼，现已决定于今晚往襄河东岸进发。</p>
+                            <p>到河东后，如能与38师、179师取得联络，即率该两师与马师，不顾一切，向北进之敌死拼。</p>
+                            <p>若不能与38师、179师取得联络，即带马师之三个团，奔着我们最终之目标（死）往北迈进。</p>
+                            <p>无论作好作坏，一定求良心得到安慰，以后公私均得请我弟负责。由现在起，以后或暂别，或永离，不得而知。</p>
+                            <p class="letter-signature">专此布达。 小兄张自忠手启</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 互动纪念 -->
+    <section id="interactive" class="content-section interactive-section">
+        <div class="section-container">
+            <h2 class="section-title">互动纪念</h2>
+            <div class="flower-tribute-container">
+                <div class="flower-tribute-main">
+                    <div class="flower-display">
+                        <div class="flower-icon">🌸</div>
+                        <h3 class="flower-title">在线献花</h3>
+                        <p class="flower-description">向抗战英烈献花，表达我们的敬意与缅怀</p>
+                        <button id="flowerBtn" class="flower-btn">献花</button>
+                        <div class="flower-count">
+                            <span class="count-label">献花人数：</span>
+                            <span id="flowerCount" class="count-number">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 历史回顾 -->
+    <section id="history" class="content-section history-section">
+        <div class="section-container">
+            <h2 class="section-title">历史回顾</h2>
+            <div class="timeline-container">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3 class="timeline-year">2025年</h3>
+                        <div class="timeline-content">
+                            <p>纪念中国人民抗日战争暨世界反法西斯战争胜利80周年阅兵式</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="timeline-year">2020年</h3>
+                        <div class="timeline-content">
+                            <p>纪念中国人民抗日战争暨世界反法西斯战争胜利75周年座谈会</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="timeline-year">2015年</h3>
+                        <div class="timeline-content">
+                            <p>纪念中国人民抗日战争暨世界反法西斯战争胜利70周年大会</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="timeline-year">2005年</h3>
+                        <div class="timeline-content">
+                            <p>纪念中国人民抗日战争暨世界反法西斯战争胜利60周年大会</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 纪念寄语留言板 -->
+    <section class="content-section message-section">
+        <div class="section-container">
+            <h2 class="section-title">纪念寄语</h2>
+            <div class="message-container">
+                <form id="messageForm" class="message-form">
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" placeholder="请输入您的姓名">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">寄语</label>
+                        <textarea id="message" rows="4" placeholder="请输入您的寄语" maxlength="500"></textarea>
+                        <div class="char-count">0/500</div>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit">提交寄语</button>
+                    </div>
+                </form>
+                <div id="messageList" class="message-list">
+                    <!-- 寄语将动态添加到这里 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 纪念中国人民抗日战争暨世界反法西斯战争胜利. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="back-to-top-btn" aria-label="回到顶部">
+        ↑
+    </button>
+    <script src="./main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script>
+const chartDom = document.getElementById('trendChart');
+const chart = echarts.init(chartDom);
+
+const months = ['1月', '2月', '3月', '4月', '5月', '6月'];
+
+const chartData = {
+    traffic: {
+        name: ['浏览量', '点赞数', '评论数'],
+        data: [
+            [120, 180, 150, 200, 260, 310], // 浏览量
+            [50, 80, 65, 85, 120, 160],    // 点赞
+            [20, 35, 32, 40, 55, 70]       // 评论
+        ]
+    },
+    tourism: {
+        name: ['景点游客量', '美食销量'],
+        data: [
+            [300, 450, 520, 610, 700, 820],
+            [180, 230, 260, 290, 320, 350]
+        ]
+    },
+    hot: {
+        name: ['热度指数'],
+        data: [
+            [60, 80, 90, 110, 140, 170]
+        ]
+    }
+};
+
+function updateChart(type) {
+    const item = chartData[type];
+
+    const series = item.data.map((arr, i) => ({
+        name: item.name[i],
+        type: 'line',
+        smooth: true,
+        symbol: 'circle',
+        symbolSize: 6,
+        data: arr,
+        lineStyle: { width: 2 },
+        areaStyle: {
+            opacity: 0.15
+        }
+    }));
+
+    const option = {
+        tooltip: { trigger: 'axis' },
+        color: ['#d40000', '#ff5c5c', '#ff9d9d'],
+        legend: {
+            data: item.name,
+            textStyle: { color: '#900' },
+            bottom: 0
+        },
+        grid: {
+            top: 20,
+            left: 10,
+            right: 10,
+            bottom: 30,
+            containLabel: true
+        },
+        xAxis: { type: 'category', data: months },
+        yAxis: { type: 'value', splitLine: { lineStyle: { type: "dashed" } } },
+        series
+    };
+
+    chart.setOption(option);
+}
+
+updateChart("traffic");
+
+document.querySelectorAll(".chart-tabs button").forEach(button => {
+    button.addEventListener("click", () => {
+        document.querySelector(".chart-tabs .active").classList.remove("active");
+        button.classList.add("active");
+        updateChart(button.dataset.chart);
+    });
+});
+
+window.addEventListener("resize", () => chart.resize());
+</script>
+
+</body>
+
+</html>

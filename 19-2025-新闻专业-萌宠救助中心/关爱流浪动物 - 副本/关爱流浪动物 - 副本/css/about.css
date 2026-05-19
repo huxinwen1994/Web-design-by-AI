@@ -1,0 +1,22 @@
+/* 关于我们页 */
+.hero-about{margin-top:26px;background-color:#fff;border:none;padding:28px 32px;}
+.hero-about h2{font-size:24px;color:#4CAF50;margin-bottom:12px;}
+.hero-about p{font-size:14px;color:#555;line-height:2;}
+
+.about-layout{margin-top:26px;}
+.about-left{float:left;width:720px;}
+.about-right{float:right;width:420px;}
+
+.timeline{background-color:#fff;border:none;padding:20px 24px;}
+.timeline-item{border-left:3px solid #C8E6C9;padding-left:16px;margin-bottom:16px;}
+.timeline-year{font-size:14px;color:#4CAF50;margin-bottom:4px;font-weight:600;}
+.timeline-text{font-size:13px;color:#555;}
+
+.about-photo-grid{margin-top:20px;}
+.about-photo-grid li{float:left;width:220px;height:150px;margin:0 20px 18px 0;overflow:hidden;}
+.about-photo-grid li:nth-child(3n){margin-right:0;}
+.about-photo-grid img{width:220px;height:150px;object-fit:cover;}
+
+.about-right .card{margin-bottom:18px;}
+.about-contact li{font-size:13px;color:#555;padding:8px 0;border-top:1px dashed #C8E6C9;}
+.about-contact li:first-child{border-top:none;}

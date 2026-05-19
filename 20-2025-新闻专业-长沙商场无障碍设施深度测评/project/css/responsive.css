@@ -1,0 +1,151 @@
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .home-content {
+        flex-direction: column;
+    }
+    
+    .left-panel, .right-panel {
+        width: 100%;
+    }
+    
+    .left-panel {
+        padding: 40px 20px;
+    }
+    
+    .right-panel {
+        padding: 20px;
+        min-height: 500px;
+    }
+    
+    .button-column {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .geo-button {
+        width: 30%;
+        height: 150px;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .button-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .button-column {
+        flex-direction: column;
+    }
+    
+    .geo-button {
+        width: 100%;
+        height: 120px;
+        flex-direction: row;
+        text-align: left;
+    }
+    
+    .button-icon {
+        margin-right: 25px;
+        margin-bottom: 0;
+    }
+    
+    .nav-btn {
+        width: 150px;
+    }
+    
+    .main-title {
+        font-size: 32px;
+    }
+    
+    .sub-title {
+        font-size: 18px;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .chart-container {
+        justify-content: center;
+    }
+    
+    .chart-card {
+        width: 100%;
+        max-width: 380px;
+    }
+    
+    .card-matrix {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 768px) {
+    .featured-article-card {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+    
+    .article-title {
+        font-size: 24px;
+    }
+    
+    .article-meta {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .article-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .article-header h1 {
+        font-size: 28px;
+    }
+    
+    .article-meta-full {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    #full-article-page .page-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .content-section h2 {
+        font-size: 24px;
+    }
+    
+    .content-section h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-article-container {
+        padding: 20px 10px;
+    }
+    
+    .featured-article-card {
+        padding: 25px 15px;
+    }
+    
+    .article-title {
+        font-size: 20px;
+    }
+    
+    .key-findings {
+        padding: 15px;
+    }
+    
+    .read-full-btn {
+        padding: 15px;
+        font-size: 16px;
+    }
+}

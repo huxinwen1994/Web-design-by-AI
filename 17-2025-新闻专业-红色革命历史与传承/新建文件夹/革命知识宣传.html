@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红色革命 - 历史与传承</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', 'SimHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #8b0000 0%, #5a0000 50%, #3a0000 100%);
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            text-align: center;
+            padding-top: 30px;
+            background: rgba(120, 0, 0, 0.7);
+            border-bottom: 3px solid #ffcc00;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .title-banner {
+            width: 100%;
+            max-height: 400px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .title-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+        
+        header h1 {
+            color: #ffcc00;
+            font-size: 42px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            padding: 0 20px;
+        }
+        
+        header p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #ffddaa;
+            padding: 0 20px;
+        }
+        
+        /* 导航样式 */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(80, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+        
+        .tab {
+            padding: 12px 25px;
+            background: #a00000;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 130px;
+            text-align: center;
+        }
+        
+        .tab:hover {
+            background: #c00000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tab.active {
+            background: #ffcc00;
+            color: #8b0000;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+        }
+        
+        /* 内容区域 */
+        .content-area {
+            background: rgba(60, 0, 0, 0.85);
+            border-radius: 10px;
+            padding: 30px;
+            min-height: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            margin-bottom: 40px;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* 通用内容样式 */
+        .section-title {
+            color: #ffcc00;
+            font-size: 28px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffcc00;
+            text-align: center;
+        }
+        
+        .section-desc {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #ffddbb;
+            text-align: center;
+        }
+        
+        /* 革命精神区块样式 - 图文并茂 */
+        .spirit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .spirit-card {
+            background: rgba(100, 0, 0, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .spirit-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffcc00;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .spirit-img {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .spirit-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .spirit-card:hover .spirit-img img {
+            transform: scale(1.05);
+        }
+        
+        .spirit-content {
+            padding: 20px;
+        }
+        
+        .spirit-content h3 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .spirit-content p {
+            color: #ffddbb;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        /* 人物介绍样式 */
+        .character-intro {
+            background: rgba(100, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 5px solid #ffcc00;
+        }
+        
+        .character-intro h3 {
+            color: #ffcc00;
+            margin-bottom: 25px;
+            font-size: 28px;
+            text-align: center;
+        }
+        
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .character-item {
+            background: rgba(80, 0, 0, 0.8);
+            padding: 25px;
+            border-radius: 8px;
+            border-bottom: 3px solid #ffcc00;
+        }
+        
+        .character-item h4 {
+            color: #ffcc00;
+            font-size: 24px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 204, 0, 0.3);
+        }
+        
+        .character-item p {
+            color: #ffddbb;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        /* 填空题样式 */
+        .fill-blank-container {
+            background: rgba(80, 0, 0, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .fill-blank-question {
+            margin-bottom: 25px;
+        }
+        
+        .fill-blank-question h4 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .blank-input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #a00000;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        .blank-input:focus {
+            outline: none;
+            border-color: #ffcc00;
+        }
+        
+        .blank-feedback {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 5px;
+            display: none;
+            font-weight: bold;
+        }
+        
+        .blank-correct {
+            background-color: rgba(0, 100, 0, 0.7);
+            color: #aaffaa;
+            border: 1px solid #00aa00;
+        }
+        
+        .blank-wrong {
+            background-color: rgba(100, 0, 0, 0.7);
+            color: #ffaaaa;
+            border: 1px solid #ff5555;
+        }
+        
+        /* 测验样式 */
+        .quiz-container {
+            background: rgba(80, 0, 0, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+        
+        .quiz-question h4 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .options {
+            margin-left: 20px;
+        }
+        
+        .option {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option input {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .option label {
+            cursor: pointer;
+            font-size: 17px;
+        }
+        
+        .quiz-feedback {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 5px;
+            display: none;
+            font-weight: bold;
+        }
+        
+        .quiz-correct {
+            background-color: rgba(0, 100, 0, 0.7);
+            color: #aaffaa;
+            border: 1px solid #00aa00;
+        }
+        
+        .quiz-wrong {
+            background-color: rgba(100, 0, 0, 0.7);
+            color: #ffaaaa;
+            border: 1px solid #ff5555;
+        }
+        
+        /* 排序题样式 */
+        .sort-container {
+            background: rgba(80, 0, 0, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .sort-item {
+            background: rgba(120, 0, 0, 0.7);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            cursor: move;
+            transition: all 0.3s;
+            font-size: 18px;
+            min-height: 60px;
+        }
+        
+        .sort-item:hover {
+            background: rgba(150, 0, 0, 0.8);
+        }
+        
+        .sort-handle {
+            margin-right: 15px;
+            color: #ffcc00;
+            font-size: 24px;
+            user-select: none;
+        }
+        
+        /* 军衔历史样式 */
+        .military-history {
+            background: rgba(100, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #ffcc00;
+        }
+        
+        .military-history h3 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+        
+        .military-history p {
+            color: #ffddbb;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .military-image {
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .military-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid #ffcc00;
+        }
+        
+        /* 诗歌赏析链接样式 */
+        .poetry-link {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .poetry-link a {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #ffcc00, #ffaa00);
+            color: #8b0000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+        }
+        
+        .poetry-link a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.4);
+            background: linear-gradient(135deg, #ffdd44, #ffcc00);
+        }
+        
+        /* 按钮样式 */
+        .btn {
+            padding: 12px 25px;
+            background: #ffcc00;
+            color: #8b0000;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 5px;
+        }
+        
+        .btn:hover {
+            background: #ffdd44;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+        }
+        
+        .btn-check {
+            background: #008800;
+            color: white;
+        }
+        
+        .btn-check:hover {
+            background: #00aa00;
+        }
+        
+        .btn-reset {
+            background: #aa0000;
+            color: white;
+        }
+        
+        .btn-reset:hover {
+            background: #cc0000;
+        }
+        
+        /* 结果样式 */
+        .result {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .result-success {
+            background: rgba(0, 100, 0, 0.7);
+            color: #aaffaa;
+            border: 2px solid #00aa00;
+        }
+        
+        .result-error {
+            background: rgba(100, 0, 0, 0.7);
+            color: #ffaaaa;
+            border: 2px solid #ff5555;
+        }
+        
+        /* 页脚 */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #ffccaa;
+            font-size: 16px;
+            border-top: 1px solid rgba(255, 204, 0, 0.3);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                min-width: 100%;
+            }
+            
+            .spirit-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .character-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="title-banner">
+                <img src="https://img10.360buyimg.com/ddimg/jfs/t1/374863/19/6909/47545/693674b9F3716b53a/2734eef328a2d363.jpg" alt="红色革命主题横幅">
+            </div>
+            <h1>红色革命 - 历史与传承</h1>
+            <p>探索革命历史，传承红色精神，不忘初心，牢记使命</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <button class="tab active" onclick="switchTab(this, 1)">革命精神</button>
+            <button class="tab" onclick="switchTab(this, 2)">革命事件</button>
+            <button class="tab" onclick="switchTab(this, 3)">人物专栏</button>
+            <button class="tab" onclick="switchTab(this, 4)">历史遗迹</button>
+            <button class="tab" onclick="switchTab(this, 5)">红色诗歌</button>
+            <button class="tab" onclick="switchTab(this, 6)">军队军衔</button>
+            <button class="tab" onclick="switchTab(this, 7)">当代价值</button>
+        </div>
+        
+        <div class="content-area">
+            <!-- 1. 革命精神 - 已扩充为6个板块，带图片 -->
+            <div id="tab1" class="tab-content active">
+                <h2 class="section-title">革命精神谱系</h2>
+                <p class="section-desc">红色革命精神是中国共产党和中国人民在长期革命斗争中形成的宝贵精神财富，是激励我们不断前进的强大动力。</p>
+                
+                <div class="spirit-grid">
+                    <div class="spirit-card">
+                        <div class="spirit-img">
+                            <img src="https://img12.360buyimg.com/ddimg/jfs/t1/352215/3/11830/55871/693675b1Fcd98441f/5494b01b9c410d89.jpg" alt="井冈山">
+                        </div>
+                        <div class="spirit-content">
+                            <h3>井冈山精神</h3>
+                            <p>井冈山是中国革命的摇篮[citation:4][citation:6]。井冈山精神诞生于土地革命时期的井冈山革命根据地，其主要内涵是：坚定信念、艰苦奋斗，实事求是、敢闯新路，依靠群众、勇于胜利[citation:4][citation:6]。它是中国革命的摇篮精神，体现了中国共产党人在极端困难条件下不屈不挠的革命意志。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="spirit-card">
+                        <div class="spirit-img">
+                            <img src="https://img13.360buyimg.com/ddimg/jfs/t1/351870/21/16120/29641/69367628Ff303e1c9/7cd0c6fbb0646068.jpg" alt="长征">
+                        </div>
+                        <div class="spirit-content">
+                            <h3>长征精神</h3>
+                            <p>长征精神是中国共产党在二万五千里长征中形成的革命精神，其核心内涵是：坚定革命的理想和信念；为了救国救民，不怕任何艰难险阻，不惜付出一切牺牲的精神；坚持独立自主、实事求是，一切从实际出发的精神；顾全大局、严守纪律、紧密团结的精神；紧紧依靠人民群众，同人民群众生死相依、患难与共、艰苦奋斗的精神。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="spirit-card">
+                        <div class="spirit-img">
+                            <img src="https://img13.360buyimg.com/ddimg/jfs/t1/352566/12/9291/48502/693676cdF5479d84a/9c12bcc3a723c8fd.jpg" alt="延安">
+                        </div>
+                        <div class="spirit-content">
+                            <h3>延安精神</h3>
+                            <p>延安精神是中国共产党在延安时期形成的优良传统和作风，主要内容包括：坚定正确的政治方向，解放思想、实事求是的思想路线，全心全意为人民服务的根本宗旨，自力更生、艰苦奋斗的创业精神。延安精神是中国共产党的宝贵精神财富，对今天仍有重要指导意义。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="spirit-card">
+                        <div class="spirit-img">
+                            <!-- 使用占位图，实际中可用西柏坡图片 -->
+                            <img src="https://img13.360buyimg.com/ddimg/jfs/t1/352566/12/9291/48502/693676cdF5479d84a/9c12bcc3a723c8fd.jpg" alt="西柏坡">
+                        </div>
+                        <div class="spirit-content">
+                            <h3>西柏坡精神</h3>
+                            <p>西柏坡精神是在中国革命伟大历史转折时期形成的，其核心是“两个务必”：务必保持谦虚谨慎、不骄不躁的作风，务必保持艰苦奋斗的作风[citation:1]。它体现为了人民、依靠人民的公仆精神，敢于斗争、敢于胜利的进取精神，以及善于破坏旧世界、善于建设新世界的科学精神[citation:1][citation:8]。毛泽东同志在此提出“两个务必”，包含着对历史治乱规律的深刻借鉴和对永葆党的先进性的深刻思考[citation:1]。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="spirit-card">
+                        <div class="spirit-img">
+                            <!-- 使用占位图，实际中可用抗美援朝图片 -->
+                            <img src="https://img13.360buyimg.com/ddimg/jfs/t1/351870/21/16120/29641/69367628Ff303e1c9/7cd0c6fbb0646068.jpg" alt="抗美援朝">
+                        </div>
+                        <div class="spirit-content">
+                            <h3>抗美援朝精神</h3>
+                            <p>抗美援朝精神是在波澜壮阔的抗美援朝战争中锻造形成的，其内涵包括：祖国和人民利益高于一切、为了祖国和民族的尊严而奋不顾身的爱国主义精神；英勇顽强、舍生忘死的革命英雄主义精神；不畏艰难困苦、始终保持高昂士气的革命乐观主义精神；为完成祖国和人民赋予的使命、慷慨奉献自己一切的革命忠诚精神；为了人类和平与正义事业而奋斗的国际主义精神[citation:2][citation:9]。这场战争弘扬和光大了中国共产党和人民军队的革命精神[citation:2]。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="spirit-card">
+                        <div class="spirit-img">
+                            <!-- 使用占位图，实际中可用南泥湾图片 -->
+                            <img src="https://img13.360buyimg.com/ddimg/jfs/t1/352566/12/9291/48502/693676cdF5479d84a/9c12bcc3a723c8fd.jpg" alt="南泥湾">
+                        </div>
+                        <div class="spirit-content">
+                            <h3>南泥湾精神</h3>
+                            <p>南泥湾精神是以八路军三五九旅为代表的抗日军民在南泥湾大生产运动中创造的，其核心是自力更生、艰苦奋斗的创业精神[citation:3]。1941年，八路军三五九旅挺进荒无人烟的南泥湾，开展了轰轰烈烈的大生产运动，短短三年就将“烂泥湾”变成了“陕北好江南”[citation:3][citation:10]。这种精神是中国共产党及其领导下的人民军队在困境中奋起、在艰苦中发展的强大精神力量[citation:3]。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 2. 革命事件 - 已添加填空题 -->
+            <div id="tab2" class="tab-content">
+                <h2 class="section-title">重大革命事件</h2>
+                <p class="section-desc">中国革命历史上的重要转折点和关键战役，这些事件塑造了现代中国的面貌。</p>
+                
+                <div class="spirit-grid">
+                    <div class="spirit-card">
+                        <div class="spirit-content">
+                            <h3>南昌起义（1927年）</h3>
+                            <p>1927年8月1日，中国共产党在江西省南昌市发动武装起义，打响了武装反抗国民党反动派的第一枪，标志着中国共产党独立领导革命战争、创建人民军队的开始。这一天后来被定为中国人民解放军建军节。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="spirit-card">
+                        <div class="spirit-content">
+                            <h3>秋收起义（1927年）</h3>
+                            <p>1927年9月9日，毛泽东在湖南东部和江西西部领导的工农革命军举行武装起义，是继南昌起义之后中国共产党领导的又一次著名武装起义。秋收起义创建了第一支工农革命军，并确立了"农村包围城市"的革命道路。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="spirit-card">
+                        <div class="spirit-content">
+                            <h3>红军长征（1934-1936年）</h3>
+                            <p>1934年10月至1936年10月，中国工农红军主力从长江南北各苏区向陕甘革命根据地的战略转移。长征总里程约二万五千里，是人类历史上的伟大奇迹。长征的胜利保存了党和红军的基干力量，使中国革命转危为安。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 填空题部分 -->
+                <div class="fill-blank-container">
+                    <h3 style="color:#ffcc00; text-align:center; margin-bottom:25px;">填空题：测试你对革命事件的了解</h3>
+                    
+                    <div class="fill-blank-question">
+                        <h4>1. 1927年8月1日发生的__________，是中国共产党独立领导武装斗争的开始。</h4>
+                        <input type="text" class="blank-input" id="blank1" placeholder="请输入答案">
+                        <div class="blank-feedback" id="feedback-blank1"></div>
+                    </div>
+                    
+                    <div class="fill-blank-question">
+                        <h4>2. 毛泽东领导的__________创建了第一支工农革命军。</h4>
+                        <input type="text" class="blank-input" id="blank2" placeholder="请输入答案">
+                        <div class="blank-feedback" id="feedback-blank2"></div>
+                    </div>
+                    
+                    <div class="fill-blank-question">
+                        <h4>3. 1934年至1936年进行的__________，行程约二万五千里。</h4>
+                        <input type="text" class="blank-input" id="blank3" placeholder="请输入答案">
+                        <div class="blank-feedback" id="feedback-blank3"></div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 25px;">
+                        <button class="btn btn-check" onclick="checkBlanks()">提交填空题答案</button>
+                        <button class="btn btn-reset" onclick="resetBlanks()">重置填空题</button>
+                    </div>
+                    
+                    <div class="result" id="blankResult"></div>
+                </div>
+            </div>
+            
+            <!-- 3. 人物专栏 - 已添加详细介绍 -->
+            <div id="tab3" class="tab-content">
+                <h2 class="section-title">革命人物专栏</h2>
+                
+                <!-- 人物详细介绍 -->
+                <div class="character-intro">
+                    <h3>革命先驱与领袖人物</h3>
+                    <div class="character-grid">
+                        <div class="character-item">
+                            <h4>毛泽东</h4>
+                            <p>毛泽东（1893-1976），伟大的无产阶级革命家、战略家和理论家，中国共产党、中国人民解放军和中华人民共和国的主要创立者之一。他是毛泽东思想的主要创立者，领导中国人民取得了新民主主义革命的胜利，建立了中华人民共和国。毛泽东在革命实践中提出了“农村包围城市”、“枪杆子里面出政权”等重要战略思想，领导了秋收起义，创建了井冈山革命根据地，并在长征途中确立了在党中央的领导地位。抗日战争和解放战争时期，他指挥了一系列重要战役，最终领导中国共产党和中国人民推翻了国民党政权，建立了新中国。毛泽东的革命理论和实践对中国乃至世界产生了深远影响。</p>
+                        </div>
+                        
+                        <div class="character-item">
+                            <h4>周恩来</h4>
+                            <p>周恩来（1898-1976），伟大的无产阶级革命家、政治家、军事家、外交家，中国共产党和中华人民共和国的主要领导人之一。他是人民军队的创建者之一，在南昌起义中担任前敌委员会书记。在长征途中，他支持毛泽东的正确主张，为确立毛泽东在党中央的领导地位发挥了重要作用。抗日战争时期，他长期在国民党统治区进行统战工作和对外交往。新中国成立后，他担任国务院总理长达26年，为国家建设和外交事业作出了卓越贡献。周恩来以卓越的领导才能、高尚的人格魅力和鞠躬尽瘁的奉献精神，赢得了中国人民和世界人民的广泛尊敬，被誉为“人民的好总理”。</p>
+                        </div>
+                        
+                        <div class="character-item">
+                            <h4>朱德</h4>
+                            <p>朱德（1886-1976），伟大的无产阶级革命家、政治家和军事家，中国人民解放军的主要创始人和领导人之一。他是南昌起义的领导人之一，起义失败后率领余部转战湘南，随后与毛泽东在井冈山会师，共同创建了中国工农红军第四军。在长期的革命战争中，朱德担任红军总司令、八路军总司令、中国人民解放军总司令，指挥了一系列重要战役，为中国人民的解放事业立下了不朽功勋。他擅长游击战和运动战，与毛泽东共同总结出了“敌进我退，敌驻我扰，敌疲我打，敌退我追”的十六字诀游击战术。朱德以其坚定的革命信念、卓越的军事才能和朴实的工作作风，深受全军和全国人民的爱戴，被尊称为“红军之父”。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="section-desc">通过以下测验，测试您对革命历史人物的了解程度。</p>
+                
+                <div class="quiz-container">
+                    <div class="quiz-question">
+                        <h4>1. 毛泽东同志在中国革命中的主要贡献是什么？</h4>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="q1a" name="q1" value="A">
+                                <label for="q1a">A. 提出了"农村包围城市"的革命道路</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q1b" name="q1" value="B">
+                                <label for="q1b">B. 领导了南昌起义</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q1c" name="q1" value="C">
+                                <label for="q1c">C. 指挥了平型关战役</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q1d" name="q1" value="D">
+                                <label for="q1d">D. 建立了黄埔军校</label>
+                            </div>
+                        </div>
+                        <div class="quiz-feedback" id="feedback1"></div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <h4>2. 周恩来同志在长征期间担任什么重要职务？</h4>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="q2a" name="q2" value="A">
+                                <label for="q2a">A. 红军总司令</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q2b" name="q2" value="B">
+                                <label for="q2b">B. 中央革命军事委员会副主席</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q2c" name="q2" value="C">
+                                <label for="q2c">C. 红一方面军政委</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q2d" name="q2" value="D">
+                                <label for="q2d">D. 中央组织部部长</label>
+                            </div>
+                        </div>
+                        <div class="quiz-feedback" id="feedback2"></div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <h4>3. 判断：朱德同志是中国人民解放军的创始人之一。</h4>
+                        <div class="options">
+                            <div class="option">
+                                <input type="radio" id="q3a" name="q3" value="A">
+                                <label for="q3a">A. 正确</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q3b" name="q3" value="B">
+                                <label for="q3b">B. 错误</label>
+                            </div>
+                        </div>
+                        <div class="quiz-feedback" id="feedback3"></div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 25px;">
+                        <button class="btn btn-check" onclick="checkQuiz()">提交答案</button>
+                        <button class="btn btn-reset" onclick="resetQuiz()">重置答案</button>
+                    </div>
+                    
+                    <div class="result" id="quizResult"></div>
+                </div>
+            </div>
+            
+            <!-- 4. 历史遗迹 - 保持不变 -->
+            <div id="tab4" class="tab-content">
+                <h2 class="section-title">革命历史遗迹连线题</h2>
+                <p class="section-desc">请将左侧的革命遗址与右侧的相关描述正确连线。</p>
+                
+                <div class="matching-container" style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 30px;">
+                    <div style="flex: 1; min-width: 250px; margin: 0 15px;">
+                        <h4 style="color:#ffcc00; text-align:center; margin-bottom:20px; font-size:20px;">革命遗址</h4>
+                        <div class="matching-item" data-id="1" onclick="selectItem(this)" style="background: rgba(120, 0, 0, 0.7); padding: 15px; margin-bottom: 15px; border-radius: 5px; text-align: center; cursor: pointer; transition: all 0.3s; border: 2px solid transparent;">井冈山革命旧址</div>
+                        <div class="matching-item" data-id="2" onclick="selectItem(this)" style="background: rgba(120, 0, 0, 0.7); padding: 15px; margin-bottom: 15px; border-radius: 5px; text-align: center; cursor: pointer; transition: all 0.3s; border: 2px solid transparent;">延安革命纪念馆</div>
+                        <div class="matching-item" data-id="3" onclick="selectItem(this)" style="background: rgba(120, 0, 0, 0.7); padding: 15px; margin-bottom: 15px; border-radius: 5px; text-align: center; cursor: pointer; transition: all 0.3s; border: 2px solid transparent;">遵义会议会址</div>
+                        <div class="matching-item" data-id="4" onclick="selectItem(this)" style="background: rgba(120, 0, 0, 0.7); padding: 15px; margin-bottom: 15px; border-radius: 5px; text-align: center; cursor: pointer; transition: all 0.3s; border: 2px solid transparent;">西柏坡中共中央旧址</div>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 250px; margin: 0 15px;">
+                        <h4 style="color:#ffcc00; text-align:center; margin-bottom:20px; font-size:20px;">相关描述</h4>
+                        <div class="matching-item" data-id="A" onclick="selectItem(this)" style="background: rgba(120, 0, 0, 0.7); padding: 15px; margin-bottom: 15px; border-radius: 5px; text-align: center; cursor: pointer; transition: all 0.3s; border: 2px solid transparent;">中国革命转折点，确立了毛泽东的领导地位</div>
+                        <div class="matching-item" data-id="B" onclick="selectItem(this)" style="background: rgba(120, 0, 0, 0.7); padding: 15px; margin-bottom: 15px; border-radius: 5px; text-align: center; cursor: pointer; transition: all 0.3s; border: 2px solid transparent;">中国革命的摇篮，第一个农村革命根据地</div>
+                        <div class="matching-item" data-id="C" onclick="selectItem(this)" style="background: rgba(120, 0, 0, 0.7); padding: 15px; margin-bottom: 15px; border-radius: 5px; text-align: center; cursor: pointer; transition: all 0.3s; border: 2px solid transparent;">中国共产党"进京赶考"的出发地</div>
+                        <div class="matching-item" data-id="D" onclick="selectItem(this)" style="background: rgba(120, 0, 0, 0.7); padding: 15px; margin-bottom: 15px; border-radius: 5px; text-align: center; cursor: pointer; transition: all 0.3s; border: 2px solid transparent;">抗日战争时期中共中央所在地</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <button class="btn btn-check" onclick="checkMatching()">检查连线</button>
+                    <button class="btn btn-reset" onclick="resetMatching()">重置连线</button>
+                </div>
+                
+                <div class="result" id="matchingResult"></div>
+            </div>
+            
+            <!-- 5. 红色诗歌 - 已修改排序题，添加正确链接 -->
+            <div id="tab5" class="tab-content">
+                <h2 class="section-title">红色诗歌排序题</h2>
+                <p class="section-desc">请将以下诗句重新排列，恢复毛泽东《七律·长征》的正确顺序。</p>
+                
+                <div class="sort-container" id="sortContainer">
+                    <!-- 诗句已按逗号拆分，没有重复 -->
+                    <div class="sort-item" data-id="1">
+                        <span class="sort-handle">☰</span> 红军不怕远征难
+                    </div>
+                    <div class="sort-item" data-id="2">
+                        <span class="sort-handle">☰</span> 万水千山只等闲
+                    </div>
+                    <div class="sort-item" data-id="3">
+                        <span class="sort-handle">☰</span> 五岭逶迤腾细浪
+                    </div>
+                    <div class="sort-item" data-id="4">
+                        <span class="sort-handle">☰</span> 乌蒙磅礴走泥丸
+                    </div>
+                    <div class="sort-item" data-id="5">
+                        <span class="sort-handle">☰</span> 金沙水拍云崖暖
+                    </div>
+                    <div class="sort-item" data-id="6">
+                        <span class="sort-handle">☰</span> 大渡桥横铁索寒
+                    </div>
+                    <div class="sort-item" data-id="7">
+                        <span class="sort-handle">☰</span> 更喜岷山千里雪
+                    </div>
+                    <div class="sort-item" data-id="8">
+                        <span class="sort-handle">☰</span> 三军过后尽开颜
+                    </div>
+                </div>
+                
+                <!-- 诗歌赏析链接 -->
+                <div class="poetry-link">
+                    <a href="https://baike.baidu.com/item/%E4%B8%83%E5%BE%8B%C2%B7%E9%95%BF%E5%BE%81/1188448" target="_blank">点击查看《七律·长征》诗歌赏析</a>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="btn btn-check" onclick="checkSorting()">检查排序</button>
+                    <button class="btn btn-reset" onclick="resetSorting()">重置排序</button>
+                </div>
+                
+                <div class="result" id="sortingResult"></div>
+            </div>
+            
+            <!-- 6. 军队军衔 - 已添加历史文案和图片 -->
+            <div id="tab6" class="tab-content">
+                <h2 class="section-title">军队军衔制度</h2>
+                
+                <!-- 军衔历史介绍 -->
+                <div class="military-history">
+                    <h3>1955年中国人民解放军授衔</h3>
+                    <p>1955年2月，全国人大常委会通过《中国人民解放军军官服役条例》，正式确立军衔制度，明确了军衔等级、授衔标准和权限，为此次授衔仪式提供了法律和制度依据。授衔的核心原则是"论功行赏、以德才定位"，既考量革命战争时期的战功贡献，也兼顾当时的职务级别与军事素养。</p>
+                    
+                    <p>1955年9月27日进行授衔仪式：</p>
+                    <p><strong>元帅（10人）</strong>：朱德、彭德怀、林彪、刘伯承、贺龙、陈毅、罗荣桓、徐向前、聂荣臻、叶剑英。</p>
+                    <p><strong>大将（10人）</strong>：粟裕、徐海东、黄克诚、陈赓、谭政、萧劲光、张云逸、罗瑞卿、王树声、许光达，是仅次于元帅的高级将领，肩章为四颗星徽。</p>
+                    <p><strong>上将（55人，后补授2人，总计57人）</strong>：包括萧克、李达、张宗逊等，多为各大战略区、军兵种的主要负责人。</p>
+                    <p><strong>中将（175人，后补授1人，总计176人）和少将（802人，后补授2人，总计804人）</strong>：覆盖了兵团、军、师级等核心指挥岗位，构成了军队中层和高层指挥体系的骨干。</p>
+                    
+                    <div class="military-image">
+                        <img src="https://img14.360buyimg.com/ddimg/jfs/t1/375241/12/6893/67036/69367754Fe3b70b1c/a81f5171c25e7a6b.jpg" alt="中国人民解放军军衔">
+                    </div>
+                </div>
+                
+                <p class="section-desc">请按军衔从高到低的顺序排列以下解放军军衔。</p>
+                
+                <div class="sort-container" id="rankContainer">
+                    <div class="sort-item" data-id="1">
+                        <span class="sort-handle">☰</span> 上将
+                    </div>
+                    <div class="sort-item" data-id="2">
+                        <span class="sort-handle">☰</span> 中校
+                    </div>
+                    <div class="sort-item" data-id="3">
+                        <span class="sort-handle">☰</span> 少尉
+                    </div>
+                    <div class="sort-item" data-id="4">
+                        <span class="sort-handle">☰</span> 上校
+                    </div>
+                    <div class="sort-item" data-id="5">
+                        <span class="sort-handle">☰</span> 少校
+                    </div>
+                    <div class="sort-item" data-id="6">
+                        <span class="sort-handle">☰</span> 上尉
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="btn btn-check" onclick="checkRanks()">检查排序</button>
+                    <button class="btn btn-reset" onclick="resetRanks()">重置排序</button>
+                </div>
+                
+                <div class="result" id="ranksResult"></div>
+            </div>
+            
+            <!-- 7. 当代价值与教育活动 - 保持不变 -->
+            <div id="tab7" class="tab-content">
+                <h2 class="section-title">当代价值与教育活动</h2>
+                <p class="section-desc">红色革命精神在当代的价值体现以及开展的相关教育活动。</p>
+                
+                <div class="spirit-grid">
+                    <div class="spirit-card">
+                        <div class="spirit-content">
+                            <h3>红色教育的当代价值</h3>
+                            <p>红色革命精神在当代具有重要的教育价值：一是坚定理想信念，补足精神之钙；二是传承艰苦奋斗精神，克服发展难题；三是弘扬爱国主义，凝聚民族力量；四是践行群众路线，巩固执政基础；五是培育社会主义核心价值观，引领社会风尚。红色资源是我们党艰辛而辉煌奋斗历程的见证，是宝贵的精神财富[citation:7]。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="spirit-card">
+                        <div class="spirit-content">
+                            <h3>红色研学旅行活动</h3>
+                            <p>各地积极开展红色研学旅行活动，组织青少年参观革命遗址、纪念馆，通过实地体验学习革命历史[citation:7]。例如：井冈山"重走红军路"、延安"窑洞课堂"、遵义"转折之城探秘"等，让青少年在行走中学习，在体验中感悟。将红色资源纳入教育教学实践环节，通过开设"第二课堂"、组织实习实践等，使红色资源育人从教育理论转化为教育实践[citation:7]。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="spirit-card">
+                        <div class="spirit-content">
+                            <h3>红色文化创意产品</h3>
+                            <p>通过开发红色文化创意产品，让革命精神以更生动的方式走进大众生活。包括：革命题材影视作品、红色主题出版物、革命文物数字展、VR体验项目等，使红色文化在创新中传承，在传承中发展。要组织师生加大现实题材创作力度，探索尝试用历史、人文、文艺等不同视角，挖掘提炼红色文化所承载的多重内涵[citation:7]。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>红色革命历史教育平台 &copy; 2025 | 传承红色基因，赓续精神血脉</p>
+        </footer>
+    </div>
+
+    <script>
+        // Tab切换功能
+        function switchTab(selected, id) {
+            // 重置所有Tab样式
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // 高亮当前Tab
+            selected.classList.add('active');
+            
+            // 隐藏所有内容区域
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // 显示对应内容区域
+            document.getElementById('tab' + id).classList.add('active');
+        }
+        
+        // 革命事件填空题
+        const blankAnswers = {
+            blank1: '南昌起义',
+            blank2: '秋收起义',
+            blank3: '长征'
+        };
+        
+        function checkBlanks() {
+            let score = 0;
+            let total = 3;
+            let allAnswered = true;
+            
+            // 检查每个填空题
+            for (let i = 1; i <= 3; i++) {
+                const blankId = `blank${i}`;
+                const feedbackId = `feedback-${blankId}`;
+                const userAnswer = document.getElementById(blankId).value.trim();
+                const feedback = document.getElementById(feedbackId);
+                
+                if (!userAnswer) {
+                    feedback.textContent = '请填写答案！';
+                    feedback.className = 'blank-feedback blank-wrong';
+                    feedback.style.display = 'block';
+                    allAnswered = false;
+                    continue;
+                }
+                
+                if (userAnswer === blankAnswers[blankId]) {
+                    score++;
+                    feedback.textContent = '回答正确！';
+                    feedback.className = 'blank-feedback blank-correct';
+                } else {
+                    feedback.textContent = `回答错误，正确答案是：${blankAnswers[blankId]}`;
+                    feedback.className = 'blank-feedback blank-wrong';
+                }
+                
+                feedback.style.display = 'block';
+            }
+            
+            // 显示结果
+            const resultDiv = document.getElementById('blankResult');
+            if (allAnswered) {
+                if (score === total) {
+                    resultDiv.className = 'result result-success';
+                    resultDiv.textContent = '优秀！您对革命事件非常了解！';
+                } else if (score >= 1) {
+                    resultDiv.className = 'result result-success';
+                    resultDiv.textContent = `良好！您答对了 ${score} 题，继续加油！`;
+                } else {
+                    resultDiv.className = 'result result-error';
+                    resultDiv.textContent = '需要加强学习哦，建议多了解革命历史事件。';
+                }
+                
+                resultDiv.style.display = 'block';
+            }
+        }
+        
+        function resetBlanks() {
+            // 清除所有输入
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`blank${i}`).value = '';
+                document.getElementById(`feedback-blank${i}`).style.display = 'none';
+            }
+            
+            // 隐藏结果
+            document.getElementById('blankResult').style.display = 'none';
+        }
+        
+        // 人物专栏测验
+        const quizAnswers = {
+            q1: 'A',
+            q2: 'B',
+            q3: 'A'
+        };
+        
+        let userQuizAnswers = {
+            q1: null,
+            q2: null,
+            q3: null
+        };
+        
+        // 为每个选项添加点击事件监听器
+        document.querySelectorAll('#tab3 input[type="radio"]').forEach(radio => {
+            radio.addEventListener('click', function() {
+                const questionName = this.name;
+                userQuizAnswers[questionName] = this.value;
+                
+                // 重置该问题的反馈
+                const feedback = document.getElementById(`feedback${questionName.slice(1)}`);
+                feedback.style.display = 'none';
+            });
+        });
+        
+        function checkQuiz() {
+            let score = 0;
+            let allAnswered = true;
+            
+            // 检查每个问题的答案
+            for (let i = 1; i <= 3; i++) {
+                const questionName = `q${i}`;
+                const feedback = document.getElementById(`feedback${i}`);
+                
+                if (userQuizAnswers[questionName] === null) {
+                    feedback.textContent = '请先选择一个答案！';
+                    feedback.className = 'quiz-feedback quiz-wrong';
+                    feedback.style.display = 'block';
+                    allAnswered = false;
+                    continue;
+                }
+                
+                if (userQuizAnswers[questionName] === quizAnswers[questionName]) {
+                    score++;
+                    feedback.textContent = '回答正确！';
+                    feedback.className = 'quiz-feedback quiz-correct';
+                } else {
+                    feedback.textContent = '回答错误，请再仔细思考。';
+                    feedback.className = 'quiz-feedback quiz-wrong';
+                }
+                
+                feedback.style.display = 'block';
+            }
+            
+            // 显示结果
+            const resultDiv = document.getElementById('quizResult');
+            if (allAnswered) {
+                resultDiv.textContent = `您的得分：${score}/3`;
+                
+                if (score === 3) {
+                    resultDiv.className = 'result result-success';
+                    resultDiv.textContent = '优秀！您对革命人物非常了解！';
+                } else if (score >= 1) {
+                    resultDiv.className = 'result result-success';
+                    resultDiv.textContent = `良好！您答对了 ${score} 题，继续加油！`;
+                } else {
+                    resultDiv.className = 'result result-error';
+                    resultDiv.textContent = '需要加强学习哦，建议多了解革命历史人物。';
+                }
+                
+                resultDiv.style.display = 'block';
+            }
+        }
+        
+        function resetQuiz() {
+            // 清除所有选择
+            document.querySelectorAll('#tab3 input[type="radio"]').forEach(radio => {
+                radio.checked = false;
+            });
+            
+            // 重置用户答案状态
+            userQuizAnswers = {
+                q1: null,
+                q2: null,
+                q3: null
+            };
+            
+            // 隐藏所有反馈
+            document.querySelectorAll('#tab3 .quiz-feedback').forEach(feedback => {
+                feedback.style.display = 'none';
+            });
+            
+            // 隐藏结果
+            document.getElementById('quizResult').style.display = 'none';
+        }
+        
+        // 历史遗迹连线题
+        let selectedItems = [];
+        const correctMatching = {
+            '1': 'B',
+            '2': 'D',
+            '3': 'A',
+            '4': 'C'
+        };
+        
+        function selectItem(element) {
+            const id = element.getAttribute('data-id');
+            
+            // 如果已经选中，则取消选中
+            if (selectedItems.includes(element)) {
+                element.classList.remove('selected');
+                element.style.backgroundColor = '';
+                selectedItems = selectedItems.filter(item => item !== element);
+                return;
+            }
+            
+            // 如果已经选中了两个，先清空
+            if (selectedItems.length >= 2) {
+                selectedItems.forEach(item => {
+                    item.classList.remove('selected');
+                    item.style.backgroundColor = '';
+                });
+                selectedItems = [];
+            }
+            
+            // 选中当前项
+            element.classList.add('selected');
+            element.style.backgroundColor = 'rgba(180, 0, 0, 0.9)';
+            selectedItems.push(element);
+        }
+        
+        function checkMatching() {
+            if (selectedItems.length !== 2) {
+                alert('请选择两个项目进行连线！');
+                return;
+            }
+            
+            const item1 = selectedItems[0];
+            const item2 = selectedItems[1];
+            const id1 = item1.getAttribute('data-id');
+            const id2 = item2.getAttribute('data-id');
+            
+            // 检查是否一个是遗址，一个是描述
+            const isSite1 = !isNaN(id1);
+            const isSite2 = !isNaN(id2);
+            
+            if (isSite1 === isSite2) {
+                document.getElementById('matchingResult').className = 'result result-error';
+                document.getElementById('matchingResult').textContent = '错误！请选择一个遗址和一个描述进行连线。';
+                document.getElementById('matchingResult').style.display = 'block';
+                return;
+            }
+            
+            // 确定哪个是遗址，哪个是描述
+            let siteId, descId;
+            if (isSite1) {
+                siteId = id1;
+                descId = id2;
+            } else {
+                siteId = id2;
+                descId = id1;
+            }
+            
+            // 检查匹配是否正确
+            if (correctMatching[siteId] === descId) {
+                item1.style.backgroundColor = 'rgba(0, 100, 0, 0.7)';
+                item2.style.backgroundColor = 'rgba(0, 100, 0, 0.7)';
+                item1.classList.remove('selected');
+                item2.classList.remove('selected');
+                
+                document.getElementById('matchingResult').className = 'result result-success';
+                document.getElementById('matchingResult').textContent = '正确！连线成功！';
+                document.getElementById('matchingResult').style.display = 'block';
+                
+                selectedItems = [];
+                
+                // 检查是否全部匹配
+                const allMatched = document.querySelectorAll('#tab4 .matching-item[style*="rgba(0, 100, 0"]').length === 8;
+                if (allMatched) {
+                    setTimeout(() => {
+                        document.getElementById('matchingResult').textContent = '太棒了！您已经正确完成了所有连线！';
+                    }, 500);
+                }
+            } else {
+                document.getElementById('matchingResult').className = 'result result-error';
+                document.getElementById('matchingResult').textContent = '错误！这个连线不正确，请再试试。';
+                document.getElementById('matchingResult').style.display = 'block';
+            }
+        }
+        
+        function resetMatching() {
+            // 清除所有选中和匹配状态
+            document.querySelectorAll('#tab4 .matching-item').forEach(item => {
+                item.classList.remove('selected');
+                item.style.backgroundColor = '';
+            });
+            
+            selectedItems = [];
+            
+            // 隐藏结果
+            document.getElementById('matchingResult').style.display = 'none';
+        }
+        
+        // 诗歌排序题 - 修正版（8句独立诗句）
+        const correctPoemOrder = ['1', '2', '3', '4', '5', '6', '7', '8'];
+        
+        function checkSorting() {
+            const items = document.querySelectorAll('#sortContainer .sort-item');
+            let currentOrder = [];
+            
+            items.forEach(item => {
+                currentOrder.push(item.getAttribute('data-id'));
+            });
+            
+            // 检查排序是否正确
+            let isCorrect = true;
+            for (let i = 0; i < currentOrder.length; i++) {
+                if (currentOrder[i] !== correctPoemOrder[i]) {
+                    isCorrect = false;
+                    break;
+                }
+            }
+            
+            const resultDiv = document.getElementById('sortingResult');
+            if (isCorrect) {
+                resultDiv.className = 'result result-success';
+                resultDiv.textContent = '正确！您完美地恢复了《七律·长征》的正确顺序！';
+            } else {
+                resultDiv.className = 'result result-error';
+                resultDiv.textContent = '排序不正确，请再试试。提示：注意诗句的平仄和对仗关系。';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function resetSorting() {
+            // 打乱诗歌排序题顺序
+            shufflePoemItems();
+            document.getElementById('sortingResult').style.display = 'none';
+        }
+        
+        // 军衔排序题 - 修正版
+        // 正确顺序：上将(1)、上校(4)、中校(2)、少校(5)、上尉(6)、少尉(3)
+        const correctRankOrder = ['1', '4', '2', '5', '6', '3'];
+        
+        function checkRanks() {
+            const items = document.querySelectorAll('#rankContainer .sort-item');
+            let currentOrder = [];
+            
+            items.forEach(item => {
+                currentOrder.push(item.getAttribute('data-id'));
+            });
+            
+            // 检查排序是否正确
+            let isCorrect = true;
+            for (let i = 0; i < currentOrder.length; i++) {
+                if (currentOrder[i] !== correctRankOrder[i]) {
+                    isCorrect = false;
+                    break;
+                }
+            }
+            
+            const resultDiv = document.getElementById('ranksResult');
+            if (isCorrect) {
+                resultDiv.className = 'result result-success';
+                resultDiv.textContent = '正确！您准确排列了解放军军衔的高低顺序！';
+            } else {
+                resultDiv.className = 'result result-error';
+                resultDiv.textContent = '排序不正确，请再试试。提示：解放军军衔从高到低为将官、校官、尉官。';
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function resetRanks() {
+            // 打乱军衔排序题顺序
+            shuffleRankItems();
+            document.getElementById('ranksResult').style.display = 'none';
+        }
+        
+        // 初始化排序题的拖拽功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为排序容器添加拖拽功能
+            const sortContainers = document.querySelectorAll('.sort-container');
+            
+            sortContainers.forEach(container => {
+                let draggedItem = null;
+                
+                container.querySelectorAll('.sort-item').forEach(item => {
+                    item.setAttribute('draggable', 'true');
+                    
+                    item.addEventListener('dragstart', function(e) {
+                        draggedItem = this;
+                        setTimeout(() => {
+                            this.style.opacity = '0.4';
+                        }, 0);
+                        e.dataTransfer.effectAllowed = 'move';
+                        e.dataTransfer.setData('text/html', this.innerHTML);
+                    });
+                    
+                    item.addEventListener('dragend', function() {
+                        setTimeout(() => {
+                            if (draggedItem) {
+                                draggedItem.style.opacity = '1';
+                                draggedItem = null;
+                            }
+                        }, 0);
+                    });
+                    
+                    item.addEventListener('dragover', function(e) {
+                        e.preventDefault();
+                        e.dataTransfer.dropEffect = 'move';
+                    });
+                    
+                    item.addEventListener('dragenter', function(e) {
+                        e.preventDefault();
+                        if (this !== draggedItem) {
+                            this.style.backgroundColor = 'rgba(180, 0, 0, 0.9)';
+                        }
+                    });
+                    
+                    item.addEventListener('dragleave', function() {
+                        if (this !== draggedItem) {
+                            this.style.backgroundColor = '';
+                        }
+                    });
+                    
+                    item.addEventListener('drop', function(e) {
+                        e.preventDefault();
+                        if (draggedItem && this !== draggedItem) {
+                            this.style.backgroundColor = '';
+                            
+                            const allItems = Array.from(container.querySelectorAll('.sort-item'));
+                            const thisIndex = allItems.indexOf(this);
+                            const draggedIndex = allItems.indexOf(draggedItem);
+                            
+                            if (draggedIndex < thisIndex) {
+                                container.insertBefore(draggedItem, this.nextSibling);
+                            } else {
+                                container.insertBefore(draggedItem, this);
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // 初始化打乱顺序
+            shufflePoemItems();
+            shuffleRankItems();
+        });
+        
+        // 打乱诗歌排序题顺序
+        function shufflePoemItems() {
+            const container = document.getElementById('sortContainer');
+            const items = Array.from(container.querySelectorAll('.sort-item'));
+            
+            // 打乱数组顺序
+            for (let i = items.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                container.appendChild(items[j]);
+            }
+        }
+        
+        // 打乱军衔排序题顺序
+        function shuffleRankItems() {
+            const container = document.getElementById('rankContainer');
+            const items = Array.from(container.querySelectorAll('.sort-item'));
+            
+            // 打乱数组顺序
+            for (let i = items.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                container.appendChild(items[j]);
+            }
+        }
+    </script>
+</body>
+</html>

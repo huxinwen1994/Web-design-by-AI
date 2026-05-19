@@ -1,0 +1,605 @@
+/* red-revolution-styles.css */
+/* 红色革命主题网站 - 主样式文件 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Microsoft YaHei', 'SimHei', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #8b0000 0%, #5a0000 50%, #3a0000 100%);
+    color: #fff;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 头部样式 */
+header {
+    text-align: center;
+    padding-top: 30px;
+    background: rgba(120, 0, 0, 0.7);
+    border-bottom: 3px solid #ffcc00;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.title-banner {
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.title-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+header h1 {
+    color: #ffcc00;
+    font-size: 42px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    padding: 0 20px;
+}
+
+header p {
+    font-size: 18px;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    color: #ffddaa;
+    padding: 0 20px;
+}
+
+/* 导航样式 */
+.nav-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(80, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 10px;
+    z-index: 100;
+    margin-bottom: 40px;
+}
+
+.tab {
+    padding: 12px 25px;
+    background: #a00000;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex: 1;
+    min-width: 130px;
+    text-align: center;
+}
+
+.tab:hover {
+    background: #c00000;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tab.active {
+    background: #ffcc00;
+    color: #8b0000;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+}
+
+/* 内容区域 */
+.content-area {
+    background: rgba(60, 0, 0, 0.85);
+    border-radius: 10px;
+    padding: 30px;
+    min-height: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    margin-bottom: 40px;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 通用内容样式 */
+.section-title {
+    color: #ffcc00;
+    font-size: 28px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ffcc00;
+    text-align: center;
+}
+
+.section-desc {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color: #ffddbb;
+    text-align: center;
+}
+
+/* 革命精神区块样式 - 图文并茂 */
+.spirit-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.spirit-card {
+    background: rgba(100, 0, 0, 0.7);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.spirit-card:hover {
+    transform: translateY(-10px);
+    border-color: #ffcc00;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.spirit-img {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.spirit-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.spirit-card:hover .spirit-img img {
+    transform: scale(1.05);
+}
+
+.spirit-content {
+    padding: 20px;
+}
+
+.spirit-content h3 {
+    color: #ffcc00;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.spirit-content p {
+    color: #ffddbb;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* 人物介绍样式 */
+.character-intro {
+    background: rgba(100, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 40px;
+    border-left: 5px solid #ffcc00;
+}
+
+.character-intro h3 {
+    color: #ffcc00;
+    margin-bottom: 25px;
+    font-size: 28px;
+    text-align: center;
+}
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.character-item {
+    background: rgba(80, 0, 0, 0.8);
+    padding: 25px;
+    border-radius: 8px;
+    border-bottom: 3px solid #ffcc00;
+}
+
+.character-item h4 {
+    color: #ffcc00;
+    font-size: 24px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 204, 0, 0.3);
+}
+
+.character-item p {
+    color: #ffddbb;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* 填空题样式 */
+.fill-blank-container {
+    background: rgba(80, 0, 0, 0.8);
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.fill-blank-question {
+    margin-bottom: 25px;
+}
+
+.fill-blank-question h4 {
+    color: #ffcc00;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.blank-input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #a00000;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.blank-input:focus {
+    outline: none;
+    border-color: #ffcc00;
+}
+
+.blank-feedback {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 5px;
+    display: none;
+    font-weight: bold;
+}
+
+.blank-correct {
+    background-color: rgba(0, 100, 0, 0.7);
+    color: #aaffaa;
+    border: 1px solid #00aa00;
+}
+
+.blank-wrong {
+    background-color: rgba(100, 0, 0, 0.7);
+    color: #ffaaaa;
+    border: 1px solid #ff5555;
+}
+
+/* 测验样式 */
+.quiz-container {
+    background: rgba(80, 0, 0, 0.8);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.quiz-question {
+    margin-bottom: 20px;
+}
+
+.quiz-question h4 {
+    color: #ffcc00;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.options {
+    margin-left: 20px;
+}
+
+.option {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.option input {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.option label {
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.quiz-feedback {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 5px;
+    display: none;
+    font-weight: bold;
+}
+
+.quiz-correct {
+    background-color: rgba(0, 100, 0, 0.7);
+    color: #aaffaa;
+    border: 1px solid #00aa00;
+}
+
+.quiz-wrong {
+    background-color: rgba(100, 0, 0, 0.7);
+    color: #ffaaaa;
+    border: 1px solid #ff5555;
+}
+
+/* 连线题样式 */
+.matching-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.matching-column {
+    flex: 1;
+    min-width: 250px;
+    margin: 0 15px;
+}
+
+.matching-column h4 {
+    color: #ffcc00;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.matching-item {
+    background: rgba(120, 0, 0, 0.7);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.matching-item:hover {
+    background: rgba(150, 0, 0, 0.8);
+}
+
+.matching-item.selected {
+    background: rgba(180, 0, 0, 0.9);
+    border-color: #ffcc00;
+    transform: scale(1.05);
+}
+
+.matching-item.matched {
+    background: rgba(0, 100, 0, 0.7);
+    border-color: #00aa00;
+}
+
+.matching-controls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* 排序题样式 */
+.sort-container {
+    background: rgba(80, 0, 0, 0.8);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.sort-item {
+    background: rgba(120, 0, 0, 0.7);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    cursor: move;
+    transition: all 0.3s;
+    font-size: 18px;
+    min-height: 60px;
+}
+
+.sort-item:hover {
+    background: rgba(150, 0, 0, 0.8);
+}
+
+.sort-handle {
+    margin-right: 15px;
+    color: #ffcc00;
+    font-size: 24px;
+    user-select: none;
+}
+
+/* 军衔历史样式 */
+.military-history {
+    background: rgba(100, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-left: 5px solid #ffcc00;
+}
+
+.military-history h3 {
+    color: #ffcc00;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.military-history p {
+    color: #ffddbb;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.military-image {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.military-image img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 2px solid #ffcc00;
+}
+
+/* 诗歌赏析链接样式 */
+.poetry-link {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.poetry-link a {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #ffcc00, #ffaa00);
+    color: #8b0000;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 18px;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+}
+
+.poetry-link a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 204, 0, 0.4);
+    background: linear-gradient(135deg, #ffdd44, #ffcc00);
+}
+
+/* 按钮样式 */
+.btn {
+    padding: 12px 25px;
+    background: #ffcc00;
+    color: #8b0000;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 10px 5px;
+}
+
+.btn:hover {
+    background: #ffdd44;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+}
+
+.btn-check {
+    background: #008800;
+    color: white;
+}
+
+.btn-check:hover {
+    background: #00aa00;
+}
+
+.btn-reset {
+    background: #aa0000;
+    color: white;
+}
+
+.btn-reset:hover {
+    background: #cc0000;
+}
+
+/* 结果样式 */
+.result {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    display: none;
+}
+
+.result-success {
+    background: rgba(0, 100, 0, 0.7);
+    color: #aaffaa;
+    border: 2px solid #00aa00;
+}
+
+.result-error {
+    background: rgba(100, 0, 0, 0.7);
+    color: #ffaaaa;
+    border: 2px solid #ff5555;
+}
+
+/* 页脚 */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    color: #ffccaa;
+    font-size: 16px;
+    border-top: 1px solid rgba(255, 204, 0, 0.3);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .nav-tabs {
+        flex-direction: column;
+    }
+    
+    .tab {
+        min-width: 100%;
+    }
+    
+    .spirit-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .character-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .matching-container {
+        flex-direction: column;
+    }
+    
+    .matching-column {
+        margin: 0 0 30px 0;
+    }
+    
+    header h1 {
+        font-size: 32px;
+    }
+}

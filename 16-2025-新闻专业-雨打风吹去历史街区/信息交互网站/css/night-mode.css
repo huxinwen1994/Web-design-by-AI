@@ -1,0 +1,404 @@
+/* ==================== 夜间模式样式 ==================== */
+
+/* 夜间模式切换按钮 */
+.night-mode-toggle {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 998;
+}
+
+.night-mode-toggle:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+}
+
+.night-mode-toggle i {
+    font-size: 1.2rem;
+}
+
+/* 夜间模式主体样式 */
+body.night-mode {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+    transition: all 0.5s ease;
+}
+
+/* 导航栏夜间模式 */
+body.night-mode .fixed-nav {
+    background-color: rgba(26, 26, 46, 0.95);
+}
+
+body.night-mode .fixed-nav.scrolled {
+    background-color: rgba(26, 26, 46, 0.98);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+body.night-mode .nav-btn {
+    color: #e0e0e0;
+}
+
+body.night-mode .nav-btn:hover {
+    color: #ffd700;
+}
+
+body.night-mode .nav-btn.active {
+    color: #ffd700;
+    background-color: rgba(255, 215, 0, 0.1);
+}
+
+/* 头部区域夜间模式 */
+body.night-mode header {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../assets/3.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+body.night-mode .logo-container {
+    background: radial-gradient(circle at 30% 30%, rgba(40, 40, 60, 0.95) 0%, rgba(30, 30, 50, 0.85) 100%);
+    border-color: #4a4a6a;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.night-mode .logo-title {
+    color: #ffd700;
+    text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.5);
+}
+
+body.night-mode .logo-subtitle {
+    color: #b0b0c0;
+}
+
+body.night-mode .site-description {
+    color: #d0d0d0;
+}
+
+/* 区块标题夜间模式 */
+body.night-mode .section-title {
+    color: #ffd700;
+}
+
+body.night-mode .page-section-title {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+body.night-mode .section-title-content h1 {
+    color: #ffd700;
+}
+
+body.night-mode .section-title-content p {
+    color: #b0b0c0;
+}
+
+/* 轮播区夜间模式 */
+body.night-mode .carousel-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+body.night-mode .carousel-title {
+    color: #ffd700;
+}
+
+body.night-mode .carousel-desc {
+    color: #c0c0c0;
+}
+
+body.night-mode .carousel-dot {
+    background-color: rgba(255, 215, 0, 0.3);
+}
+
+body.night-mode .carousel-dot.active {
+    background-color: #ffd700;
+}
+
+/* 卡片夜间模式 */
+body.night-mode .featured-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+body.night-mode .featured-card,
+body.night-mode .glass-card {
+    background: rgba(30, 30, 50, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+body.night-mode .card-title {
+    color: #ffd700;
+}
+
+body.night-mode .card-desc {
+    color: #c0c0c0;
+}
+
+body.night-mode .tag {
+    background-color: rgba(255, 215, 0, 0.2);
+    color: #ffd700;
+}
+
+body.night-mode .tag:hover {
+    background-color: #ffd700;
+    color: #1a1a2e;
+}
+
+/* 时间轴夜间模式 */
+body.night-mode .timeline-section {
+    background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 100%);
+}
+
+body.night-mode .timeline:before {
+    background: linear-gradient(to bottom, transparent, #ffd700 10%, #ffd700 90%, transparent);
+}
+
+body.night-mode .timeline-content {
+    background: rgba(30, 30, 50, 0.9);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+body.night-mode .timeline-year {
+    color: #ffd700;
+}
+
+body.night-mode .timeline-title {
+    color: #e0e0e0;
+}
+
+/* 表格夜间模式 */
+body.night-mode .table-section {
+    background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 100%);
+}
+
+body.night-mode .table-container {
+    background: rgba(30, 30, 50, 0.9);
+}
+
+body.night-mode .table-header {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+}
+
+body.night-mode .history-table thead tr {
+    background: linear-gradient(135deg, #34495e, #2c3e50);
+}
+
+body.night-mode .history-table tbody tr {
+    background-color: rgba(30, 30, 50, 0.5);
+}
+
+body.night-mode .history-table tbody tr:nth-of-type(even) {
+    background-color: rgba(40, 40, 60, 0.5);
+}
+
+body.night-mode .history-table tbody tr:hover {
+    background: linear-gradient(90deg, 
+        rgba(255, 215, 0, 0.1) 0%, 
+        rgba(255, 215, 0, 0.2) 50%, 
+        rgba(255, 215, 0, 0.1) 100%);
+}
+
+body.night-mode .history-table td {
+    color: #e0e0e0;
+    border-bottom-color: rgba(255, 215, 0, 0.1);
+}
+
+body.night-mode .table-btn {
+    background: rgba(30, 30, 50, 0.8);
+    color: #ffd700;
+    border-color: #ffd700;
+}
+
+body.night-mode .table-btn:hover {
+    background: #ffd700;
+    color: #1a1a2e;
+}
+
+/* 新闻区夜间模式 */
+body.night-mode .news-tab-section {
+    background-color: #16213e;
+}
+
+body.night-mode .news-tab-container {
+    background: rgba(30, 30, 50, 0.9);
+}
+
+body.night-mode .news-tabs {
+    background: #1a1a2e;
+    border-bottom-color: rgba(255, 215, 0, 0.2);
+}
+
+body.night-mode .news-tab {
+    color: #b0b0c0;
+}
+
+body.night-mode .news-tab:hover {
+    background: rgba(255, 215, 0, 0.1);
+    color: #ffd700;
+}
+
+body.night-mode .news-tab.active {
+    background: rgba(30, 30, 50, 0.9);
+    color: #ffd700;
+}
+
+body.night-mode .news-content {
+    background: rgba(30, 30, 50, 0.5);
+}
+
+body.night-mode .news-item {
+    border-bottom-color: rgba(255, 215, 0, 0.1);
+}
+
+body.night-mode .news-item:hover {
+    background: rgba(255, 215, 0, 0.05);
+}
+
+body.night-mode .news-title {
+    color: #e0e0e0;
+}
+
+body.night-mode .news-title:hover {
+    color: #ffd700;
+}
+
+body.night-mode .news-summary {
+    color: #b0b0c0;
+}
+
+body.night-mode .news-meta {
+    color: #808090;
+}
+
+/* 搜索框夜间模式 */
+body.night-mode .search-box {
+    background: rgba(30, 30, 50, 0.9);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+body.night-mode #search-input {
+    background: transparent;
+    color: #e0e0e0;
+}
+
+body.night-mode #search-input::placeholder {
+    color: #808090;
+}
+
+body.night-mode .search-btn {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #1a1a2e;
+}
+
+body.night-mode .filter-tag {
+    background: rgba(30, 30, 50, 0.8);
+    border-color: rgba(255, 215, 0, 0.3);
+    color: #e0e0e0;
+}
+
+body.night-mode .filter-tag.active {
+    background: #ffd700;
+    color: #1a1a2e;
+    border-color: #ffd700;
+}
+
+/* 浮动布局夜间模式 */
+body.night-mode .float-layout-section {
+    background-color: #16213e;
+}
+
+body.night-mode .main-content,
+body.night-mode .sidebar {
+    background: rgba(30, 30, 50, 0.9);
+}
+
+body.night-mode .news-card {
+    border-bottom-color: rgba(255, 215, 0, 0.1);
+}
+
+body.night-mode .news-card h4 {
+    color: #ffd700;
+}
+
+body.night-mode .news-card p {
+    color: #c0c0c0;
+}
+
+/* 游戏区夜间模式 */
+body.night-mode #simple-dressup-game {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/6.jpg');
+}
+
+body.night-mode .simple-quiz-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/6.jpg');
+}
+
+/* 返回顶部按钮夜间模式 */
+body.night-mode .back-to-top {
+    background-color: #2c3e50;
+}
+
+body.night-mode .back-to-top:hover {
+    background-color: #ffd700;
+    color: #1a1a2e;
+}
+
+/* 移动端菜单夜间模式 */
+body.night-mode .mobile-menu {
+    background-color: rgba(26, 26, 46, 0.98);
+}
+
+body.night-mode .hamburger span {
+    background-color: #e0e0e0;
+}
+
+/* 滚动指示器夜间模式 */
+body.night-mode .scroll-indicator {
+    color: #ffd700;
+}
+
+body.night-mode .scroll-arrow {
+    border-color: #ffd700;
+}
+
+body.night-mode .scroll-arrow:before {
+    background-color: #ffd700;
+}
+
+/* 链接夜间模式 */
+body.night-mode a {
+    color: #ffd700;
+}
+
+body.night-mode a:hover {
+    color: #ffed4e;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .night-mode-toggle {
+        bottom: 80px;
+        right: 20px;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .night-mode-toggle span {
+        display: none;
+    }
+    
+    .night-mode-toggle i {
+        font-size: 1.5rem;
+    }
+}

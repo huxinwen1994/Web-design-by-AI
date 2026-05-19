@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>她愈空间 - 症状自测</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <span>她愈</span>
+                    </div>
+                </div>
+                <div class="nav-links">
+                    <a class="nav-link" href="../index.html">首页</a>
+                    <a class="nav-link" href="./about.html">了解内异症</a>
+                    <a class="nav-link" href="./knowledge.html">知识探索</a> <a class="nav-link active" href="./quiz.html">症状自测</a>
+                    <a class="nav-link" href="./treatment.html">治疗与管理</a>
+                    <a class="nav-link" href="./support.html">交流与支持</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="quiz" class="section active">
+        <div class="illustration"></div>
+        <div class="container">
+            <h2 class="section-title">👩‍⚕️ 子宫内膜异位症风险自测</h2>
+            <p class="section-subtitle">本自测旨在帮助您初步评估风险，请根据您的实际情况作答。（共 10 题，满分 30 分）</p>
+            
+            <div class="quiz-container">
+                <div class="progress-bar-container card">
+                    <div class="progress-info">
+                        进度 <span id="currentQuestion">1</span> / 10 题
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progressBarFill" class="progress-bar-fill"></div>
+                    </div>
+                </div>
+
+                <form id="quizForm">
+                    
+                    <div class="question-card card active" data-question-index="1">
+                        <h3 class="question-title">1. 您的月经周期是否规律？</h3>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q1" data-score="0" required> A. 非常规律（21–35天）</label>
+                            <label class="option-label"><input type="radio" name="q1" data-score="1"> B. 偶尔提前或推迟，但不超过7天</label>
+                            <label class="option-label"><input type="radio" name="q1" data-score="2"> C. 经常不规律（＜21天或＞35天）</label>
+                            <label class="option-label"><input type="radio" name="q1" data-score="3"> D. 长期明显紊乱、闭经或淋漓不尽</label>
+                        </div>
+                    </div>
+
+                    <div class="question-card card" data-question-index="2">
+                        <h3 class="question-title">2. 您的经期疼痛（痛经）程度如何？</h3>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q2" data-score="0" required> A. 没有痛经或轻微不适，无需服药</label>
+                            <label class="option-label"><input type="radio" name="q2" data-score="1"> B. 疼痛轻微，服用非处方止痛药即可缓解</label>
+                            <label class="option-label"><input type="radio" name="q2" data-score="2"> C. 疼痛中重度，需服用处方止痛药，能工作或学习</label>
+                            <label class="option-label"><input type="radio" name="q2" data-score="3"> D. 疼痛剧烈，止痛药效果差，需请假卧床</label>
+                        </div>
+                    </div>
+
+                    <div class="question-card card" data-question-index="3">
+                        <h3 class="question-title">3. 您的经期疼痛持续时间和性质如何？</h3>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q3" data-score="0" required> A. 疼痛发生在月经前/中，月经结束后消失</label>
+                            <label class="option-label"><input type="radio" name="q3" data-score="1"> B. 经期疼痛逐年加重（进行性加重）</label>
+                            <label class="option-label"><input type="radio" name="q3" data-score="2"> C. 疼痛已扩散至腰骶部或肛门坠胀感明显</label>
+                            <label class="option-label"><input type="radio" name="q3" data-score="3"> D. 整个月经期甚至月经前后均持续疼痛</label>
+                        </div>
+                    </div>
+
+                    <div class="question-card card" data-question-index="4">
+                        <h3 class="question-title">4. 是否存在慢性盆腔疼痛（非经期疼痛）？</h3>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q4" data-score="0" required> A. 无</label>
+                            <label class="option-label"><input type="radio" name="q4" data-score="1"> B. 偶尔非经期隐痛</label>
+                            <label class="option-label"><input type="radio" name="q4" data-score="2"> C. 非经期也常有持续或间歇性的盆腔疼痛</label>
+                            <label class="option-label"><input type="radio" name="q4" data-score="3"> D. 慢性盆腔疼痛持续超过6个月</label>
+                        </div>
+                    </div>
+
+                    <div class="question-card card" data-question-index="5">
+                        <h3 class="question-title">5. 是否有性交疼痛（深部性交痛）？</h3>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q5" data-score="0" required> A. 无或轻微</label>
+                            <label class="option-label"><input type="radio" name="q5" data-score="1"> B. 偶尔或轻微不适，可以忍受</label>
+                            <label class="option-label"><input type="radio" name="q5" data-score="2"> C. 每次性交都有疼痛，影响体验</label>
+                            <label class="option-label"><input type="radio" name="q5" data-score="3"> D. 疼痛剧烈，导致回避性生活</label>
+                        </div>
+                    </div>
+
+                    <div class="question-card card" data-question-index="6">
+                        <h3 class="question-title">6. 是否出现泌尿系统或肠道症状（与经期同步）？</h3>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q6" data-score="0" required> A. 无</label>
+                            <label class="option-label"><input type="radio" name="q6" data-score="1"> B. 经期轻微腹泻/便秘，或尿频</label>
+                            <label class="option-label"><input type="radio" name="q6" data-score="2"> C. 经期出现明显的血尿/排尿痛、排便痛</label>
+                            <label class="option-label"><input type="radio" name="q6" data-score="3"> D. 经期出现血便/肠梗阻症状，需医疗干预</label>
+                        </div>
+                    </div>
+
+                    <div class="question-card card" data-question-index="7">
+                        <h3 class="question-title">7. 您是否有过子宫内膜异位症、卵巢巧克力囊肿的病史？</h3>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q7" data-score="0" required> A. 无相关病史</label>
+                            <label class="option-label"><input type="radio" name="q7" data-score="1"> B. B超发现轻微异常，未诊断</label>
+                            <label class="option-label"><input type="radio" name="q7" data-score="2"> C. 有内异症病史，但已痊愈或稳定</label>
+                            <label class="option-label"><input type="radio" name="q7" data-score="3"> D. 曾确诊内异症或有卵巢巧克力囊肿（≥3cm）</label>
+                        </div>
+                    </div>
+
+                    <div class="question-card card" data-question-index="8">
+                        <h3 class="question-title">8. 您的月经量和性质如何？</h3>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q8" data-score="0" required> A. 正常（3–7天），无血块</label>
+                            <label class="option-label"><input type="radio" name="q8" data-score="1"> B. 经期超过7天，或月经量大，需频繁更换卫生巾</label>
+                            <label class="option-label"><input type="radio" name="q8" data-score="2"> C. 经期有大量深色血块排出</label>
+                            <label class="option-label"><input type="radio" name="q8" data-score="3"> D. 月经量多且血块大，常伴贫血或头晕</label>
+                        </div>
+                    </div>
+
+                    <div class="question-card card" data-question-index="9">
+                        <h3 class="question-title">9. 您的直系亲属（母亲、姐妹）是否有子宫内膜异位症病史？</h3>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q9" data-score="0" required> A. 无</label>
+                            <label class="option-label"><input type="radio" name="q9" data-score="1"> B. 不确定或远亲有</label>
+                            <label class="option-label"><input type="radio" name="q9" data-score="2"> C. 姐妹有病史</label>
+                            <label class="option-label"><input type="radio" name="q9" data-score="3"> D. 母亲或多位直系亲属有病史</label>
+                        </div>
+                    </div>
+
+                    <div class="question-card card" data-question-index="10">
+                        <h3 class="question-title">10. 是否存在不孕问题（已规律同房且未避孕，排除男方因素）？</h3>
+                        <div class="options">
+                            <label class="option-label"><input type="radio" name="q10" data-score="0" required> A. 未尝试怀孕</label>
+                            <label class="option-label"><input type="radio" name="q10" data-score="1"> B. 尝试少于6个月</label>
+                            <label class="option-label"><input type="radio" name="q10" data-score="2"> C. 尝试6–12个月未孕</label>
+                            <label class="option-label"><input type="radio" name="q10" data-score="3"> D. 尝试超过1年仍未孕</label>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="quiz-controls">
+                    <button id="prevQuestion" class="btn-secondary" style="display: none;">← 上一题</button>
+                    <button id="nextQuestion" class="btn-primary">下一题 →</button>
+                    <button id="submitQuiz" class="btn-primary" style="display: none;">提交结果</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="resultModal" class="modal">
+        <div class="modal-content card result-popup">
+            <h3 class="modal-title">自测结果分析</h3>
+            
+            <div id="resultHeader" class="result-header"></div>
+            
+            <div class="result-score-circle">
+                <p>总得分</p>
+                <div id="resultScore" class="score-display">0/30</div> 
+            </div>
+
+            <p id="resultText" class="result-text"></p>
+            
+
+            <div class="modal-actions">
+                <button class="btn-secondary-small" onclick="closeResultModal()">关闭并继续浏览</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/particle.js"></script>
+    <script>
+        // 润色增强：题目控制与进度条
+        const quizForm = document.getElementById('quizForm');
+        const questionCards = document.querySelectorAll('.question-card');
+        const totalQuestions = questionCards.length; 
+        const progressBarFill = document.getElementById('progressBarFill');
+        const currentQuestionSpan = document.getElementById('currentQuestion');
+        const nextButton = document.getElementById('nextQuestion');
+        const prevButton = document.getElementById('prevQuestion');
+        const submitButton = document.getElementById('submitQuiz');
+        let currentQuestionIndex = 0; // 0-based index
+
+        // 更新进度条和按钮状态 (修复了进度计算和按钮显示逻辑)
+        function updateQuizDisplay() {
+            // 1. 隐藏所有题目，并显示当前题目
+            questionCards.forEach(card => card.classList.remove('active'));
+            if (currentQuestionIndex >= 0 && currentQuestionIndex < totalQuestions) {
+                questionCards[currentQuestionIndex].classList.add('active');
+            }
+
+            // 2. 更新进度条 (显示 1 到 10)
+            const completedCount = currentQuestionIndex + 1; // 1-based index
+            const progressPercentage = completedCount / totalQuestions * 100;
+            progressBarFill.style.width = `${progressPercentage}%`;
+            currentQuestionSpan.textContent = completedCount;
+
+            // 3. 更新按钮状态
+            prevButton.style.display = currentQuestionIndex > 0 ? 'inline-block' : 'none';
+            // 如果是最后一题 (index 9)，显示提交按钮，隐藏下一题按钮
+            nextButton.style.display = currentQuestionIndex < totalQuestions - 1 ? 'inline-block' : 'none';
+            submitButton.style.display = currentQuestionIndex === totalQuestions - 1 ? 'inline-block' : 'none';
+            
+            // 确保页面滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // 自动跳转/下一题逻辑 (修正了索引溢出问题)
+        function navigateNext() {
+            const currentQuestionCard = questionCards[currentQuestionIndex];
+            const currentQuestionName = currentQuestionCard.querySelector('input[type="radio"]').name;
+            const answered = quizForm.querySelector(`input[name="${currentQuestionName}"]:checked`);
+            
+            if (!answered) {
+                alert('请选择一个答案！');
+                return;
+            }
+
+            if (currentQuestionIndex < totalQuestions - 1) {
+                currentQuestionIndex++;
+                updateQuizDisplay();
+            }
+            // 如果已经是最后一题，则不做任何操作，等待用户点击提交
+        }
+        
+        // 上一题逻辑
+        function navigatePrev() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                updateQuizDisplay();
+            }
+        }
+
+        // 绑定事件和自动跳转逻辑
+        document.addEventListener('DOMContentLoaded', () => {
+            updateQuizDisplay(); 
+            
+            nextButton.addEventListener('click', navigateNext);
+            prevButton.addEventListener('click', navigatePrev);
+
+            // 自动跳转逻辑：点击选项后自动跳转到下一题 (如果不是最后一题)
+            questionCards.forEach((card, index) => {
+                card.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.addEventListener('change', () => {
+                        // 仅在当前显示的题目被选中时，且不是最后一题时才跳转
+                        if (index === currentQuestionIndex && index < totalQuestions - 1) {
+                            setTimeout(() => {
+                                navigateNext();
+                            }, 300); 
+                        }
+                    });
+                });
+            });
+        });
+
+        // 提交自测结果 (最大分值 30，新评分阈值)
+        submitQuiz.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // 检查最后一题是否已回答
+            const lastQuestionName = questionCards[totalQuestions - 1].querySelector('input[type="radio"]').name;
+            const answeredLast = quizForm.querySelector(`input[name="${lastQuestionName}"]:checked`);
+            if (!answeredLast) {
+                alert('请完成所有题目！');
+                return;
+            }
+
+            let totalScore = 0;
+            quizForm.querySelectorAll('input[type="radio"]:checked').forEach(input => {
+                totalScore += parseInt(input.getAttribute('data-score'));
+            });
+
+            const resultModal = document.getElementById('resultModal');
+            const resultScore = document.getElementById('resultScore');
+            const resultText = document.getElementById('resultText');
+            const resultHeader = document.getElementById('resultHeader');
+            const scoreCircle = document.querySelector('.result-score-circle');
+            
+            // 总分显示 /30
+            resultScore.textContent = totalScore + '/30'; 
+            
+            // 清除上次结果的颜色类
+            scoreCircle.classList.remove('green', 'yellow', 'orange', 'red');
+            let result = '';
+            
+            // 评分逻辑 (基于 30 分总分的新阈值)
+            if (totalScore <= 6) {
+                result = '目前症状与子宫内膜异位症关联度较低。建议保持健康生活方式，持续关注月经情况。';
+                scoreCircle.classList.add('green');
+                resultHeader.textContent = '✅ 低风险';
+            } else if (totalScore <= 12) {
+                result = '存在一定风险，部分症状与轻度内异症相似。建议记录疼痛日记，择期到妇科进行常规检查（如B超）。';
+                scoreCircle.classList.add('yellow');
+                resultHeader.textContent = '⚠️ 中低风险';
+            } else if (totalScore <= 21) {
+                result = '症状与子宫内膜异位症高度吻合，尤其是伴性交痛、肠道症状或不孕时。建议尽快到三甲医院妇科或内异症专病门诊就诊，可提前完善CA125、B超等检查。';
+                scoreCircle.classList.add('orange');
+                resultHeader.textContent = '🚨 中高风险';
+            } else { // > 21
+                result = '症状高度提示中重度子宫内膜异位症，已明显影响生活质量。请尽快预约有腹腔镜资质的医院，明确诊断并启动规范治疗。';
+                scoreCircle.classList.add('red');
+                resultHeader.textContent = '🔥 高风险';
+            }
+            
+            resultText.textContent = result;
+            resultModal.style.display = 'flex'; // 显示弹窗
+        });
+
+        // 关闭结果弹窗
+        function closeResultModal() {
+            document.getElementById('resultModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

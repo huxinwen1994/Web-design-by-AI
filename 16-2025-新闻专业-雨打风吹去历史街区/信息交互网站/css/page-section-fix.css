@@ -1,0 +1,72 @@
+/* ===================================
+   板块标题背景色统一修复样式
+   =================================== */
+
+/* 统一所有板块标题使用相同的背景渐变色 */
+.page-section-title {
+    background: linear-gradient(135deg, #8c6d46 0%, #6b5438 100%) !important;
+}
+
+/* 针对每个具体的板块标题ID进行强制覆盖 */
+#intro.page-section-title,
+#protection.page-section-title,
+#tour.page-section-title,
+#news.page-section-title,
+#interaction.page-section-title,
+#feedback.page-section-title {
+    background: linear-gradient(135deg, #8c6d46 0%, #6b5438 100%) !important;
+}
+
+/* 使用nth-of-type选择器进行额外覆盖 */
+.page-section-title:nth-of-type(1),
+.page-section-title:nth-of-type(2),
+.page-section-title:nth-of-type(3),
+.page-section-title:nth-of-type(4),
+.page-section-title:nth-of-type(5),
+.page-section-title:nth-of-type(6) {
+    background: linear-gradient(135deg, #8c6d46 0%, #6b5438 100%) !important;
+}
+
+/* 确保内部元素不会影响背景 */
+.page-section-title * {
+    background: transparent !important;
+}
+
+/* 恢复内部文字容器的背景 */
+.page-section-title .section-title-content {
+    background: transparent !important;
+}
+
+/* ===================================
+   特色历史街区轮播区背景修改
+   =================================== */
+
+/* 修改轮播区背景为 4.jpg */
+.carousel-section {
+    background: url('../assets/4.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+}
+
+/* 覆盖原有的渐变背景 */
+.carousel-section::before {
+    display: none !important;
+}
+
+/* ===================================
+   保护与传承区域背景修改
+   =================================== */
+
+/* 修改保护与传承区域背景为 5.jpg */
+.featured-section {
+    background: url('../assets/5.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+}
+
+/* 覆盖原有的渐变背景 */
+.featured-section::before {
+    display: none !important;
+}

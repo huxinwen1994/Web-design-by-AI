@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>她愈空间 - 首页</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <span>她愈</span>
+                    </div>
+                </div>
+                <div class="nav-links">
+                    <a class="nav-link active" href="./index.html">首页</a>
+                    <a class="nav-link" href="./pages/about.html">了解内异症</a>
+                    <a class="nav-link" href="./pages/quiz.html">症状自测</a>
+                    <a class="nav-link" href="./pages/treatment.html">治疗与管理</a>
+                    <a class="nav-link" href="./pages/support.html">交流与支持</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="section active">
+        <div class="hero">
+            <div class="illustration"></div>
+            <div class="container">
+                <h1>痛经、性交痛、慢性盆腔痛……<br>你可能不是“娇气”，而是<span>子宫内膜异位症</span></h1>
+                <p>每10位育龄女性，就有1位正在与它共存</p>
+                <div class="hero-buttons">
+                    <a class="btn-primary" href="./pages/quiz.html">立即症状自测</a>
+                    <a class="btn-secondary" href="./pages/about.html">了解疾病</a>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10-15%</div>
+                        <div class="stat-label">育龄女性</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">7-10年</div>
+                        <div class="stat-label">才确诊</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">70%</div>
+                        <div class="stat-label">生活质量</div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 30px; font-size: 18px; font-weight: 500;">它其实是“子宫内膜跑到了不该去的地方”</p>
+            </div>
+            <div class="aa">
+                <img src="./assets/2.jpg" alt="">
+                <img src="./assets/3.jpg" alt="">
+                <img src="./assets/4.jpg" alt="">
+                <img src="./assets/5.jpg" alt="">
+            </div>
+        </div>
+        
+        <div class="container">
+            <h3 class="section-title feature-section-title">核心功能</h3>
+            
+            <div class="features feature-grid">
+                <a href="./pages/about.html" class="feature-card card">
+                    <div class="feature-icon">
+                        <i>📚</i>
+                    </div>
+                    <div class="feature-title">了解内异症</div>
+                    <div class="feature-desc">专业科普，从入门到深度了解</div>
+                </a>
+                <a href="./pages/quiz.html" class="feature-card card">
+                    <div class="feature-icon">
+                        <i>📝</i>
+                    </div>
+                    <div class="feature-title">症状自测</div>
+                    <div class="feature-desc">10题快速了解风险</div>
+                </a>
+                <a href="./pages/treatment.html" class="feature-card card">
+                    <div class="feature-icon">
+                        <i>💊</i>
+                    </div>
+                    <div class="feature-title">治疗与管理</div>
+                    <div class="feature-desc">药物·生活方式</div>
+                </a>
+                <a href="./pages/support.html" class="feature-card card">
+                    <div class="feature-icon">
+                        <i>🤝</i>
+                    </div>
+                    <div class="feature-title">共愈同行</div>
+                    <div class="feature-desc">匿名交流，姐妹们真实经历分享</div>
+                </a>
+            </div>
+            
+            <div class="value-prop card">
+                <h2 class="value-prop-title">她愈，不孤单</h2>
+                <p class="value-prop-desc">
+                    我们理解你所经历的艰辛与挑战。在这里，有专业的科普知识与关怀者的社群，<br>
+                    让我们一起分享经验，相互支持，重获面对生活的勇气与力量。我们与你同在。
+                </p>
+                <div class="value-prop-buttons">
+                    <a class="btn-primary" href="./pages/support.html">加入交流社区</a>
+                </div>
+            </div>
+            
+            <div class="disclaimer">
+                本站内容仅供健康参考，不能替代医生诊断。如持续疼痛请及时就医。
+            </div>
+        </div>
+    </section>
+    <script src="./js/particle.js"></script>
+    <script>
+        // 导航激活状态（首页默认激活）
+        document.querySelector('.nav-link[href="./index.html"]').classList.add('active');
+    </script>
+</body>
+</html>

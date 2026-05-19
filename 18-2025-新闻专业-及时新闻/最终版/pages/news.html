@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="及时新闻 - 新闻中心，浏览全部新闻资讯">
+  <title>新闻中心 - 及时新闻</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/news.css">
+  <script>
+    function noAlert() {
+      alert("老师，这个应该后端做，偷个懒~")
+    }
+  </script>
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="../index.html" class="navbar-brand">
+        <div class="navbar-logo">及</div>
+        <span class="navbar-title">及时新闻</span>
+      </a>
+
+      <nav class="navbar-menu">
+        <a href="../index.html" class="navbar-link">首页</a>
+        <a href="news.html" class="navbar-link active">新闻中心</a>
+        <a href="about.html" class="navbar-link">关于我们</a>
+
+        <div class="search-box">
+          <input type="text" class="search-input" placeholder="搜索新闻...">
+          <button class="search-btn" aria-label="搜索">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <button class="menu-toggle" aria-label="菜单">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 主内容 -->
+  <main>
+    <!-- 页面标题 -->
+    <section class="page-header">
+      <div class="container">
+        <div class="page-header-content">
+          <h1 class="page-title">新闻中心</h1>
+          <p class="page-subtitle">浏览全部新闻资讯，掌握最新动态</p>
+          <nav class="breadcrumb">
+            <a href="../index.html">首页</a>
+            <span>/</span>
+            <span>新闻中心</span>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- 筛选区域 -->
+    <section class="filter-section">
+      <div class="container">
+        <div class="filter-bar">
+          <div class="filter-group">
+            <label class="filter-label">分类：</label>
+            <div class="category-tabs">
+              <button class="category-tab active" data-category="all">全部</button>
+              <button class="category-tab" data-category="科技">科技</button>
+              <button class="category-tab" data-category="财经">财经</button>
+              <button class="category-tab" data-category="体育">体育</button>
+              <button class="category-tab" data-category="文化">文化</button>
+              <button class="category-tab" data-category="健康">健康</button>
+              <button class="category-tab" data-category="社会">社会</button>
+            </div>
+          </div>
+          <div class="filter-group">
+            <label class="filter-label">排序：</label>
+            <select class="filter-select" id="sortSelect">
+              <option value="latest">最新发布</option>
+              <option value="popular">最多阅读</option>
+              <option value="comments">最多评论</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 新闻列表 -->
+    <section class="news-section">
+      <div class="container">
+        <div class="news-page-layout">
+          <!-- 主内容区 -->
+          <div class="news-main">
+            <!-- 搜索结果提示 -->
+            <div class="search-result-tip" id="searchTip" style="display: none;"></div>
+
+            <!-- 新闻网格 -->
+            <div class="news-grid-large" id="newsGrid">
+              <!-- 新闻卡片由 JS 动态渲染 -->
+            </div>
+
+            <!-- 分页 -->
+            <div class="pagination">
+              <button class="pagination-btn" disabled>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                上一页
+              </button>
+              <div class="pagination-numbers">
+                <span class="pagination-num active">1</span>
+                <span class="pagination-num">2</span>
+                <span class="pagination-num">3</span>
+                <span class="pagination-dots">...</span>
+                <span class="pagination-num">10</span>
+              </div>
+              <button class="pagination-btn" onclick="noAlert()">
+                下一页
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 侧边栏 -->
+          <aside class="news-sidebar">
+            <!-- 热门文章 -->
+            <div class="sidebar-card">
+              <h3 class="sidebar-title hot-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+                热门文章
+              </h3>
+              <div class="hot-news-list" id="hotArticles">
+                <!-- 由 JS 渲染 -->
+              </div>
+            </div>
+
+            <!-- 推荐阅读 -->
+            <div class="sidebar-card">
+              <h3 class="sidebar-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                推荐阅读
+              </h3>
+              <div class="recommend-list">
+                <a href="#" class="recommend-item">
+                  <img src="https://picsum.photos/100/70?random=40" alt="">
+                  <div class="recommend-info">
+                    <h4>深度解读：2025年科技行业发展趋势</h4>
+                    <span>2.3万阅读</span>
+                  </div>
+                </a>
+                <a href="#" class="recommend-item">
+                  <img src="https://picsum.photos/100/70?random=41" alt="">
+                  <div class="recommend-info">
+                    <h4>专家观点：如何看待当前经济形势</h4>
+                    <span>1.8万阅读</span>
+                  </div>
+                </a>
+                <a href="#" class="recommend-item">
+                  <img src="https://picsum.photos/100/70?random=42" alt="">
+                  <div class="recommend-info">
+                    <h4>健康生活：冬季养生小贴士</h4>
+                    <span>1.2万阅读</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- 标签云 -->
+            <div class="sidebar-card">
+              <h3 class="sidebar-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                  <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
+                热门标签
+              </h3>
+              <div class="tag-cloud">
+                <a href="#" class="tag-item">人工智能</a>
+                <a href="#" class="tag-item">新能源</a>
+                <a href="#" class="tag-item">房地产</a>
+                <a href="#" class="tag-item">医疗健康</a>
+                <a href="#" class="tag-item">教育改革</a>
+                <a href="#" class="tag-item">5G通信</a>
+                <a href="#" class="tag-item">碳中和</a>
+                <a href="#" class="tag-item">元宇宙</a>
+              </div>
+            </div>
+
+            <!-- 订阅 -->
+            <div class="sidebar-card subscribe-card">
+              <h3 class="sidebar-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                订阅资讯
+              </h3>
+              <p class="subscribe-desc">订阅我们的新闻简报，第一时间获取最新资讯</p>
+              <form class="subscribe-form">
+                <input type="email" class="subscribe-input" placeholder="输入您的邮箱">
+                <button type="submit" class="subscribe-btn">订阅</button>
+              </form>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-info">
+          <div class="footer-brand">
+            <div class="footer-logo">及</div>
+            <span class="footer-brand-name">及时新闻</span>
+          </div>
+          <p class="footer-desc">
+            及时新闻致力于为用户提供最新、最全面的新闻资讯服务，让您随时随地掌握天下事。
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <h4 class="footer-title">快速链接</h4>
+          <div class="footer-links">
+            <a href="../index.html" class="footer-link">首页</a>
+            <a href="news.html" class="footer-link">新闻中心</a>
+            <a href="about.html" class="footer-link">关于我们</a>
+          </div>
+        </div>
+
+        <div class="footer-links-group">
+          <h4 class="footer-title">新闻分类</h4>
+          <div class="footer-links">
+            <a href="#" class="footer-link">科技</a>
+            <a href="#" class="footer-link">财经</a>
+            <a href="#" class="footer-link">体育</a>
+            <a href="#" class="footer-link">文化</a>
+          </div>
+        </div>
+
+        <div class="footer-links-group">
+          <h4 class="footer-title">联系我们</h4>
+          <div class="footer-links">
+            <span class="footer-link">邮箱：ceshi@youxiang.com</span>
+            <span class="footer-link">电话：400-888-8888</span>
+            <span class="footer-link">地址：北京市朝阳区</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 及时新闻 © XiaoMing and six. | 信息交互类网站课程作业</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+
+</html>

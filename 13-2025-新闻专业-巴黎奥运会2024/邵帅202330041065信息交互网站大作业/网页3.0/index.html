@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>巴黎奥运会 2024 - 首页</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 全局导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.jpg" alt="巴黎2024">
+                <span>巴黎2024</span>
+            </a>
+            
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item active"><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+                    <li class="nav-item"><a href="match-center.html"><i class="fas fa-calendar-alt"></i> 赛事中心</a></li>
+                    <li class="nav-item"><a href="interaction.html"><i class="fas fa-comments"></i> 用户互动</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 头部Banner轮播图 -->
+    <section class="banner">
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <img src="assets/巴黎奥运会开幕式.jpeg" alt="巴黎奥运会开幕式">
+                <div class="slide-text">
+                    <h2>巴黎奥运会开幕式</h2>
+                    <p>塞纳河上的盛大开幕式，全球瞩目</p>
+                </div>
+            </div>
+            
+            <div class="slide fade">
+                <img src="assets/埃菲尔铁塔竞技场.png" alt="巴黎奥运会场馆">
+                <div class="slide-text">
+                    <h2>埃菲尔铁塔竞技场</h2>
+                    <p>沙滩排球比赛在铁塔下举行</p>
+                </div>
+            </div>
+            
+            <div class="slide fade">
+                <img src="assets/精彩瞬间.avif" alt="奥运比赛瞬间">
+                <div class="slide-text">
+                    <h2>精彩比赛瞬间</h2>
+                    <p>运动员们为荣誉而战</p>
+                </div>
+            </div>
+            
+            <!-- 轮播控制按钮 -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            
+            <!-- 轮播指示点 -->
+            <div class="dots-container">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <!-- 当日赛事预告 -->
+        <section class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-list-alt"></i> 当日赛事预告</h2>
+                <button class="btn-more" id="toggleEvents">更多赛事 <i class="fas fa-chevron-down"></i></button>
+            </div>
+            
+            <ul class="event-list" id="eventList">
+                <li class="event-item">
+                    <span class="event-time">09:00</span>
+                    <i class="fas fa-running event-icon"></i>
+                    <span class="event-sport">田径 - 男子100米预赛</span>
+                    <span class="event-nations">美国 vs 牙买加 vs 中国</span>
+                    <span class="event-status live">直播中</span>
+                </li>
+                <li class="event-item">
+                    <span class="event-time">10:30</span>
+                    <i class="fas fa-swimmer event-icon"></i>
+                    <span class="event-sport">游泳 - 女子200米自由泳决赛</span>
+                    <span class="event-nations">澳大利亚 vs 美国 vs 加拿大</span>
+                    <span class="event-status upcoming">即将开始</span>
+                </li>
+                <li class="event-item">
+                    <span class="event-time">14:00</span>
+                    <i class="fas fa-table-tennis event-icon"></i>
+                    <span class="event-sport">乒乓球 - 男单四分之一决赛</span>
+                    <span class="event-nations">中国 vs 德国</span>
+                    <span class="event-status upcoming">即将开始</span>
+                </li>
+                <li class="event-item">
+                    <span class="event-time">16:45</span>
+                    <i class="fas fa-basketball-ball event-icon"></i>
+                    <span class="event-sport">篮球 - 女子小组赛</span>
+                    <span class="event-nations">美国 vs 法国</span>
+                    <span class="event-status upcoming">即将开始</span>
+                </li>
+                <!-- 更多赛事项（初始隐藏） -->
+                <li class="event-item more-events">
+                    <span class="event-time">18:30</span>
+                    <i class="fas fa-volleyball-ball event-icon"></i>
+                    <span class="event-sport">排球 - 男子小组赛</span>
+                    <span class="event-nations">巴西 vs 波兰</span>
+                    <span class="event-status upcoming">即将开始</span>
+                </li>
+                <li class="event-item more-events">
+                    <span class="event-time">20:15</span>
+                    <i class="fas fa-dumbbell event-icon"></i>
+                    <span class="event-sport">举重 - 男子81公斤级决赛</span>
+                    <span class="event-nations">中国 vs 哥伦比亚 vs 印尼</span>
+                    <span class="event-status upcoming">即将开始</span>
+                </li>
+                <li class="event-item more-events">
+                    <span class="event-time">21:00</span>
+                    <i class="fas fa-futbol event-icon"></i>
+                    <span class="event-sport">足球 - 女子四分之一决赛</span>
+                    <span class="event-nations">瑞典 vs 日本</span>
+                    <span class="event-status upcoming">即将开始</span>
+                </li>
+            </ul>
+        </section>
+        
+        <!-- 实时奖牌榜 -->
+        <section class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-medal"></i> 实时奖牌榜</h2>
+                <div class="medal-filter">
+                    <span>数据更新时间: <span id="updateTime">2024-08-15 12:00</span></span>
+                    <select id="medalFilter">
+                        <option value="gold">按金牌数排序</option>
+                        <option value="total">按总奖牌数排序</option>
+                        <option value="name">按国家首字母排序</option>
+                        <option value="china">仅看中国队</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="medal-cards" id="medalCards">
+                <!-- 奖牌榜卡片将通过JS动态生成 -->
+            </div>
+        </section>
+        
+        <!-- 奥运项目科普 -->
+        <section class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-info-circle"></i> 奥运项目科普</h2>
+            </div>
+            
+            <div class="sport-cards">
+                <div class="sport-card">
+                    <div class="sport-card-img">
+                        <img src="assets/霹雳舞.jpg" alt="霹雳舞">
+                    </div>
+                    <div class="sport-card-content">
+                        <h3>霹雳舞 (Breaking)</h3>
+                        <p>首次成为奥运项目，霹雳舞结合了舞蹈、体操和音乐，裁判将根据技巧、创意、表现力、音乐性等标准评分。</p>
+                        <div class="sport-card-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 8月9-10日</span>
+                            <span><i class="fas fa-map-marker-alt"></i> 协和广场</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sport-card">
+                    <div class="sport-card-img">
+                        <img src="assets/滑板.jpg" alt="滑板">
+                    </div>
+                    <div class="sport-card-content">
+                        <h3>滑板 (Skateboarding)</h3>
+                        <p>第二次亮相奥运会，包含街式赛和公园赛两个小项，吸引了众多年轻运动员参与。</p>
+                        <div class="sport-card-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 7月27-28日, 8月6-7日</span>
+                            <span><i class="fas fa-map-marker-alt"></i> 协和广场</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="sport-card">
+                    <div class="sport-card-img">
+                        <img src="assets/运动攀岩.webp" alt="运动攀岩">
+                    </div>
+                    <div class="sport-card-content">
+                        <h3>运动攀岩 (Sport Climbing)</h3>
+                        <p>包含难度赛、攀石赛和速度赛三个项目，考验运动员的力量、技巧和策略。</p>
+                        <div class="sport-card-meta">
+                            <span><i class="fas fa-calendar-alt"></i> 8月5-10日</span>
+                            <span><i class="fas fa-map-marker-alt"></i> 布尔歇体育馆</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部版权区 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>巴黎奥运会 2024</h3>
+                <p>让奥运更开放、更包容、更可持续</p>
+                <p>口号: "奥运更开放" (Games Wide Open)</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>官方信息链接</h4>
+                <ul class="footer-links">
+                    <li><a href="https://www.olympics.com/en/olympic-games/paris-2024" target="_blank">巴黎2024官网</a></li>
+                    <li><a href="https://www.olympics.com/ioc" target="_blank">国际奥委会官网</a></li>
+                    <li><a href="https://olympics.com/zh/olympic-games/paris-2024" target="_blank">巴黎奥运会中文官网</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>关注我们</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 巴黎奥运会官方网站. 本网站为模拟项目，非官方网站。</p>
+            <p>数据来源: 模拟国际奥委会数据格式，数据更新时间: <span id="footerUpdateTime">2024-08-15 12:00</span></p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

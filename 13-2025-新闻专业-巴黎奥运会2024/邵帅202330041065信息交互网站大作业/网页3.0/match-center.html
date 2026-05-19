@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>巴黎奥运会 2024 - 赛事中心</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 全局导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.jpg" alt="巴黎2024">
+                <span>巴黎2024</span>
+            </a>
+            
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+                    <li class="nav-item active"><a href="match-center.html"><i class="fas fa-calendar-alt"></i> 赛事中心</a></li>
+                    <li class="nav-item"><a href="interaction.html"><i class="fas fa-comments"></i> 用户互动</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1 class="page-title">赛事中心</h1>
+        
+        <!-- 筛选区 -->
+        <section class="section filter-section">
+            <h2><i class="fas fa-filter"></i> 赛事筛选</h2>
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="sportFilter"><i class="fas fa-basketball-ball"></i> 项目类型</label>
+                    <select id="sportFilter">
+                        <option value="all">所有项目</option>
+                        <option value="athletics">田径</option>
+                        <option value="swimming">游泳</option>
+                        <option value="gymnastics">体操</option>
+                        <option value="table-tennis">乒乓球</option>
+                        <option value="basketball">篮球</option>
+                        <option value="football">足球</option>
+                        <option value="volleyball">排球</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="dateFilter"><i class="fas fa-calendar-day"></i> 日期</label>
+                    <input type="date" id="dateFilter" value="2024-08-15">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="countryFilter"><i class="fas fa-flag"></i> 国家/地区</label>
+                    <input type="text" id="countryFilter" placeholder="输入国家名称...">
+                </div>
+                
+                <button class="btn-primary" id="applyFilters">筛选赛事</button>
+                <button class="btn-secondary" id="resetFilters">重置</button>
+            </div>
+        </section>
+        
+        <!-- 内容区：赛事日程表格 -->
+        <section class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-table"></i> 赛事日程表</h2>
+                <span class="data-update">数据更新时间: 2024-08-15 12:00</span>
+            </div>
+            
+            <div class="table-container">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>时间</th>
+                            <th>项目</th>
+                            <th>场馆</th>
+                            <th>对阵双方</th>
+                            <th>比赛状态</th>
+                            <th>直播链接</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleTable">
+                        <!-- 表格内容将通过JS动态生成 -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- 热门赛事详情卡片 -->
+        <section class="section">
+            <h2><i class="fas fa-fire"></i> 热门赛事详情</h2>
+            
+            <div class="hot-match-cards">
+                <div class="hot-match-card">
+                    <div class="hot-match-header">
+                        <h3>男子100米决赛</h3>
+                        <span class="match-status finished">已结束</span>
+                    </div>
+                    <div class="hot-match-content">
+                        <div class="hot-match-result">
+                            <div class="team-result">
+                                <div class="team-name winner">
+                                    <img src="https://flagcdn.com/w40/us.png" alt="美国国旗" class="country-flag">
+                                    <span>弗雷德·科尔利 (美国)</span>
+                                </div>
+                                <div class="team-score">金牌</div>
+                            </div>
+                            <div class="team-result">
+                                <div class="team-name">
+                                    <img src="https://flagcdn.com/w40/jm.png" alt="牙买加国旗" class="country-flag">
+                                    <span>塞维尔 (牙买加)</span>
+                                </div>
+                                <div class="team-score">银牌</div>
+                            </div>
+                            <div class="team-result">
+                                <div class="team-name">
+                                    <img src="https://flagcdn.com/w40/it.png" alt="意大利国旗" class="country-flag">
+                                    <span>雅各布斯 (意大利)</span>
+                                </div>
+                                <div class="team-score">铜牌</div>
+                            </div>
+                        </div>
+                        <div class="hot-match-review">
+                            <h4>赛事回顾</h4>
+                            <p>在巴黎奥运会男子100米决赛中，美国选手弗雷德·科尔利以9秒79的成绩夺冠，牙买加选手塞维尔以9秒84获得银牌，卫冕冠军意大利选手雅各布斯以9秒89获得铜牌。</p>
+                            <img src="assets/100m决赛.jpg" alt="男子100米决赛">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hot-match-card">
+                    <div class="hot-match-header">
+                        <h3>女子体操团体决赛</h3>
+                        <span class="match-status live">进行中</span>
+                    </div>
+                    <div class="hot-match-content">
+                        <div class="hot-match-result">
+                            <div class="team-result">
+                                <div class="team-name">
+                                    <img src="https://flagcdn.com/w40/us.png" alt="美国国旗" class="country-flag">
+                                    <span>美国队</span>
+                                </div>
+                                <div class="team-score">174.230</div>
+                            </div>
+                            <div class="team-result">
+                                <div class="team-name">
+                                    <img src="https://flagcdn.com/w40/cn.png" alt="中国国旗" class="country-flag">
+                                    <span>中国队</span>
+                                </div>
+                                <div class="team-score">173.400</div>
+                            </div>
+                            <div class="team-result">
+                                <div class="team-name">
+                                    <img src="https://flagcdn.com/w40/gb.png" alt="英国国旗" class="country-flag">
+                                    <span>英国队</span>
+                                </div>
+                                <div class="team-score">170.596</div>
+                            </div>
+                        </div>
+                        <div class="hot-match-review">
+                            <h4>最新战况</h4>
+                            <p>女子体操团体决赛正在进行中,美国队目前暂列第一,中国队以微弱差距紧随其后。平衡木项目刚刚结束,中国选手唐茜靖表现出色获得14.566的高分。</p>
+                            <img src="assets/女子体操.jpg" alt="女子体操比赛">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- 赛事新闻 -->
+<section class="section">
+    <h2><i class="fas fa-newspaper"></i> 新闻简讯</h2>
+    
+    <div class="news-cards">
+                <div class="news-card">
+                    <div class="news-date">
+                        <span class="news-day">15</span>
+                        <span class="news-month">8月</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>中国乒乓球队包揽男女单打金银牌</h3>
+                        <p>在巴黎奥运会乒乓球单打比赛中，中国选手展现了绝对统治力，包揽了男女单打的金银牌。樊振东和王楚钦会师男单决赛，孙颖莎和王曼昱会师女单决赛。</p>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-date">
+                        <span class="news-day">14</span>
+                        <span class="news-month">8月</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>法国游泳选手打破世界纪录</h3>
+                        <p>在男子200米自由泳决赛中,法国本土选手莱昂·马尔尚以1分43秒21的成绩打破世界纪录并夺冠,为法国队赢得重要金牌。</p>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-date">
+                        <span class="news-day">13</span>
+                        <span class="news-month">8月</span>
+                    </div>
+                    <div class="news-content">
+                        <h3>巴黎奥运会收视率创历史新高</h3>
+                        <p>据国际奥委会统计,巴黎奥运会开幕式全球收视人数超过30亿,创下奥运会历史新高，塞纳河上的开幕式受到广泛赞誉。</p>
+                
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+    <!-- 底部版权区 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>巴黎奥运会 2024</h3>
+                <p>让奥运更开放、更包容、更可持续</p>
+                <p>口号: "奥运更开放" (Games Wide Open)</p>
+            </div>
+            
+           <div class="footer-section">
+                <h4>官方信息链接</h4>
+                <ul class="footer-links">
+                    <li><a href="https://www.olympics.com/en/olympic-games/paris-2024" target="_blank">巴黎2024官网</a></li>
+                    <li><a href="https://www.olympics.com/ioc" target="_blank">国际奥委会官网</a></li>
+                    <li><a href="https://olympics.com/zh/olympic-games/paris-2024" target="_blank">巴黎奥运会中文官网</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>关注我们</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 巴黎奥运会官方网站. 本网站为模拟项目，非官方网站。</p>
+            <p>数据来源: 模拟国际奥委会数据格式，数据更新时间: 2024-08-15 12:00</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

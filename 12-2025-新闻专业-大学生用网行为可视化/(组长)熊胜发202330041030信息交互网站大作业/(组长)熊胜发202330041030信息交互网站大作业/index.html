@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大学生用网行为可视化·数字校园洞察站</title>
+    
+    <!-- 引入 ECharts (数据可视化) -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    
+    <!-- 引入 FontAwesome (图标) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- 字体引入 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 引入外部样式 -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 流量预警弹窗 -->
+    <div id="modal-traffic" class="modal-overlay">
+        <div class="modal-content" style="max-width: 500px; border-top-color: var(--alert-red);">
+            <span class="close-modal" onclick="closeModal('modal-traffic')">&times;</span>
+            <div class="modal-header" style="color: var(--alert-red); border-bottom-color: #ffe6e6;">
+                <i class="fa-solid fa-triangle-exclamation"></i> 实时流量预警
+            </div>
+            <div class="modal-body">
+                <p class="traffic-desc">当前您的校园网剩余高速流量：</p>
+                <div id="traffic-number-display">
+                    <span id="traffic-val">10.0000</span> <span class="traffic-unit">GB</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #888; text-align: center;">
+                    <i class="fa-solid fa-gauge-high"></i> 实时消耗速率: <strong>2 GB/min</strong>
+                </p>
+                <div style="background: #fff0f0; padding: 10px; border-radius: 6px; margin-top: 20px; font-size: 0.85rem; color: #c0392b;">
+                    <strong>注意：</strong> 您的流量正在快速消耗，建议暂停大型下载任务或切换至低画质模式。
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="btn-primary" style="background: var(--alert-red);" onclick="closeModal('modal-traffic')">我知道了</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框: 个人画像与建议 -->
+    <div id="modal-persona" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-persona')">&times;</span>
+            <div class="modal-header">上网习惯自评报告</div>
+            <div class="modal-body" id="persona-content"></div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="btn-primary" onclick="closeModal('modal-persona')">知晓并改进</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框: 典型案例详情 -->
+    <div id="modal-case" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal-case')">&times;</span>
+            <div class="modal-header">典型案例深度分析</div>
+            <div class="modal-body" id="case-content"></div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="btn-outline" onclick="closeModal('modal-case')">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="top-bar">
+            <div class="brand">
+                <i class="fa-solid fa-broadcast-tower tower-icon"></i>
+                <h1>大学生用网行为可视化·数字校园洞察站</h1>
+            </div>
+            <div class="status-panel">
+                <div class="status-item"><span>实时网速:</span><span id="live-speed" class="highlight">12.5 MB/s</span></div>
+                <div class="status-item mini-chart-container"><div id="mini-trend-chart"></div></div>
+                <div class="status-item alert-box" id="traffic-alert-trigger" title="点击查看详情">
+                    <span>流量预警</span>
+                    <span style="width:8px;height:8px;background:red;border-radius:50%;display:inline-block;animation:blink 1s infinite;"></span>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#home">首页</a></li>
+                <li><a href="#behavior">核心数据</a></li>
+                <!-- 导航修改：替换为潮汐实验室 -->
+                <li><a href="#tide-lab">潮汐实验室</a></li>
+                <li><a href="#analysis">习惯自评</a></li>
+                <li><a href="#survey">互动调研</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 封面轮播图：热力图 -->
+    <section id="home" class="hero-section">
+        <div class="carousel-container" id="hero-carousel">
+            <div class="carousel-slide active">
+                <div class="slide-content">
+                    <h2>校园区域网络流量全天候热力监测</h2>
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 10px;">数据展示：教学楼、宿舍、食堂、图书馆、体育馆在24小时内的流量密度变化</p>
+                    <div id="hero-chart-1" class="hero-chart"></div>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="slide-content">
+                    <h2>学生群体日均上网时长分布</h2>
+                    <div id="hero-chart-2" class="hero-chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-indicators" id="carousel-dots"></div>
+        <div class="hero-bottom-bar">
+            <p>全网实时接入终端：<span class="highlight">12,450</span> 台 | 日均流量吞吐：<span class="highlight">15.8 TB</span> | 异常攻击拦截：<span class="highlight">23</span> 次</p>
+        </div>
+    </section>
+
+    <!-- 核心数据概览 (含浮动效果) -->
+    <section id="behavior" class="section-padding">
+        <div class="layout-2-3">
+            <aside class="vertical-title-bar">
+                核心统计
+            </aside>
+            <div class="charts-grid">
+                <div class="chart-card"><h3>各时段流量分布</h3><div id="chart-area-traffic" class="chart-container"></div></div>
+                <div class="chart-card"><h3>应用类型偏好</h3><div id="chart-ring-apps" class="chart-container"></div></div>
+                <div class="chart-card"><h3>月度流量趋势</h3><div id="chart-line-trend" class="chart-container"></div></div>
+                <div class="chart-card text-card">
+                    <h3>网络健康指数</h3>
+                    <div style="padding: 20px;">
+                        <p style="margin-bottom:15px; font-size:1.1rem;">连续上网超4小时人数占比: <span style="color:#E74C3C; font-size:1.5rem; font-weight:bold;">28%</span></p>
+                        <p style="font-size:1.1rem;">夜间(23:00+)活跃用户占比: <span style="color:#FF8C00; font-size:1.5rem; font-weight:bold;">15%</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 新板块：校园网络"潮汐"模拟实验室 ==================== -->
+    <section id="tide-lab" class="section-padding">
+        <div class="tide-section">
+            <div class="tide-header">
+                <div>
+                    <h2>校园网络 "潮汐" 模拟实验室</h2>
+                    <p style="font-size:0.9rem; color:#666;">基于历史数据的动态流场模拟与压力测试系统</p>
+                </div>
+            </div>
+            
+            <div class="tide-layout">
+                <!-- 左侧：控制台 -->
+                <div class="tide-controls">
+                    <!-- 功能 1: 场景预测 -->
+                    <div class="control-group">
+                        <h4><i class="fa-solid fa-clock-rotate-left"></i> 场景回溯与预测</h4>
+                        <label style="font-size:0.85rem; color:#666;">选择模拟场景：</label>
+                        <select id="scenario-select" class="scenario-select">
+                            <option value="exam-8am">考试周 - 上午 8:00 (学术高峰)</option>
+                            <option value="weekend-10pm">周末 - 晚上 10:00 (娱乐高峰)</option>
+                            <option value="lunch-12pm">工作日 - 中午 12:00 (用餐高峰)</option>
+                        </select>
+                        <button id="btn-run-simulation" class="btn-primary" style="width:100%;">
+                            <i class="fa-solid fa-play"></i> 运行流场模拟
+                        </button>
+                        
+                        <!-- 避堵攻略显示区 -->
+                        <div id="guide-display" class="guide-box">
+                            <p class="guide-text">请选择场景并运行模拟以获取攻略...</p>
+                        </div>
+                    </div>
+
+                    <!-- 功能 2: 自定义实验 -->
+                    <div class="control-group" style="margin-top:20px; border-top:1px solid #eee; padding-top:20px;">
+                        <h4><i class="fa-solid fa-flask"></i> 自定义压力测试</h4>
+                        <div class="slider-container">
+                            <div class="slider-label">
+                                <span>模拟接入人数</span>
+                                <span id="user-count-display" style="font-weight:bold; color:var(--tech-blue);">100 人</span>
+                            </div>
+                            <input type="range" id="user-count-slider" min="100" max="5000" step="100" value="100">
+                        </div>
+                        <button id="btn-run-experiment" class="btn-outline" style="width:100%;">
+                            测试网速波动
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 右侧：可视化 -->
+                <div class="tide-visuals">
+                    <!-- 校园流场地图 -->
+                    <div id="campus-tide-map" class="campus-map-container"></div>
+                    <!-- 压力测试曲线 (初始隐藏) -->
+                    <div id="experiment-chart" class="experiment-chart-container"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ======================================================================= -->
+
+    <!-- 场景分析与自评 -->
+    <section id="analysis" class="section-padding">
+        <div class="column-layout-3">
+            <!-- 自评工具 -->
+            <div class="col-item">
+                <div class="col-title"><span>上网习惯自评</span> <i class="fa-solid fa-clipboard-check"></i></div>
+                <form id="self-eval-form">
+                    <div class="form-group"><label>1. 每日上网主要目的？</label><select id="q1"><option value="0">学习查阅资料 (0分)</option><option value="3">社交聊天 (3分)</option><option value="5">网络游戏竞技 (5分)</option><option value="4">短视频/追剧 (4分)</option></select></div>
+                    <div class="form-group"><label>2. 日均主动娱乐上网时长？</label><select id="q2"><option value="0">2小时以内 (0分)</option><option value="3">2-5小时 (3分)</option><option value="5">5小时以上 (5分)</option></select></div>
+                    <div class="form-group"><label>3. 熬夜上网频率（24点后）？</label><select id="q3"><option value="0">几乎不 (0分)</option><option value="2">偶尔 (2分)</option><option value="5">经常 (5分)</option></select></div>
+                    <div class="form-group"><label>4. 上网时是否容易分心？</label><select id="q4"><option value="0">否，很专注 (0分)</option><option value="3">是，容易被弹窗吸引 (3分)</option></select></div>
+                    <div class="form-group"><label>5. 离开网络是否感到焦虑？</label><select id="q5"><option value="0">完全不会 (0分)</option><option value="2">有一点 (2分)</option><option value="5">非常焦虑 (5分)</option></select></div>
+                    <button type="submit" class="btn-primary" style="width:100%;">提交评估</button>
+                </form>
+            </div>
+            
+            <!-- 典型案例 -->
+            <div class="col-item">
+                <div class="col-title"><span>典型案例库</span> <i class="fa-solid fa-folder-open"></i></div>
+                <div id="case-list-container"></div>
+            </div>
+            
+            <!-- 调研 -->
+            <div class="col-item">
+                <div class="col-title"><span>互动调研</span> <i class="fa-solid fa-poll"></i></div>
+                <div style="margin-bottom:20px;">
+                    <h4 style="margin-bottom:10px;">用网满意度</h4>
+                    <div id="chart-radar-satisfaction" style="width:100%; height:200px;"></div>
+                </div>
+                <form id="reward-survey">
+                    <div class="form-group">
+                        <label>您最希望校园网改进的是？</label>
+                        <input type="text" id="feedback-input" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;" placeholder="如：网速、价格...">
+                    </div>
+                    <button type="button" id="btn-submit-feedback" class="btn-outline" style="width:100%;">提交反馈</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部 -->
+    <div id="sticky-ticker">
+        <div class="ticker-label">校园热点</div>
+        <div class="ticker-content">【流量提醒】本周校园网总流量同比增长18%，视频类应用占比最高...</div>
+    </div>
+    <footer>
+        <p>网络中心服务电话: 010-12345678 | 数据更新时间: 2024-12-09 | 本网页中的数据都来源于网络，基于ai搜索</p>
+    </footer>
+
+    <!-- 引入外部JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

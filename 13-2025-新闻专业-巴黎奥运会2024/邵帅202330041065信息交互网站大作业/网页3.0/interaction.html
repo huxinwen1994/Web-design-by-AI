@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>巴黎奥运会 2024 - 用户互动</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 全局导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.jpg" alt="巴黎2024">
+                <span>巴黎2024</span>
+            </a>
+            
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+                    <li class="nav-item"><a href="match-center.html"><i class="fas fa-calendar-alt"></i> 赛事中心</a></li>
+                    <li class="nav-item active"><a href="interaction.html"><i class="fas fa-comments"></i> 用户互动</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1 class="page-title">用户互动</h1>
+        
+        <!-- 留言表单区 -->
+        <section class="section form-section">
+            <h2><i class="fas fa-edit"></i> 发表留言</h2>
+            <p class="form-description">分享您对巴黎奥运会的感受，为中国队加油，或与其他体育爱好者交流！</p>
+            
+            <form id="messageForm">
+                <div class="form-group">
+                    <label for="userName"><i class="fas fa-user"></i> 姓名 *</label>
+                    <input type="text" id="userName" placeholder="请输入您的姓名" required>
+                    <div class="form-error" id="nameError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="messageContent"><i class="fas fa-comment-dots"></i> 留言内容 *</label>
+                    <textarea id="messageContent" placeholder="请输入您的留言（至少10个字符）" rows="5" required></textarea>
+                    <div class="char-count">已输入 <span id="charCount">0</span> 个字符</div>
+                    <div class="form-error" id="contentError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-smile"></i> 情绪选择</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="emotion" value="support" checked>
+                            <span class="radio-label"><i class="fas fa-hands-helping"></i> 支持</span>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="emotion" value="expect">
+                            <span class="radio-label"><i class="fas fa-star"></i> 期待</span>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="emotion" value="cheer">
+                            <span class="radio-label"><i class="fas fa-trophy"></i> 加油</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-primary btn-submit">
+                    <i class="fas fa-paper-plane"></i> 提交留言
+                </button>
+            </form>
+            
+            <div class="form-success" id="formSuccess">
+                <i class="fas fa-check-circle"></i> 留言提交成功！已添加到留言列表中。
+            </div>
+        </section>
+        
+        <!-- 互动展示区 -->
+        <section class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-comments"></i> 用户留言列表</h2>
+                <span class="message-count">共 <span id="messageCount">5</span> 条留言</span>
+            </div>
+            
+            <div class="message-list" id="messageList">
+                <!-- 留言将通过JS动态生成 -->
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部版权区 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>巴黎奥运会 2024</h3>
+                <p>让奥运更开放、更包容、更可持续</p>
+                <p>口号: "奥运更开放" (Games Wide Open)</p>
+            </div>
+            
+           <div class="footer-section">
+                <h4>官方信息链接</h4>
+                <ul class="footer-links">
+                    <li><a href="https://www.olympics.com/en/olympic-games/paris-2024" target="_blank">巴黎2024官网</a></li>
+                    <li><a href="https://www.olympics.com/ioc" target="_blank">国际奥委会官网</a></li>
+                    <li><a href="https://olympics.com/zh/olympic-games/paris-2024" target="_blank">巴黎奥运会中文官网</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>关注我们</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 巴黎奥运会官方网站. 本网站为模拟项目，非官方网站。</p>
+            <p>数据来源: 模拟国际奥委会数据格式</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

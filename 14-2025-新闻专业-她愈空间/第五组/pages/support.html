@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>她愈空间 - 交流与支持</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <span>她愈</span>
+                    </div>
+                </div>
+                <div class="nav-links">
+                    <a class="nav-link" href="../index.html">首页</a>
+                    <a class="nav-link" href="./about.html">了解内异症</a>
+                    <a class="nav-link" href="./quiz.html">症状自测</a>
+                    <a class="nav-link" href="./treatment.html">治疗与管理</a>
+                    <a class="nav-link active" href="./support.html">交流与支持</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="support" class="section active">
+        <div class="illustration"></div>
+        <div class="container">
+            <h2 class="section-title">交流与支持</h2>
+            
+            <div class="support-header card">
+                <p>在这里，我们匿名分享、互相支持。您的每一次倾诉和鼓励，都是她愈的力量。</p>
+                <div class="support-actions">
+                    <div class="tags-filter">
+                        <span class="badge active" data-filter="all">全部</span>
+                        <span class="badge symptom" data-filter="symptom">症状困扰</span>
+                        <span class="badge treatment" data-filter="treatment">治疗经验</span>
+                        <span class="badge emotion" data-filter="emotion">情绪支持</span>
+                        <span class="badge fertility" data-filter="fertility">生育问题</span>
+                    </div>
+                    <button class="btn-primary" onclick="openPostModal()">➕ 我要分享</button>
+                </div>
+            </div>
+
+            <div id="postList" class="post-list">
+                
+                <div class="post-item card" data-tag="treatment">
+                    <div class="post-header">
+                        <span class="post-title">服用地诺孕素一年了，想分享一下感受！</span>
+                        <div class="post-meta">
+                            <span class="post-author">匿名用户 1</span>
+                            <span class="badge treatment">治疗经验</span>
+                            <span>📅 2025/11/20</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>疼痛基本消失了，但刚开始有不规则出血，坚持了三个月才稳定。最大的困扰是情绪波动，姐妹们有类似的情况吗？</p>
+                    </div>
+                    <div class="post-footer">
+                        <div class="post-action like-btn" data-liked="false">👍 <span class="like-count">15</span></div>
+                        <div class="post-action">💬 2</div>
+                    </div>
+                </div>
+
+                <div class="post-item card" data-tag="symptom">
+                    <div class="post-header">
+                        <span class="post-title">深部性交痛，感觉被误诊了好久...</span>
+                        <div class="post-meta">
+                            <span class="post-author">匿名用户 2</span>
+                            <span class="badge symptom">症状困扰</span>
+                            <span>📅 2025/11/25</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>之前医生只让我吃止痛药，但我感觉疼痛越来越影响生活了，尤其是同房的时候，大家有没有遇到这种情况？</p>
+                    </div>
+                    <div class="post-footer">
+                        <div class="post-action like-btn" data-liked="false">👍 <span class="like-count">8</span></div>
+                        <div class="post-action">💬 5</div>
+                    </div>
+                </div>
+
+                <div class="post-item card" data-tag="fertility">
+                    <div class="post-header">
+                        <span class="post-title">试管成功姐妹进！内异症三期，是不是就很难自然怀孕了？</span>
+                        <div class="post-meta">
+                            <span class="post-author">匿名用户 3</span>
+                            <span class="badge fertility">生育问题</span>
+                            <span>📅 2025/11/28</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>医生建议我先做腹腔镜，但我好害怕手术。有没有直接通过药物控制然后成功试管的姐妹分享经验？</p>
+                    </div>
+                    <div class="post-footer">
+                        <div class="post-action like-btn" data-liked="false">👍 <span class="like-count">21</span></div>
+                        <div class="post-action">💬 12</div>
+                    </div>
+                </div>
+                
+                <div class="post-item card" data-tag="emotion">
+                    <div class="post-header">
+                        <span class="post-title">面对慢性疼痛，如何调整自己的心态？</span>
+                        <div class="post-meta">
+                            <span class="post-author">匿名用户 4</span>
+                            <span class="badge emotion">情绪支持</span>
+                            <span>📅 2025/12/02</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>总是被疼痛拉低情绪，对未来很迷茫，感觉生活质量直线下降。姐妹们都是怎么和这种状态共处的？</p>
+                    </div>
+                    <div class="post-footer">
+                        <div class="post-action like-btn" data-liked="false">👍 <span class="like-count">33</span></div>
+                        <div class="post-action">💬 9</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="postModal" class="modal">
+        <div class="modal-content card">
+            <h3 class="modal-title">分享您的经验或寻求支持</h3>
+            
+            <form id="postForm">
+                <div class="form-group">
+                    <label for="postTitle" class="form-label">主题</label>
+                    <input type="text" id="postTitle" class="form-control" placeholder="请输入帖子主题" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">标签</label>
+                    <div class="tags-options">
+                        <span class="badge symptom" data-tag="symptom">症状困扰</span>
+                        <span class="badge treatment" data-tag="treatment">治疗经验</span>
+                        <span class="badge emotion" data-tag="emotion">情绪支持</span>
+                        <span class="badge fertility" data-tag="fertility">生育问题</span>
+                    </div>
+                    <input type="hidden" id="selectedTag" name="tag" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="postContent" class="form-label">分享内容</label>
+                    <textarea id="postContent" class="form-control" placeholder="在这里写下你的经历、感受或想分享的内容..." required></textarea>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closePostModal()">取消</button>
+                    <button type="submit" class="btn-save">发布</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="../js/particle.js"></script>
+    <script>
+        // --- 核心功能实现 ---
+
+        // 1. 发帖弹窗控制
+        function openPostModal() {
+            // 关键：将弹窗显示出来
+            document.getElementById('postModal').style.display = 'flex';
+        }
+        
+        function closePostModal() {
+            // 关键：隐藏弹窗
+            document.getElementById('postModal').style.display = 'none';
+            document.getElementById('postForm').reset();
+            document.querySelectorAll('.tags-options .badge').forEach(b => b.classList.remove('active'));
+            document.getElementById('selectedTag').value = '';
+        }
+        
+        // 2. 弹窗内标签选择
+        document.querySelectorAll('.tags-options .badge').forEach(badge => {
+            badge.addEventListener('click', function() {
+                document.querySelectorAll('.tags-options .badge').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('selectedTag').value = this.getAttribute('data-tag');
+            });
+        });
+
+        // 3. 点赞功能
+        function setupLikeButtons() {
+            document.querySelectorAll('.like-btn').forEach(btn => {
+                if (btn.hasAttribute('data-listener-added')) return;
+                btn.setAttribute('data-listener-added', 'true');
+
+                btn.addEventListener('click', function() {
+                    const countSpan = this.querySelector('.like-count');
+                    let currentCount = parseInt(countSpan.textContent);
+                    const isLiked = this.getAttribute('data-liked') === 'true';
+
+                    if (isLiked) {
+                        currentCount -= 1;
+                        this.setAttribute('data-liked', 'false');
+                        this.style.color = 'var(--gray)';
+                    } else {
+                        currentCount += 1;
+                        this.setAttribute('data-liked', 'true');
+                        this.style.color = 'var(--primary)';
+                    }
+                    countSpan.textContent = currentCount;
+                });
+            });
+        }
+
+        // 4. 标签筛选功能
+        function setupTagFilter() {
+            const filterBadges = document.querySelectorAll('.tags-filter .badge');
+            const postListContainer = document.getElementById('postList');
+            
+            filterBadges.forEach(badge => {
+                badge.addEventListener('click', function() {
+                    const filterTag = this.getAttribute('data-filter');
+
+                    filterBadges.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const posts = postListContainer.querySelectorAll('.post-item');
+                    posts.forEach(post => {
+                        const postTag = post.getAttribute('data-tag');
+                        if (filterTag === 'all' || postTag === filterTag) {
+                            post.style.display = 'block';
+                        } else {
+                            post.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            setupLikeButtons();
+            setupTagFilter();
+        });
+
+
+        // 5. 发布新帖 (解决“分享”按钮不能提交的问题)
+        document.getElementById('postForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // <-- 关键：阻止页面刷新，启用 JS 提交
+
+            const title = document.getElementById('postTitle').value;
+            const content = document.getElementById('postContent').value;
+            const tag = document.getElementById('selectedTag').value;
+            const tagElement = document.querySelector(`.tags-options .badge[data-tag="${tag}"]`);
+            const tagName = tagElement ? tagElement.textContent : '日常管理';
+            const date = new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'numeric', day: 'numeric' }).replace(/\//g, '/');
+
+            if (!tag) {
+                alert('请选择一个标签！');
+                return;
+            }
+
+            // 创建新的帖子卡片 HTML 结构
+            const newPostHTML = `
+                <div class="post-item card" data-tag="${tag}" style="animation: fadeIn 0.5s;">
+                    <div class="post-header">
+                        <span class="post-title">${title}</span>
+                        <div class="post-meta">
+                            <span class="post-author">匿名用户（新）</span>
+                            <span class="badge ${tag}">${tagName}</span>
+                            <span>📅 ${date}</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>${content}</p>
+                    </div>
+                    <div class="post-footer">
+                        <div class="post-action like-btn" data-liked="false">👍 <span class="like-count">0</span></div>
+                        <div class="post-action">💬 0</div>
+                    </div>
+                </div>
+            `;
+
+            // 插入到帖子列表顶部
+            document.getElementById('postList').insertAdjacentHTML('afterbegin', newPostHTML);
+            
+            setupLikeButtons(); 
+
+            closePostModal();
+            alert('发布成功！您的分享已展示在社区。');
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长沙商场无障碍设施深度测评</title>
+    
+    <!-- CSS 文件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+    /* 修复评分条容器宽度 */
+.map-modal .modal-body .category-scores .score-bars .score-bar .bar-container {
+    flex: 1 !important;
+    height: 20px !important;
+    background: #e5e7eb !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    min-width: 350px !important;  /* 增加最小宽度 */
+    max-width: 500px !important;
+    width: 400px !important;    /* 增加默认宽度 */
+    margin: 0 10px !important;
+    border: 2px solid red !important;
+    display: flex !important;
+    align-items: center !important;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 修复分类名称宽度 */
+.map-modal .modal-body .category-scores .score-bars .score-bar .category-name {
+    width: 180px !important;  /* 增加名称宽度 */
+    font-size: 14px !important;  /* 调整字体大小 */
+    color: #dd5959 !important;
+    opacity: 0.9 !important;
+    font-weight: 500 !important;
+    flex-shrink: 0 !important;  /* 防止压缩 */
+}
+
+/* 修复评分条整体布局 */
+.map-modal .modal-body .category-scores .score-bars .score-bar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    margin-bottom: 20px !important;
+    padding: 8px 0 !important;
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-radius: 8px !important;
+    width: 100% !important;  /* 确保评分条占满容器 */
+}
+
+/* 修复评分值显示 */
+.map-modal .modal-body .category-scores .score-bars .score-bar .bar-value {
+    width: 60px !important;
+    text-align: right !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+    font-size: 14px !important;
+    padding-left: 10px !important;
+    flex-shrink: 0 !important;  /* 防止压缩 */
+}
+
+/* 修复评分条填充 */
+.map-modal .modal-body .category-scores .score-bars .score-bar .bar-fill {
+    height: 100% !important;
+    width: 0 !important;
+    border-radius: 10px !important;
+    background: #002FA7 !important;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    z-index: 1 !important;
+    display: block !important;
+}
+
+/* 修复分类表现标题 */
+.map-modal .modal-body .category-scores h4 {
+    color: #000000 !important;
+    margin-bottom: 20px !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+}
+
+/* 修复评分显示区域 */
+.map-modal .modal-body .mall-score-display {
+    text-align: center !important;
+    margin-bottom: 30px !important;
+    padding: 25px !important;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
+    border-radius: 15px !important;
+}
+
+.map-modal .modal-body .mall-score-display .total-score {
+    font-size: 48px !important;
+    font-weight: 900 !important;
+    color: #002FA7 !important;
+    line-height: 1 !important;
+    margin-bottom: 8px !important;
+}
+
+.map-modal .modal-body .mall-score-display .score-label {
+    font-size: 16px !important;
+    color: #000000 !important;
+    opacity: 0.7 !important;
+    margin-bottom: 12px !important;
+}
+
+.map-modal .modal-body .mall-score-display .rating-badge {
+    display: inline-block !important;
+    padding: 6px 16px !important;
+    background: #002FA7 !important;
+    color: white !important;
+    border-radius: 20px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+}
+
+</style>
+
+    <!-- 可视化所需库 -->
+     <!-- 在现有的 script 标签之前添加 -->
+    <!-- 替换 Chart.js 的引用 -->
+<script src="C:\Users\djy\Desktop\网页设计与制作\project\js\chart.umd.min.js"></script>
+<!-- 替换 D3.js 的引用 -->
+<script src="C:\Users\djy\Desktop\网页设计与制作\project\js\d3.min.js"></script>
+</head>
+<body>
+    <!-- 开屏动画 -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <div class="splash-geometry" id="splash-geometry"></div>
+            <div class="splash-title">
+                <div class="accessible-text">ACCESSIBLE</div>
+                <div class="or-text">OR</div>
+                <div class="not-text">NOT?</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页面切换动画覆盖层 -->
+    <div class="page-transition-overlay" id="page-transition"></div>
+
+    <!-- 页面容器 -->
+    <main class="page-container">
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <div class="logo">ACCESSIBLE OR NOT?</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" data-page="home-page">首页</a>
+                <a href="#" class="nav-link" data-page="data-page-1">数据新闻</a>
+                <a href="#" class="nav-link" data-page="text-news-page">深度剖析</a>
+                <a href="#" class="nav-link" data-page="video-page">视频直击</a>
+            </div>
+        </nav>
+
+        <!-- 首页 -->
+        <section id="home-page" class="page active">
+            <div class="home-content">
+                <div class="left-panel">
+                    <div class="home-title">
+                        <h1 class="main-title">长沙商场无障碍设施深度测评</h1>
+                        <div class="sub-title">ACCESSIBILITY EVALUATION OF CHANGSHA MALLS</div>
+                    </div>
+                    
+                    <div class="button-column">
+                        <button class="geo-button" data-page="data-page-1">
+                            <div class="button-icon"><i class="fas fa-chart-bar"></i></div>
+                            <div class="button-text">数据新闻</div>
+                        </button>
+                        <button class="geo-button" data-page="text-news-page">
+                            <div class="button-icon"><i class="fas fa-file-alt"></i></div>
+                            <div class="button-text">深度剖析</div>
+                        </button>
+                        <button class="geo-button" data-page="video-page">
+                            <div class="button-icon"><i class="fas fa-video"></i></div>
+                            <div class="button-text">视频直击</div>
+                        </button>
+                    </div>
+                    
+                    <div class="home-slogan">用专业测评，让无障碍不设限</div>
+                </div>
+                
+                <div class="right-panel">
+                    <div class="image-collage">
+                        <div class="collage-img img-1">
+                            <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.alicdn.com%2Fimgextra%2Fi4%2F2423990977%2FO1CN01stNu4g1J5VyNtl9iH_%21%212423990977.jpg&refer=http%3A%2F%2Fimg.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1766046404&t=77b8ea2c0f14a009ee5881550eb4f23f" 
+                                 alt="商场入口无障碍通道" 
+                                 loading="lazy">
+                            <div class="img-overlay">
+                                <div class="overlay-title">入口无障碍通道</div>
+                                <div class="overlay-desc">斜坡设计是否符合轮椅使用者需求</div>
+                            </div>
+                        </div>
+                        <div class="collage-img img-2">
+                            <img src="https://img95.699pic.com/xsj/0k/h5/lb.jpg!/fh/300" 
+                                 alt="无障碍卫生间" 
+                                 loading="lazy">
+                            <div class="img-overlay">
+                                <div class="overlay-title">无障碍卫生间</div>
+                                <div class="overlay-desc">扶手、空间和紧急呼叫系统评估</div>
+                            </div>
+                        </div>
+                        <div class="collage-img img-3">
+                            <img src="https://img1.baidu.com/it/u=1075080536,887029309&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500" 
+                                 alt="导视系统" 
+                                 loading="lazy">
+                            <div class="img-overlay">
+                                <div class="overlay-title">导视系统</div>
+                                <div class="overlay-desc">盲道、语音提示和标识清晰度</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 装饰几何元素 -->
+            <div class="decorative-element dot-element element-1"></div>
+            <div class="decorative-element line-element element-2"></div>
+            <div class="decorative-element dot-element element-3"></div>
+            
+            <div class="bottom-nav">
+                <button class="nav-btn prev-btn" style="visibility: hidden;">
+                    <span>上一页</span>
+                </button>
+                <button class="nav-btn next-btn" data-page="data-page-1">
+                    <span>开始探索</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 数据新闻1页 -->
+       <!-- 数据新闻1页 -->
+<section id="data-page-1" class="page">
+    <div class="page-content">
+        <div class="page-title">
+            <div class="title-decoration"></div>
+            <span>数据新闻：商场分布交互图</span>
+        </div>
+        
+        <!-- 地图说明 -->
+        <div class="map-instructions">
+            <p>点击地图上的蓝色标记点查看各商场无障碍设施测评详情</p>
+        </div>
+        
+        <div class="content-area">
+            <div id="interactiveMap" class="map-container">
+                <!-- 地图图片容器 -->
+                <div class="map-image-container">
+                    <img src="images/map.jpg" alt="长沙商场分布地图" class="map-image" id="mapImage">
+                    
+                    <!-- 商场标记点 - 基于原始图片坐标 -->
+                    <div class="map-marker" style="left: 45.1%; top: 56.5%;" data-mall="月亮岛">
+                        <div class="marker-dot"></div>
+                        <div class="marker-label">月亮岛天街</div>
+                    </div>
+                    <div class="map-marker" style="left: 47.2%; top: 61.5%;" data-mall="大悦城">
+                        <div class="marker-dot"></div>
+                        <div class="marker-label">大悦城</div>
+                    </div>
+                    <div class="map-marker" style="left: 45.3%; top: 64.0%;" data-mall="万象城">
+                        <div class="marker-dot"></div>
+                        <div class="marker-label">万象城</div>
+                    </div>
+                    <div class="map-marker" style="left: 47.5%; top: 66.1%;" data-mall="国金">
+                        <div class="marker-dot"></div>
+                        <div class="marker-label">国金中心</div>
+                    </div>
+                    <div class="map-marker" style="left: 44.6%; top: 73.1%;" data-mall="荟聚">
+                        <div class="marker-dot"></div>
+                        <div class="marker-label">荟聚</div>
+                    </div>
+                    <div class="map-marker" style="left: 48.7%; top: 73.8%;" data-mall="德思勤">
+                        <div class="marker-dot"></div>
+                        <div class="marker-label">德思勤</div>
+                    </div>
+                    <div class="map-marker" style="left: 51.5%; top: 67.5%;" data-mall="万家丽">
+                        <div class="marker-dot"></div>
+                        <div class="marker-label">万家丽广场</div>
+                    </div>
+                    <div class="map-marker" style="left: 57.0%; top: 61.4%;" data-mall="永旺梦">
+                        <div class="marker-dot"></div>
+                        <div class="marker-label">永旺梦乐城</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 商场列表侧边栏 -->
+            <div class="mall-list-sidebar">
+                <h3>商场列表</h3>
+                <div class="mall-list">
+                    <div class="mall-list-item" data-mall="月亮岛">
+                        <span class="mall-name">月亮岛天街</span>
+                        <span class="mall-score">64.5分</span>
+                    </div>
+                    <div class="mall-list-item" data-mall="大悦城">
+                        <span class="mall-name">大悦城</span>
+                        <span class="mall-score">72分</span>
+                    </div>
+                    <div class="mall-list-item" data-mall="万象城">
+                        <span class="mall-name">万象城</span>
+                        <span class="mall-score">86分</span>
+                    </div>
+                    <div class="mall-list-item" data-mall="国金">
+                        <span class="mall-name">国金中心</span>
+                        <span class="mall-score">73分</span>
+                    </div>
+                    <div class="mall-list-item" data-mall="荟聚">
+                        <span class="mall-name">荟聚</span>
+                        <span class="mall-score">82分</span>
+                    </div>
+                    <div class="mall-list-item" data-mall="德思勤">
+                        <span class="mall-name">德思勤</span>
+                        <span class="mall-score">82分</span>
+                    </div>
+                    <div class="mall-list-item" data-mall="万家丽">
+                        <span class="mall-name">万家丽广场</span>
+                        <span class="mall-score">56.5分</span>
+                    </div>
+                    <div class="mall-list-item" data-mall="永旺梦">
+                        <span class="mall-name">永旺梦乐城</span>
+                        <span class="mall-score">73分</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 地图弹窗 -->
+    <div id="mapModal" class="map-modal">
+        <div class="map-modal-content">
+            <div class="map-modal-header">
+                <h3 id="modalMallName">商场名称</h3>
+                <span class="close-map-modal">&times;</span>
+            </div>
+            <div class="map-modal-body">
+                
+                <!-- 弹窗内容由JavaScript动态生成 -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="bottom-nav">
+        <button class="nav-btn prev-btn" data-page="home-page">
+            <span>返回首页</span>
+        </button>
+        <button class="nav-btn next-btn" data-page="data-page-2">
+            <span>查看数据图表</span>
+        </button>
+    </div>
+</section>
+
+        <!-- 数据新闻2页 -->
+        <section id="data-page-2" class="page">
+            <div class="page-content">
+                <div class="page-title">
+                    <div class="title-decoration"></div>
+                    <span>数据新闻：设施数据解读</span>
+                </div>
+                
+                <div class="chart-grid">
+                    <!-- 总分排名图表 -->
+                    <div class="chart-card featured-chart">
+                        <div class="chart-header">
+                            <h3 class="chart-title">各商场无障碍设施总分排名</h3>
+                            <div class="chart-subtitle">基于外部入口、内部通行、服务设施三个维度综合评分</div>
+                        </div>
+                        <div class="chart-content">
+                            <canvas id="barChartCanvas"></canvas>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background-color: #10b981"></span>
+                                <span class="legend-text">优秀 (80分+)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background-color: #f59e0b"></span>
+                                <span class="legend-text">良好 (70-79分)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background-color: #f97316"></span>
+                                <span class="legend-text">中等 (60-69分)</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background-color: #ef4444"></span>
+                                <span class="legend-text">需改进 (60分以下)</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 分类表现对比图表 -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title">八大商场分类表现对比</h3>
+                            <div class="chart-subtitle">所有商场在外部入口、内部通行、服务设施三个维度的全面对比分析</div>
+                        </div>
+                        <div class="chart-content">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                        <div class="chart-notes">
+                            <p><strong>解读提示：</strong> 雷达图展示了八大商场在三个关键维度的表现。面积越大、形状越均衡表示整体表现越好。点击图例可隐藏/显示特定商场数据。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 高频问题分布图表 -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title">高频问题分布</h3>
+                            <div class="chart-subtitle">各商场普遍存在的无障碍设施问题TOP5</div>
+                        </div>
+                        <div class="chart-content">
+                            <div id="heatmapChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 数据解读部分 -->
+            <div class="data-interpretation">
+                <div class="interpretation-content">
+                    <h3 class="interpretation-title">数据解读与洞察</h3>
+                    
+                    <div class="insight-grid">
+                        <div class="insight-item">
+                            <div class="insight-icon">🏆</div>
+                            <div class="insight-content">
+                                <h4>总体表现优异</h4>
+                                <p>长沙主要商场无障碍设施平均得分达到73.4分，整体表现良好。万象城、德思勤、荟聚位列前三，体现了新建商场在无障碍设计上的优势。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="insight-item">
+                            <div class="insight-icon">📊</div>
+                            <div class="insight-content">
+                                <h4>区域差异明显</h4>
+                                <p>岳麓区商场整体表现最佳，平均分达到83.3分；而芙蓉区、天心区等老城区商场受限于建筑年代，改造空间较大。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="insight-item">
+                            <div class="insight-icon">🔍</div>
+                            <div class="insight-content">
+                                <h4>设施分布不均衡</h4>
+                                <p>外部入口与内部通行设施相对完善，但服务与卫生间设施成为主要失分项。特别是语音转文字、低位台等细节设施普及率不足50%。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="insight-item">
+                            <div class="insight-icon">💡</div>
+                            <div class="insight-content">
+                                <h4>改进建议</h4>
+                                <p>建议商场加强服务设施的标准化建设，特别是无障碍卫生间和导视系统。同时建立定期维护机制，确保设施持续可用。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-takeaways">
+                        <h4>核心发现</h4>
+                        <ul>
+                            <li><strong>新建商场优势明显</strong>：2015年后建设的商场无障碍设施得分普遍高于老商场</li>
+                            <li><strong>细节决定体验</strong>：语音提示、低位服务台等细节设施成为区分优劣的关键</li>
+                            <li><strong>维护同样重要</strong>：部分商场虽有完善设施，但因维护不到位影响使用体验</li>
+                            <li><strong>标准化待提升</strong>：各商场在无障碍设施建设标准上存在较大差异</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="methodology-note">
+                        <p><strong>研究方法说明</strong>：本测评基于《无障碍设计规范》(GB50763-2012)标准，通过实地测量、用户体验测试、专家评估相结合的方式，对8家长沙主要商场进行了全面评估。数据收集时间为2024年1-2月。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-nav">
+                <button class="nav-btn prev-btn" data-page="data-page-1">
+                    <span>返回地图</span>
+                </button>
+                <button class="nav-btn next-btn" data-page="text-news-page">
+                    <span>进入深度剖析</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 文字新闻页 -->
+        <section id="text-news-page" class="page">
+            <div class="page-content">
+                <div class="page-title">
+                    <span>深度剖析：短板与破局</span>
+                </div>
+                <div class="content-area">
+                    <div class="featured-article-container">
+                        <div class="featured-article-card">
+                            <div class="article-badge">深度报道</div>
+                            <h2 class="article-title">长沙商场无障碍设施现状调查与改进路径分析</h2>
+                            
+                            <div class="article-meta">
+                                <span class="meta-item"><i class="fas fa-calendar"></i> 2024年3月15日</span>
+                                <span class="meta-item"><i class="fas fa-user"></i> 无障碍研究团队</span>
+                                <span class="meta-item"><i class="fas fa-clock"></i> 阅读约15分钟</span>
+                            </div>
+                            
+                            <div class="article-summary">
+                                <p>通过对长沙12家大型商场的实地调研，本报告系统分析了无障碍设施建设的现状、存在的问题及其深层原因。研究发现，尽管相关法规不断完善，但实际执行中仍存在设计不合理、维护不到位、服务意识欠缺等多重挑战。</p>
+                                
+                                <div class="key-findings">
+                                    <h3>核心发现</h3>
+                                    <ul>
+                                        <li>仅35%的商场入口坡道符合国家标准</li>
+                                        <li>无障碍卫生间平均每商场仅1.2个</li>
+                                        <li>62%的视障人士认为导视系统不完善</li>
+                                        <li>服务人员无障碍服务培训覆盖率不足40%</li>
+                                    </ul>
+                                </div>
+                                
+                                <p>报告从政策监管、设计标准、运营维护等多个维度提出改进建议，旨在推动长沙商场无障碍环境的实质性提升。</p>
+                            </div>
+                            
+                            <div class="article-stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">12</div>
+                                    <div class="stat-label">调研商场</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">86</div>
+                                    <div class="stat-label">实地考察</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">234</div>
+                                    <div class="stat-label">用户访谈</div>
+                                </div>
+                            </div>
+                            
+                            <button class="read-full-btn" id="read-full-article">
+                                <span class="btn-text">阅读完整报告</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-nav">
+                <button class="nav-btn prev-btn" data-page="data-page-2">
+                    <span>返回数据新闻</span>
+                </button>
+                <button class="nav-btn next-btn" data-page="video-page">
+                    <span>进入视频直击</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 完整文章页面 -->
+        <section id="full-article-page" class="page">
+            <div class="page-content">
+                <div class="page-title">
+                    <button class="back-to-summary" id="back-to-summary">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>返回摘要</span>
+                    </button>
+                    <span>完整报告：长沙商场无障碍设施深度研究</span>
+                </div>
+                
+                <article class="article-content">
+                    <div class="article-header">
+                        <h1>长沙商场无障碍设施现状调查与改进路径分析</h1>
+                        <div class="article-meta-full">
+                            <span><i class="fas fa-user"></i> 无障碍研究团队</span>
+                            <span><i class="fas fa-calendar"></i> 2024年3月15日</span>
+                            <span><i class="fas fa-tags"></i> 无障碍设施, 商场测评, 长沙</span>
+                        </div>
+                    </div>
+                    
+                    <div class="article-body">
+                        <!-- 文章内容保持不变 -->
+                    </div>
+                </article>
+            </div>
+        </section>
+
+     <!-- 视频新闻页 -->
+<section id="video-page" class="page">
+    <div class="page-content">
+        <div class="page-title">
+            <span>视频直击：真实无障碍体验</span>
+        </div>
+        <div class="content-area">
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <video id="mainVideo" class="video-player" controls 
+                           poster="images/video-poster.jpg">
+                        <source src="videos/changsha-mall-accessibility.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放，请升级浏览器。
+                    </video>
+                </div>
+            </div>
+            
+            <!-- 删除这一整个div -->
+            <!-- <div class="video-controls"> ... </div> -->
+            
+            <div class="video-info">
+                <div class="video-description">
+                    本视频记录了体验员实地探访长沙多家大型商场的真实体验，着重从入口无障碍通道、卫生间设施两个方面切入。展现商场无障碍设施的现状与问题。注：我们已尽可能在视频中考虑无障碍需求，如添加字幕并为关键视觉信息提供语音描述。完整的测评数据与详细分析，可访问我们的网页报告（由于技术限制，网页版暂未实现完整的语音导览功能）。
+                </div>
+                <div class="video-quote">
+                    "无障碍不是特权，而是基本权利。一个真正包容的城市应该让每个人都能平等享受公共空间。"
+                </div>
+                <div class="video-note">
+                    视频时长：5分钟<br>
+                    拍摄地点：长沙8家大型商场（主要为万家丽购物广场和荟聚）<br>
+                    参与人员：轮椅体验员
+                </div>
+            </div>
+        </div>
+        
+        <!-- 这个按钮也应该删除，因为视频自带控制 -->
+        <!-- <button class="watch-full-btn">观看完整视频</button> -->
+        
+        <div class="bottom-nav">
+            <button class="nav-btn prev-btn" data-page="text-news-page">
+                <span>返回深度剖析</span>
+            </button>
+            <button class="nav-btn next-btn" data-page="home-page" id="back-to-home">
+                <span>回到首页</span>
+            </button>
+        </div>
+    </div>
+</section>
+    </main>
+
+    <!-- 商场详情弹窗 -->
+    <div id="mall-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">商场测评详情</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- 弹窗内容保持不变 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript 文件 -->
+     <!-- 在现有的 script 标签之前添加 -->
+<script src="js/map-interaction.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/visualization.js"></script>
+   
+    
+</body>
+</html>

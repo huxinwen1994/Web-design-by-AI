@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>萌宠救助中心 - 动物详情</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/adoption-detail.css">
+</head>
+<body>
+    <div class="header">
+        <div class="wrapper header-inner clearfix">
+            <div class="logo">
+                <img src="../assets/images/logo.jpg" alt="萌宠救助中心Logo">
+            </div>
+            <div class="site-title">萌宠救助中心</div>
+            <ul class="nav">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="adoption.html" class="active">待领养</a></li>
+                <li><a href="volunteer.html">志愿者</a></li>
+                <li><a href="donate.html">捐助支持</a></li>
+            </ul>
+            <div class="header-right clearfix">
+                <form class="search-box" action="#" method="get">
+                    <input type="text" name="keyword" placeholder="搜索动物、活动、资讯">
+                </form>
+                <button class="search-btn" type="submit">搜索</button>
+                <div class="header-auth">
+                    <a href="login.html" class="btn-login">登录</a>
+                    <a href="register.html" class="btn-register">注册</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper main">
+        <div class="breadcrumb">
+            <a href="../index.html">首页</a> / 
+            <a href="adoption.html">待领养</a> / 
+            <span>动物详情</span>
+        </div>
+
+        <div class="detail-container clearfix">
+            <div class="detail-left">
+                <div class="pet-gallery">
+                    <div class="gallery-main">
+                        <img src="../assets/images/猫1.jpg" alt="奶茶" id="mainImage">
+                    </div>
+                    <div class="gallery-thumbs clearfix">
+                        <img src="../assets/images/猫1.jpg" alt="缩略图1" class="thumb active" onclick="changeImage(this.src)">
+                        <img src="../assets/images/猫2.jpg" alt="缩略图2" class="thumb" onclick="changeImage(this.src)">
+                        <img src="../assets/images/猫3.jpg" alt="缩略图3" class="thumb" onclick="changeImage(this.src)">
+                        <img src="../assets/images/猫4.jpg" alt="缩略图4" class="thumb" onclick="changeImage(this.src)">
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h2 class="section-title">基本信息</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">名字：</span>
+                            <span class="info-value">奶茶</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">性别：</span>
+                            <span class="info-value">母</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">年龄：</span>
+                            <span class="info-value">2 岁</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">类型：</span>
+                            <span class="info-value">猫咪</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">体型：</span>
+                            <span class="info-value">中型</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">毛色：</span>
+                            <span class="info-value">橘白相间</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h2 class="section-title">健康状态</h2>
+                    <div class="health-status">
+                        <div class="health-item">
+                            <span class="health-icon">✓</span>
+                            <span>已绝育</span>
+                        </div>
+                        <div class="health-item">
+                            <span class="health-icon">✓</span>
+                            <span>疫苗齐全</span>
+                        </div>
+                        <div class="health-item">
+                            <span class="health-icon">✓</span>
+                            <span>已驱虫</span>
+                        </div>
+                        <div class="health-item">
+                            <span class="health-icon">✓</span>
+                            <span>身体健康</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h2 class="section-title">性格特点</h2>
+                    <div class="personality-tags">
+                        <span class="tag">温柔安静</span>
+                        <span class="tag">亲人</span>
+                        <span class="tag">适应力强</span>
+                        <span class="tag">喜欢被抚摸</span>
+                    </div>
+                    <p class="personality-desc">
+                        奶茶是一只性格非常温和的猫咪，从小区地下车库救助回来后，已经完全适应了家庭生活。她喜欢在阳光下打盹，也喜欢被主人轻轻抚摸。对人和其他猫都非常友好，适合第一次养宠物的家庭。平时比较安静，不会吵闹，是理想的室内伴侣。
+                    </p>
+                </div>
+
+                <div class="detail-section">
+                    <h2 class="section-title">救助故事</h2>
+                    <div class="story-content">
+                        <p>2024年10月，我们在某小区地下车库发现了奶茶。当时她蜷缩在一个角落里，看起来非常虚弱。经过初步检查，发现她身上有一些外伤，但精神状态尚可。</p>
+                        <p>我们将她带回救助中心后，立即进行了全面的健康检查。经过治疗和精心照料，奶茶的身体逐渐恢复。在志愿者的耐心陪伴下，她也慢慢放下了戒备，开始信任人类。</p>
+                        <p>现在，奶茶已经完全康复，性格也变得开朗起来。她正在等待一个温暖的家，希望能遇到一位有爱心的主人，给她一个安稳的生活环境。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-right">
+                <div class="adoption-box card">
+                    <h2 class="adoption-title">领养信息</h2>
+                    <div class="adoption-status">
+                        <span class="status-badge available">待领养中</span>
+                    </div>
+                    <div class="adoption-info">
+                        <div class="info-row">
+                            <span class="label">入站时间：</span>
+                            <span class="value">2024年10月15日</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">救助地点：</span>
+                            <span class="value">XX小区地下车库</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">当前状态：</span>
+                            <span class="value">健康，已准备好被领养</span>
+                        </div>
+                    </div>
+                    <div class="adoption-actions">
+                        <a href="#" class="btn-primary btn-large">提交领养意向</a>
+                        <a href="#" class="btn-secondary">咨询更多信息</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-header-title">领养要求</h3>
+                    <ul class="requirement-list">
+                        <li>✓ 有稳定的居住环境和经济能力</li>
+                        <li>✓ 家庭成员都同意领养</li>
+                        <li>✓ 承诺科学喂养，定期疫苗和体检</li>
+                        <li>✓ 接受家访和后续回访</li>
+                        <li>✓ 如遇特殊情况不能继续饲养，需联系中心协助处理</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-header-title">领养流程</h3>
+                    <ol class="process-list">
+                        <li><span class="step-num">1</span>填写领养申请表</li>
+                        <li><span class="step-num">2</span>与领养顾问沟通</li>
+                        <li><span class="step-num">3</span>完成家访评估</li>
+                        <li><span class="step-num">4</span>试养期（7-14天）</li>
+                        <li><span class="step-num">5</span>签署领养协议</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-header-title">相关推荐</h3>
+                    <div class="related-pets">
+                        <div class="related-item clearfix">
+                            <img src="../assets/images/猫2.jpg" alt="相关动物">
+                            <div class="related-info">
+                                <h4>阿灰</h4>
+                                <p>公 · 4岁 · 已绝育</p>
+                            </div>
+                        </div>
+                        <div class="related-item clearfix">
+                            <img src="../assets/images/猫3.jpg" alt="相关动物">
+                            <div class="related-info">
+                                <h4>布丁</h4>
+                                <p>母 · 3岁 · 疫苗齐全</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="wrapper footer-inner clearfix">
+            <div class="footer-left">
+                <div>萌宠救助中心 · 用专业与温度守护每一条生命</div>
+                <div class="footer-copy">© 2025 萌宠救助中心 Animal Rescue. 保留所有权利。</div>
+            </div>
+            <div class="footer-right">
+                <div>联系邮箱：support@rescue.org</div>
+                <div>地址：XX市XX区 · 志愿者值班时间 13:30 - 20:30</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function changeImage(src) {
+            document.getElementById('mainImage').src = src;
+            // 更新缩略图激活状态
+            var thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach(function(thumb) {
+                thumb.classList.remove('active');
+                if (thumb.src === src) {
+                    thumb.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+

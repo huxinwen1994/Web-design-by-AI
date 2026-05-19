@@ -1,0 +1,37 @@
+/* 捐助支持页 */
+.donate-hero{margin-top:26px;background-color:#fff;border:none;padding:28px 32px;}
+.donate-hero h2{font-size:22px;color:#4CAF50;margin-bottom:10px;}
+.donate-hero p{font-size:14px;color:#555;line-height:1.9;}
+
+.donate-layout{margin-top:26px;}
+.donate-left{float:left;width:720px;}
+.donate-right{float:right;width:420px;}
+
+.donate-plan{background-color:#fff;border:none;padding:20px 24px;margin-bottom:18px;}
+.donate-plan h3{font-size:18px;color:#333;margin-bottom:8px;}
+.donate-plan p{font-size:13px;color:#555;line-height:1.7;margin-bottom:6px;}
+.donate-plan ul{margin-top:6px;}
+.donate-plan li{font-size:13px;color:#555;padding:4px 0;}
+
+.donate-table{background-color:#fff;border:none;border-collapse:collapse;width:100%;font-size:13px;color:#555;overflow:hidden;}
+.donate-table th,.donate-table td{border:1px solid #C8E6C9;padding:10px 12px;text-align:left;}
+.donate-table th{background-color:#E8F5E9;}
+
+.donate-right .card{margin-bottom:18px;}
+
+/* 表单样式 */
+.form-row{margin-bottom:14px;}
+.form-row label{display:block;font-size:13px;color:#555;margin-bottom:6px;}
+.form-row input, .form-row select, .form-row textarea{width:100%;padding:8px 12px;border:1px solid #C8E6C9;font-size:13px;color:#333;box-sizing:border-box;}
+.form-row textarea{min-height:80px;resize:vertical;}
+.form-actions{margin-top:16px;}
+.form-actions button{width:100%;border:none;cursor:pointer;}
+
+/* 响应式设计 */
+@media screen and (max-width: 768px) {
+    .donate-left, .donate-right{float:none;width:100%;}
+    .donate-right{margin-top:20px;}
+    
+    .donate-table{font-size:12px;}
+    .donate-table th, .donate-table td{padding:8px;}
+}

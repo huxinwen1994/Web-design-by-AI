@@ -1,0 +1,57 @@
+Prompt记录
+第五组：王朵朵、张嘉桐、林羽彤、黄雅兰、文旋
+
+阶段一：原生的设计
+①整体风格、首页、几个分页面
+我要创建一个名为‘她愈空间’的子宫内膜异位症科普网站，主题为治愈系、女性友好，使用暖色调（如粉红#E85D75）。网站需专业、关怀，避免误导，并添加免责声明。
+请生成以下完整代码：
+style.css：定义:root变量（--primary: #E85D75, --secondary: #F9C5D1 等暖色；--shadow等）；全局响应式（@media max-width:768px 导航折叠、表格堆叠用data-label+::before）；卡片(.card)、按钮(.btn-primary)、徽章(.badge)等基础样式；动画如fadeIn。
+particle.js：纯原生JS悬浮粒子背景动画，使用暖色调粒子（60个，size[1,4]，speed[0.05,0.3]，connectDistance:80）；自动适应窗口，自包含类ParticleAnimation。
+输出格式：用css:disable-run
+预期输出描述：生成CSS（约500行，包含变量、响应式媒体查询）和JS（粒子类，DOMContentLoaded初始化）。
+
+②首页与分页面结构与初始内容填充（index.html, about.html, quiz.html, treatment.html, support.html, review.html）
+基于style.css的变量和粒子.js动画，为网站生成6个HTML页面。每个页包含导航（首页、了解内异症、症状自测、治疗与管理、交流与支持；review作为treatment子页链接）、粒子脚本引用、免责声明。内容基于WHO和中国妇产科指南（e.g., Endometriosis Fact Sheet, 2023版共识），专业且关怀。
+index.html：Hero区（痛经口号、统计如10-15%患病率、按钮链接quiz/about）；4个功能卡片（了解、自测、治疗、支持）；底部免责。
+about.html：疾病定义、发病（10-15%）、症状（痛经等）、病因、诊断（金标准腹腔镜）；用flow-item卡片流程；参考文献toggle按钮。
+quiz.html：10题多选自测（痛经严重度、周期等；每个radio data-score 0-3）；进度条、自动跳转下一题占位JS。
+treatment.html：Tabs结构（药物、手术、生活）；药物用表格（类型、代表、机制、副作用，4行数据）；生活用列表；链接review.html。
+support.html：社区头（匿名分享）；标签过滤（all/symptom等）；示例4帖（treatment/symptom等，日期2025示例）；发帖模态框占位。
+review.html：连线题（5组治疗措施与作用匹配，用data-id；左右列match-item）；检查/重置按钮占位JS。
+输出每个页用html ...分块；内容添加医疗注脚。
+
+
+
+阶段二：调整与迭代（针对各个页面的Prompt调整）
+目标： 基于初始文件，进行针对性优化。每个Prompt聚焦一个页面或功能，修复bug、增强交互、润色内容。模拟实际开发迭代，满足硬性要求（4 JS交互+响应式表格）。
+①首页调整（index.html 内容与布局优化）
+Hero添加图片div(aa with assets/2-5.jpg)；统计明确‘70%生活质量下降’；功能卡片加链接+图标；加value-prop区（不孤单口号+加入社区按钮）。保持暖调，确保导航active。输出完整调整后HTML。”
+②about.html 调整（内容深度与交互）
+扩展病因文字（仅描述，无图）；诊断加共识列表；医疗-note居中；toggleReferences JS完整。添加核心治疗目标卡片。基于指南更新引用。输出完整HTML。”
+③quiz.html 调整（交互与阈值）
+为quiz.html添加完整10题（q1周期、q2经量...q10不孕；每个A0-B1-C2-D3分）；JS实现进度条更新、自动跳转（change后300ms next）、提交计算totalScore（阈值<=6低、<=12中低、<=21中高、>21高）；结果模态框+颜色类。输出完整HTML+内嵌JS。
+④treatment.html 调整（表格响应式与tabs）
+tabs用data-target；药物tab加响应式表格（4行数据，如NSAIDs布洛芬）；手术/生活加列表+警告；加review链接。CSS附加：表格美化+@media堆叠（td::before attr(data-label)）。JS tabs切换无刷新。输出完整HTML+CSS附加+JS。
+⑤support.html 调整（社区交互）
+添加完整模态框HTML（postModal with form、tags-options badge）；示例帖日期动态；JS：open/closePostModal、submit e.preventDefault+insertAdjacentHTML置顶新帖（date toLocaleDateString 'zh-CN'）、setupLikeButtons（单次点赞）、setupTagFilter。输出完整HTML+JS。”
+⑥review.html 调整（连线游戏）
+优化review.html：5组匹配（孕激素C等）；JS：点击左右handleItemClick记录userMatches、checkButton校验correctMatches映射+加correct/incorrect类、resetButton清除；resultMessage显示分数。导航active修复为review。输出完整HTML+JS。
+⑦全局调整（跨页一致性与测试）
+全局优化：所有页加footer免责；日期用2025-12-14当前；测试JS无错（e.g., console无警告）；粒子zIndex -1。输出调整点列表+必要代码片段。
+阶段三：部分调整
+后续还有针对单独设计的零星询问。
+
+
+
+心得部分：
+在本次“她愈空间”数字关怀平台的开发过程中，我们尝试使用了 Prompt 驱动的开发方式，通过不断调整提示语，引导人工智能大模型生成页面结构、样式和交互逻辑。
+让我们在实践中重新思考了人工智能在设计与开发中的作用。
+在实际使用中，人工智能大模型最明显的优势是效率高。它可以在较短时间内生成完整的页面框架和基础功能，帮助我迅速完成项目的初步搭建。
+同时，它往往会提供不止一种实现思路，这让我能够进行对比和选择，而不是只停留在单一方案上。
+也正因为如此，我可以把更多时间放在交互是否合理、用户体验是否顺畅这些问题上，而不是反复处理基础代码。
+不过，在开发过程中，我们也逐渐发现人工智能存在明显的局限。它通常只关注功能是否实现，而缺乏对用户界面和整体逻辑的理解。
+例如，在症状自测功能中，AI 只完成了分数计算，却没有考虑结果是否真正呈现在页面上；在跨文件开发时，也容易出现风格和参数不一致的问题。
+如果只是根据表面现象不断让 AI 修改，很难从根本上解决问题。
+因此，在后续使用中，我们开始有意识地调整方式，在下达指令前先把需求想清楚，并尽量把提示语写得更具体。
+这一过程反而促使我们对功能逻辑和交互流程有了更清晰的认识。通过不断尝试，我们逐渐形成了一种以人为主导、AI 辅助的开发模式。
+人工智能负责执行和生成，而关键判断仍然需要由人完成。这次项目让我们意识到，Prompt 驱动开发并不是降低门槛，而是对使用者的理解能力提出了更高要求。

@@ -1,0 +1,1894 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国历史街区 - 古韵风华</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 链接我们自己的css文件链接 -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/page-section-fix.css">
+    <link rel="stylesheet" href="css/night-mode.css">
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-container">
+            <!-- 旋转的logo容器 -->
+            <div class="loader-logo">
+                <div class="loader-icon">
+                    <div class="loader-roof"></div>
+                    <div class="loader-building"></div>
+                    <div class="loader-window"></div>
+                    <div class="loader-window right"></div>
+                    <div class="loader-door"></div>
+                </div>
+            </div>
+            
+            <!-- 加载文字 -->
+            <div class="loader-text">
+                <h3 class="loader-title">古韵风华</h3>
+                <p class="loader-subtitle">正在为您展现千年古街的风貌...</p>
+            </div>
+            
+            <!-- 进度条 -->
+            <div class="loader-progress">
+                <div class="progress-bar" id="progressBar"></div>
+                <span class="progress-text" id="progressText">0%</span>
+            </div>
+            
+            <!-- 古风装饰元素 -->
+            <div class="loader-decoration">
+                <div class="decoration-leaf leaf1"></div>
+                <div class="decoration-leaf leaf2"></div>
+                <div class="decoration-leaf leaf3"></div>
+            </div>
+        </div>
+    </div>
+  
+    <!-- 固定导航栏 -->
+    <nav class="fixed-nav">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="nav-btn active">首页</a>
+                <a href="#intro" class="nav-btn">初识街区</a>
+                <a href="#protection" class="nav-btn">保护传承</a>
+                <a href="#tour" class="nav-btn">街区巡礼</a>
+                <a href="#news" class="nav-btn">新闻动态</a>
+                <a href="#interaction" class="nav-btn">互动体验</a>
+                <a href="#feedback" class="nav-btn">意见反馈</a>
+            </div>
+        </div>
+    </nav>
+    
+
+    
+    <!-- 汉堡菜单按钮 -->
+    <button class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu">
+        <button class="nav-btn active">首页</button>
+        <button class="nav-btn">北方街区</button>
+        <button class="nav-btn">南方街区</button>
+        <button class="nav-btn">东部街区</button>
+        <button class="nav-btn">西部街区</button>
+        <button class="nav-btn">文化特色</button>
+        <button class="nav-btn">保护现状</button>
+        <button class="nav-btn">游览指南</button>
+    </div>
+    
+    <!-- 头部 -->
+    <header>
+        <div class="logo-container">
+
+<div class="border-decoration"></div>
+
+<div class="rain-effect" id="rainEffect"><div class="rain-drop" style="left: 26.8214%; animation-delay: 4.65985s; animation-duration: 2.67902s;"></div><div class="rain-drop" style="left: 17.6434%; animation-delay: 1.48858s; animation-duration: 2.6807s;"></div><div class="rain-drop" style="left: 78.6946%; animation-delay: 0.441393s; animation-duration: 2.07997s;"></div><div class="rain-drop" style="left: 26.9184%; animation-delay: 1.85184s; animation-duration: 2.82231s;"></div><div class="rain-drop" style="left: 88.4487%; animation-delay: 0.961475s; animation-duration: 1.01424s;"></div><div class="rain-drop" style="left: 11.7426%; animation-delay: 1.13005s; animation-duration: 2.95315s;"></div><div class="rain-drop" style="left: 18.9031%; animation-delay: 1.02745s; animation-duration: 1.49874s;"></div><div class="rain-drop" style="left: 68.9718%; animation-delay: 4.91723s; animation-duration: 1.18362s;"></div><div class="rain-drop" style="left: 52.665%; animation-delay: 1.93282s; animation-duration: 1.73791s;"></div><div class="rain-drop" style="left: 25.792%; animation-delay: 1.63947s; animation-duration: 2.2421s;"></div><div class="rain-drop" style="left: 8.88657%; animation-delay: 2.57931s; animation-duration: 2.29314s;"></div><div class="rain-drop" style="left: 43.4279%; animation-delay: 4.04877s; animation-duration: 1.10297s;"></div><div class="rain-drop" style="left: 63.0312%; animation-delay: 0.687382s; animation-duration: 1.50798s;"></div><div class="rain-drop" style="left: 4.4537%; animation-delay: 4.47598s; animation-duration: 2.89906s;"></div><div class="rain-drop" style="left: 36.8583%; animation-delay: 4.9325s; animation-duration: 2.30092s;"></div><div class="rain-drop" style="left: 11.1898%; animation-delay: 3.96402s; animation-duration: 2.14042s;"></div><div class="rain-drop" style="left: 25.2695%; animation-delay: 4.00299s; animation-duration: 2.60537s;"></div><div class="rain-drop" style="left: 49.1185%; animation-delay: 2.10221s; animation-duration: 2.61916s;"></div><div class="rain-drop" style="left: 28.3429%; animation-delay: 1.9967s; animation-duration: 1.68605s;"></div><div class="rain-drop" style="left: 51.164%; animation-delay: 3.64481s; animation-duration: 2.56216s;"></div><div class="rain-drop" style="left: 43.47%; animation-delay: 2.47483s; animation-duration: 2.13711s;"></div><div class="rain-drop" style="left: 26.5261%; animation-delay: 1.39228s; animation-duration: 1.48161s;"></div><div class="rain-drop" style="left: 56.4803%; animation-delay: 4.03379s; animation-duration: 2.04736s;"></div><div class="rain-drop" style="left: 52.0256%; animation-delay: 0.559138s; animation-duration: 2.04677s;"></div><div class="rain-drop" style="left: 71.2364%; animation-delay: 1.27005s; animation-duration: 2.22372s;"></div><div class="rain-drop" style="left: 81.5215%; animation-delay: 0.573959s; animation-duration: 2.11163s;"></div><div class="rain-drop" style="left: 31.4878%; animation-delay: 4.68014s; animation-duration: 2.88895s;"></div><div class="rain-drop" style="left: 45.7925%; animation-delay: 3.80458s; animation-duration: 1.51388s;"></div><div class="rain-drop" style="left: 10.6223%; animation-delay: 4.49639s; animation-duration: 1.63996s;"></div><div class="rain-drop" style="left: 13.0673%; animation-delay: 4.17685s; animation-duration: 1.54735s;"></div><div class="rain-drop" style="left: 84.7787%; animation-delay: 3.20775s; animation-duration: 1.13979s;"></div><div class="rain-drop" style="left: 83.1333%; animation-delay: 0.868709s; animation-duration: 1.31155s;"></div><div class="rain-drop" style="left: 21.9162%; animation-delay: 4.32862s; animation-duration: 2.03695s;"></div><div class="rain-drop" style="left: 17.2049%; animation-delay: 0.770881s; animation-duration: 2.6288s;"></div><div class="rain-drop" style="left: 45.8119%; animation-delay: 2.38102s; animation-duration: 2.48365s;"></div><div class="rain-drop" style="left: 91.3725%; animation-delay: 0.941236s; animation-duration: 2.48611s;"></div><div class="rain-drop" style="left: 80.7535%; animation-delay: 2.05464s; animation-duration: 1.35051s;"></div><div class="rain-drop" style="left: 38.1843%; animation-delay: 4.27339s; animation-duration: 2.88894s;"></div><div class="rain-drop" style="left: 71.7346%; animation-delay: 4.4577s; animation-duration: 2.53208s;"></div><div class="rain-drop" style="left: 97.7752%; animation-delay: 2.09758s; animation-duration: 1.24578s;"></div><div class="rain-drop" style="left: 23.9737%; animation-delay: 2.15986s; animation-duration: 2.37493s;"></div><div class="rain-drop" style="left: 92.9956%; animation-delay: 2.54596s; animation-duration: 2.13916s;"></div><div class="rain-drop" style="left: 10.6699%; animation-delay: 0.356213s; animation-duration: 2.67581s;"></div><div class="rain-drop" style="left: 82.3889%; animation-delay: 0.935692s; animation-duration: 2.83024s;"></div><div class="rain-drop" style="left: 58.2901%; animation-delay: 4.67941s; animation-duration: 2.61978s;"></div><div class="rain-drop" style="left: 56.2216%; animation-delay: 4.43986s; animation-duration: 1.4815s;"></div><div class="rain-drop" style="left: 49.9964%; animation-delay: 0.747568s; animation-duration: 2.19789s;"></div><div class="rain-drop" style="left: 3.29277%; animation-delay: 0.261394s; animation-duration: 1.00167s;"></div><div class="rain-drop" style="left: 24.7296%; animation-delay: 4.21282s; animation-duration: 1.91447s;"></div><div class="rain-drop" style="left: 93.9594%; animation-delay: 2.15583s; animation-duration: 2.11037s;"></div><div class="rain-drop" style="left: 26.8361%; animation-delay: 2.30323s; animation-duration: 2.83207s;"></div><div class="rain-drop" style="left: 12.2384%; animation-delay: 1.52643s; animation-duration: 2.54724s;"></div><div class="rain-drop" style="left: 24.6018%; animation-delay: 1.62781s; animation-duration: 1.07433s;"></div><div class="rain-drop" style="left: 69.3069%; animation-delay: 4.57518s; animation-duration: 1.98725s;"></div><div class="rain-drop" style="left: 16.5318%; animation-delay: 3.96873s; animation-duration: 1.19936s;"></div><div class="rain-drop" style="left: 14.2623%; animation-delay: 2.37371s; animation-duration: 2.48492s;"></div><div class="rain-drop" style="left: 9.64159%; animation-delay: 3.87719s; animation-duration: 2.85505s;"></div><div class="rain-drop" style="left: 83.3356%; animation-delay: 3.54782s; animation-duration: 1.22352s;"></div><div class="rain-drop" style="left: 82.2385%; animation-delay: 3.87972s; animation-duration: 2.06506s;"></div><div class="rain-drop" style="left: 2.22826%; animation-delay: 1.15089s; animation-duration: 2.75688s;"></div><div class="rain-drop" style="left: 16.5922%; animation-delay: 0.0662743s; animation-duration: 1.02484s;"></div><div class="rain-drop" style="left: 72.26%; animation-delay: 1.13391s; animation-duration: 1.28444s;"></div><div class="rain-drop" style="left: 97.6944%; animation-delay: 2.87078s; animation-duration: 2.5635s;"></div><div class="rain-drop" style="left: 38.7911%; animation-delay: 4.35785s; animation-duration: 1.05206s;"></div><div class="rain-drop" style="left: 93.7582%; animation-delay: 4.88661s; animation-duration: 2.31679s;"></div><div class="rain-drop" style="left: 43.8791%; animation-delay: 2.27743s; animation-duration: 1.31428s;"></div><div class="rain-drop" style="left: 21.9098%; animation-delay: 2.96249s; animation-duration: 2.10324s;"></div><div class="rain-drop" style="left: 54.1401%; animation-delay: 0.204171s; animation-duration: 2.64777s;"></div><div class="rain-drop" style="left: 40.4038%; animation-delay: 4.24796s; animation-duration: 2.47321s;"></div><div class="rain-drop" style="left: 33.9578%; animation-delay: 1.45411s; animation-duration: 2.34408s;"></div><div class="rain-drop" style="left: 47.7234%; animation-delay: 2.15304s; animation-duration: 2.71923s;"></div><div class="rain-drop" style="left: 38.9777%; animation-delay: 1.56049s; animation-duration: 1.56153s;"></div><div class="rain-drop" style="left: 31.948%; animation-delay: 4.09182s; animation-duration: 1.14768s;"></div><div class="rain-drop" style="left: 54.3256%; animation-delay: 3.60339s; animation-duration: 2.55675s;"></div><div class="rain-drop" style="left: 58.4102%; animation-delay: 4.89669s; animation-duration: 1.37884s;"></div><div class="rain-drop" style="left: 63.165%; animation-delay: 1.54276s; animation-duration: 2.90718s;"></div><div class="rain-drop" style="left: 18.149%; animation-delay: 4.22204s; animation-duration: 1.0644s;"></div><div class="rain-drop" style="left: 35.6717%; animation-delay: 2.99877s; animation-duration: 1.07863s;"></div><div class="rain-drop" style="left: 51.149%; animation-delay: 3.40167s; animation-duration: 1.14161s;"></div><div class="rain-drop" style="left: 64.4996%; animation-delay: 1.64488s; animation-duration: 1.90044s;"></div></div>
+
+<div class="logo-icon" style="animation: 6s ease-in-out 0s infinite normal none running float;">
+
+<div class="window"></div>
+
+<div class="window"></div>
+
+<div class="door"></div>
+
+</div>
+
+<div class="logo-title">雨打风吹去</div>
+
+<div class="logo-subtitle">中国历史文化街区</div>
+
+<div class="particle" style="width: 2.43695px; height: 2.43695px; background: rgb(212, 175, 55); border-radius: 50%; animation: 5.90238s linear 4.10788s infinite normal none running particle-float; left: 35.6248%; top: 68.7454%;"></div><div class="particle" style="width: 1.04925px; height: 1.04925px; background: rgb(212, 175, 55); border-radius: 50%; animation: 5.77399s linear 2.33124s infinite normal none running particle-float; left: 31.7995%; top: 69.0911%;"></div><div class="particle" style="width: 1.25429px; height: 1.25429px; background: rgb(212, 175, 55); border-radius: 50%; animation: 6.58256s linear 3.43817s infinite normal none running particle-float; left: 32.1922%; top: 69.9769%;"></div><div class="particle" style="width: 1.28503px; height: 1.28503px; background: rgb(212, 175, 55); border-radius: 50%; animation: 5.01419s linear 0.643164s infinite normal none running particle-float; left: 54.2087%; top: 45.4314%;"></div><div class="particle" style="width: 1.9242px; height: 1.9242px; background: rgb(212, 175, 55); border-radius: 50%; animation: 5.80742s linear 0.744432s infinite normal none running particle-float; left: 40.9433%; top: 35.7357%;"></div><div class="particle" style="width: 1.59857px; height: 1.59857px; background: rgb(212, 175, 55); border-radius: 50%; animation: 6.18293s linear 4.06346s infinite normal none running particle-float; left: 32.367%; top: 40.9027%;"></div><div class="particle" style="width: 2.97571px; height: 2.97571px; background: rgb(212, 175, 55); border-radius: 50%; animation: 4.58012s linear 1.98403s infinite normal none running particle-float; left: 38.1895%; top: 52.347%;"></div><div class="particle" style="width: 1.67551px; height: 1.67551px; background: rgb(212, 175, 55); border-radius: 50%; animation: 7.05168s linear 0.767458s infinite normal none running particle-float; left: 61.4254%; top: 66.5369%;"></div><div class="particle" style="width: 2.84105px; height: 2.84105px; background: rgb(212, 175, 55); border-radius: 50%; animation: 6.97137s linear 1.83919s infinite normal none running particle-float; left: 31.7695%; top: 42.878%;"></div><div class="particle" style="width: 1.59833px; height: 1.59833px; background: rgb(212, 175, 55); border-radius: 50%; animation: 6.418s linear 4.37342s infinite normal none running particle-float; left: 42.4028%; top: 46.8202%;"></div><div class="particle" style="width: 1.947px; height: 1.947px; background: rgb(212, 175, 55); border-radius: 50%; animation: 4.21107s linear 4.0513s infinite normal none running particle-float; left: 69.6722%; top: 58.9862%;"></div><div class="particle" style="width: 2.63346px; height: 2.63346px; background: rgb(212, 175, 55); border-radius: 50%; animation: 6.77176s linear 0.515998s infinite normal none running particle-float; left: 64.0444%; top: 46.429%;"></div><div class="particle" style="width: 2.05477px; height: 2.05477px; background: rgb(212, 175, 55); border-radius: 50%; animation: 6.53652s linear 0.786758s infinite normal none running particle-float; left: 43.3945%; top: 33.503%;"></div><div class="particle" style="width: 2.69822px; height: 2.69822px; background: rgb(212, 175, 55); border-radius: 50%; animation: 7.23571s linear 4.08463s infinite normal none running particle-float; left: 39.6957%; top: 33.3779%;"></div><div class="particle" style="width: 1.5441px; height: 1.5441px; background: rgb(212, 175, 55); border-radius: 50%; animation: 7.74056s linear 2.87146s infinite normal none running particle-float; left: 53.6338%; top: 65.0342%;"></div><div class="particle" style="width: 2.31054px; height: 2.31054px; background: rgb(212, 175, 55); border-radius: 50%; animation: 7.88878s linear 3.73993s infinite normal none running particle-float; left: 36.169%; top: 57.9868%;"></div><div class="particle" style="width: 1.48603px; height: 1.48603px; background: rgb(212, 175, 55); border-radius: 50%; animation: 4.05036s linear 0.523504s infinite normal none running particle-float; left: 41.2243%; top: 67.7131%;"></div><div class="particle" style="width: 2.93849px; height: 2.93849px; background: rgb(212, 175, 55); border-radius: 50%; animation: 4.47132s linear 2.45703s infinite normal none running particle-float; left: 56.0097%; top: 60.3429%;"></div><div class="particle" style="width: 2.06568px; height: 2.06568px; background: rgb(212, 175, 55); border-radius: 50%; animation: 7.09844s linear 2.42727s infinite normal none running particle-float; left: 58.0861%; top: 38.7903%;"></div><div class="particle" style="width: 1.86001px; height: 1.86001px; background: rgb(212, 175, 55); border-radius: 50%; animation: 4.41948s linear 4.23926s infinite normal none running particle-float; left: 47.6781%; top: 47.1134%;"></div><div class="particle" style="width: 2.86758px; height: 2.86758px; background: rgb(212, 175, 55); border-radius: 50%; animation: 7.79033s linear 4.83319s infinite normal none running particle-float; left: 56.0326%; top: 49.5003%;"></div><div class="particle" style="width: 1.05158px; height: 1.05158px; background: rgb(212, 175, 55); border-radius: 50%; animation: 7.71584s linear 1.8976s infinite normal none running particle-float; left: 57.8879%; top: 39.7359%;"></div><div class="particle" style="width: 2.48652px; height: 2.48652px; background: rgb(212, 175, 55); border-radius: 50%; animation: 4.68433s linear 4.15208s infinite normal none running particle-float; left: 46.8306%; top: 35.77%;"></div><div class="particle" style="width: 2.46404px; height: 2.46404px; background: rgb(212, 175, 55); border-radius: 50%; animation: 6.8144s linear 0.729303s infinite normal none running particle-float; left: 48.2622%; top: 44.9281%;"></div><div class="particle" style="width: 2.84958px; height: 2.84958px; background: rgb(212, 175, 55); border-radius: 50%; animation: 4.66632s linear 0.118522s infinite normal none running particle-float; left: 45.8578%; top: 64.1806%;"></div><div class="particle" style="width: 2.90465px; height: 2.90465px; background: rgb(212, 175, 55); border-radius: 50%; animation: 5.58686s linear 3.33859s infinite normal none running particle-float; left: 63.1654%; top: 52.8245%;"></div><div class="particle" style="width: 2.62596px; height: 2.62596px; background: rgb(212, 175, 55); border-radius: 50%; animation: 4.5242s linear 4.83682s infinite normal none running particle-float; left: 32.5657%; top: 63.4756%;"></div><div class="particle" style="width: 1.37893px; height: 1.37893px; background: rgb(212, 175, 55); border-radius: 50%; animation: 7.82601s linear 3.72211s infinite normal none running particle-float; left: 43.0415%; top: 40.1231%;"></div><div class="particle" style="width: 1.08046px; height: 1.08046px; background: rgb(212, 175, 55); border-radius: 50%; animation: 4.56652s linear 4.18472s infinite normal none running particle-float; left: 52.917%; top: 49.1309%;"></div><div class="particle" style="width: 2.84017px; height: 2.84017px; background: rgb(212, 175, 55); border-radius: 50%; animation: 6.47917s linear 0.718255s infinite normal none running particle-float; left: 36.8253%; top: 52.979%;"></div><div class="particle" style="width: 1.57929px; height: 1.57929px; background: rgb(212, 175, 55); border-radius: 50%; animation: 4.4106s linear 4.23322s infinite normal none running particle-float; left: 47.8621%; top: 49.9763%;"></div><div class="particle" style="width: 2.85474px; height: 2.85474px; background: rgb(212, 175, 55); border-radius: 50%; animation: 4.1066s linear 4.25581s infinite normal none running particle-float; left: 51.4238%; top: 63.8062%;"></div><div class="particle" style="width: 2.4007px; height: 2.4007px; background: rgb(212, 175, 55); border-radius: 50%; animation: 4.65059s linear 2.83094s infinite normal none running particle-float; left: 38.6822%; top: 42.708%;"></div><div class="particle" style="width: 1.51416px; height: 1.51416px; background: rgb(212, 175, 55); border-radius: 50%; animation: 7.74567s linear 1.84798s infinite normal none running particle-float; left: 53.2677%; top: 50.0557%;"></div><div class="particle" style="width: 1.1508px; height: 1.1508px; background: rgb(212, 175, 55); border-radius: 50%; animation: 6.44712s linear 2.61863s infinite normal none running particle-float; left: 65.4405%; top: 52.5875%;"></div><div class="particle" style="width: 2.83873px; height: 2.83873px; background: rgb(212, 175, 55); border-radius: 50%; animation: 6.28915s linear 2.3004s infinite normal none running particle-float; left: 30.8274%; top: 67.1234%;"></div><div class="particle" style="width: 1.41412px; height: 1.41412px; background: rgb(212, 175, 55); border-radius: 50%; animation: 5.90139s linear 3.87453s infinite normal none running particle-float; left: 64.4947%; top: 39.2512%;"></div><div class="particle" style="width: 2.0102px; height: 2.0102px; background: rgb(212, 175, 55); border-radius: 50%; animation: 6.50318s linear 0.0967269s infinite normal none running particle-float; left: 43.3572%; top: 53.2453%;"></div><div class="particle" style="width: 2.77052px; height: 2.77052px; background: rgb(212, 175, 55); border-radius: 50%; animation: 5.80276s linear 2.69232s infinite normal none running particle-float; left: 41.6003%; top: 40.9503%;"></div><div class="particle" style="width: 1.73882px; height: 1.73882px; background: rgb(212, 175, 55); border-radius: 50%; animation: 6.86816s linear 4.80582s infinite normal none running particle-float; left: 67.5219%; top: 38.2319%;"></div></div>
+        
+        <div class="site-description">
+            <p>中国历史文化街区，承载着百年沧桑与记忆。青石板路蜿蜒曲折，老建筑静静伫立，仿佛在诉说着往昔的故事。这里不仅是一处历史遗迹，更是城市文化传承的重要载体。</p>
+        </div>
+        
+        <div class="scroll-indicator">
+            <span>探索更多</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </header>
+    
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- 夜间模式切换按钮 -->
+    <button class="night-mode-toggle" id="nightModeToggle">
+        <i class="fas fa-moon"></i>
+        <span>夜间模式</span>
+    </button>
+    
+    <!-- === 初识街区板块标题 === -->
+    <section id="intro" class="page-section-title">
+        <div class="container">
+            <div class="section-title-content">
+                <h1><i class="fas fa-door-open"></i> 初识街区</h1>
+                <p>推开历史的大门，走进那些承载着百年记忆的古老街巷</p>
+                <div class="section-title-decoration">
+                    <div class="decoration-line"></div>
+                    <i class="fas fa-compass"></i>
+                    <div class="decoration-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === 视频展示板块 === -->
+    <section class="video-showcase-section" style="background: url('assets/4.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="container">
+            <div class="video-wrapper">
+                <div class="video-frame">
+                    <video controls autoplay muted loop class="showcase-video">
+                        <source src="assets/视频.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3><i class="fas fa-video"></i> 街区影像记录</h3>
+                    <p>通过镜头感受历史街区的独特魅力，聆听古老建筑诉说的故事</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 轮播区 -->
+    <section class="carousel-section">
+        <div class="container">
+            <h2 class="section-title">特色历史街区</h2>
+            
+            <div class="carousel-container">
+                <div class="carousel">
+                    <!-- 长沙太平街 - 添加data-breaking属性 -->
+                    <div class="carousel-item" data-breaking="true">
+                        <div class="carousel-img" style="background-image: url('https://ps.ssl.qhimg.com/sdmt/288_266_100/t015a095f1e010e3212.webp')"></div>
+                        <h3 class="carousel-title">
+                        <a href="https://baike.baidu.com/item/%E9%95%BF%E6%B2%99%E5%A4%AA%E5%B9%B3%E8%A1%97/9655581" target="_blank" class="external-link">
+                        长沙太平街
+                        </a>
+                        </h3>
+                        <p class="carousel-desc">
+                            太平街是长沙古城保留最为完整的一条老街，承载着长沙千年来的历史记忆。街道两旁保留了大量清代及民国时期的建筑，青瓦白墙、木门窗棂，处处透露着古朴韵味。这里不仅是贾谊故居所在地，还聚集了众多老字号商铺和地道湖南小吃，是体验长沙历史文化与市井生活的最佳去处。
+                        </p>
+                        <div>
+                            <span class="tag tag-primary">清代建筑</span>
+                            <span class="tag tag-accent">湖南小吃</span>
+                            <span class="tag">文化街区</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 成都宽窄巷子 -->
+                    <div class="carousel-item">
+                        <div class="carousel-img" style="background-image: url('https://ps.ssl.qhimg.com/sdmt/346_266_100/t0115f1d542c654c2ad.webp')"></div>
+                        <h3 class="carousel-title">
+                        <a href="https://baike.baidu.com/item/%E5%AE%BD%E7%AA%84%E5%B7%B7%E5%AD%90/546674" target="_blank" class="external-link">
+                        成都宽窄巷子
+                        </a>
+                        </h3>
+                        <p class="carousel-desc">
+                            宽窄巷子由宽巷子、窄巷子和井巷子三条平行排列的老式街道及四合院落群组成，是清代满城遗留下来的较成规模的古街道。这里是北方的胡同文化与建筑风格在南方的"孤本"，也是成都休闲都市气质的集中体现。巷内茶馆、川菜馆、手工艺品店林立，完美融合了传统与现代。
+                        </p>
+                        <div>
+                            <span class="tag tag-primary">清代满城</span>
+                            <span class="tag tag-accent">茶馆文化</span>
+                            <span class="tag">四合院</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 哈尔滨中央大街 -->
+                    <div class="carousel-item">
+                        <div class="carousel-img" style="background-image: url('https://ps.ssl.qhimg.com/sdmt/414_266_100/t01e0b0a446ed031839.webp')"></div>
+                        <h3 class="carousel-title">
+                        <a href="https://baike.baidu.com/item/%E4%B8%AD%E5%A4%AE%E5%A4%A7%E8%A1%97/14811" target="_blank" class="external-link">
+                        哈尔滨中央大街
+                        </a>    
+                        </h3>
+                        <p class="carousel-desc">
+                            中央大街是哈尔滨市最繁盛、最有规划的一条商业步行街，始建于1898年，全长1450米。街道两旁汇集了文艺复兴、巴洛克、折衷主义及现代多种风格的欧式建筑，铺路用的方块石为花岗岩雕铸，形状大小如俄式小面包，极具异国情调。这里被誉为"亚洲第一街"和"建筑艺术博物馆"。
+                        </p>
+                        <div>
+                            <span class="tag tag-primary">欧式建筑</span>
+                            <span class="tag tag-accent">商业步行街</span>
+                            <span class="tag">异国风情</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 广州永庆坊 -->
+                    <div class="carousel-item">
+                        <div class="carousel-img" style="background-image: url('https://p0.ssl.qhimgs1.com/sdr/400__/t042c775178fcebd940.jpg')"></div>
+                        <h3 class="carousel-title">
+                        <a href="https://baike.baidu.com/item/%E5%B9%BF%E5%B7%9E%E5%B8%82%E8%A5%BF%E5%85%B3%E6%B0%B8%E5%BA%86%E5%9D%8A%E6%97%85%E6%B8%B8%E5%8C%BA/60425701" target="_blank" class="external-link">
+                        广州永庆坊
+                        </a>       
+                        </h3>
+                        <p class="carousel-desc">
+                            永庆坊位于广州最美骑楼街——荔湾区恩宁路，是极具广州都市人文底蕴的西关旧址地域。在保留传统岭南建筑风貌的基础上，融入了现代文化创意元素，形成了传统与现代交融的独特氛围。这里既有粤剧艺术博物馆、李小龙祖居等历史文化场所，也有文创集市、特色餐饮等新业态，是广州老城新活力的典范。
+                        </p>
+                        <div>
+                            <span class="tag tag-primary">岭南建筑</span>
+                            <span class="tag tag-accent">文创街区</span>
+                            <span class="tag">西关文化</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 苏州平江路 -->
+                    <div class="carousel-item">
+                        <div class="carousel-img" style="background-image: url('https://p2.ssl.qhimgs1.com/sdr/400__/t01cf8298e52997e29c.jpg')"></div>
+                        <h3 class="carousel-title">
+                        <a href="https://baike.baidu.com/item/%E5%B9%B3%E6%B1%9F%E8%B7%AF/316435" target="_blank" class="external-link">
+                        苏州平江路
+                        </a>
+                        </h3>
+                        <p class="carousel-desc">
+                            平江路是苏州古城保存最为完整的一个区域，堪称古城缩影。这条沿河的小路全长约1.6公里，河道西侧的平江路是一条狭长的老街，与之平行的则是平江河。街区保留了"水陆并行、河街相邻"的双棋盘格局以及"小桥流水、粉墙黛瓦"的独特风貌，集中体现了苏州古城的城市特色与价值。
+                        </p>
+                        <div>
+                            <span class="tag tag-primary">水乡风貌</span>
+                            <span class="tag tag-accent">明清街区</span>
+                            <span class="tag">双棋盘格局</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-nav">
+                    <div class="carousel-dot active"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === 2. 保护传承板块标题 === -->
+    <section id="protection" class="page-section-title">
+        <div class="container">
+            <div class="section-title-content">
+                <h1><i class="fas fa-hands-holding"></i> 保护传承</h1>
+                <p>守护城市记忆，让历史在传承中延续生命</p>
+                <div class="section-title-decoration">
+                    <div class="decoration-line"></div>
+                    <i class="fas fa-history"></i>
+                    <div class="decoration-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 毛玻璃卡片区域 -->
+    <section class="featured-section">
+        <div class="container">
+            <h2 class="section-title">保护与传承</h2>
+            
+            <div class="featured-container">
+                <div class="glass-card">
+                    <h3 class="card-title">
+                    <a href="https://www.gov.cn/zhengce/2021-09/09/content_5636329.htm" target="_blank" class="external-link">
+                        保护原则
+                    </a>
+                    </h3>
+                    <p class="card-desc">历史街区的保护应遵循"修旧如旧"的原则，在保持原有风貌的基础上进行适当修缮，既要保护物质文化遗产，也要传承非物质文化遗产。</p>
+                    <div>
+                        <span class="tag">修旧如旧</span>
+                        <span class="tag">风貌保护</span>
+                        <span class="tag">文化传承</span>
+                    </div>
+                </div>
+                
+                <div class="glass-card">
+                    <h3 class="card-title">
+                    <a href="https://m.youth.cn/qwtx/xxl/202509/t20250916_16240675.htm" target="_blank" class="external-link">
+                        活化利用
+                    </a>
+                    </h3>
+                    <p class="card-desc">通过引入文创产业、特色商业和旅游业，使历史街区焕发新活力，实现保护与发展的良性循环，让传统文化在现代社会中得以延续。</p>
+                    <div>
+                        <span class="tag">文创产业</span>
+                        <span class="tag">特色商业</span>
+                        <span class="tag">旅游开发</span>
+                    </div>
+                </div>
+                
+                <div class="glass-card">
+                    <h3 class="card-title">
+                    <a href="https://mp.weixin.qq.com/s?__biz=MzU2MDExMzI5OQ==&mid=2247579143&idx=4&sn=2949dce122224a03352a179a3b56c4b0&chksm=fdc6a4fe08908ccf2ca225fd8e63f34effabd4fd7dcbe577b1b432eb98be613768a7e9e16232&scene=27" target="_blank" class="external-link">
+                        社区参与
+                    </a> 
+                    </h3>
+                    <p class="card-desc">鼓励原住民参与历史街区的保护与更新，保留社区原有的社会结构和生活方式，使历史街区不仅是建筑遗产，更是活态的文化空间。</p>
+                    <div>
+                        <span class="tag">社区参与</span>
+                        <span class="tag">活态保护</span>
+                        <span class="tag">社会结构</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 时间轴区域 -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">历史街区保护历程</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1982年</div>
+                        <h3 class="timeline-title">历史文化名城保护制度建立</h3>
+                        <p class="card-desc">国务院公布了首批24座国家历史文化名城，标志着中国历史文化名城保护制度的正式建立。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1986年</div>
+                        <h3 class="timeline-title">历史街区概念提出</h3>
+                        <p class="card-desc">国务院在公布第二批历史文化名城时，正式提出了"历史街区"的概念，强调要保护文物古迹集中的街区。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1997年</div>
+                        <h3 class="timeline-title">《黄山市屯溪老街保护管理办法》</h3>
+                        <p class="card-desc">中国第一部专门针对历史街区保护的地方性法规出台，为历史街区保护提供了法律保障。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2008年</div>
+                        <h3 class="timeline-title">《历史文化名城名镇名村保护条例》</h3>
+                        <p class="card-desc">国务院颁布实施该条例，进一步完善了历史文化名城、名镇、名村和街区的保护制度。</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2015年</div>
+                        <h3 class="timeline-title">中央城市工作会议</h3>
+                        <p class="card-desc">会议强调要加强城市设计，提倡城市修补，加强历史文化街区保护，留住城市特有的地域环境、文化特色、建筑风格等"基因"。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === 重新设计的表格统计区域 === -->
+    <section class="table-section">
+        <div class="container">
+            <h2 class="section-title">重点历史街区统计表</h2>
+            
+            <div class="table-container">
+                <!-- 表格标题区 -->
+                <div class="table-header">
+                    <h3>全国重点历史文化街区一览表</h3>
+                    <p>记录中华大地上那些承载历史记忆的古老街巷</p>
+                </div>
+                
+                <!-- 表格主体 -->
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>街区名称</th>
+                            <th>所在城市</th>
+                            <th>保护等级</th>
+                            <th>主要年代</th>
+                            <th>特色标签</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>北京南锣鼓巷</td>
+                            <td>北京市</td>
+                            <td>国家级</td>
+                            <td>元代</td>
+                            <td>胡同文化、四合院</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>苏州平江路</td>
+                            <td>苏州市</td>
+                            <td>国家级</td>
+                            <td>宋代</td>
+                            <td>水乡风貌、小桥流水</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>长沙太平街</td>
+                            <td>长沙市</td>
+                            <td>省级</td>
+                            <td>清代</td>
+                            <td>贾谊故居、湖南小吃</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>成都宽窄巷子</td>
+                            <td>成都市</td>
+                            <td>国家级</td>
+                            <td>清代</td>
+                            <td>茶馆文化、川西民居</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>哈尔滨中央大街</td>
+                            <td>哈尔滨市</td>
+                            <td>国家级</td>
+                            <td>近代</td>
+                            <td>欧式建筑、异国风情</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>广州永庆坊</td>
+                            <td>广州市</td>
+                            <td>省级</td>
+                            <td>民国</td>
+                            <td>岭南建筑、文创街区</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>西安回民街</td>
+                            <td>西安市</td>
+                            <td>国家级</td>
+                            <td>明代</td>
+                            <td>穆斯林文化、美食街</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>福州三坊七巷</td>
+                            <td>福州市</td>
+                            <td>国家级</td>
+                            <td>明清</td>
+                            <td>里坊制度、闽都文化</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6">
+                                注：以上为部分历史文化街区统计，数据截至2024年3月
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                
+                <!-- 操作按钮区 -->
+                <div class="table-actions">
+                    <button id="table-toggle" class="table-btn">
+                        <i class="fas fa-palette"></i> 切换表格样式
+                    </button>
+                    <button id="add-row" class="table-btn">
+                        <i class="fas fa-plus-circle"></i> 添加一行数据
+                    </button>
+                    <button id="sort-table" class="table-btn">
+                        <i class="fas fa-sort-alpha-down"></i> 按城市排序
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- === 3. 街区巡礼板块标题 === -->
+    <section id="tour" class="page-section-title">
+        <div class="container">
+            <div class="section-title-content">
+                <h1><i class="fas fa-map-marked-alt"></i> 街区巡礼</h1>
+                <p>从北到南，探访那些静默诉说故事的青石板路</p>
+                <div class="section-title-decoration">
+                    <div class="decoration-line"></div>
+                    <i class="fas fa-route"></i>
+                    <div class="decoration-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色分区 -->
+    <section class="featured-section tour-section-north">
+        <div class="container">
+            <div class="tour-section-header">
+                <div class="tour-badge">
+                    <i class="fas fa-map-marker-alt"></i> 北方
+                </div>
+                <h2 class="section-title">北方历史街区</h2>
+                <p class="tour-subtitle">探寻北国古韵，感受皇城文化与民俗风情</p>
+            </div>
+            
+            <div class="featured-container">
+                <div class="featured-card tour-card">
+                    <div class="card-img" style="background-image: url('https://ps.ssl.qhimg.com/sdmt/288_266_100/t015a095f1e010e3212.webp')">
+                        <div class="card-badge">
+                            <i class="fas fa-crown"></i> 元代古街
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-location">
+                            <i class="fas fa-map-pin"></i> 北京市东城区
+                        </div>
+                        <h3 class="card-title">北京南锣鼓巷</h3>
+                        <p class="card-desc">南锣鼓巷是北京最古老的街区之一，完整保存着元代胡同院落肌理、规模最大、品级最高、资源最丰富的棋盘式传统民居区。</p>
+                        <div class="card-tags">
+                            <span class="tag"><i class="fas fa-home"></i> 四合院</span>
+                            <span class="tag"><i class="fas fa-landmark"></i> 胡同文化</span>
+                            <span class="tag"><i class="fas fa-history"></i> 元代</span>
+                        </div>
+                        <a href="https://baike.baidu.com/item/%E5%8D%97%E9%94%A3%E9%BC%93%E5%B7%B7/6200499" target="_blank" class="card-btn">
+                            <i class="fas fa-arrow-right"></i> 了解更多
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="featured-card tour-card">
+                    <div class="card-img" style="background-image: url('https://ps.ssl.qhimg.com/sdmt/346_266_100/t0115f1d542c654c2ad.webp')">
+                        <div class="card-badge badge-food">
+                            <i class="fas fa-utensils"></i> 美食天堂
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-location">
+                            <i class="fas fa-map-pin"></i> 陕西省西安市
+                        </div>
+                        <h3 class="card-title">西安回民街</h3>
+                        <p class="card-desc">回民街是西安著名的美食文化街区，由多条道路组成，当地人也称其为"回坊"，是感受西安穆斯林文化的绝佳去处。</p>
+                        <div class="card-tags">
+                            <span class="tag"><i class="fas fa-mosque"></i> 穆斯林文化</span>
+                            <span class="tag"><i class="fas fa-drumstick-bite"></i> 特色美食</span>
+                            <span class="tag"><i class="fas fa-history"></i> 明代</span>
+                        </div>
+                        <a href="https://baike.baidu.com/item/%E5%9B%9E%E6%B0%91%E8%A1%97/9853770?fromtitle=%E8%A5%BF%E5%AE%89%E5%9B%9E%E6%B0%91%E8%A1%97&fromid=2125969&fr=aladdin" target="_blank" class="card-btn">
+                            <i class="fas fa-arrow-right"></i> 了解更多
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="featured-card tour-card">
+                    <div class="card-img" style="background-image: url('https://ps.ssl.qhimg.com/sdmt/414_266_100/t01e0b0a446ed031839.webp')">
+                        <div class="card-badge badge-heritage">
+                            <i class="fas fa-star"></i> 世界遗产
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-location">
+                            <i class="fas fa-map-pin"></i> 山西省晋中市
+                        </div>
+                        <h3 class="card-title">平遥古城</h3>
+                        <p class="card-desc">平遥古城是中国现存最为完整的明清县城，街巷格局、建筑风貌保留完整，被誉为"中国古代城市的活标本"。</p>
+                        <div class="card-tags">
+                            <span class="tag"><i class="fas fa-city"></i> 古城墙</span>
+                            <span class="tag"><i class="fas fa-coins"></i> 票号文化</span>
+                            <span class="tag"><i class="fas fa-history"></i> 明清</span>
+                        </div>
+                        <a href="https://baike.baidu.com/item/%E5%B9%B3%E9%81%A5%E5%8F%A4%E5%9F%8E/791?fr=aladdin" target="_blank" class="card-btn">
+                            <i class="fas fa-arrow-right"></i> 了解更多
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="featured-section tour-section-south">
+        <div class="container">
+            <div class="tour-section-header">
+                <div class="tour-badge badge-south">
+                    <i class="fas fa-map-marker-alt"></i> 南方
+                </div>
+                <h2 class="section-title">南方历史街区</h2>
+                <p class="tour-subtitle">漫步江南水乡，品味小桥流水人家的诗意</p>
+            </div>
+            
+            <div class="featured-container">
+                <div class="featured-card tour-card">
+                    <div class="card-img" style="background-image: url('https://p0.ssl.qhimgs1.com/sdr/400__/t042c775178fcebd940.jpg')">
+                        <div class="card-badge badge-water">
+                            <i class="fas fa-water"></i> 水乡风情
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-location">
+                            <i class="fas fa-map-pin"></i> 江苏省苏州市
+                        </div>
+                        <h3 class="card-title">苏州山塘街</h3>
+                        <p class="card-desc">山塘街被誉为"苏州第一名街"，全长约7里，故有"七里山塘"之称，是典型的小桥流水、枕河人家的江南水乡风貌。</p>
+                        <div class="card-tags">
+                            <span class="tag"><i class="fas fa-bridge"></i> 小桥流水</span>
+                            <span class="tag"><i class="fas fa-ship"></i> 运河文化</span>
+                            <span class="tag"><i class="fas fa-history"></i> 唐代</span>
+                        </div>
+                        <a href="https://baike.baidu.com/item/%E5%B1%B1%E5%A1%98%E8%A1%97/641439" target="_blank" class="card-btn">
+                            <i class="fas fa-arrow-right"></i> 了解更多
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="featured-card tour-card">
+                    <div class="card-img" style="background-image: url('https://p2.ssl.qhimgs1.com/sdr/400__/t01cf8298e52997e29c.jpg')">
+                        <div class="card-badge badge-culture">
+                            <i class="fas fa-book"></i> 文化名街
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-location">
+                            <i class="fas fa-map-pin"></i> 福建省福州市
+                        </div>
+                        <h3 class="card-title">福州三坊七巷</h3>
+                        <p class="card-desc">三坊七巷是国内现存规模较大、保护较为完整的历史文化街区，有"中国城市里坊制度活化石"的美称。</p>
+                        <div class="card-tags">
+                            <span class="tag"><i class="fas fa-building"></i> 里坊制度</span>
+                            <span class="tag"><i class="fas fa-user-graduate"></i> 名人故居</span>
+                            <span class="tag"><i class="fas fa-history"></i> 明清</span>
+                        </div>
+                        <a href="https://baike.baidu.com/item/%E7%A6%8F%E5%B7%9E%E5%B8%82%E4%B8%89%E5%9D%8A%E4%B8%83%E5%B7%B7%E5%8E%86%E5%8F%B2%E6%96%87%E5%8C%96%E8%A1%97%E5%8C%BA/64978570" target="_blank" class="card-btn">
+                            <i class="fas fa-arrow-right"></i> 了解更多
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="featured-card tour-card">
+                    <div class="card-img" style="background-image: url('https://hzyly.com/upload/201908/26/201908261747414354.jpg')">
+                        <div class="card-badge badge-commerce">
+                            <i class="fas fa-store"></i> 商业古街
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-location">
+                            <i class="fas fa-map-pin"></i> 浙江省杭州市
+                        </div>
+                        <h3 class="card-title">杭州河坊街</h3>
+                        <p class="card-desc">河坊街是杭州历史文化街区，曾是古代都城杭州的"皇城根儿"，是目前最能够体现杭州历史文化风貌的街道之一。</p>
+                        <div class="card-tags">
+                            <span class="tag"><i class="fas fa-shopping-bag"></i> 老字号</span>
+                            <span class="tag"><i class="fas fa-palette"></i> 手工艺</span>
+                            <span class="tag"><i class="fas fa-history"></i> 南宋</span>
+                        </div>
+                        <a href="https://baike.baidu.com/item/%E6%B2%B3%E5%9D%8A%E8%A1%97/5006437" target="_blank" class="card-btn">
+                            <i class="fas fa-arrow-right"></i> 了解更多
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === 4. 新闻动态板块标题 === -->
+    <section id="news" class="page-section-title">
+        <div class="container">
+            <div class="section-title-content">
+                <h1><i class="fas fa-newspaper"></i> 新闻动态</h1>
+                <p>关注街区脉搏，了解保护工作最新进展</p>
+                <div class="section-title-decoration">
+                    <div class="decoration-line"></div>
+                    <i class="fas fa-bullhorn"></i>
+                    <div class="decoration-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 新闻专题Tab导航区 -->
+    <section class="news-tab-section">
+        <div class="container">
+           <!-- 搜索框 -->
+        <div class="search-container">
+            <h3 style="text-align: center; margin-bottom: 25px; color: var(--primary);">
+                <i class="fas fa-search"></i> 搜索街区新闻
+            </h3>
+            
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="输入关键词搜索（如：修缮、活动、保护）...">
+                <button class="search-btn" id="search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            
+            <!-- 筛选标签 -->
+            <div class="filter-tags">
+                <div class="filter-tag active" data-filter="all">全部</div>
+                <div class="filter-tag" data-filter="北京">北京</div>
+                <div class="filter-tag" data-filter="苏州">苏州</div>
+                <div class="filter-tag" data-filter="成都">成都</div>
+                <div class="filter-tag" data-filter="广州">广州</div>
+                <div class="filter-tag" data-filter="保护">保护动态</div>
+                <div class="filter-tag" data-filter="活动">街区活动</div>
+            </div>
+            
+            <!-- 搜索统计 -->
+            <div class="search-stats" id="search-stats">
+                找到 <span id="result-count">0</span> 条相关结果
+            </div>
+            
+            <!-- 无结果提示 -->
+            <div class="no-results" id="no-results">
+                <i class="fas fa-search-minus"></i>
+                <h4 style="margin-bottom: 10px; color: var(--dark);">未找到相关新闻</h4>
+                <p style="color: #666; margin-bottom: 15px;">尝试其他关键词，如"修缮"、"活动"、"保护"等</p>
+                <button class="filter-tag active" onclick="suggestKeywords()">查看推荐关键词</button>
+            </div>
+            
+            <!-- 搜索历史 -->
+            <div class="search-history" id="search-history">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="history-title">搜索历史</div>
+                    <button class="clear-history" onclick="clearSearchHistory()">清空</button>
+                </div>
+                <ul class="history-list" id="history-list">
+                    <!-- 搜索历史将动态生成 -->
+                </ul>
+            </div>
+        </div>
+            <h2 class="section-title">街区新闻动态</h2>
+            
+            <div class="news-stats">
+                <div class="news-counter">今日标题被点击：<span id="click-counter">0</span> 次</div>
+                <button class="back-to-news" id="back-to-news">返回要闻</button>
+            </div>
+
+            <div class="news-tab-container">
+                <!-- Tab导航栏 -->
+                <div class="news-tabs">
+                    <div class="news-tab active" data-tab="1">要闻</div>
+                    <div class="news-tab" data-tab="2">保护动态</div>
+                    <div class="news-tab" data-tab="3">街区活动</div>
+                    <div class="news-tab" data-tab="4">文化传承</div>
+                    <div class="news-tab" data-tab="5">游览资讯</div>
+                </div>
+                
+                <!-- 第一个Tab内容：要闻 -->
+                <div class="news-content active" id="news-content-1">
+                    <h2>街区要闻</h2>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="https://www.beijing.gov.cn/fuwu/lqfw/ztzl/bjchshgx/zjshj/zjshj/202509/t20250909_4197354.html" target="_blank" class="external-link">
+                            东城区南锣鼓巷四条胡同（雨儿、福祥、蓑衣、帽儿）修缮整治项目
+                            </a>  
+                            </h3>
+                            <p class="news-summary">为更好地保护这一历史街区，北京市启动了南锣鼓巷新一轮的保护修缮工程，预计工期6个月。修缮期间部分区域将临时封闭。</p>
+                            <div class="news-meta">
+                                <span>2024-03-20</span>
+                                <span>来源：北京文化遗产保护中心</span>
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="http://sc.people.com.cn/n2/2025/1203/c345167-41430913.html#:~:text=%E5%85%A8%E5%9B%BD%E6%A0%87%E6%9D%86%EF%BC%81%E6%88%90%E9%83%BD%E9%9D%92%E7%BE%8A%E5%B0%91%E5%9F%8E%E7%89%87%E5%8C%BA%E5%8F%8A%E5%AE%BD%E7%AA%84%E5%B7%B7%E5%AD%90%E6%96%A9%E8%8E%B72025%E5%9F%8E%E5%B8%82%E6%9B%B4%E6%96%B0%E2%80%9C%E7%BE%8E%E5%A5%BD%E8%A1%97%E5%8C%BA%E6%A6%9C%E6%A0%B7%E2%80%9D" target="_blank" class="external-link">
+                            全国标杆！成都青羊少城片区及宽窄巷子斩获2025城市更新“美好街区榜样”
+                            </a> 
+                            </h3>
+                            <p class="news-summary">在最新发布的全国历史文化街区评选中，成都宽窄巷子以其独特的文化魅力和完善的保护措施，成功入选十大"最美历史文化街区"。</p>
+                            <div class="news-meta">
+                                <span>2024-03-18</span>
+                                <span>来源：中国文化报</span>
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="https://www.xinhuanet.com/politics/20250126/8bdcfce37c6e40d4bb66aa15d9643f5c/c.html" target="_blank" class="external-link">
+                            文化中国行｜长沙太平街：千年古街焕发青春活力
+                            </a>
+                            </h3>
+                            <p class="news-summary">考古人员在长沙太平街改造工程中发现一处保存完好的清代商号遗址，出土了大量清代文物，对研究长沙商业史具有重要意义。</p>
+                            <div class="news-meta">
+                                <span>2024-03-16</span>
+                                <span>来源：湖南省文物考古研究所</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 第二个Tab内容：保护动态 -->
+                <div class="news-content" id="news-content-2">
+                    <h2>保护动态</h2>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="https://www.cnr.cn/tj/tjyw/20251206/t20251206_527451223.shtml" target="_blank" class="external-link">
+                            解放北路历史文化街区入选《历史文化街区保护利用可复制经验做法清单（第二批）》
+                            </a>
+                            </h3>
+                            <p class="news-summary">为挖掘历史文化资源价值，加强历史文化街区品牌建设，天津市规划和自然资源局推选一宫花园、解放北路历史文化街区入选《历史文化街区保护利用可复制经验做法清单（第二批）》</p>
+                            <div class="news-meta">
+                                <span>2024-03-15</span>
+                                <span>来源：央广网天津要闻</span>
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="https://www.xinhuanet.com/20240608/04849b07041b4ec2877aaeb6d6dbb940/c.html" target="_blank" class="external-link">
+                            保护老街古韵 留住城市记忆
+                            </a>
+                            </h3>
+                            <p class="news-summary">平江路历史街区保护项目荣获联合国教科文组织亚太地区文化遗产保护奖。</p>
+                            <div class="news-meta">
+                                <span>2024-03-10</span>
+                                <span>来源：联合国教科文组织</span>
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="https://www.xinhuanet.com/20240608/04849b07041b4ec2877aaeb6d6dbb940/c.html" target="_blank" class="external-link">
+                            “十四五”期间新增25片街区、1240处历史建筑，山东筑牢历史文化遗产保护屏障
+                            </a>
+                            </h3>
+                            <p class="news-summary">十四五以来，我们持续加大工作力度，精心修复街区和历史建筑，为延续城市文脉，推动城市高质量发展提供了有力支撑。</p>
+                            <div class="news-meta">
+                                <span>2024-03-05</span>
+                                <span>来源：西安市文物局</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 第三个Tab内容：街区活动 -->
+                <div class="news-content" id="news-content-3">
+                    <h2>街区活动</h2>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="https://zjt.hubei.gov.cn/bmdt/dtyw/gzdt/202502/t20250208_5533454.shtml" target="_blank" class="external-link">
+                           第一个非遗春节，在湖北省历史文化街区这样过！
+                            </a>
+                            </h3>
+                            <p class="news-summary">春节期间，湖北省各地历史文化街区统筹发展与保护、发展与民生、保护与利用的关系，坚持以用促保。</p>
+                            <div class="news-meta">
+                                <span>2024-03-18</span>
+                                <span>来源：成都文化旅游局</span>
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="https://baijiahao.baidu.com/s?id=1844953419003036743&wfr=spider&for=pc" target="_blank" class="external-link">
+                           春京西嘉年华：非遗焕活力 历史街区融新潮
+                            </a>
+                            </h3>
+                            <p class="news-summary">南锣鼓巷将于4月举办胡同音乐周，邀请本地乐队和传统音乐表演者，免费向公众开放。</p>
+                            <div class="news-meta">
+                                <span>2024-03-12</span>
+                                <span>来源：北京东城区文化馆</span>
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="https://baijiahao.baidu.com/s?id=1836858454579973744&wfr=spider&for=pc" target="_blank" class="external-link">
+                           长春：历史文化街区活起来！火起来！
+                            </a>
+                            </h3>
+                            <p class="news-summary">2024平遥古城国际摄影展开始征集作品，主题为"古城新貌"，截稿日期为5月31日。</p>
+                            <div class="news-meta">
+                                <span>2024-03-08</span>
+                                <span>来源：平遥国际摄影展组委会</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 第四个Tab内容：文化传承 -->
+                <div class="news-content" id="news-content-4">
+                    <h2>文化传承</h2>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="https://paper.people.com.cn/zgcsb/pc/content/202509/15/content_30105110.html" target="_blank" class="external-link">
+                           唤醒城镇历史街区 赓续传统文化根脉
+                            </a>
+                            </h3>
+                            <p class="news-summary">唤醒历史街区，不是简单的修缮或包装，而是要深入挖掘其作为文化“活化石”、生活“烟火气”和发展共生体的三重价值</p>
+                            <div class="news-meta">
+                                <span>2024-03-12</span>
+                                <span>来源：北京非物质文化遗产中心</span>
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="https://paper.people.com.cn/zgcsb/pc/content/202509/15/content_30105110.html" target="_blank" class="external-link">
+                           【文化评析】注重文化传承 打造特色街区
+                            </a>
+                            </h3>
+                            <p class="news-summary">暑期已至，各地文旅市场持续呈现火热态势。休闲街区、特色博物馆、热门景点人潮涌动，不少地方的历史文化商业街区更是备受游客青睐。</p>
+                            <div class="news-meta">
+                                <span>2024-03-07</span>
+                                <span>来源：苏州文化广电旅游局</span>
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="https://www.shaanxijubao.cn/20251020/3c24949555f4c361268798fd810d51a1.html" target="_blank" class="external-link">
+                           打造传统与现代交相辉映的城市历史文化街区
+                            </a>
+                            </h3>
+                            <p class="news-summary">北京大栅栏展现出大国首都的商业传奇，福州古老的三坊七巷闪耀着智慧的都市风采，苏州平江九巷勾勒出生动的江南画卷，各地城市正在不断书写着特色历史文化街区保护与利用的生动实践。</p>
+                            <div class="news-meta">
+                                <span>2024-03-01</span>
+                                <span>来源：福州三坊七巷保护开发公司</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 第五个Tab内容：游览资讯 -->
+                <div class="news-content" id="news-content-5">
+                    <h2>游览资讯</h2>
+                    <ul class="news-list">
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="https://baijiahao.baidu.com/s?id=1802968452974394905&wfr=spider&for=pc" target="_blank" class="external-link">
+                           坐上复古时光机！一起打卡平潭南北街历史文化街区
+                            </a>
+                            </h3>
+                            <p class="news-summary">平遥古城管理委员会发布清明假期游客接待方案，建议游客提前预约购票。</p>
+                            <div class="news-meta">
+                                <span>2024-03-17</span>
+                                <span>来源：平遥古城管委会</span>
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <h3 class="news-title">
+                             <a href="https://baijiahao.baidu.com/s?id=1839054960033069830&wfr=spider&for=pc" target="_blank" class="external-link">
+                            北海老街夜游才叫绝！本地人私藏玩法大公开
+                            </a>
+                            </h3>
+                            <p class="news-summary">漫步其中，入目皆是中西合璧的骑楼式建筑，仿佛是一场跨越时空的南洋旧梦。</p>
+                            <div class="news-meta">
+                                <span>2024-03-14</span>
+                                <span>来源：杭州清河坊历史街区管委会</span>
+                            </div>
+                        </li>
+                        <li class="news-item">
+                            <h3 class="news-title">
+                            <a href="https://baijiahao.baidu.com/s?id=1839054960033069830&wfr=spider&for=pc" target="_blank" class="external-link">
+                            忻州古城数字文旅体验馆即将开放！更多冬日好戏邀您入梦！
+                            </a>
+                            </h3>
+                            <p class="news-summary">当千年古城遇见前沿科技，会碰撞出怎样的火花？当历史记忆插上数字翅膀，又将如何重塑我们的文化体验？这一切，即将在忻州古城北广场西侧，为您一一揭晓！</p>
+                            <div class="news-meta">
+                                <span>2024-03-09</span>
+                                <span>来源：哈尔滨中央大街管理处</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === 新增：浮动布局示例区域 === -->
+    <section class="float-layout-section">
+        <div class="container">
+            <h2 class="section-title">新闻资讯区</h2>
+            
+            <div class="float-container clearfix">
+                <!-- 左侧主栏 -->
+                <div class="main-content">
+                    <h3>最新要闻</h3>
+                    
+                    <div class="news-card">
+                        <h4>
+                        <a href="https://www.beijing.gov.cn/fuwu/lqfw/ztzl/bjchshgx/zjshj/zjshj/202509/t20250909_4197354.html" target="_blank" class="external-link">
+                        北京南锣鼓巷启动新一轮保护修缮
+                        </a>    
+                        </h4>
+                        <p>为更好地保护这一历史街区，北京市启动了南锣鼓巷新一轮的保护修缮工程，预计工期6个月。修缮期间部分区域将临时封闭。</p>
+                        <div class="news-meta">
+                            <span class="news-time">2024-03-20</span>
+                            <span class="news-source">来源：北京文化遗产保护中心</span>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card" data-breaking="true">
+                        <h4>
+                        <a href="https://baike.baidu.com/item/%E5%B9%B3%E6%B1%9F%E8%B7%AF/316435" target="_blank" class="external-link">
+                        突发：苏州平江路发现明代古井遗址
+                        </a>
+                        </h4>
+                        <p>在平江路改造工程中，施工人员意外发现一口保存完好的明代古井。考古专家已赶赴现场，初步判断具有重要历史价值。</p>
+                        <div class="news-meta">
+                            <span class="news-time">2024-03-19</span>
+                            <span class="news-source">来源：苏州文物局</span>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card">
+                        <h4>
+                         <a href="http://sc.people.com.cn/n2/2025/1203/c345167-41430913.html#:~:text=%E5%85%A8%E5%9B%BD%E6%A0%87%E6%9D%86%EF%BC%81%E6%88%90%E9%83%BD%E9%9D%92%E7%BE%8A%E5%B0%91%E5%9F%8E%E7%89%87%E5%8C%BA%E5%8F%8A%E5%AE%BD%E7%AA%84%E5%B7%B7%E5%AD%90%E6%96%A9%E8%8E%B72025%E5%9F%8E%E5%B8%82%E6%9B%B4%E6%96%B0%E2%80%9C%E7%BE%8E%E5%A5%BD%E8%A1%97%E5%8C%BA%E6%A6%9C%E6%A0%B7%E2%80%9D" target="_blank" class="external-link">
+                        成都宽窄巷子入选"最美街区"评选
+                        </a>
+                        </h4>
+                        <p>在最新发布的全国历史文化街区评选中，成都宽窄巷子以其独特的文化魅力和完善的保护措施，成功入选十大"最美历史文化街区"。</p>
+                        <div class="news-meta">
+                            <span class="news-time">2024-03-18</span>
+                            <span class="news-source">来源：中国文化报</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧侧栏 -->
+                <div class="sidebar">
+                    <h3>热门排行</h3>
+                    <ul class="hot-list">
+                        <li>
+                            <span class="hot-rank">1</span>
+                            <span>平江路发现明代古井</span>
+                        </li>
+                        <li>
+                            <span class="hot-rank">2</span>
+                            <span>南锣鼓巷修缮工程启动</span>
+                        </li>
+                        <li>
+                            <span class="hot-rank">3</span>
+                            <span>宽窄巷子入选最美街区</span>
+                        </li>
+                        <li>
+                            <span class="hot-rank">4</span>
+                            <span>永庆坊文创市集本周开幕</span>
+                        </li>
+                        <li>
+                            <span class="hot-rank">5</span>
+                            <span>中央大街百年建筑开放日</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === 5. 互动体验板块标题 === -->
+    <section id="interaction" class="page-section-title">
+        <div class="container">
+            <div class="section-title-content">
+                <h1><i class="fas fa-gamepad"></i> 互动体验</h1>
+                <p>在趣味中触摸历史，感受传统文化的温度</p>
+                <div class="section-title-decoration">
+                    <div class="decoration-line"></div>
+                    <i class="fas fa-puzzle-piece"></i>
+                    <div class="decoration-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === 超简单换装游戏 - 修复版：因为之前将样式放进css里面一直在出错，所以我们这里使用了内联版本，将样式放在了html里面 === -->
+        <!-- === 全新设计的古建筑换装小游戏 === -->
+<section id="simple-dressup-game" style="padding: 100px 0; background-image: url('assets/6.jpg?v=2'); background-size: cover; background-position: center; background-attachment: fixed; background-repeat: no-repeat;">
+    <div class="container" style="max-width: 1400px;">
+        <h2 class="section-title" style="font-size: 2.8rem; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">古建筑换装小游戏</h2>
+        <p style="text-align: center; margin-bottom: 50px; color: #3a2e1e; font-size: 1.2rem; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);">
+            点击右侧颜色，左边建筑会变色！
+        </p>
+        
+        <div style="display: flex; gap: 50px; align-items: flex-start; flex-wrap: wrap; justify-content: center;">
+            
+            <!-- ===== 左侧：建筑展示区 ===== -->
+            <div style="flex: 1; min-width: 450px; max-width: 550px;">
+                <!-- 建筑容器 -->
+                <div style="width: 100%; aspect-ratio: 4/5; background: linear-gradient(to bottom, #87CEEB 35%, #8B7355 35%); 
+                    border-radius: 20px; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.2); overflow: hidden;">
+                    
+                    <!-- 天空装饰 -->
+                    <div style="position: absolute; top: 30px; right: 40px; width: 60px; height: 60px; 
+                        background: #FFD700; border-radius: 50%; opacity: 0.8; box-shadow: 0 0 30px rgba(255,215,0,0.5);"></div>
+                    
+                    <!-- 云朵 -->
+                    <div style="position: absolute; top: 50px; left: 50px; width: 80px; height: 30px; 
+                        background: white; border-radius: 50px; opacity: 0.7;"></div>
+                    <div style="position: absolute; top: 90px; right: 80px; width: 60px; height: 25px; 
+                        background: white; border-radius: 50px; opacity: 0.6;"></div>
+                    
+                    <!-- 屋顶 -->
+                    <div id="game-roof" style="position: absolute; top: 120px; left: 50%; transform: translateX(-50%); 
+                        width: 75%; height: 80px; background: #8c6d46; 
+                        clip-path: polygon(0% 100%, 3% 20%, 10% 5%, 50% 0%, 90% 5%, 97% 20%, 100% 100%); 
+                        z-index: 3; box-shadow: 0 5px 15px rgba(0,0,0,0.3); transition: all 0.4s ease;"></div>
+                    
+                    <!-- 屋顶装饰 -->
+                    <div style="position: absolute; top: 115px; left: 50%; transform: translateX(-50%); 
+                        width: 20px; height: 20px; background: #d4af37; border-radius: 50%; z-index: 4;"></div>
+                    
+                    <!-- 墙体 -->
+                    <div id="game-wall" style="position: absolute; top: 200px; left: 50%; transform: translateX(-50%); 
+                        width: 65%; height: 55%; background: #f8f4e9; border-radius: 0 0 15px 15px; z-index: 2; 
+                        box-shadow: inset 0 0 0 4px rgba(140,109,70,0.2), 0 10px 30px rgba(0,0,0,0.2); 
+                        transition: all 0.4s ease;"></div>
+                    
+                    <!-- 左窗户 -->
+                    <div id="game-window-left" style="position: absolute; width: 50px; height: 70px; background: #3a2e1e; 
+                        border-radius: 8px 8px 0 0; top: 260px; left: 50%; transform: translateX(-130px); z-index: 3; 
+                        box-shadow: inset 0 0 10px rgba(0,0,0,0.5); transition: all 0.4s ease;">
+                        <!-- 窗格 -->
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                            width: 2px; height: 100%; background: rgba(255,255,255,0.3);"></div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                            width: 100%; height: 2px; background: rgba(255,255,255,0.3);"></div>
+                    </div>
+                    
+                    <!-- 右窗户 -->
+                    <div id="game-window-right" style="position: absolute; width: 50px; height: 70px; background: #3a2e1e; 
+                        border-radius: 8px 8px 0 0; top: 260px; left: 50%; transform: translateX(80px); z-index: 3; 
+                        box-shadow: inset 0 0 10px rgba(0,0,0,0.5); transition: all 0.4s ease;">
+                        <!-- 窗格 -->
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                            width: 2px; height: 100%; background: rgba(255,255,255,0.3);"></div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                            width: 100%; height: 2px; background: rgba(255,255,255,0.3);"></div>
+                    </div>
+                    
+                    <!-- 门 -->
+                    <div id="game-door" style="position: absolute; width: 70px; height: 120px; background: #3a2e1e; 
+                        border-radius: 8px 8px 0 0; bottom: 22%; left: 50%; transform: translateX(-50%); z-index: 3; 
+                        box-shadow: inset 0 -10px 20px rgba(0,0,0,0.4), 0 5px 15px rgba(0,0,0,0.3); 
+                        transition: all 0.4s ease;">
+                        <!-- 门环 -->
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                            width: 15px; height: 15px; background: #d4af37; border-radius: 50%; 
+                            box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>
+                    </div>
+                    
+                    <!-- 地面装饰 -->
+                    <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 22%; 
+                        background: linear-gradient(to bottom, #8B7355, #6B5345); z-index: 1;"></div>
+                </div>
+                
+                <!-- 当前配色显示 -->
+                <div style="background: white; padding: 25px; border-radius: 15px; margin-top: 30px; 
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <h4 style="text-align: center; color: #8c6d46; margin-bottom: 20px; font-size: 1.3rem;">
+                        🎨 当前配色方案
+                    </h4>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                        <div style="text-align: center;">
+                            <div style="color: #888; font-size: 0.9rem; margin-bottom: 8px;">屋顶</div>
+                            <div id="display-roof" style="color: #8c6d46; font-weight: bold; font-size: 1.1rem;">青瓦顶</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="color: #888; font-size: 0.9rem; margin-bottom: 8px;">墙体</div>
+                            <div id="display-wall" style="color: #8c6d46; font-weight: bold; font-size: 1.1rem;">白墙</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="color: #888; font-size: 0.9rem; margin-bottom: 8px;">门窗</div>
+                            <div id="display-door" style="color: #8c6d46; font-weight: bold; font-size: 1.1rem;">黑木门</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===== 右侧：调色盘区域 ===== -->
+            <div style="flex: 1; min-width: 400px; max-width: 500px; background: white; padding: 40px; 
+                border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.15);">
+                
+                <!-- 屋顶颜色选择 -->
+                <div style="margin-bottom: 35px;">
+                    <h3 style="color: #8c6d46; margin-bottom: 18px; padding-bottom: 12px; 
+                        border-bottom: 3px solid #d4bf9d; font-size: 1.3rem; display: flex; align-items: center;">
+                        <span style="background: #8c6d46; color: white; width: 35px; height: 35px; 
+                            border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; 
+                            margin-right: 12px; font-size: 1.2rem;">🏠</span>
+                        屋顶颜色
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <button onclick="changeBuildingColor('roof', '#8c6d46', '青瓦顶')" 
+                                style="background: #8c6d46; border: none; height: 60px; border-radius: 12px; 
+                                cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(140,109,70,0.3);" 
+                                onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(140,109,70,0.4)'" 
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(140,109,70,0.3)'">
+                            <span style="color: white; font-weight: bold; font-size: 1.05rem;">青瓦顶</span>
+                        </button>
+                        <button onclick="changeBuildingColor('roof', '#c17c54', '琉璃瓦')" 
+                                style="background: #c17c54; border: none; height: 60px; border-radius: 12px; 
+                                cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(193,124,84,0.3);" 
+                                onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(193,124,84,0.4)'" 
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(193,124,84,0.3)'">
+                            <span style="color: white; font-weight: bold; font-size: 1.05rem;">琉璃瓦</span>
+                        </button>
+                        <button onclick="changeBuildingColor('roof', '#3a2e1e', '黑瓦顶')" 
+                                style="background: #3a2e1e; border: none; height: 60px; border-radius: 12px; 
+                                cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(58,46,30,0.3);" 
+                                onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(58,46,30,0.4)'" 
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(58,46,30,0.3)'">
+                            <span style="color: white; font-weight: bold; font-size: 1.05rem;">黑瓦顶</span>
+                        </button>
+                        <button onclick="changeBuildingColor('roof', '#d4bf9d', '黄瓦顶')" 
+                                style="background: #d4bf9d; border: none; height: 60px; border-radius: 12px; 
+                                cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(212,191,157,0.3);" 
+                                onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(212,191,157,0.4)'" 
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(212,191,157,0.3)'">
+                            <span style="color: #5a4a3a; font-weight: bold; font-size: 1.05rem;">黄瓦顶</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 墙体颜色选择 -->
+                <div style="margin-bottom: 35px;">
+                    <h3 style="color: #8c6d46; margin-bottom: 18px; padding-bottom: 12px; 
+                        border-bottom: 3px solid #d4bf9d; font-size: 1.3rem; display: flex; align-items: center;">
+                        <span style="background: #c17c54; color: white; width: 35px; height: 35px; 
+                            border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; 
+                            margin-right: 12px; font-size: 1.2rem;">🧱</span>
+                        墙体颜色
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <button onclick="changeBuildingColor('wall', '#f8f4e9', '白墙')" 
+                                style="background: #f8f4e9; border: 3px solid #ddd; height: 60px; border-radius: 12px; 
+                                cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);" 
+                                onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(0,0,0,0.15)'" 
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0,0,0,0.1)'">
+                            <span style="color: #5a4a3a; font-weight: bold; font-size: 1.05rem;">白墙</span>
+                        </button>
+                        <button onclick="changeBuildingColor('wall', '#e6d2b5', '米黄墙')" 
+                                style="background: #e6d2b5; border: none; height: 60px; border-radius: 12px; 
+                                cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(230,210,181,0.3);" 
+                                onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(230,210,181,0.4)'" 
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(230,210,181,0.3)'">
+                            <span style="color: #5a4a3a; font-weight: bold; font-size: 1.05rem;">米黄墙</span>
+                        </button>
+                        <button onclick="changeBuildingColor('wall', '#d9c3a9', '土黄墙')" 
+                                style="background: #d9c3a9; border: none; height: 60px; border-radius: 12px; 
+                                cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(217,195,169,0.3);" 
+                                onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(217,195,169,0.4)'" 
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(217,195,169,0.3)'">
+                            <span style="color: #5a4a3a; font-weight: bold; font-size: 1.05rem;">土黄墙</span>
+                        </button>
+                        <button onclick="changeBuildingColor('wall', '#b09f8d', '灰墙')" 
+                                style="background: #b09f8d; border: none; height: 60px; border-radius: 12px; 
+                                cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(176,159,141,0.3);" 
+                                onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(176,159,141,0.4)'" 
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(176,159,141,0.3)'">
+                            <span style="color: white; font-weight: bold; font-size: 1.05rem;">灰墙</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 门窗颜色选择 -->
+                <div style="margin-bottom: 40px;">
+                    <h3 style="color: #8c6d46; margin-bottom: 18px; padding-bottom: 12px; 
+                        border-bottom: 3px solid #d4bf9d; font-size: 1.3rem; display: flex; align-items: center;">
+                        <span style="background: #8c6d46; color: white; width: 35px; height: 35px; 
+                            border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; 
+                            margin-right: 12px; font-size: 1.2rem;">🚪</span>
+                        门窗颜色
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <button onclick="changeBuildingColor('door', '#3a2e1e', '黑木门')" 
+                                style="background: #3a2e1e; border: none; height: 60px; border-radius: 12px; 
+                                cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(58,46,30,0.3);" 
+                                onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(58,46,30,0.4)'" 
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(58,46,30,0.3)'">
+                            <span style="color: white; font-weight: bold; font-size: 1.05rem;">黑木门</span>
+                        </button>
+                        <button onclick="changeBuildingColor('door', '#8c6d46', '原木门')" 
+                                style="background: #8c6d46; border: none; height: 60px; border-radius: 12px; 
+                                cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(140,109,70,0.3);" 
+                                onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(140,109,70,0.4)'" 
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(140,109,70,0.3)'">
+                            <span style="color: white; font-weight: bold; font-size: 1.05rem;">原木门</span>
+                        </button>
+                        <button onclick="changeBuildingColor('door', '#c17c54', '朱红门')" 
+                                style="background: #c17c54; border: none; height: 60px; border-radius: 12px; 
+                                cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(193,124,84,0.3);" 
+                                onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(193,124,84,0.4)'" 
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(193,124,84,0.3)'">
+                            <span style="color: white; font-weight: bold; font-size: 1.05rem;">朱红门</span>
+                        </button>
+                        <button onclick="changeBuildingColor('door', '#2c3e50', '青灰门')" 
+                                style="background: #2c3e50; border: none; height: 60px; border-radius: 12px; 
+                                cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 10px rgba(44,62,80,0.3);" 
+                                onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 15px rgba(44,62,80,0.4)'" 
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(44,62,80,0.3)'">
+                            <span style="color: white; font-weight: bold; font-size: 1.05rem;">青灰门</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 功能按钮区 -->
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 30px;">
+                    <button onclick="resetBuildingColors()" 
+                            style="background: linear-gradient(135deg, #8c6d46, #6b5436); color: white; border: none; 
+                            padding: 18px; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; 
+                            transition: all 0.3s; box-shadow: 0 5px 15px rgba(140,109,70,0.3);" 
+                            onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 20px rgba(140,109,70,0.4)'" 
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(140,109,70,0.3)'">
+                        🔄 重置颜色
+                    </button>
+                    <button onclick="randomBuildingColors()" 
+                            style="background: linear-gradient(135deg, #c17c54, #a15d3a); color: white; border: none; 
+                            padding: 18px; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; 
+                            transition: all 0.3s; box-shadow: 0 5px 15px rgba(193,124,84,0.3);" 
+                            onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 20px rgba(193,124,84,0.4)'" 
+                            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(193,124,84,0.3)'">
+                        🎲 随机搭配
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 成功提示（隐藏） -->
+    <div id="success-message" style="position: fixed; top: 100px; right: 30px; background: linear-gradient(135deg, #4CAF50, #45a049); 
+        color: white; padding: 20px 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(76,175,80,0.4); 
+        z-index: 10000; display: none; font-family: 'Noto Serif SC', serif; font-size: 1.1rem; font-weight: bold;">
+        🎉 颜色已改变！
+    </div>
+</section>
+
+    <!-- === 简单版历史文化知识问答 === -->
+    <section class="simple-quiz-section" style="padding: 80px 0; background: url('assets/6.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="container-wide" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <h2 class="section-title" style="text-align: center; font-size: 2.5rem; color: #8c6d46; margin-bottom: 20px;">
+                历史文化知识问答
+            </h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #5a4a3a; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                测试你对历史文化街区的了解，看看你能答对多少题！
+            </p>
+            
+            <!-- 游戏主容器 - 宽版 -->
+            <div class="quiz-main-container" style="background: white; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); padding: 40px;">
+                
+                <!-- 游戏状态栏 -->
+                <div class="quiz-status-bar" style="display: flex; justify-content: space-between; align-items: center; 
+                    margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #f0e6d6;">
+                    <div style="display: flex; gap: 30px;">
+                        <div class="status-item">
+                            <div style="font-size: 0.9rem; color: #8c7b6b;">当前分数</div>
+                            <div id="current-score" style="font-size: 2rem; font-weight: bold; color: #8c6d46;">0</div>
+                        </div>
+                        <div class="status-item">
+                            <div style="font-size: 0.9rem; color: #8c7b6b;">题目进度</div>
+                            <div id="question-progress" style="font-size: 2rem; font-weight: bold; color: #c17c54;">1/10</div>
+                        </div>
+                        <div class="status-item">
+                            <div style="font-size: 0.9rem; color: #8c7b6b;">正确率</div>
+                            <div id="accuracy-rate" style="font-size: 2rem; font-weight: bold; color: #8c6d46;">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-controls" style="display: flex; gap: 15px;">
+                        <button id="start-quiz-btn" style="background: #8c6d46; color: white; border: none; padding: 12px 25px; 
+                            border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: all 0.3s;" onclick="window.quizStartGame && window.quizStartGame()">
+                            开始挑战
+                        </button>
+                        <button id="reset-quiz-btn" style="background: #c17c54; color: white; border: none; padding: 12px 25px; 
+                            border-radius: 30px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: all 0.3s;" onclick="window.quizResetGame && window.quizResetGame()">
+                            重新开始
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 游戏内容区 -->
+                <div class="quiz-content-area" style="display: flex; flex-direction: column; gap: 30px;">
+                    
+                    <!-- 题目显示区 -->
+                    <div class="question-display" id="question-display" style="display: none;">
+                        <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                            <div style="background: #8c6d46; color: white; width: 40px; height: 40px; border-radius: 50%; 
+                                display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px;">
+                                <span id="question-number">1</span>
+                            </div>
+                            <h3 style="font-size: 1.5rem; color: #3a2e1e; margin: 0;">历史文化街区知识问答</h3>
+                        </div>
+                        
+                        <div class="question-text" id="question-text" 
+                            style="font-size: 1.4rem; line-height: 1.6; color: #3a2e1e; padding: 25px; 
+                            background: #f8f4e9; border-radius: 15px; margin-bottom: 30px;">
+                            题目内容将在这里显示...
+                        </div>
+                        
+                        <!-- 选项区 -->
+                        <div class="options-container" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                            <!-- 选项会通过JS动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 反馈区 -->
+                    <div class="feedback-area" id="feedback-area" style="display: none;">
+                        <div style="padding: 25px; background: #f8f4e9; border-radius: 15px; margin-bottom: 20px;">
+                            <div id="feedback-result" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 15px;">
+                                <!-- 正确/错误反馈 -->
+                            </div>
+                            <div id="feedback-explanation" style="font-size: 1.1rem; line-height: 1.6; color: #5a4a3a;">
+                                <!-- 题目解释 -->
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <button id="next-question-btn" style="background: #8c6d46; color: white; border: none; 
+                                padding: 15px 40px; border-radius: 30px; cursor: pointer; font-weight: bold; 
+                                font-size: 1.1rem; transition: all 0.3s;">
+                                下一题 →
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 结果区 -->
+                    <div class="result-area" id="result-area" style="display: none; text-align: center; padding: 40px;">
+                        <div style="font-size: 2.5rem; color: #8c6d46; margin-bottom: 20px;">
+                            🎉 挑战完成！
+                        </div>
+                        
+                        <div style="font-size: 3.5rem; color: #c17c54; font-weight: bold; margin-bottom: 30px;">
+                            <span id="final-score">0</span> 分
+                        </div>
+                        
+                        <div style="display: flex; justify-content: center; gap: 30px; margin-bottom: 40px;">
+                            <div class="result-stat">
+                                <div style="font-size: 0.9rem; color: #8c7b6b;">正确率</div>
+                                <div id="final-accuracy" style="font-size: 2rem; font-weight: bold; color: #8c6d46;">0%</div>
+                            </div>
+                            <div class="result-stat">
+                                <div style="font-size: 0.9rem; color: #8c7b6b;">用时</div>
+                                <div id="time-used" style="font-size: 2rem; font-weight: bold; color: #8c6d46;">0秒</div>
+                            </div>
+                            <div class="result-stat">
+                                <div style="font-size: 0.9rem; color: #8c7b6b;">历史最高</div>
+                                <div id="high-score" style="font-size: 2rem; font-weight: bold; color: #8c6d46;">0分</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: center; gap: 20px;">
+                            <button id="play-again-btn" style="background: #8c6d46; color: white; border: none; 
+                                padding: 15px 30px; border-radius: 30px; cursor: pointer; font-weight: bold; 
+                                font-size: 1.1rem; transition: all 0.3s;">
+                                再玩一次
+                            </button>
+                            <button id="share-result-btn" style="background: #c17c54; color: white; border: none; 
+                                padding: 15px 30px; border-radius: 30px; cursor: pointer; font-weight: bold; 
+                                font-size: 1.1rem; transition: all 0.3s;">
+                                分享成绩
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 游戏说明 -->
+                    <div class="game-instructions" style="margin-top: 40px; padding: 25px; background: #f8f4e9; border-radius: 15px;">
+                        <h4 style="color: #8c6d46; margin-bottom: 15px; font-size: 1.2rem;">📖 游戏规则</h4>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                            <div style="display: flex; align-items: center;">
+                                <div style="background: #8c6d46; color: white; width: 30px; height: 30px; 
+                                    border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+                                    margin-right: 10px; font-weight: bold;">1</div>
+                                <span style="color: #5a4a3a;">共10道历史文化题目</span>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <div style="background: #c17c54; color: white; width: 30px; height: 30px; 
+                                    border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+                                    margin-right: 10px; font-weight: bold;">2</div>
+                                <span style="color: #5a4a3a;">每答对一题得10分</span>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <div style="background: #8c6d46; color: white; width: 30px; height: 30px; 
+                                    border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+                                    margin-right: 10px; font-weight: bold;">3</div>
+                                <span style="color: #5a4a3a;">答错不扣分</span>
+                            </div>
+                            <div style="display: flex; align-items: center;">
+                                <div style="background: #c17c54; color: white; width: 30px; height: 30px; 
+                                    border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+                                    margin-right: 10px; font-weight: bold;">4</div>
+                                <span style="color: #5a4a3a;">完成后可查看成绩</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+
+<!-- 修复版：S形纵向漫步历史文化街区 -->
+<section class="walking-section-v2" id="walking-section">
+    <div class="walking-container-v2">
+        <!-- 标题区 -->
+        <div class="walking-header-v2">
+            <h2 class="section-title-v2">文化漫步 · 时空之旅</h2>
+            <p class="section-subtitle-v2">跟随文化使者，沿S形古道探访历史文化印记</p>
+        </div>
+
+        <!-- 漫步时间线 -->
+        <div class="walking-timeline">
+            <!-- 时间节点1 -->
+            <div class="timeline-node node-1" data-node="1">
+                <div class="node-content">
+                    <div class="node-icon">⛩️</div>
+                    <div class="node-info">
+                        <h3>明清牌坊</h3>
+                        <p>建于万历年间，彰显古代科举荣光</p>
+                    </div>
+                </div>
+                <div class="node-line"></div>
+            </div>
+
+            <!-- 时间节点2 -->
+            <div class="timeline-node node-2" data-node="2">
+                <div class="node-content">
+                    <div class="node-icon">🎭</div>
+                    <div class="node-info">
+                        <h3>百年戏台</h3>
+                        <p>清代戏曲文化传承的重要场所</p>
+                    </div>
+                </div>
+                <div class="node-line"></div>
+            </div>
+
+            <!-- 时间节点3 -->
+            <div class="timeline-node node-3" data-node="3">
+                <div class="node-content">
+                    <div class="node-icon">🏮</div>
+                    <div class="node-info">
+                        <h3>古街商号</h3>
+                        <p>明清时期商贸繁荣的历史见证</p>
+                    </div>
+                </div>
+                <div class="node-line"></div>
+            </div>
+
+            <!-- 时间节点4 -->
+            <div class="timeline-node node-4" data-node="4">
+                <div class="node-content">
+                    <div class="node-icon">🏛️</div>
+                    <div class="node-info">
+                        <h3>宗祠建筑</h3>
+                        <p>传统家族文化与建筑艺术的结合</p>
+                    </div>
+                </div>
+                <div class="node-line"></div>
+            </div>
+
+            <!-- 时间节点5 -->
+            <div class="timeline-node node-5" data-node="5">
+                <div class="node-content">
+                    <div class="node-icon">🌿</div>
+                    <div class="node-info">
+                        <h3>古树名木</h3>
+                        <p>三百年古榕，守护街区的生命记忆</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- S形路径 -->
+            <div class="s-path-container">
+                <svg class="s-path-svg" viewBox="0 0 400 800" preserveAspectRatio="none">
+                    <!-- S形路径曲线 -->
+                    <path id="s-path-curve" d="M200,50 Q350,200 200,350 Q50,500 200,650 Q350,800 200,800" 
+                          fill="none" stroke="#d4b483" stroke-width="4" stroke-dasharray="5,3"/>
+                </svg>
+            </div>
+
+            <!-- 漫步小人 -->
+            <div class="walker-character" id="walker">
+                <div class="walker-body">
+                    <div class="walker-head"></div>
+                    <div class="walker-torso"></div>
+                    <div class="walker-arm left"></div>
+                    <div class="walker-arm right"></div>
+                    <div class="walker-leg left"></div>
+                    <div class="walker-leg right"></div>
+                </div>
+                <div class="walker-shadow"></div>
+            </div>
+        </div>
+
+        <!-- 进度指示器 -->
+        <div class="progress-container-v2">
+            <div class="progress-bar-v2">
+                <div class="progress-fill-v2" id="walk-progress"></div>
+            </div>
+            <div class="progress-stats">
+                <span class="progress-text" id="progress-text">漫步进度: 0%</span>
+                <span class="distance-text" id="distance-text">已行走: 0米</span>
+            </div>
+        </div>
+
+        <!-- 控制面板 -->
+        <div class="controls-v2">
+            <button class="control-btn-v2 walk-btn" id="start-walk-btn">
+                <span class="btn-icon">🚶‍♂️</span>
+                <span class="btn-text">开始漫步</span>
+            </button>
+            <button class="control-btn-v2 pause-btn" id="pause-walk-btn" style="display: none;">
+                <span class="btn-icon">⏸️</span>
+                <span class="btn-text">暂停漫步</span>
+            </button>
+            <button class="control-btn-v2 reset-btn" id="reset-walk-btn">
+                <span class="btn-icon">🔄</span>
+                <span class="btn-text">重新开始</span>
+            </button>
+            <button class="control-btn-v2 auto-btn" id="auto-walk-btn">
+                <span class="btn-icon">⚡</span>
+                <span class="btn-text">快速模式</span>
+            </button>
+        </div>
+
+        <!-- 当前节点详情 -->
+        <div class="current-node-detail" id="node-detail">
+            <div class="detail-header">
+                <h3 id="node-title">欢迎开始文化漫步</h3>
+                <div class="node-tag" id="node-era">明清风貌</div>
+            </div>
+            <div class="detail-content">
+                <p id="node-description">点击"开始漫步"按钮，跟随文化使者探访历史文化街区的精彩节点</p>
+                <div class="detail-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">📅 年代</span>
+                        <span class="meta-value" id="node-year">-</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">📍 位置</span>
+                        <span class="meta-value" id="node-location">-</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">📚 文化价值</span>
+                        <span class="meta-value" id="node-value">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- === 6. 意见反馈板块标题 === -->
+    <section id="feedback" class="page-section-title">
+        <div class="container">
+            <div class="section-title-content">
+                <h1><i class="fas fa-comments"></i> 意见反馈</h1>
+                <p>您的声音,我们倾听;您的建议,我们珍视</p>
+                <div class="section-title-decoration">
+                    <div class="decoration-line"></div>
+                    <i class="fas fa-heart"></i>
+                    <div class="decoration-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 意见交流区 -->
+    <section class="feedback-section">
+        <div class="feedback-flow-container">
+                <!-- 左侧：发表看法区域 -->
+                <div class="flow-form-section">
+                    <h3><i class="fas fa-edit"></i> 📝 发表你的看法</h3>
+                    <form id="feedbackForm">
+                        <div class="form-group">
+                            <label for="name">
+                                <i class="fas fa-user"></i> 昵称
+                            </label>
+                            <input type="text" id="name" name="name" required placeholder="请输入您的昵称">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope"></i> 邮箱
+                            </label>
+                            <input type="email" id="email" name="email" required placeholder="请输入您的邮箱">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">
+                                <i class="fas fa-comment"></i> 留言内容
+                            </label>
+                            <textarea id="message" name="message" required placeholder="说说你对历史街区保护的看法..."></textarea>
+                        </div>
+
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i> 发送反馈
+                        </button>
+
+                        <div id="formMessage"></div>
+                    </form>
+                </div>
+
+                <!-- 右侧：留言展示区域 -->
+                <div class="flow-messages-section">
+                    <div class="flow-header">
+                        <h3><i class="fas fa-comments"></i> 大家的留言</h3>
+                        <div class="flow-controls">
+                            <button class="flow-control-btn" id="pause-flow" title="暂停/继续">
+                                <i class="fas fa-pause"></i>
+                            </button>
+                            <button class="flow-control-btn" id="speed-up" title="下一条">
+                                <i class="fas fa-forward"></i>
+                            </button>
+                            <button class="flow-control-btn" id="speed-down" title="上一条">
+                                <i class="fas fa-backward"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 留言统计 -->
+                    <div class="flow-stats">
+                        <div class="flow-stat-item">
+                            <span class="flow-stat-number" id="feedback-count">24</span>
+                            <span class="flow-stat-label">条留言</span>
+                        </div>
+                        <div class="flow-stat-item">
+                            <span class="flow-stat-number" id="today-count">3</span>
+                            <span class="flow-stat-label">今日新增</span>
+                        </div>
+                    </div>
+
+                    <!-- 留言列表 -->
+                    <div class="flow-messages-list" id="flowTrack">
+                        <!-- 示例留言1 -->
+                        <div class="flow-message-item">
+                            <div class="flow-message-header">
+                                <div class="flow-message-author">
+                                    <div class="flow-author-avatar">张</div>
+                                    <span class="flow-author-name">张三</span>
+                                </div>
+                                <span class="flow-message-time">2小时前</span>
+                            </div>
+                            <div class="flow-message-content">
+                                历史街区的保护真的很重要,希望能够保留更多的传统建筑和文化。
+                            </div>
+                            <div class="flow-message-footer">
+                                <div class="flow-message-email">
+                                    <i class="fas fa-envelope"></i> zhang***@example.com
+                                </div>
+                                <div class="flow-message-actions">
+                                    <button class="flow-action-btn">
+                                        <i class="fas fa-thumbs-up"></i> 赞
+                                    </button>
+                                    <button class="flow-action-btn">
+                                        <i class="fas fa-reply"></i> 回复
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 示例留言2 -->
+                        <div class="flow-message-item">
+                            <div class="flow-message-header">
+                                <div class="flow-message-author">
+                                    <div class="flow-author-avatar">李</div>
+                                    <span class="flow-author-name">李四</span>
+                                </div>
+                                <span class="flow-message-time">5小时前</span>
+                            </div>
+                            <div class="flow-message-content">
+                                去过苏州平江路,真的很美!古色古香的建筑让人流连忘返。
+                            </div>
+                            <div class="flow-message-footer">
+                                <div class="flow-message-email">
+                                    <i class="fas fa-envelope"></i> li***@example.com
+                                </div>
+                                <div class="flow-message-actions">
+                                    <button class="flow-action-btn">
+                                        <i class="fas fa-thumbs-up"></i> 赞
+                                    </button>
+                                    <button class="flow-action-btn">
+                                        <i class="fas fa-reply"></i> 回复
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 示例留言3 -->
+                        <div class="flow-message-item">
+                            <div class="flow-message-header">
+                                <div class="flow-message-author">
+                                    <div class="flow-author-avatar">王</div>
+                                    <span class="flow-author-name">王五</span>
+                                </div>
+                                <span class="flow-message-time">1天前</span>
+                            </div>
+                            <div class="flow-message-content">
+                                成都宽窄巷子的茶馆文化很有特色,希望能一直保留下去。
+                            </div>
+                            <div class="flow-message-footer">
+                                <div class="flow-message-email">
+                                    <i class="fas fa-envelope"></i> wang***@example.com
+                                </div>
+                                <div class="flow-message-actions">
+                                    <button class="flow-action-btn">
+                                        <i class="fas fa-thumbs-up"></i> 赞
+                                    </button>
+                                    <button class="flow-action-btn">
+                                        <i class="fas fa-reply"></i> 回复
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 示例留言4 -->
+                        <div class="flow-message-item">
+                            <div class="flow-message-header">
+                                <div class="flow-message-author">
+                                    <div class="flow-author-avatar">赵</div>
+                                    <span class="flow-author-name">赵六</span>
+                                </div>
+                                <span class="flow-message-time">2天前</span>
+                            </div>
+                            <div class="flow-message-content">
+                                北京南锣鼓巷的胡同文化很有意思,每次去都有新发现。
+                            </div>
+                            <div class="flow-message-footer">
+                                <div class="flow-message-email">
+                                    <i class="fas fa-envelope"></i> zhao***@example.com
+                                </div>
+                                <div class="flow-message-actions">
+                                    <button class="flow-action-btn">
+                                        <i class="fas fa-thumbs-up"></i> 赞
+                                    </button>
+                                    <button class="flow-action-btn">
+                                        <i class="fas fa-reply"></i> 回复
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>致力于中国历史街区的保护、研究与推广，传承中华优秀传统文化。</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱：contact@historic-districts.cn</p>
+                    <p>电话：010-12345678</p>
+                    <p>地址：北京市东城区历史文化遗产保护中心</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>关注我们</h3>
+                    <p>微信公众号：中国历史街区</p>
+                    <p>微博：@中国历史街区</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2023 中国历史街区网站 版权所有 | 设计制作：传统文化保护团队</p>
+            </div>
+        </div>
+    </footer>
+    <!-- 链接我们自己的JS文件 -->
+    <script src="js/main.js"></script>
+    <script src="js/counter.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>

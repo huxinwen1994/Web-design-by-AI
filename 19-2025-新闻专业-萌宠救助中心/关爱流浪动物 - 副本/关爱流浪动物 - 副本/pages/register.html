@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>萌宠救助中心 - 注册</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+    <div class="header">
+        <div class="wrapper header-inner clearfix">
+            <div class="logo"><img src="../assets/images/logo.jpg" alt="萌宠救助中心Logo"></div>
+            <div class="site-title">萌宠救助中心</div>
+            <ul class="nav">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="adoption.html">待领养</a></li>
+                <li><a href="volunteer.html">志愿者</a></li>
+                <li><a href="donate.html">捐助支持</a></li>
+            </ul>
+            <div class="header-right clearfix">
+                <form class="search-box" action="#" method="get">
+                    <input type="text" name="keyword" placeholder="搜索动物、活动、资讯">
+                </form>
+                <button class="search-btn" type="submit">搜索</button>
+                <div class="header-auth">
+                    <a href="login.html" class="btn-login">登录</a>
+                    <a href="register.html" class="btn-register">注册</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper auth-main">
+        <div class="auth-box" id="authBox">
+            <div class="auth-title">创建账户</div>
+            <div class="auth-sub">建议使用常用邮箱或手机号，以便接收领养与活动通知。</div>
+            <form id="registerForm">
+                <div class="auth-form-row">
+                    <label>昵称</label>
+                    <input type="text" id="registerNickname" placeholder="请输入昵称" required>
+                </div>
+                <div class="auth-form-row">
+                    <label>邮箱</label>
+                    <input type="email" id="registerEmail" placeholder="用于接收通知和找回密码" required>
+                </div>
+                <div class="auth-form-row">
+                    <label>手机号</label>
+                    <input type="tel" id="registerPhone" placeholder="方便志愿者与您联系" required>
+                </div>
+                <div class="auth-form-row">
+                    <label>设置密码</label>
+                    <input type="password" id="registerPassword" placeholder="建议至少 8 位，包含字母和数字" required>
+                </div>
+                <div class="auth-extra">* 本页面仅为静态展示，无真实注册功能。</div>
+                <div class="auth-actions">
+                    <button type="submit" class="btn-primary">注册</button>
+                </div>
+            </form>
+            <div class="auth-switch">已经有账号？<a href="login.html">直接登录</a></div>
+        </div>
+        
+        <!-- 成功提示框 -->
+        <div class="success-message" id="successMessage">
+            <div class="success-content">
+                <div class="success-icon">✓</div>
+                <div class="success-text">注册成功！</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="wrapper footer-inner clearfix">
+            <div class="footer-left">
+                <div>萌宠救助中心 · 用专业与温度守护每一条生命</div>
+                <div class="footer-copy">© 2025 萌宠救助中心 Animal Rescue. 保留所有权利。</div>
+            </div>
+            <div class="footer-right">
+                <div>联系邮箱：support@rescue.org</div>
+                <div>地址：XX市XX区 · 志愿者值班时间 13:30 - 20:30</div>
+            </div>
+        </div>
+    </div>
+    <script src="js/auth.js"></script>
+</body>
+</html>

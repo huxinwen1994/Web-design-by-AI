@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="及时新闻 - 您的一站式新闻资讯平台，提供最新、最全面的新闻报道">
+  <meta name="keywords" content="新闻,资讯,热点,科技,财经,体育,文化">
+  <title>及时新闻 - 首页</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="navbar-container">
+      <!-- Logo -->
+      <a href="index.html" class="navbar-brand">
+        <div class="navbar-logo">及</div>
+        <span class="navbar-title">及时新闻</span>
+      </a>
+
+      <!-- 导航菜单 -->
+      <nav class="navbar-menu">
+        <a href="index.html" class="navbar-link active">首页</a>
+        <a href="pages/news.html" class="navbar-link">新闻中心</a>
+        <a href="pages/about.html" class="navbar-link">关于我们</a>
+
+        <!-- 搜索框 -->
+        <div class="search-box">
+          <input type="text" class="search-input" placeholder="搜索新闻...">
+          <button class="search-btn" aria-label="搜索">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- 移动端菜单按钮 -->
+      <button class="menu-toggle" aria-label="菜单">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero 轮播区域 -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="carousel">
+          <div class="carousel-inner">
+            <!-- 轮播内容由 JS 动态渲染 -->
+          </div>
+
+          <!-- 轮播控制 -->
+          <div class="carousel-controls">
+            <button class="carousel-btn carousel-prev" aria-label="上一张">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button class="carousel-btn carousel-next" aria-label="下一张">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <!-- 轮播指示器 -->
+          <div class="carousel-indicators">
+            <!-- 由 JS 动态渲染 -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 三列式主内容区域 -->
+    <section class="main-content-section">
+      <div class="container">
+        <div class="three-column-layout">
+          <!-- 左侧栏 - 快讯 -->
+          <aside class="sidebar sidebar-left">
+            <div class="sidebar-card">
+              <h3 class="sidebar-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                24小时快讯
+              </h3>
+              <ul class="flash-news-list" id="flashNewsList">
+                <!-- 由 JS 动态渲染 -->
+              </ul>
+            </div>
+
+            <div class="sidebar-card">
+              <h3 class="sidebar-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 20V10"></path>
+                  <path d="M18 20V4"></path>
+                  <path d="M6 20v-4"></path>
+                </svg>
+                今日数据
+              </h3>
+              <div class="stats-grid">
+                <div class="stat-item">
+                  <span class="stat-value">1,258</span>
+                  <span class="stat-label">今日发布</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">89.2w</span>
+                  <span class="stat-label">总阅读量</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">3,421</span>
+                  <span class="stat-label">用户互动</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">156</span>
+                  <span class="stat-label">热门话题</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 天气卡片 -->
+            <div class="sidebar-card weather-card">
+              <h3 class="sidebar-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                今日天气
+              </h3>
+              <div class="weather-info">
+                <div class="weather-main">
+                  <span class="weather-temp">12°</span>
+                  <span class="weather-desc">多云</span>
+                </div>
+                <div class="weather-details">
+                  <span>北京 · 空气良好</span>
+                  <span>湿度 45% · 东北风 3级</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <!-- 中间主内容 -->
+          <div class="main-column">
+            <div class="section-header">
+              <h2 class="section-title">最新资讯</h2>
+              <div class="category-tabs">
+                <button class="category-tab active" data-category="all">全部</button>
+                <button class="category-tab" data-category="科技">科技</button>
+                <button class="category-tab" data-category="财经">财经</button>
+                <button class="category-tab" data-category="体育">体育</button>
+                <button class="category-tab" data-category="文化">文化</button>
+                <button class="category-tab" data-category="社会">社会</button>
+              </div>
+            </div>
+
+            <!-- 新闻列表 -->
+            <div class="news-list" id="newsList">
+              <!-- 该区域手动修改由 JS 动态渲染 -->
+            </div>
+
+            <!-- 加载更多 -->
+            <div class="load-more">
+              <button class="load-more-btn" id="loadMoreBtn">
+                <span class="loading-spinner"></span>
+                <span>加载更多</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 右侧栏 - 热榜 -->
+          <aside class="sidebar sidebar-right">
+            <div class="sidebar-card">
+              <h3 class="sidebar-title hot-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+                实时热榜
+              </h3>
+              <div class="hot-news-list" id="hotNewsList">
+                <!-- 热点列表由 JS 动态渲染 -->
+              </div>
+            </div>
+
+            <!-- 专题推荐 -->
+            <div class="sidebar-card">
+              <h3 class="sidebar-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                  <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+                专题推荐
+              </h3>
+              <div class="topic-list">
+                <a href="#" class="topic-item">
+                  <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=120&h=80&fit=crop" alt="专题">
+                  <div class="topic-info">
+                    <h4>2024年度科技盘点</h4>
+                    <span>128篇报道</span>
+                  </div>
+                </a>
+                <a href="#" class="topic-item">
+                  <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=120&h=80&fit=crop" alt="专题">
+                  <div class="topic-info">
+                    <h4>冬季健康指南</h4>
+                    <span>56篇报道</span>
+                  </div>
+                </a>
+                <a href="#" class="topic-item">
+                  <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=120&h=80&fit=crop" alt="专题">
+                  <div class="topic-info">
+                    <h4>经济形势分析</h4>
+                    <span>89篇报道</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- 热门标签 -->
+            <div class="sidebar-card">
+              <h3 class="sidebar-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                  <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
+                热门标签
+              </h3>
+              <div class="tag-cloud">
+                <a href="#" class="tag-item">人工智能</a>
+                <a href="#" class="tag-item">新能源</a>
+                <a href="#" class="tag-item">房地产</a>
+                <a href="#" class="tag-item">医疗健康</a>
+                <a href="#" class="tag-item">教育改革</a>
+                <a href="#" class="tag-item">5G通信</a>
+                <a href="#" class="tag-item">碳中和</a>
+                <a href="#" class="tag-item">元宇宙</a>
+                <a href="#" class="tag-item">芯片</a>
+                <a href="#" class="tag-item">直播电商</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-container">
+        <!-- 品牌信息 -->
+        <div class="footer-info">
+          <div class="footer-brand">
+            <div class="footer-logo">及</div>
+            <span class="footer-brand-name">及时新闻</span>
+          </div>
+          <p class="footer-desc">
+            及时新闻致力于为用户提供最新、最全面的新闻资讯服务，让您随时随地掌握天下事。
+          </p>
+        </div>
+
+        <!-- 快速链接 -->
+        <div class="footer-links-group">
+          <h4 class="footer-title">快速链接</h4>
+          <div class="footer-links">
+            <a href="index.html" class="footer-link">首页</a>
+            <a href="pages/news.html" class="footer-link">新闻中心</a>
+            <a href="pages/about.html" class="footer-link">关于我们</a>
+          </div>
+        </div>
+
+        <!-- 新闻分类 -->
+        <div class="footer-links-group">
+          <h4 class="footer-title">新闻分类</h4>
+          <div class="footer-links">
+            <a href="pages/news.html" class="footer-link">科技</a>
+            <a href="pages/news.html" class="footer-link">财经</a>
+            <a href="pages/news.html" class="footer-link">体育</a>
+            <a href="pages/news.html" class="footer-link">文化</a>
+          </div>
+        </div>
+
+        <!-- 联系方式 -->
+        <div class="footer-links-group">
+          <h4 class="footer-title">联系我们</h4>
+          <div class="footer-links">
+            <span class="footer-link">邮箱：ceshi@youxiang.com</span>
+            <span class="footer-link">电话：400-888-8888</span>
+            <span class="footer-link">地址：北京市朝阳区</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 版权信息 -->
+      <div class="footer-bottom">
+        <p>&copy; 2025 及时新闻 © XiaoMing and six. | 信息交互类网站课程作业</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>

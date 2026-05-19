@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="及时新闻 - 文章详情">
+  <title>文章详情 - 及时新闻</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/article.css">
+</head>
+
+<body>
+  <!-- 导航栏 -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="../index.html" class="navbar-brand">
+        <div class="navbar-logo">及</div>
+        <span class="navbar-title">及时新闻</span>
+      </a>
+
+      <nav class="navbar-menu">
+        <a href="../index.html" class="navbar-link">首页</a>
+        <a href="news.html" class="navbar-link">新闻中心</a>
+        <a href="about.html" class="navbar-link">关于我们</a>
+
+        <div class="search-box">
+          <input type="text" class="search-input" placeholder="搜索新闻...">
+          <button class="search-btn" aria-label="搜索">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <button class="menu-toggle" aria-label="菜单">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 主内容 -->
+  <main>
+    <!-- 文章头部 -->
+    <section class="article-header">
+      <div class="container">
+        <nav class="breadcrumb">
+          <a href="../index.html">首页</a>
+          <span>/</span>
+          <a href="news.html">新闻中心</a>
+          <span>/</span>
+          <span id="articleCategory">文章详情</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 文章内容区域 -->
+    <section class="article-section">
+      <div class="container">
+        <div class="article-layout">
+          <!-- 主内容区 -->
+          <article class="article-main">
+            <!-- 文章标题区 -->
+            <div class="article-title-area">
+              <span class="article-tag" id="articleTag">科技</span>
+              <h1 class="article-title" id="articleTitle">文章标题加载中...</h1>
+              <div class="article-meta">
+                <span class="meta-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <span id="articleDate">--</span>
+                </span>
+                <span class="meta-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <span id="articleViews">--</span> 阅读
+                </span>
+                <span class="meta-item">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>及时新闻编辑部</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- 文章封面图 -->
+            <div class="article-cover">
+              <img id="articleImage" src="" alt="文章封面">
+            </div>
+
+            <!-- 文章正文 -->
+            <div class="article-content" id="articleContent">
+              <p>文章内容加载中...</p>
+            </div>
+
+            <!-- 文章标签 -->
+            <div class="article-tags">
+              <span class="tags-label">相关标签：</span>
+              <div class="tags-list" id="articleTags">
+                <!-- 由JS动态渲染 -->
+              </div>
+            </div>
+
+            <!-- 文章操作栏 -->
+            <div class="article-actions">
+              <button class="action-btn like-btn" id="likeBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                </svg>
+                <span>点赞</span>
+                <span class="action-count" id="likeCount">0</span>
+              </button>
+              <button class="action-btn collect-btn" id="collectBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>收藏</span>
+              </button>
+              <button class="action-btn share-btn" id="shareBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                <span>分享</span>
+              </button>
+            </div>
+
+            <!-- 上一篇/下一篇导航 -->
+            <div class="article-nav">
+              <a href="#" class="nav-item nav-prev" id="prevArticle">
+                <span class="nav-label">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                  上一篇
+                </span>
+                <span class="nav-title">暂无更多文章</span>
+              </a>
+              <a href="#" class="nav-item nav-next" id="nextArticle">
+                <span class="nav-label">
+                  下一篇
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </span>
+                <span class="nav-title">暂无更多文章</span>
+              </a>
+            </div>
+
+            <!-- 评论区域 -->
+            <div class="comment-section">
+              <h3 class="comment-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                读者评论
+                <span class="comment-count" id="commentCount">0</span>
+              </h3>
+
+              <!-- 评论输入框 -->
+              <div class="comment-form">
+                <div class="comment-avatar">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <div class="comment-input-area">
+                  <textarea class="comment-input" id="commentInput" placeholder="发表你的看法..."></textarea>
+                  <div class="comment-submit-area">
+                    <span class="char-count"><span id="charCount">0</span>/500</span>
+                    <button class="comment-submit-btn" id="submitComment">发表评论</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 评论列表 -->
+              <div class="comment-list" id="commentList">
+                <!-- 由JS动态渲染 -->
+              </div>
+            </div>
+          </article>
+
+          <!-- 侧边栏 -->
+          <aside class="article-sidebar">
+            <!-- 作者信息 -->
+            <div class="sidebar-card author-card">
+              <div class="author-info">
+                <div class="author-avatar">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <div class="author-detail">
+                  <h4 class="author-name">及时新闻编辑部</h4>
+                  <p class="author-desc">专注于提供最新、最全面的新闻资讯</p>
+                </div>
+              </div>
+              <div class="author-stats">
+                <div class="stat-item">
+                  <span class="stat-value">1,258</span>
+                  <span class="stat-label">文章</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">89.2w</span>
+                  <span class="stat-label">阅读</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-value">3.4w</span>
+                  <span class="stat-label">粉丝</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 目录导航 -->
+            <div class="sidebar-card toc-card">
+              <h3 class="sidebar-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="8" y1="6" x2="21" y2="6"></line>
+                  <line x1="8" y1="12" x2="21" y2="12"></line>
+                  <line x1="8" y1="18" x2="21" y2="18"></line>
+                  <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                  <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                  <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                </svg>
+                文章目录
+              </h3>
+              <nav class="toc-nav" id="tocNav">
+                <!-- 由JS动态渲染 -->
+              </nav>
+            </div>
+
+            <!-- 相关推荐 -->
+            <div class="sidebar-card">
+              <h3 class="sidebar-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                相关推荐
+              </h3>
+              <div class="related-list" id="relatedList">
+                <!-- 由JS动态渲染 -->
+              </div>
+            </div>
+
+            <!-- 热门标签 -->
+            <div class="sidebar-card">
+              <h3 class="sidebar-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                  <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
+                热门标签
+              </h3>
+              <div class="tag-cloud">
+                <a href="#" class="tag-item">人工智能</a>
+                <a href="#" class="tag-item">新能源</a>
+                <a href="#" class="tag-item">房地产</a>
+                <a href="#" class="tag-item">医疗健康</a>
+                <a href="#" class="tag-item">教育改革</a>
+                <a href="#" class="tag-item">5G通信</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-info">
+          <div class="footer-brand">
+            <div class="footer-logo">及</div>
+            <span class="footer-brand-name">及时新闻</span>
+          </div>
+          <p class="footer-desc">
+            及时新闻致力于为用户提供最新、最全面的新闻资讯服务，让您随时随地掌握天下事。
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <h4 class="footer-title">快速链接</h4>
+          <div class="footer-links">
+            <a href="../index.html" class="footer-link">首页</a>
+            <a href="news.html" class="footer-link">新闻中心</a>
+            <a href="about.html" class="footer-link">关于我们</a>
+          </div>
+        </div>
+
+        <div class="footer-links-group">
+          <h4 class="footer-title">新闻分类</h4>
+          <div class="footer-links">
+            <a href="#" class="footer-link">科技</a>
+            <a href="#" class="footer-link">财经</a>
+            <a href="#" class="footer-link">体育</a>
+            <a href="#" class="footer-link">文化</a>
+          </div>
+        </div>
+
+        <div class="footer-links-group">
+          <h4 class="footer-title">联系我们</h4>
+          <div class="footer-links">
+            <span class="footer-link">邮箱：ceshi@youxiang.com</span>
+            <span class="footer-link">电话：400-888-8888</span>
+            <span class="footer-link">地址：北京市朝阳区</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 及时新闻 © XiaoMing and six. | 信息交互类网站课程作业</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 回到顶部按钮 -->
+  <button class="back-to-top" id="backToTop" aria-label="回到顶部">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- JavaScript -->
+  <script src="../js/main.js"></script>
+  <script src="../js/article.js"></script>
+</body>
+
+</html>

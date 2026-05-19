@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>她愈空间 - 知识巩固连线题</title>
+    <link rel="stylesheet" href="../css/style.css">
+    </head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo"><div class="logo-icon"><span>她愈</span></div></div>
+                <div class="nav-links">
+                    <a class="nav-link" href="../index.html">首页</a>
+                    <a class="nav-link" href="./about.html">了解内异症</a>
+                    <a class="nav-link" href="./quiz.html">症状自测</a>
+                    <a class="nav-link active" href="./treatment.html">治疗与管理</a>
+                    <a class="nav-link" href="./support.html">交流与支持</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="review-quiz" class="section active">
+        <div class="illustration"></div>
+        <div class="container">
+            <h2 class="section-title">🔗 治疗方案配对挑战</h2>
+            <p class="section-subtitle">请将左侧的治疗措施与右侧的主要作用正确配对（点击左侧项目后，再点击右侧对应项目）。</p>
+            
+            <div class="matching-container card">
+                <div class="columns-wrapper">
+                    
+                    <div id="leftColumn" class="matching-column left-column">
+                        <div class="match-item left" data-id="1">孕激素 (地诺孕素)</div>
+                        <div class="match-item left" data-id="2">手术治疗 (LPS)</div>
+                        <div class="match-item left" data-id="3">NSAIDs (布洛芬)</div>
+                        <div class="match-item left" data-id="4">COC (口服避孕药)</div>
+                        <div class="match-item left" data-id="5">抗炎饮食</div>
+                    </div>
+                    
+                    <div id="rightColumn" class="matching-column right-column">
+                        <div class="match-item right" data-id="A">降低炎症水平，辅助止痛</div>
+                        <div class="match-item right" data-id="B">基础止痛，针对轻度痛经</div>
+                        <div class="match-item right" data-id="C">靶向抑制病灶，长期管理复发</div>
+                        <div class="match-item right" data-id="D">清除病灶，恢复生育功能</div>
+                        <div class="match-item right" data-id="E">抑制排卵，缓解痛经与复发</div>
+                    </div>
+                </div>
+
+                <div class="quiz-controls mt-40">
+                    <button id="checkButton" class="btn-primary">检查结果</button>
+                    <button id="resetButton" class="btn-secondary" style="display: none;">重新开始</button>
+                </div>
+                
+                <div id="resultMessage" class="result-message"></div>
+            </div>
+            
+        </div>
+    </section>
+
+    <script>
+        // 连线题逻辑 (简化版，无图形连线库，仅通过点击实现配对判断)
+        const leftItems = document.querySelectorAll('.match-item.left');
+        const rightItems = document.querySelectorAll('.match-item.right');
+        const checkButton = document.getElementById('checkButton');
+        const resetButton = document.getElementById('resetButton');
+        const resultMessage = document.getElementById('resultMessage');
+
+        let selectedLeft = null;
+
+        // 正确配对关系 (左侧 data-id : 右侧 data-id)
+        const correctMatches = {
+            '1': 'C', // 孕激素: 靶向抑制病灶
+            '2': 'D', // 手术: 清除病灶
+            '3': 'B', // NSAIDs: 基础止痛
+            '4': 'E', // COC: 抑制排卵
+            '5': 'A'  // 饮食: 降低炎症水平
+        };
+
+        let userMatches = {};
+        let isChecking = false;
+
+        function handleItemClick(item, isLeft) {
+            if (isChecking) return;
+
+            if (isLeft) {
+                // 清除所有左侧选中状态
+                leftItems.forEach(i => i.classList.remove('selected'));
+                item.classList.add('selected');
+                selectedLeft = item;
+            } else if (selectedLeft) {
+                // 右侧点击 (进行配对)
+                const leftId = selectedLeft.getAttribute('data-id');
+                const rightId = item.getAttribute('data-id');
+
+                // 移除旧配对
+                if (userMatches[leftId]) {
+                    document.querySelector(`.match-item.right[data-id="${userMatches[leftId]}"]`).classList.remove('matched');
+                }
+                
+                // 记录新配对
+                userMatches[leftId] = rightId;
+                
+                // 设置左右侧的匹配状态
+                selectedLeft.classList.add('matched');
+                item.classList.add('matched');
+                
+                // 取消左侧选中状态，等待下一轮
+                selectedLeft.classList.remove('selected');
+                selectedLeft = null;
+            }
+        }
+
+        leftItems.forEach(item => {
+            item.addEventListener('click', () => handleItemClick(item, true));
+        });
+
+        rightItems.forEach(item => {
+            item.addEventListener('click', () => handleItemClick(item, false));
+        });
+
+        checkButton.addEventListener('click', () => {
+            isChecking = true;
+            let correctCount = 0;
+            const total = Object.keys(correctMatches).length;
+            
+            // 清除结果颜色
+            leftItems.forEach(i => i.classList.remove('correct', 'incorrect'));
+            rightItems.forEach(i => i.classList.remove('correct', 'incorrect'));
+            
+            // 检查配对
+            for (const leftId in correctMatches) {
+                const userRightId = userMatches[leftId];
+                const correctRightId = correctMatches[leftId];
+                
+                const leftElement = document.querySelector(`.match-item.left[data-id="${leftId}"]`);
+                const rightElement = document.querySelector(`.match-item.right[data-id="${userRightId}"]`);
+
+                if (userRightId === correctRightId) {
+                    correctCount++;
+                    leftElement.classList.add('correct');
+                    if (rightElement) rightElement.classList.add('correct');
+                } else {
+                    leftElement.classList.add('incorrect');
+                    if (rightElement) rightElement.classList.add('incorrect');
+                }
+            }
+            
+            // 显示结果信息
+            resultMessage.textContent = `您的得分：${correctCount} / ${total} 题正确。`;
+            if (correctCount === total) {
+                resultMessage.classList.add('success');
+                resultMessage.classList.remove('fail');
+            } else {
+                resultMessage.classList.add('fail');
+                resultMessage.classList.remove('success');
+            }
+
+            resetButton.style.display = 'inline-block';
+        });
+
+        resetButton.addEventListener('click', () => {
+            isChecking = false;
+            userMatches = {};
+            selectedLeft = null;
+            resultMessage.textContent = '';
+            resultMessage.classList.remove('success', 'fail');
+            
+            document.querySelectorAll('.match-item').forEach(i => 
+                i.classList.remove('selected', 'matched', 'correct', 'incorrect')
+            );
+            resetButton.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

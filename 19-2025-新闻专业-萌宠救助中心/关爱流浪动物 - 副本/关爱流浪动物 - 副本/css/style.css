@@ -1,0 +1,1118 @@
+/**
+ * 萌宠救助中心 - 主样式文件
+ * 整合所有页面样式
+ */
+
+/* ==================== 全局样式 ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", Arial, sans-serif;
+    color: #333;
+    background-color: #E8F5E9;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    display: block;
+    border: none;
+}
+
+.wrapper {
+    width: 1180px;
+    margin: 0 auto;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* ==================== 头部样式 ==================== */
+.header {
+    background-color: #ffffff;
+    border-bottom: none;
+}
+
+.header-inner {
+    height: 90px;
+    line-height: 90px;
+}
+
+.logo {
+    float: left;
+    height: 60px;
+    margin-top: 15px;
+}
+
+.logo img {
+    height: 60px;
+}
+
+.site-title {
+    float: left;
+    margin-left: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.nav {
+    float: left;
+    margin-left: 80px;
+}
+
+.nav li {
+    float: left;
+    margin-right: 32px;
+}
+
+.nav a {
+    display: block;
+    padding: 0 4px;
+    font-size: 16px;
+    color: #444;
+    border-bottom: 2px solid transparent;
+}
+
+.nav a:hover,
+.nav a.active {
+    color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.header-right {
+    float: right;
+    margin-top: 24px;
+    line-height: 42px;
+}
+
+.search-box {
+    float: left;
+    border: 1px solid #A5D6A7;
+    border-right: none;
+    height: 42px;
+}
+
+.search-box input {
+    border: none;
+    height: 40px;
+    line-height: 40px;
+    width: 190px;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.search-btn {
+    float: left;
+    width: 60px;
+    height: 42px;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.header-auth {
+    float: left;
+    margin-left: 18px;
+}
+
+.header-auth a {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 8px 18px;
+    font-size: 14px;
+}
+
+.header-auth .btn-login {
+    border: 1px solid #4CAF50;
+    color: #4CAF50;
+    background-color: #fff;
+}
+
+.header-auth .btn-register {
+    border: 1px solid #4CAF50;
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.header-auth a:hover {
+    opacity: 0.9;
+}
+
+/* ==================== 通用主内容和侧栏布局 ==================== */
+.main {
+    padding: 30px 0 40px;
+}
+
+.main-left {
+    float: left;
+    width: 780px;
+}
+
+.main-right {
+    float: right;
+    width: 360px;
+}
+
+.section-title {
+    font-size: 20px;
+    color: #4CAF50;
+    margin-bottom: 12px;
+    border-left: 4px solid #4CAF50;
+    padding-left: 10px;
+}
+
+.sub-title {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 18px;
+}
+
+.card {
+    background-color: #fff;
+    border: none;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+}
+
+.card-header {
+    margin-bottom: 14px;
+}
+
+.card-header h3 {
+    font-size: 18px;
+    color: #333;
+}
+
+.card-list li {
+    padding: 12px 0;
+    border-top: 1px dashed #C8E6C9;
+}
+
+.card-list li:first-child {
+    border-top: none;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 14px;
+}
+
+.btn-primary:hover {
+    background-color: #81C784;
+    transition: all 0.3s ease;
+}
+
+.info-bar {
+    font-size: 12px;
+    color: #999;
+    margin-top: 6px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    margin-right: 6px;
+    background-color: #C8E6C9;
+    color: #4CAF50;
+}
+
+/* ==================== 页脚样式 ==================== */
+.footer {
+    background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+    color: #fff;
+    padding: 30px 0;
+    margin-top: 10px;
+}
+
+.footer-inner {
+    font-size: 12px;
+}
+
+.footer-left {
+    float: left;
+}
+
+.footer-right {
+    float: right;
+    text-align: right;
+}
+
+.footer a {
+    color: #fff;
+}
+
+.footer-copy {
+    margin-top: 6px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ==================== 首页样式 ==================== */
+.banner {
+    margin-top: 24px;
+}
+
+.banner-left {
+    float: left;
+    width: 760px;
+    height: 320px;
+    overflow: hidden;
+}
+
+.banner-left img {
+    width: 760px;
+    height: 320px;
+    object-fit: cover;
+}
+
+.banner-slider {
+    position: relative;
+}
+
+.banner-list {
+    width: 9999px;
+}
+
+.banner-item {
+    float: left;
+    width: 760px;
+    height: 320px;
+    display: none;
+}
+
+.banner-item.active {
+    display: block;
+}
+
+.banner-arrow {
+    position: absolute;
+    top: 50%;
+    margin-top: -20px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background: rgba(76, 175, 80, 0.8);
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.banner-prev {
+    left: 16px;
+}
+
+.banner-next {
+    right: 16px;
+}
+
+.banner-dots {
+    position: absolute;
+    left: 0;
+    bottom: 12px;
+    width: 100%;
+    text-align: center;
+}
+
+.banner-dots .dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    margin: 0 6px;
+    cursor: pointer;
+}
+
+.banner-dots .dot.active {
+    background: #4CAF50;
+    width: 32px;
+    transition: all 0.3s ease;
+}
+
+.banner-right {
+    float: right;
+    width: 380px;
+    height: 320px;
+    background-color: #fff;
+    border: none;
+    padding: 24px 28px;
+}
+
+.banner-right h2 {
+    font-size: 22px;
+    color: #4CAF50;
+    margin-bottom: 12px;
+}
+
+.banner-right p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 6px;
+}
+
+.home-columns {
+    margin-top: 30px;
+}
+
+.home-column {
+    float: left;
+    width: 380px;
+    margin-right: 20px;
+}
+
+.home-column:last-child {
+    margin-right: 0;
+}
+
+.home-pet-list li {
+    overflow: hidden;
+}
+
+.home-pet-img {
+    float: left;
+    width: 90px;
+    height: 70px;
+    overflow: hidden;
+    margin-right: 12px;
+}
+
+.home-pet-img img {
+    width: 90px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.home-pet-info {
+    float: left;
+    width: 240px;
+}
+
+.home-pet-info h4 {
+    font-size: 14px;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.home-pet-info p {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.5;
+}
+
+.story-item {
+    overflow: hidden;
+}
+
+.story-img {
+    float: left;
+    width: 120px;
+    height: 90px;
+    overflow: hidden;
+    margin-right: 12px;
+}
+
+.story-img img {
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+}
+
+.story-text {
+    float: left;
+    width: 200px;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.7;
+}
+
+.notice-list li {
+    font-size: 13px;
+    color: #555;
+}
+
+.notice-list span {
+    float: right;
+    color: #999;
+}
+
+.quick-links {
+    margin-top: 26px;
+}
+
+.quick-links .card {
+    float: left;
+    width: 380px;
+    margin-right: 20px;
+}
+
+.quick-links .card:last-child {
+    margin-right: 0;
+}
+
+.quick-links .card p {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+/* ==================== 待领养页面样式 ==================== */
+.filter-bar {
+    margin-top: 24px;
+    background-color: #fff;
+    border: none;
+    padding: 16px 24px;
+    font-size: 13px;
+    color: #555;
+}
+
+.filter-bar span {
+    margin-right: 10px;
+}
+
+.filter-bar a {
+    margin-right: 8px;
+    padding: 6px 14px;
+    border: 1px solid #C8E6C9;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.filter-bar a.active {
+    background-color: #4CAF50;
+    color: #fff;
+    border-color: #4CAF50;
+}
+
+.adopt-list {
+    margin-top: 24px;
+}
+
+.adopt-card {
+    float: left;
+    width: 370px;
+    margin: 0 18px 20px 0;
+    background-color: #fff;
+    border: none;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.adopt-card:nth-child(4n) {
+    margin-right: 0;
+}
+
+.adopt-img img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.adopt-card:hover {
+    opacity: 0.9;
+}
+
+.adopt-body {
+    padding: 10px 12px 12px;
+}
+
+.adopt-body h3 {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.adopt-body h3 a {
+    color: #333;
+}
+
+.adopt-body h3 a:hover {
+    color: #4CAF50;
+}
+
+.adopt-img a {
+    display: block;
+}
+
+.adopt-meta {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.adopt-desc {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+    height: 58px;
+    overflow: hidden;
+}
+
+.adopt-actions {
+    margin-top: 8px;
+}
+
+.adopt-actions .btn-primary {
+    padding: 8px 18px;
+    font-size: 12px;
+}
+
+.adopt-side .card-list li {
+    font-size: 13px;
+    color: #555;
+}
+
+/* ==================== 志愿者页面样式 ==================== */
+.vol-hero {
+    margin-top: 26px;
+    background-color: #fff;
+    border: none;
+    padding: 28px 32px;
+}
+
+.vol-hero h2 {
+    font-size: 22px;
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+.vol-hero p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+}
+
+.vol-layout {
+    margin-top: 26px;
+}
+
+.vol-left {
+    float: left;
+    width: 720px;
+}
+
+.vol-right {
+    float: right;
+    width: 420px;
+}
+
+.vol-steps {
+    background-color: #fff;
+    border: none;
+    padding: 20px 24px;
+}
+
+.vol-steps li {
+    padding: 12px 0;
+    border-top: 1px dashed #C8E6C9;
+    font-size: 13px;
+    color: #555;
+}
+
+.vol-steps li:first-child {
+    border-top: none;
+}
+
+.step-index {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    margin-right: 8px;
+}
+
+.vol-gallery {
+    margin-top: 20px;
+}
+
+.vol-gallery li {
+    float: left;
+    width: 220px;
+    height: 150px;
+    margin: 0 20px 18px 0;
+    overflow: hidden;
+}
+
+.vol-gallery li:nth-child(3n) {
+    margin-right: 0;
+}
+
+.vol-gallery img {
+    width: 220px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.vol-form {
+    background-color: #fff;
+    border: none;
+    padding: 20px 24px;
+}
+
+.vol-right .card {
+    margin-bottom: 18px;
+}
+
+/* ==================== 捐助页面样式 ==================== */
+.donate-hero {
+    margin-top: 26px;
+    background-color: #fff;
+    border: none;
+    padding: 28px 32px;
+}
+
+.donate-hero h2 {
+    font-size: 22px;
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+.donate-hero p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.9;
+}
+
+.donate-layout {
+    margin-top: 26px;
+}
+
+.donate-left {
+    float: left;
+    width: 720px;
+}
+
+.donate-right {
+    float: right;
+    width: 420px;
+}
+
+.donate-plan {
+    background-color: #fff;
+    border: none;
+    padding: 20px 24px;
+    margin-bottom: 18px;
+}
+
+.donate-plan h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.donate-plan p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 6px;
+}
+
+.donate-plan ul {
+    margin-top: 6px;
+}
+
+.donate-plan li {
+    font-size: 13px;
+    color: #555;
+    padding: 4px 0;
+}
+
+.donate-table {
+    background-color: #fff;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+    color: #555;
+    overflow: hidden;
+}
+
+.donate-table th,
+.donate-table td {
+    border: 1px solid #C8E6C9;
+    padding: 10px 12px;
+    text-align: left;
+}
+
+.donate-table th {
+    background-color: #E8F5E9;
+}
+
+.donate-right .card {
+    margin-bottom: 18px;
+}
+
+/* ==================== 关于我们页面样式 ==================== */
+.hero-about {
+    margin-top: 26px;
+    background-color: #fff;
+    border: none;
+    padding: 28px 32px;
+}
+
+.hero-about h2 {
+    font-size: 24px;
+    color: #4CAF50;
+    margin-bottom: 12px;
+}
+
+.hero-about p {
+    font-size: 14px;
+    color: #555;
+    line-height: 2;
+}
+
+.about-layout {
+    margin-top: 26px;
+}
+
+.about-left {
+    float: left;
+    width: 720px;
+}
+
+.about-right {
+    float: right;
+    width: 420px;
+}
+
+.timeline {
+    background-color: #fff;
+    border: none;
+    padding: 20px 24px;
+}
+
+.timeline-item {
+    border-left: 3px solid #C8E6C9;
+    padding-left: 16px;
+    margin-bottom: 16px;
+}
+
+.timeline-year {
+    font-size: 14px;
+    color: #4CAF50;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.timeline-text {
+    font-size: 13px;
+    color: #555;
+}
+
+.about-photo-grid {
+    margin-top: 20px;
+}
+
+.about-photo-grid li {
+    float: left;
+    width: 220px;
+    height: 150px;
+    margin: 0 20px 18px 0;
+    overflow: hidden;
+}
+
+.about-photo-grid li:nth-child(3n) {
+    margin-right: 0;
+}
+
+.about-photo-grid img {
+    width: 220px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.about-right .card {
+    margin-bottom: 18px;
+}
+
+.about-contact li {
+    font-size: 13px;
+    color: #555;
+    padding: 8px 0;
+    border-top: 1px dashed #C8E6C9;
+}
+
+.about-contact li:first-child {
+    border-top: none;
+}
+
+/* ==================== 表单样式 ==================== */
+.form-row {
+    margin-bottom: 14px;
+}
+
+.form-row label {
+    display: block;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #C8E6C9;
+    font-size: 13px;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.form-row textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.form-actions {
+    margin-top: 16px;
+}
+
+.form-actions button {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+/* ==================== 响应式设计 ==================== */
+@media screen and (max-width: 1200px) {
+    .wrapper {
+        width: 95%;
+        padding: 0 2.5%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* 头部适配 */
+    .header-inner {
+        height: auto;
+        line-height: normal;
+        padding: 10px 0;
+    }
+
+    .logo {
+        float: none;
+        margin: 10px auto;
+        text-align: center;
+    }
+
+    .logo img {
+        margin: 0 auto;
+    }
+
+    .site-title {
+        float: none;
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .nav {
+        float: none;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .nav li {
+        float: none;
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    .header-right {
+        float: none;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .search-box {
+        float: none;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .search-btn {
+        float: none;
+        display: inline-block;
+    }
+
+    .header-auth {
+        float: none;
+        margin: 10px 0;
+    }
+
+    /* 主内容适配 */
+    .main-left,
+    .main-right {
+        float: none;
+        width: 100%;
+    }
+
+    .main-right {
+        margin-top: 20px;
+    }
+
+    /* 按钮适配 */
+    .btn-primary {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* 页脚适配 */
+    .footer-left,
+    .footer-right {
+        float: none;
+        text-align: center;
+    }
+
+    .footer-right {
+        margin-top: 10px;
+    }
+
+    /* 首页适配 */
+    .banner {
+        margin-top: 15px;
+    }
+
+    .banner-left,
+    .banner-right {
+        float: none;
+        width: 100%;
+    }
+
+    .banner-left {
+        height: 250px;
+    }
+
+    .banner-left img {
+        width: 100%;
+        height: 250px;
+    }
+
+    .banner-item {
+        width: 100%;
+        height: 250px;
+    }
+
+    .banner-right {
+        height: auto;
+        margin-top: 15px;
+    }
+
+    .home-columns {
+        margin-top: 15px;
+    }
+
+    .home-column {
+        float: none;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .home-column:last-child {
+        margin-bottom: 0;
+    }
+
+    .home-pet-img {
+        width: 80px;
+        height: 60px;
+    }
+
+    .home-pet-img img {
+        width: 80px;
+        height: 60px;
+    }
+
+    .home-pet-info {
+        width: calc(100% - 95px);
+    }
+
+    .story-img {
+        width: 100px;
+        height: 75px;
+    }
+
+    .story-img img {
+        width: 100px;
+        height: 75px;
+    }
+
+    .story-text {
+        width: calc(100% - 115px);
+    }
+
+    .quick-links {
+        margin-top: 15px;
+    }
+
+    .quick-links .card {
+        float: none;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .quick-links .card:last-child {
+        margin-bottom: 0;
+    }
+
+    /* 捐助页面适配 */
+    .donate-left,
+    .donate-right {
+        float: none;
+        width: 100%;
+    }
+
+    .donate-right {
+        margin-top: 20px;
+    }
+
+    .donate-table {
+        font-size: 12px;
+    }
+
+    .donate-table th,
+    .donate-table td {
+        padding: 8px;
+    }
+
+    /* 志愿者和关于页面适配 */
+    .vol-left,
+    .vol-right,
+    .about-left,
+    .about-right {
+        float: none;
+        width: 100%;
+    }
+
+    .vol-right,
+    .about-right {
+        margin-top: 20px;
+    }
+}

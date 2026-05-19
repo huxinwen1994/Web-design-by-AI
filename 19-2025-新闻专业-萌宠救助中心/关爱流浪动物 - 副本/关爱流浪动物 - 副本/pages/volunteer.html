@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>萌宠救助中心 - 志愿者中心</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="header">
+        <div class="wrapper header-inner clearfix">
+            <div class="logo"><img src="../assets/images/logo.jpg" alt="萌宠救助中心Logo"></div>
+            <div class="site-title">萌宠救助中心</div>
+            <ul class="nav">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="adoption.html">待领养</a></li>
+                <li><a href="volunteer.html" class="active">志愿者</a></li>
+                <li><a href="donate.html">捐助支持</a></li>
+            </ul>
+            <div class="header-right clearfix">
+                <form class="search-box" action="#" method="get">
+                    <input type="text" name="keyword" placeholder="搜索动物、活动、资讯">
+                </form>
+                <button class="search-btn" type="submit">搜索</button>
+                <div class="header-auth">
+                    <a href="login.html" class="btn-login">登录</a>
+                    <a href="register.html" class="btn-register">注册</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper main">
+        <div class="vol-hero">
+            <h2>成为一名救助志愿者</h2>
+            <p>无论你是学生、上班族还是自由职业者，只要认同「领养代替购买」「终身负责」的理念，都欢迎加入我们的志愿者团队。</p>
+        </div>
+
+        <div class="vol-layout clearfix">
+            <div class="vol-left">
+                <div class="vol-steps">
+                    <div class="section-title">加入步骤</div>
+                    <ul>
+                        <li><span class="step-index">1</span>在线填写志愿者报名表，说明可参与的时间与擅长领域。</li>
+                        <li><span class="step-index">2</span>参加基础培训，了解基地规则、动物行为与安全须知。</li>
+                        <li><span class="step-index">3</span>根据排班参与日常值班、清洁、陪伴、送医等工作。</li>
+                        <li><span class="step-index">4</span>有意愿者可参与宣传、摄影、活动组织等专项项目。</li>
+                    </ul>
+                </div>
+
+                <ul class="vol-gallery clearfix">
+                    <li><img src="../assets/images/猫狗7.jpg" alt="志愿者活动1"></li>
+                    <li><img src="../assets/images/猫狗8.jpg" alt="志愿者活动2"></li>
+                    <li><img src="../assets/images/猫狗9.jpg" alt="志愿者活动3"></li>
+                    <li><img src="../assets/images/猫狗10.jpg" alt="志愿者活动4"></li>
+                    <li><img src="../assets/images/猫狗11.jpg" alt="志愿者活动5"></li>
+                    <li><img src="../assets/images/狗3.jpg" alt="志愿者活动6"></li>
+                </ul>
+            </div>
+
+            <div class="vol-right">
+                <div class="vol-form">
+                    <div class="section-title">志愿者报名意向表</div>
+                    <form id="volunteerForm">
+                        <div class="form-row clearfix">
+                            <label>姓名</label>
+                            <input type="text" name="name" placeholder="请输入姓名" required>
+                        </div>
+                        <div class="form-row clearfix">
+                            <label>联系方式</label>
+                            <input type="tel" name="phone" placeholder="手机号码" required>
+                        </div>
+                        <div class="form-row clearfix">
+                            <label>邮箱</label>
+                            <input type="email" name="email" placeholder="请输入邮箱地址" required>
+                        </div>
+                        <div class="form-row clearfix">
+                            <label>可参与时间</label>
+                            <select name="time" required>
+                                <option value="">请选择</option>
+                                <option value="weekend">周末全天</option>
+                                <option value="weeknight">工作日晚上</option>
+                                <option value="holiday">寒暑假/长假期</option>
+                            </select>
+                        </div>
+                        <div class="form-row clearfix">
+                            <label>擅长方向</label>
+                            <textarea name="skills" placeholder="例如：摄影、设计、医疗、活动组织、文案等" required></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">提交报名</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <div class="card-header"><h3>值班内容示例</h3></div>
+                    <ul class="card-list">
+                        <li>协助清洁笼舍、消毒环境，保持基地卫生。</li>
+                        <li>陪伴动物、基础梳毛和简单训练，帮助它们减压。</li>
+                        <li>配合运送和陪同就医，记录用药与恢复情况。</li>
+                        <li>活动现场布置与接待来访者，介绍领养流程。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="wrapper footer-inner clearfix">
+            <div class="footer-left">
+                <div>萌宠救助中心 · 用专业与温度守护每一条生命</div>
+                <div class="footer-copy">© 2025 萌宠救助中心 Animal Rescue. 保留所有权利。</div>
+            </div>
+            <div class="footer-right">
+                <div>联系邮箱：support@rescue.org</div>
+                <div>地址：XX市XX区 · 志愿者值班时间 13:30 - 20:30</div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/main.js"></script>
+</body>
+</html>
