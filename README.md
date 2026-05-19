@@ -2,6 +2,18 @@
 
 本作品集合来自湖南师范大学新闻与传播学院 2023 级网络与新媒体、新闻学专业本科生 AI 辅助网页设计实践作品。每个作品文件夹均已按“序号-年份-专业名称-作品名称”的格式整理，便于浏览、归档与后续发布。
 
+This repository is intended for academic communication, teaching demonstration, and non-commercial learning purposes.
+
+All student works remain attributed to their original creators.
+
+Commercial reproduction, resale, or unauthorized redistribution is prohibited without permission.
+
+本仓库仅用于学术交流、教学展示与非商业学习用途。
+
+所有学生作品均保留其原作者署名与归属。
+
+未经许可，禁止将本仓库内容用于商业复制、转售或未经授权的再分发。
+
 ## 作品总览
 
 | 序号 | 作品名称 | 主题简介 | 入口链接 |
